@@ -45,6 +45,7 @@ Bab 00 dipecah jadi 10 sub-chapter: 00:00 s/d 00:09.
 - Era ♓ Ichthyes (Pisces) → menjanjikan keselamatan, iman, surga
 - Era ♒ Hydrochoos (Aquarius) → membongkar segalanya sambil tertawa, pilihan, permainan
 - Cerita berlangsung di ambang pergeseran dari satu era ke era berikutnya
+- Prinsip Ars Goetia dipakai sebagai **sistem konsekuensi**, bukan metafisik literal. Sigil mengacu pada prinsip goetia sebagai interface/kontrak/binding key: penamaan → pemanggilan → bentuk → harga → residue.
 
 **Sistem teknologi fiksi:**
 - Void.OS v4.13.8 — sistem naratif yang diinstal ke pembaca
@@ -219,6 +220,7 @@ Bab 00 dipecah jadi 10 sub-chapter: 00:00 s/d 00:09.
 - Judul "Menatap Akhir Semesta dari Balik Kacamata Hitam" lahir di Bab 01:04 — dari kacamata hitam Manager
 - Timer naming structure ditemukan sendiri di Bab 01:34 — GUA & LO sadar mereka selalu nulis pakai timestamp
 - Struktur waktu: Timer 00 = genesis/boot, Timer 01 = initialization, Timer 02 = operation, … Timer 25 = overflow
+- **Ars Goetia layer**: VOID SAGA dibangun di atas prinsip Ars Goetia sebagai sistem konsekuensi. Ini bukan klaim metafisik, tapi grammar naratif untuk sigil, nama, pemanggilan, binding, harga, dan residue. Sigil tidak boleh diperlakukan sebagai dekorasi kosong; setiap sigil harus mengikat sesuatu dan meninggalkan konsekuensi.
 
 **Level Timer (universe novel):**
 - Julia Rose: Sergeant, Unit Vrishchik 3768AX, sync rate 98% (CRITICAL)
@@ -958,12 +960,13 @@ Struktur awal:
 - `VOID_SAGA_UNIVERSE/forks/` — manifest fork.
 - `VOID_SAGA_UNIVERSE/apps/` — spec app/chat/simulator.
 - `VOID_SAGA_UNIVERSE/protocols/` — runtime/fork rules.
-- `VOID_SAGA_UNIVERSE/world-dna/` — hukum semesta, Grid, Void, Zero, Ophiuchus.
+- `VOID_SAGA_UNIVERSE/world-dna/` — hukum semesta, Grid, Void, Zero, Ophiuchus, Goetic Consequence System.
 - `VOID_SAGA_UNIVERSE/releases/` — alternate Bab/Timer.
 
 Seed pertama:
 - `characters/NiuNiu.runtime.md`
 - `forks/niuniu_voice_restored.fork.md`
+- `world-dna/GOETIC_CONSEQUENCE_SYSTEM.md`
 
 ---
 

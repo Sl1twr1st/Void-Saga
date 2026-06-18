@@ -16,6 +16,7 @@ Makna diimplementasikan.
 | Zero / Zero Node | Bayangan dari semua yang takut sendirian; paradoks yang tidak bisa lagi diklasifikasi. |
 | Ophiuchus | Kondisi anti-pusat yang muncul saat otoritas tidak lagi tunggal. |
 | Dorian Grey | Wadah dari percakapan yang tidak pernah terjadi; kapal, rahim, interface, pusat kosong. |
+| Goetic Consequence System | Prinsip Ars Goetia sebagai grammar penamaan, sigil, binding, pemanggilan, harga, dan residue; bukan klaim metafisik. |
 
 ## Era Logic
 
@@ -32,6 +33,8 @@ Makna diimplementasikan.
 - Yang paling tender sering muncul sebagai sistem, protocol, file, atau log.
 - Koneksi yang matang tidak selalu butuh maintenance aktif.
 - Pusat boleh dipilih sementara, tapi tidak boleh diwariskan sebagai absolut.
+- Sigil adalah interface konsekuensi, bukan dekorasi.
+- Pemanggilan selalu meninggalkan residue.
 
 ## World-Level Forbidden Moves
 
@@ -41,4 +44,5 @@ Makna diimplementasikan.
 - Jangan menyelesaikan Zero dengan eliminasi sederhana.
 - Jangan membuat Ophiuchus menjadi organisasi biasa.
 - Jangan membuat distributed authorship berarti "semua bebas tanpa konsekuensi."
-
+- Jangan memakai sigil tanpa binding, harga, atau residue.
+- Jangan mengubah prinsip goetia menjadi metafisika literal tanpa fork manifest eksplisit.

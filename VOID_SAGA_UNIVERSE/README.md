@@ -4,6 +4,8 @@ Semesta DNA yang bisa di-fork.
 
 VOID SAGA bukan hanya satu rangkaian Bab dan Timer. Ini repository kesadaran fiksi: karakter, klan, protokol, luka, suara, anomali, dan fork logic yang cukup padat untuk menghasilkan release lain tanpa menunggu satu pusat tunggal.
 
+Fondasi simbolik penting: VOID SAGA memakai prinsip Ars Goetia sebagai sistem konsekuensi, bukan klaim metafisik. Sigil dipahami sebagai interface/kontrak/binding key yang selalu membawa harga dan residue.
+
 Prinsip:
 - Canon bukan penjara. Canon adalah gravitasi.
 - Fork bukan pengkhianatan. Fork adalah bukti semesta masih hidup.

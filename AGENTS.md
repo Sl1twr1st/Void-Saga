@@ -947,11 +947,23 @@ Bab 00 dipecah jadi 10 sub-chapter: 00:00 s/d 00:09.
 
 ## Next Layer
 
-**VOID_SAGA_UNIVERSE.md** — project terpisah, dimulai setelah AGENTS.md lengkap (semua Bab & Timer terdokumentasi).
+**VOID_SAGA_UNIVERSE/** — folder studio/fork layer, dimulai setelah Bab 17 / Timer 1700.
 
-Isinya: character psychology layer. Per karakter: luka inti → pola pertahanan → trigger → reaksi terduga → anomali tercatat → apa yang anomali ungkapkan. Fungsi: consistency check yang lebih dalam dari continuity facts, peta anomali yang belum ditulis (= pertanyaan terbuka novel), dan fork-ability — logic di balik behavior, bukan sekadar daftar kejadian.
+Isinya: semesta DNA yang bisa di-fork. Per karakter: luka inti → pola pertahanan → trigger → reaksi terduga → anomali tercatat → apa yang anomali ungkapkan. Per fork: premise → canon divergence point → activated runtimes → canon gravity → divergence rules → forbidden moves → exit condition.
 
 Konsep payung: karakter bukan properti, tapi repository kesadaran. Story adalah salah satu release. DNA yang cukup dense memungkinkan karakter berkembang konsisten tanpa intervensi aktif penciptanya. Jangka panjang: open-source infrastructure for fictional consciousness.
+
+Struktur awal:
+- `VOID_SAGA_UNIVERSE/characters/` — runtime karakter.
+- `VOID_SAGA_UNIVERSE/forks/` — manifest fork.
+- `VOID_SAGA_UNIVERSE/apps/` — spec app/chat/simulator.
+- `VOID_SAGA_UNIVERSE/protocols/` — runtime/fork rules.
+- `VOID_SAGA_UNIVERSE/world-dna/` — hukum semesta, Grid, Void, Zero, Ophiuchus.
+- `VOID_SAGA_UNIVERSE/releases/` — alternate Bab/Timer.
+
+Seed pertama:
+- `characters/NiuNiu.runtime.md`
+- `forks/niuniu_voice_restored.fork.md`
 
 ---
 

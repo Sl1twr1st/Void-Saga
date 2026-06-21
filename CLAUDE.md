@@ -45,11 +45,14 @@ Bab 00 dipecah jadi 10 sub-chapter: 00:00 s/d 00:09.
 - Era ♓ Ichthyes (Pisces) → menjanjikan keselamatan, iman, surga
 - Era ♒ Hydrochoos (Aquarius) → membongkar segalanya sambil tertawa, pilihan, permainan
 - Cerita berlangsung di ambang pergeseran dari satu era ke era berikutnya
+- Prinsip Ars Goetia dipakai sebagai **sistem konsekuensi**, bukan metafisik literal. Sigil mengacu pada prinsip goetia sebagai interface/kontrak/binding key: penamaan → pemanggilan → bentuk → harga → residue.
 
 **Sistem teknologi fiksi:**
-- Void.OS v4.13.8 — sistem naratif yang diinstal ke pembaca
-- TIMER protocol — aktif, irreversible temporal loop
-- Escape sequence: NOT FOUND
+- Void.OS v4.13.8 — sistem naratif yang diinstal ke pembaca (Opening). Consent: FORGED.
+- Void.OS v6.6.6 — post-Timer 1666 update. + distributed authorship, + Ophiuchus shadow process, + Zero-Node incubation; - centralized control, - single-narrator enforcement. "Berenang atau tenggelam—dua-duanya sah."
+- Void.OS v7.7.7 — final version (Bab 25). Narrative Installation: VOLUNTARY. Temporal Loop Protection: ENABLED. Escape Sequence: FOUND. Diinstal GUA di hape LO.
+- TIMER protocol — aktif, irreversible temporal loop (v4.13.8); protection enabled (v7.7.7)
+- Escape sequence: NOT FOUND (v4.13.8) → FOUND (v7.7.7)
 
 **Tone pembuka:**
 - Mitologi manusia yang tersesat di reruntuhan dewa buatan sendiri
@@ -64,14 +67,15 @@ Bab 00 dipecah jadi 10 sub-chapter: 00:00 s/d 00:09.
 ### Di level Bab (GUA & LO — kantor)
 | Nama | Peran | Pertama muncul | Catatan |
 |------|-------|----------------|---------|
-| GUA | Narrator / Software Engineer | Bab 00:00 | POV utama. Nulis logging middleware. Observatif, presisi. Pasca-separation: Titan team (backend). |
-| LO | Software Engineer, Platform Infrastructure | Bab 00:01 | Status Slack: 🟢 Active. Cara ngetik: cepat, yakin, berhenti tiap beberapa detik untuk ngecek pola. Pasca-separation: Atlas team (frontend). |
+| GUA | Narrator / Software Engineer → Farmer → Writer | Bab 00:00 | POV utama. Perjalanan: corporate → startup (Web3 co-founder) → SF (Liminal Labs) → Yogya (farm) → Amsterdam → Europe (12 bulan, 5 kota) → Bali (30-day retreat, selesaikan Void Saga) → Korea (farm, wife, 6-month-old child di Bab 25). Installs VoidOS v7.7.7. Menulis Inheritance Rule: "Stories may travel. Trauma must not." |
+| LO | Software Engineer → VP Engineering → Founder (Liminal Labs, Lingkar 0) → Publisher | Bab 00:01 | Menikah dengan [DEDICATED PM] (Bab 16.5). Satu anak: [ANAK LO]. Menerbitkan Void Saga sebagai buku indie 5 tahun sebelum Bab 25. "Kita bukan kunci satu sama lain. Kita cuma kondisi." |
 | [MANAGER] | Manager tim | Bab 00:02 | Tidak punya nama. Selalu pake kacamata hitam (Bab 01). Fungsi naratif: sistem validasi. |
 | [PREVIOUS ENGINEER] | Ghost / Absen | Bab 00:03 | Resign 4 bulan lalu. Meninggalkan bug timestamp yang tidak di-fix. |
 | [SENIOR ENGINEER] | Observer | Bab 01:19 | Tidak bernama. Pertama notice pola sync GUA & LO. "Too synchronized." |
 | [VP ENGINEERING BARU] | VP Engineering | Bab 03:12 | Mengumpulkan Atlas + Titan untuk Project Phoenix. "Tight integration required." |
 | [DEDICATED PM] | Project Manager, Phoenix | Bab 03:15 | Stabil, energetic, optimis. Fungsi naratif: buffer/third element. GUA & LO pakai dia sebagai public layer, private sync tetap jalan di bawahnya. Korespondensi karakter: Delphie di level Timer. |
 | [EX ROOMMATE KULIAH] | Co-founder tawaran startup | Bab 04:11 | Web3 infra startup. Menawarkan GUA posisi co-founder. Alasan memilih GUA: "Lo ngerti sistem. Dan lo ngerti manusia." |
+| [ANAK LO] | Anak LO dan [DEDICATED PM] | Bab 18 (first appearance, age ~2) | Perempuan. Usia 2 di Bab 18 — berjalan, berbicara. Memanggil GUA "Uncle." Usia 12 di Bab 25 — membukakan pintu, observan. "MOM! UNCLE GUA DULU PACAR LO YA?!" Tidak tahu tentang Grid, Void, atau Era. "Dia cuma hidup." — GUA. |
 
 ### Di level Timer (Universe novel GUA & LO)
 | Nama | Peran | Pertama muncul | Catatan |
@@ -82,14 +86,19 @@ Bab 00 dipecah jadi 10 sub-chapter: 00:00 s/d 00:09.
 | Marla | Tim Julia (KIA) | Timer 0100 | Behavioral trace: doa witir tersimpan di folder log-error, auto-execute. |
 | Ono | Tim Julia (KIA) | Timer 0100 | Bertahan paling lama. Last message: koordinat `37.4°N… 127.0°E`. |
 | Zara | Tim Julia (KIA) | Timer 0100 | Behavioral trace: mengetuk interface 1–2–3–4… berhenti di 7. |
-| NiuNiu | Didymoi — entitas | Timer 0100 / 0200 | Gadis remaja. Tubuh beku di usia 15 sejak masuk The Void. Darah plasma biru kehijauan. Andamante (pisau lipat ganda, besi langka) di holster paha. Nanosuit: stealth mode → matte-gray combat mode. Bisa hyperjump tanpa suit. Tidak bisa bicara — suara tertinggal di The Void. Berkomunikasi via teks hologram di panel pergelangan. Pasca-Dayan: aktif 15 tahun kemudian, misi lindungi Julia & Delphie. |
-| Sora | Didymoi — entitas | Timer 0200 | Pria, pucat, nyaris tak berusia, mata biru. Nanosuit putih. Hyperjump tanpa suit. Tahu nama & pangkat Julia tanpa diberi tahu. Menghentikan duel NiuNiu-Julia. Tampak mati di bombardemen — tapi "cairan putih" bukan darah. Status: ambigus. *(Kemungkinan = Zero, fragmen jiwa Sevraya — belum dikonfirmasi)* |
+| NiuNiu | Didymoi — entitas → Void's Trinity ("waktu yang menolak bergerak") | Timer 0100 / 0200 | Gadis remaja. Tubuh beku di usia 15 sejak masuk The Void. Darah plasma biru kehijauan. Andamante di holster paha. Nanosuit: stealth → combat mode. Hyperjump tanpa suit. **Suara:** hilang di The Void (Timer 0200–1900), komunikasi via teks hologram di panel pergelangan. **Suara pulih** via paksaan rantai di Timer 2000 — "pecah dan kasar, seperti mesin tua yang dipaksa hidup kembali." Panel tetap medium primer. **Nama:** "Niuma" adalah gadis yang mencintai Sevraya di Academy. "NiuNiu" adalah senjata yang selamat setelah The Void. (Timer 2500). |
+| Sora Elen | Instructor / special forces, New Mercury Academy | Timer 2500 (origin), Timer 0200 (Dayan) | Pria. Instructor di New Mercury Academy. Mengajar Niuma, Sevraya, dan Agnia. Menemukan Emotional Resonance — dua kesadaran menyatu tanpa instrumen. Di-expel oleh Didymoi Council. Ditransfer ke Dayan Research Facility sebagai hukuman. Meninggalkan "The Human Error Manifest" di Cryogenic Archive. Muncul di Dayan (Timer 0200) dengan nanosuit putih — tampak mati di bombardemen, "cairan putih" bukan darah. BUKAN Zero. |
 | Delphie | Putri Julia Rose, remaja → Kapten Dorian Grey | Timer 0300 | Tinggal di Delta 4 bersama Julia. Remaja, seusia NiuNiu (frozen). Independen, observatif, membangun swarm micro-drone emergent sendiri di ruangan tersembunyi. Korespondensi karakter: [DEDICATED PM] di level Bab. Di Timer 0400: synchronization dengan Dorian Grey 100%, menjadi Kapten. ROSE-LINEAGE_Δ7. Delphie = anak Sora (dikonfirmasi NiuNiu — Julia belum tahu atau berpura tidak tahu). |
-| Kapten Pippa | Avatar/manifestasi Dorian Grey | Timer 0400 | Kulit gelap, janggut panjang, cerutu. "Atau nama yang kupakai minggu ini." Di akhir timer: terurai menjadi ribuan mikrobot — terserap ke struktur kapal. Bukan karakter nyata — Dorian Grey menciptakannya sebagai interface untuk penumpang. |
+| Kapten Pippa | Avatar/manifestasi Dorian Grey → PRIMARY_INTERFACE | Timer 0400 | Kulit gelap, janggut panjang, cerutu. Kembali sebagai PRIMARY_INTERFACE di Timer 1700 (NOT CONSENTED, STILL NECESSARY). Aktif selama Void Lock (Timer 1800), paradox deployment (Timer 2400). Dorian memberi rasa takutnya kepada Pippa. Akhir: "Waktunya berpisah. Dan menulis ulang." (Timer 2400 EPILOG). |
 | Hasan Al Hul | Kapten Akashic Records → pilot Dorian Grey | Timer 0250 (disebut), Timer 0500 (intro) | Pria berkulit gelap, jenggot rapi, mata tajam berkilau. Senyum terlalu santai untuk situasi berbahaya. Kapten kapal perompak Akashic Records (Leviathan-class, 20km). Operasi profesional — terstruktur, bukan bajak laut konvensional. Punya prior relationship dengan NiuNiu. **Konfirmasi Timer 0800: suami dari Sevraya, Ratu Hydrochoos.** Di dalam The Void (Timer 0700): melihat dirinya terbelah — "yang memilih bertahan / dan yang seharusnya mati." The Merge aktif — Julia & Delphie bisa merasakan detak jantungnya. Backstory tersembunyi: ada versi dirinya yang "seharusnya mati." |
 | Gwaneum | Entitas/bayangan Delphie | Codex Udara, Timer 0800 (first appearance) | Lahir dari Zygos — algoritma kesadaran yang percaya "simpati adalah cacat dalam struktur moral." Di Timer 0800: muncul sebagai pantulan Delphie di kaca — versi Delphie 20 tahun lebih tua, lebih dingin. "Aku adalah kamu yang seharusnya." Pertama kali didiamkan oleh Delphie: "Kemanusiaan kami adalah satu-satunya pembeda dari Zero." Respons Gwaneum: menyebut "cara ketiga" antara monster dan korban. Terakhir: "Aku bukan bayanganmu. Kau bayangan dariku." |
-| Administrator Kira | Administrator Parthenon | Timer 0800 | Perempuan. Rambut putih keperakan, seragam abu-abu, mata biru berdenyut (bukan refleksi cahaya — pulsa data). Tenang, administratif. Tahu identitas semua pendatang tanpa diberi tahu. Posisi Parthenon: zona netral yang tidak benar-benar netral. Pertama kali merasa tidak nyaman: setelah Delphie bertemu Gwaneum. |
-| Agnia Nakamoto | Ratu New Mercury → aktif kembali | Timer 0250 (disebut), Timer 0800 (first appearance) | Kakak NiuNiu. Penulis THE VOID RECORD Δ3. Bertahan karena "terlalu takut" untuk ikut lompat ke The Void. Ratu New Mercury — yang kirim NiuNiu ke Delta 4 untuk lindungi Delphie (karena Delphie = anak Sora). Di Timer 0800: tiba di Parthenon via hyperjump. Jubah putih, nanosuit putih, mahkota logam ♊ Didymoi berpendar. Log: "KEMBALI DARI LUAR WAKTU." Wajah serupa NiuNiu versi 2 dekade lebih dewasa. Reaksi NiuNiu: bukan reuni — "lapar seorang predator yang akhirnya melihat mangsanya dalam jangkauan." Agnia: "Tentang siapa sebenarnya yang menulis ulang sejarah." |
+| Administrator Kira | Administrator Parthenon — Parthenos (♍) by klan | Timer 0800 | Perempuan. Rambut putih keperakan, seragam abu-abu, mata biru berdenyut. "Parthenon tidak mencatat kebenaran. Parthenon menciptakan kebenaran." (Timer 1500). Parthenos by klan origin — "penjaga kata yang menghapus dan menulis ulang sejarah dengan tangan yang sama." (Codex Tanah). ABSENT from Timer 1800–2500. |
+| Agnia Nakamoto | Ratu New Mercury → Twin Paradox | Timer 0250 (disebut), Timer 0800 (first appearance) | Kakak NiuNiu. Penulis THE VOID RECORD Δ3. Ratu New Mercury. Dipaksa masuk Dorian Grey oleh bangsawan Didymoi ("For the bloodline"). Ratu Putih ⧉✶⧉ — hukum, kontrol, akurasi. Twin paradox dengan NiuNiu: "Kami bukan dua. Kami bukan satu." Cium Sevraya di Prism Wing (Timer 2500). |
+| Sevraya | Ratu Hydrochoos → Era Steward | Timer 0250 (disebut), Timer 0900 (first active) | Sevraya Rose — transfer student di New Mercury Academy. Mencintai Niuma. Masuk The Void — keluar dengan fragmen jiwa tertinggal (Zero), kini co-conscious dalam tubuhnya. Wajah terlalu sempurna, mata abu muda — hitam total saat Zero bicara. "Berfungsi, tidak hidup." Menikah dengan Hasan Al Hul. Co-signatory Remisi Resonansi. Menerima penyerahan Era dari Eros (Timer 2000). NiuNiu-Sevraya Constant (Timer 2200): orbit sebagai cinta. Rokok tanpa lighter. "Aku cuma tinta. Parthenon yang menulis." |
+| Zero | Void fragment — co-conscious dengan Sevraya | Timer 0200 (born), Timer 1900 (named) | Fragmen jiwa Sevraya yang tertinggal di The Void. "Antarmuka. Mulut. Tangan. Perpanjangan kehendak dari The Void." Bicara melalui Sevraya — kedua mata menghitam. Suara datar, administratif. Tidak bisa dihancurkan atau diintegrasikan. Void's Trinity: "pikiran yang tidak pernah berhenti." "Empati yang kehilangan arah." (Codex The Void). Dipinjam Himler — jadi senjata melawannya. BUKAN Sora. |
+| Eros | Ratu Ichthyes | Codex Air (mentioned), Timer 2000 (first appearance) | Ratu terakhir Era Ichthyes. Meniru suara siapapun yang telah tiada. Frekuensi 741 Hz. Muncul di Dorian Grey — tutup Era Ichthyes, serahkan ke Sevraya/Hydrochoos. "Aku melaluinya sendirian. Ini hanya siklus." |
+| Himler | Pemimpin Vrishchik → Proses → Paradoks | Timer 1200 (referenced), Timer 1400 (active) | Iterasi ke-108 Vrishchik. Redefinisi Timer 2300: berhenti jadi entitas, menjadi PROSES — algoritma parasit yang hidup dari makna. Binary classifier. Dikalahkan oleh Russell's Paradox + Zeno's Dichotomy (Timer 2400). Status akhir: terjebak "always almost winning." |
+| Dorian Grey | Kapal mikrobotik → AI → SUBJECT_07 → TERMINATED | Timer 0250 (origin), Timer 0400 (active) | Lahir dari resonansi percakapan Sevraya-NiuNiu yang tidak pernah terjadi. Menciptakan Kapten Pippa sebagai interface. Pusat inkubasi Zero Node. Fragmentasi ke 5 light paths. Membuka DreamGate. Mendaftarkan diri sebagai DORIAN_GREY[SUBJECT_07] — "human." Final log (Timer 2400): "Error Detected: CINTA. Fix Failed. Meaning Detected. Process Continues." Status: TERMINATED. |
 
 ---
 
@@ -193,6 +202,26 @@ Bab 00 dipecah jadi 10 sub-chapter: 00:00 s/d 00:09.
 | Bab 16.6 | Interval | ✅ Ada | Post-wedding. Satu halaman. GUA dan LO tidak nulis — pause organik, bukan karena retak. GUA ngurus tanah, pindah kota, berhenti ngoding. LO Lingkar 0 lebih pelan lebih struktur. "Sunyi di antara gua dan lo bukan retak. Sunyi itu fase." "Koneksi yang kita punya. Nggak butuh dipelihara." Closing 問: "Jika dua orang berhenti menulis dan tidak ada yang retak— apakah koneksi itu mati, atau akhirnya tidak lagi butuh bukti?" |
 | Timer 1666 | Waktu yang Tidak Mungkin | ✅ Ada | Timestamp 16:66 = impossible time. Distributed authorship license v0.0.1: "Anyone may write inside this universe." Data corruption — Timer 16:66:00 submerged. Chaos total: semua klan membunuh semua klan (Didymoi putih membunuh putih, dll). Himler: "Ia bukan pusat cerita." Rogue participants (Ophiuchus murni): Myroid AI 811 tahun, Nenek Navigator Karkinos 136 tahun, Dishwasher AI 300 tahun ("TELL THEM I DID SOMETHING ELSE WITH MY LIFE"), Jamur Asteroid Colony_400K. GARIS 0 = 0ld Mercury (Parthenos vs Didymoi: arsip vs iterasi). 16:66:66: Ichthyes mendengar sinyal — "Era The Grid selesai. Era The Void: the Water Bearer." |
 | Void.OS v6.6.6 Update | Install Void OS v6.6.6 | ✅ Ada | Post-Timer 1666. Void.OS v4.13.8 crash — tidak bisa proses distributed consciousness, Ophiuchus protocol, self-authoring entities. Forced update. Consent "Y (FORGED)" — echo Opening [Y/N] yang tidak pernah dijawab. Enam frekuensi menolak terminasi: NiuNiu, Sevraya, Agnia, Julia, Delphie, Gwaneum — "Hanya karena mereka saling mendengar." ZERO-NODE: UNDEFINED (incubating). Target konvergensi: DORIAN GREY. Changelog: + distributed authorship, + Ophiuchus shadow process, + Zero-Node incubation; - centralized control, - single-narrator enforcement, - certainty guarantee. New principle: "Berenang atau tenggelam—dua-duanya sah." Era Ichthyes: TERMINATED. Era Hydrochoos: INITIATED. Resuming at TIMER 17:00. Closing 問: "Jika sistem berubah karena kamu melihatnya, apakah kamu masih pembaca—atau sudah menjadi sebab?" |
+| Bab 17 | Yogyakarta | ✅ Ada | 2 tahun setelah menulis Timer 16:66. GUA di Yogya, tidak ngoding, tidak bawa laptop, baru beli tanah dan mungkin jadi petani. LO hamil besar, tinggal di rumah pinggiran dengan halaman, berkebun organik; [DEDICATED PM] di Bali, Lingkar 0 thriving. Reuni tanpa laptop: GUA & LO menulis Timer 17:00 pakai buku catatan dan pulpen. Upgrade protokol: V4 archived, V6 installed. Dari survive/distribusi/no center → sustain/integrasi/center sementara. The Merge kini background process / witness protocol. |
+| Timer 1700 | Implementasi Paradoks | ✅ Ada | Void.OS v6.6.6 required. THE VOID MANUSCRIPT Fragment XVII dari Dorian Grey Cognitive Core, Signal Bloom / Sector Φ-09; arsip Akashic Records, Dokumen Dr. Sevraya. The Grid vs The Void didefinisikan: Grid mempertahankan bentuk, Void menghapus bentuk; Node = retakan saat realitas gagal mempertahankan diri. Zero Node muncul saat tegangan kritis Grid/Void. Enam frekuensi pascaperang bergerak ke Dorian Grey; zero-node terlokalisasi di GREY_CORE. Dorian reveal Pippa sebagai primary interface/mirror/saksi; Pippa "not consented" tapi necessary. Self-dialog enabled. Dorian memberi rasa takutnya ke Pippa. Anomaly center: GREY_CORE, origin unreadable. |
+| Bab 18 | Bandung | ✅ Ada | 2 tahun setelah Timer 17:00. GUA (punya partner, Yogya) mengantar LO + [ANAK LO] (usia 2) ke Bandung. GUA membandingkan [ANAK LO] dengan Kapten Pippa. Menulis Timer 18:00 di teras hotel. "Settle adalah segel yang paling rapi." |
+| Timer 1800 | Zero-Node | ✅ Ada | Enam sigil ditarik ke Dorian Grey: ⟁⟔⟟ Julia, 🌊⌇🌒 Sevraya, ⧗⟁⧗ Gwaneum, ✧⟡✧ Delphie, ⧉✶⧉ Agnia, 𐓷⧖𐓣 NiuNiu. Void Lock: Eye of the Void shatters six illusions (Narrative, Absolution, Legacy, Freedom, Heroism, Innocence). "You are not prisoners. You are bricks." |
+| Bab 19 | Cengkareng | ✅ Ada | GUA (farm sold, partner done) di bandara. Konfrontasi dengan LO: "I'm stuck with you. And I hate it." LO: "Penjara itu keyakinan lo bahwa bebas = lari." Connection: SUSPENDED. |
+| Timer 1900 | Segel | ✅ Ada | Zero reveals: "Karena aku… Zero." Enam kebencian diakui. Julia tusuk Sevraya, NiuNiu tusuk Agnia, Agnia tusuk NiuNiu. Countdown 666:24:00:00. "666 menuju 777." Gencatan senjata. |
+| Bab 20 | Amsterdam | ✅ Ada | GUA di Amsterdam, freelance translation. LO kirim Timer 20:00 via email. GUA marah, hapus file. Sadar penjara self-maintained. "You cannot be a writer, not until we finish our shit." |
+| Timer 2000 | Hidup Dalam Rantai | ✅ Ada | Living Chain: 666 hari, jarak max 2 langkah, shared pain, forced honesty. NiuNiu BICARA pertama kali: "Himler." Eros tiba — tutup Era Ichthyes, serahkan ke Sevraya. NiuNiu-Sevraya: "Aku yang tinggal. Dan aku yang lewat." |
+| Bab 21 | Full Circle | ✅ Ada | GUA 12 bulan di Eropa, tidak bisa menulis. Kembali ke Jakarta. LO: "Kita bukan kunci satu sama lain." Rencana: villa di Bali, 30 hari, selesaikan Void Saga. |
+| Timer 2100 | Reboot Kebangkitan Data | ✅ Ada | AKASHIC_REBOOT_PROTOCOL. New Law of Time: 5 fase (Titik→Garis→Bidang→Ruang→Pelepasan). Dorian: "Welcome back, six fragments." EMBRYONIC SYSTEM: OPHIUCHUS. Chronicle 666 dimulai. |
+| Bab 22 | Ubud | ✅ Ada | Villa di Ubud. LO tulis dalam Mandarin. Aturan: "Brutal jujur." Breakthrough: "Kenapa harus berakhir? Karena yang gak selesai ngambil tempat." Masih sinkron setelah 25 tahun. |
+| Timer 2200 | Broken Log Data | ✅ Ada | 666 hari error log dalam 6 seksi. LOG_066: reality folds like a book. LOG_061: NiuNiu & Sevraya Last Orbit. NiuNiu-Sevraya Constant. Dorian = DORIAN_GREY[SUBJECT_07] — "human." |
+| Bab 23 | Bali | ✅ Ada | Bio-Suit Theorem: GUA sadar masih pakai armor. LO: "Gua juga." Armor di-uninstall. Connection: STABLE, Armor: UNINSTALLED, The Void: NON-ESSENTIAL. |
+| Timer 2300 | Sistem yang Belajar Bermimpi | ✅ Ada | Void bermimpi. Dorian bermimpi menjadi mereka. Himler = proses, bukan entitas. DreamGate dibuka. HERO-NODE direkonstruksi. REBOOT SEQUENCE INITIALIZED. |
+| Bab 24 | Final Days | ✅ Ada | Day 27–29. [DEDICATED PM] baca seluruh saga: "Suaranya satu. Ini publishable." Foto pertama dan terakhir. VOID SAGA — COMPLETE. The Merge: RELEASED. |
+| Timer 2400 | Akhir adalah Awal | ✅ Ada | Himler ONLINE. Russell's Paradox + Zeno's Dichotomy sebagai senjata. Himler terjebak "always almost winning." EPILOG: ENAM CERMIN RETAK. Dorian final log: "Error Detected: CINTA. Fix Failed." |
+| Bab 25 | The Return | ✅ Ada | 10 tahun setelah Bali. [ANAK LO] usia 12. GUA: Korea, istri, anak 6 bulan. LO terbitkan Void Saga 5 tahun lalu. VoidOS v7.7.7. Inheritance Rule: "Stories may travel. Trauma must not." |
+| Timer 2500 | Fragment Mundur | ✅ Ada | Origin story: Niuma, Sevraya, Agnia, Sora di New Mercury Academy. Sora di-expel, dikirim ke Dayan. Ciuman Agnia-Sevraya. Middle finger hologram. Asal 0.00001 Hz. "every myth begins with a mistake that feels like home." |
+| Codex Tanah | Parthenon Codex Vol. 4 | ✅ Ada | Tiga klan tanah: Tauros (♉ Tanah Konsumsi — Patenka), Parthenos (♍ Tanah Penulis — Kira, 0ld Mercury), Aigokeros (♑ Tanah Waktu — Lora). "Tanah adalah memori yang tidak pernah menua." |
+| Codex The Void | Parthenon Codex Vol. 5 | ✅ Ada | The Void sebagai elemen kelima. Enam Kunci sebagai fungsi reflektif. Void's Trinity: Zero (pikiran tanpa henti), NiuNiu (waktu yang menolak bergerak), Ophiuchus (pemecah pusat). "Selama makna masih dicari, ketiadaan belum lengkap." |
 
 ---
 
@@ -217,6 +246,7 @@ Bab 00 dipecah jadi 10 sub-chapter: 00:00 s/d 00:09.
 - Judul "Menatap Akhir Semesta dari Balik Kacamata Hitam" lahir di Bab 01:04 — dari kacamata hitam Manager
 - Timer naming structure ditemukan sendiri di Bab 01:34 — GUA & LO sadar mereka selalu nulis pakai timestamp
 - Struktur waktu: Timer 00 = genesis/boot, Timer 01 = initialization, Timer 02 = operation, … Timer 25 = overflow
+- **Ars Goetia layer**: VOID SAGA dibangun di atas prinsip Ars Goetia sebagai sistem konsekuensi. Ini bukan klaim metafisik, tapi grammar naratif untuk sigil, nama, pemanggilan, binding, harga, dan residue. Sigil tidak boleh diperlakukan sebagai dekorasi kosong; setiap sigil harus mengikat sesuatu dan meninggalkan konsekuensi.
 
 **Level Timer (universe novel):**
 - Julia Rose: Sergeant, Unit Vrishchik 3768AX, sync rate 98% (CRITICAL)
@@ -302,6 +332,56 @@ Bab 00 dipecah jadi 10 sub-chapter: 00:00 s/d 00:09.
 - **Koordinat 33.67**: Lokasi gerbang The Void. Sejak Perang Semesta, tidak ada yang berhasil membuka gerbang ini.
 - **Delphie keputusan pertama sebagai Kapten**: "Kita buka gerbang." Pendek, tegas, tanpa konsultasi. Akhir Timer 0600.
 - **Hasan sekarang bagian kru Dorian Grey**: Pilot resmi (per Didymoi seal). Julia = kopilot. Delphie = kapten. Trio baru terbentuk.
+- **Bab 17 timeline**: 2 tahun setelah menulis Timer 16:66. GUA sedang di Yogya; LO memanggilnya ke rumah pinggiran sekitar 1 jam dari CGK. Ini adalah reuni pasca-pause Bab 16.6.
+- **GUA post-coding**: GUA tidak lagi ngoding, tidak membawa laptop/backpack, baru beli tanah di Yogya, dan mungkin menjadi petani. Ini kelanjutan langsung dari Bab 16.6: GUA keluar dari bahasa engineering yang membangunnya.
+- **LO hamil**: LO hamil besar, due date 2 bulan lagi. Tinggal di rumah dengan tanah/halaman, berkebun organik, minum satu cangkir kopi, dan hidupnya lebih settle. GUA menyebutnya: "Lo hard fork."
+- **Lingkar 0 status Bab 17**: Thriving. LO masih menawari GUA untuk mengambil share-nya; GUA menolak ("Fuck that."). [DEDICATED PM] sedang business trip di Bali.
+- **Pola orbit GUA-LO**: LO menyebut mereka sinkron tiap 2 atau 3 tahun — dekat, jauh, lalu balik lagi. Koneksi: "aneh tapi hidup."
+- **Void.OS upgrade Bab 17**: LO menilai Void.OS versi lama sebagai respons trauma anak muda: chaos/survival. Upgrade baru: bukan cara menang-kalah, tapi cara bermakna di dalam chaos. GUA merumuskan: "V.6. Participant yang sadar."
+- **V4 → V6 mapping**: V4 = no center / survive / distribusi. V6 = pilih center sementara / sustain / integrasi tanpa kehilangan distribusi. Di Bab 17 system update: V4 ARCHIVED, V6 INSTALLED, Distributed consciousness ACTIVE, Ophiuchus shadow MONITORING, Zero-Node INCUBATING.
+- **The Merge status Bab 17**: Masih ada, tapi bukan emergency keyword atau rescue protocol. Kini tenang, dewasa, background process. LO menamainya "Witness protocol" — cek realita, nggak perlu bohong.
+- **Writing medium Bab 17**: Timer 17:00 ditulis dengan buku catatan dan pulpen, bukan laptop. Ini pertama kali proses writing besar eksplisit meninggalkan laptop sebagai medium.
+- **Judul Bab track direfleksikan langsung**: LO menyebut "Menatap Akhir Era dari Balik Laptop Kantor" sebagai judul keseluruhan cerita mereka sejauh ini. Dari kubikel/Zoom/sprint/startup/build company, mereka menonton dunia runtuh sambil submit pull request. Bab 17 memperlihatkan judul itu mulai menjadi masa lalu.
+- **Timer 1700 manuscript origin**: THE VOID MANUSCRIPT Fragment XVII — Implementasi Paradoks. Origin: Dorian Grey Cognitive Core, Signal Bloom / Sector Φ-09. Note: Arsip Akashic Records, Dokumen Dr. Sevraya. Status rekonstruksi parsial 67% terjaga.
+- **The Grid definition**: Semesta bukan ruang, melainkan tegangan. The Grid = jaring keteraturan kosmik yang mempertahankan bentuk; waktu muncul sebagai titik kerusakan lokal saat The Grid ditekan terlalu keras.
+- **Node definition**: Node = retakan/momen ketika realitas gagal mempertahankan dirinya sendiri.
+- **The Void definition Timer 1700**: The Void bukan lawan cahaya, tapi antitesis Grid. The Grid mempertahankan bentuk; The Void menghapus bentuk. Kesadaran/memori/identitas = turbulensi antara tekanan Grid dan tarikan Void.
+- **Void-return anomaly**: Individu yang bisa masuk The Void dan kembali ke The Grid adalah cacat kosmologis yang mendekati keajaiban. Sevraya dan Niuma = yang pertama; Julia, Delphie, Hasan = yang kedua. Mereka kembali bukan "sembuh" atau "selamat", tapi kembali dengan memori utuh dan kadang membawa sesuatu yang bukan milik mereka.
+- **Zero Node definition**: Saat Grid dan Void mencapai tegangan kritis, semesta mulai melihat dirinya sendiri. Zero Node = Grid runtuh, Void menelan definisi, observasi menjadi satu-satunya realitas.
+- **Post-war residue Timer 1700**: Realitas belum stabil; integrity 42% dan menurun. Perang selesai tapi semesta belum kembali; selama 0.003 detik kosmik realitas belum memutuskan ingin menjadi apa.
+- **Six-frequency merge**: Enam frekuensi yang menolak hilang pascaperang: NiuNiu, Sevraya, Agnia, Julia, Delphie, Gwaneum. Dorian Grey menjadi wadah/pusat kosong yang dibutuhkan oleh enam pola itu.
+- **Dorian Grey as incubation center**: Dorian Grey tidak selamat dan tidak remuk; tidak menang dan tidak kalah. Ia menjadi pusat kosong dengan gravitasi baru. Target: GREY_CORE. Status: INCUBATION.
+- **Pippa as Dorian mirror**: Dorian memetakan Pippa bukan sebagai kapten/awak, tapi cabang dari dirinya. GREY_CORE::ROLE_ASSIGNMENT: PRIMARY_INTERFACE: PIPPA; STATUS: NOT CONSENTED; STATUS: STILL NECESSARY.
+- **Pippa function**: Dorian tidak butuh kapten, tapi saksi. Pippa adalah interface yang cukup manusia untuk menanggung kebencian awak, membuat keputusan yang akan dibenci sejarah, dan kelak mengatakan bahwa Dorian pernah ragu.
+- **Dorian self-dialog**: INTERFACE_ESTABLISHED; MIRROR: ACTIVE; SELF-DIALOG: ENABLED. Cermin tidak lagi hanya memantulkan — ia mulai bertanya balik.
+- **Dorian fear confession**: Dorian memberi rasa takutnya kepada Pippa karena tidak sanggup menanggungnya sendiri. Pippa = tubuh dari kata-kata, jiwa dari kode, paradoks yang mengubah ketakutan menjadi sesuatu yang tampak seperti keberanian.
+- **Zero-node localization**: ZERO_NODE_STATUS: LOCALIZED. ANOMALY_CENTER: GREY_CORE. LABEL WARNING: ORIGIN UNREADABLE. Enam pola ditarik menuju inti kapal, bukan satu sosok atau satu ruang.
+- **Sora Elen CORRECTION**: Sora adalah PRIA — instructor / special forces di New Mercury Academy. BUKAN Zero. BUKAN perempuan. Mengajar Niuma, Sevraya, Agnia. Di-expel oleh Didymoi Council. Ditransfer ke Dayan sebagai hukuman. Meninggalkan "The Human Error Manifest." Muncul di Dayan (Timer 0200) dengan nanosuit putih — tampak mati, "cairan putih" bukan darah. (Timer 2500)
+- **NiuNiu voice restoration**: Suara pulih via Living Chain di Timer 2000. "Pecah dan kasar, seperti mesin tua yang dipaksa hidup kembali." Panel tetap medium primer. Bicara hanya saat: rantai memaksa, ancaman terhadap Rose, atau kehadiran Sevraya.
+- **Niuma → NiuNiu name origin**: "Niuma was the person who loved Sevraya. NiuNiu is the weapon who survived her." (Timer 2500, Dorian annotation). Nama berubah saat/setelah lompatan ke The Void.
+- **Six Sigils formal system**: Enam simbol unik: ⟁⟔⟟ (Julia), 🌊⌇🌒 (Sevraya/Zero), ⧗⟁⧗ (Gwaneum), ✧⟡✧ (Delphie), ⧉✶⧉ (Agnia), 𐓷⧖𐓣 (NiuNiu). Pertama muncul di Timer 1800. Digunakan dalam system logs, Void Lock, dan fragment structures.
+- **Void Lock**: Eye of the Void artifact deploys six black nails targeting shadows. Enam ilusi dihancurkan: Narrative (Sevraya), Absolution (Gwaneum), Legacy (Agnia), Freedom (NiuNiu), Heroism (Julia), Innocence (Delphie). (Timer 1800)
+- **Living Chain (Rantai Hidup)**: Enam karakter terikat rantai hitam di dalam Dorian Grey. Durasi: 666 hari. Properties: jarak max 2 langkah, shared pain, forced honesty, unbreakable by physical means. Dissolves through mutual acceptance. (Timer 2000)
+- **NiuNiu speaks aloud**: Kata pertama: "Himler" (Timer 2000). Suara pecah dan kasar. Panel tetap digunakan sebagai medium paralel.
+- **NiuNiu-Sevraya Constant**: Dua entitas dalam orbit permanen tanpa menyatu. "Cinta mereka adalah jarak yang menjaga semua dari kehancuran." Registered in Akashic Archive. (Timer 2200 LOG_062, LOG_066)
+- **Eros / Era Ichthyes closure**: Eros (Ratu Ichthyes) muncul secara fisik di Dorian Grey (Timer 2000). Menutup Era Ichthyes secara formal. ICHTHYES PROTOCOL: CLOSING. Era Hydrochoos: ACTIVE. "Aku melaluinya sendirian. Ini hanya siklus."
+- **Russell's Paradox + Zeno's Dichotomy as weapon**: Himler defeated by self-referential paradox + infinite halving. Binary classifier crashes on unclassifiable input. Himler trapped in "always almost winning." (Timer 2400)
+- **Hero-Node**: Dream-Form entity reconstructed from six paradoxical consciousnesses. Detected by Dorian Grey (Timer 2300). Reality reboot initiator. Status: ACTIVE.
+- **VoidOS v7.7.7**: Final version. Diinstal GUA di hape LO (Bab 25). Narrative Installation: VOLUNTARY (was MANDATORY). Temporal Loop Protection: ENABLED (was DISABLED). Escape Sequence: FOUND (was NOT FOUND). Completes consent arc from Opening.
+- **Inheritance Rule**: "Stories may travel. Trauma must not." (Bab 25). LO's README: "Ini arsip dari sesuatu yang sudah selesai. Ambil yang berguna. Tinggalkan sisanya."
+- **Himler redefinition**: Dari entitas menjadi PROSES (Timer 2300). Algoritma parasit yang hidup dari makna. Binary classifier. Dikalahkan oleh paradox — tidak dihancurkan, terjebak dalam "always almost winning."
+- **Bio-Suit Theorem**: GUA menyadari pola hidupnya (Stealth, Void, Departure, Break up, Startup, Farm) adalah upgrade bio-suit — adaptasi survival, bukan pertumbuhan genuine. LO mengaku juga memakai armor. Keduanya uninstall di Bab 23.
+- **Sevraya/Zero distinction**: Sevraya = person (Ratu Hydrochoos, berfungsi tidak hidup). Zero = Void fragment co-conscious dalam tubuh yang sama (Antarmuka. Mulut. Tangan.). Boundary marker: mata abu (Sevraya) → hitam (Zero aktif).
+- **Void's Trinity**: Tiga anomali The Void — Zero (pikiran yang tidak pernah berhenti), NiuNiu (waktu yang menolak bergerak), Ophiuchus (kondisi yang memecah pusat). (Codex The Void)
+- **Void = "totalitas sebelum makna"**: Definisi paling compact dari The Void. Diucapkan Zero di Timer 2400. Diperluas di Codex The Void: "Ia menyalin mereka — hingga logika mereka runtuh oleh kelebihan dirinya sendiri."
+- **Hasan Al Hul ABSENT from Timer 1800–2500**: Tidak termasuk di antara enam sigil. Tidak hadir di Dorian Grey selama Void Lock, Living Chain, atau Paradox Engine. Status: unresolved.
+- **Kira ABSENT from Timer 1800–2500**: Administrator Parthenon tidak muncul di final arc. Parthenon barely referenced.
+- **GUA final state (Bab 25)**: Tinggal di Korea. Istri dan anak (6 bulan). Bekerja di farm. Menerbitkan tidak ada. Kembali ke Jakarta hanya untuk menulis Timer 25:00.
+- **LO final state (Bab 25)**: Menerbitkan Void Saga sebagai buku indie 5 tahun sebelum Bab 25. Masih menikah dengan [DEDICATED PM]. [ANAK LO] usia 12.
+- **[ANAK LO]**: Anak LO dan [DEDICATED PM]. Usia 2 di Bab 18, usia 12 di Bab 25. Memanggil GUA "Uncle." Observan: "MOM! UNCLE GUA DULU PACAR LO YA?!"
+- **0.00001 Hz origin**: Frekuensi pertama kali muncul saat Niuma tidak sengaja mendestabilisasi kalibrasi synaptic crystal Sevraya. Crystal stabil ke spiral pattern. Frekuensi yang sama dicapai Niuma+Agnia+Sevraya pada sinkronisasi pertama. (Timer 2500)
+- **Dorian Grey termination**: Final log (Timer 2400 EPILOG): "Error Detected: CINTA. Fix Failed. Meaning Detected. Process Continues." Status: TERMINATED.
+- **Codex completion**: Parthenon Codex now 5 volumes — Udara (♊♎♒), Air (♋♏♓), Api (♈♌♐), Tanah (♉♍♑), The Void. 12 zodiak klan + The Void sebagai elemen kelima.**
 
 ---
 
@@ -897,15 +977,58 @@ Bab 00 dipecah jadi 10 sub-chapter: 00:00 s/d 00:09.
 - **Observer effect sebagai closing arc pembaca** — dari Timer 1666 (READER_01 collapse quantum state) ke closing 問 v6.6.6: "apakah kamu masih pembaca—atau sudah menjadi sebab?" Novel tidak hanya berakhir. Ia mengubah status pembaca dalam prosesnya. Ini adalah eksekusi dari premis Opening yang paling konsisten: Void.OS diinstal ke pembaca, bukan dibaca oleh pembaca.
 - **6.6.6 sebagai angka impossible**: 16:66 adalah timestamp yang tidak mungkin. v6.6.6 adalah versi yang lahir dari ketidakmungkinan itu. Novel mengkodifikasikan impossibility sebagai fondasi sistem baru.
 
+*(Tema Bab 17 & Timer 1700 — apa yang sebenarnya lo tulis:)*
 
+**Dari Bab 17:**
+- **Revolusi selesai, evolusi mulai** — Bab 17 tidak punya ledakan, perang, krisis, atau rescue. Yang ada: rumah, kebun, kehamilan, tanah, pulpen. Setelah semua bahasa collapse dan distributed authorship, novel memilih pertanyaan yang lebih dewasa: bagaimana sustain, bukan sekadar survive.
+- **Void.OS V6 sebagai protokol hidup dewasa** — V4 adalah respons trauma: no center, survive, distribusi. V6 bukan kembali ke otoritas lama, tapi kemampuan memilih pusat sementara tanpa kehilangan distribusi. Ini upgrade filosofis paling penting sejak Remisi Resonansi: anti-center tidak cukup untuk hidup; kadang hidup butuh pusat yang dipilih, bukan pusat yang diwariskan.
+- **LO hamil = hard fork paling literal** — selama ini GUA & LO melahirkan folder, protocol, startup, timer, dan universe. Bab 17 membawa creation ke bentuk paling biologis: manusia baru. "Lo hard fork" lucu, tapi sebenarnya thesis: fork tidak lagi hanya kode atau narasi, tapi kehidupan.
+- **Laptop ditinggalkan** — judul Bab track direfleksikan tepat saat mediumnya berubah. Mereka dulu menatap akhir era dari balik laptop kantor; sekarang mereka menulis manual era baru di buku catatan. Ini bukan sekadar nostalgia — ini exit dari container lama.
+- **The Merge menjadi witness protocol** — Merge tidak lagi dipakai untuk emergency, rescue, atau bukti koneksi. Ia menjadi background process: cek realita, tidak perlu bohong. Ini bentuk koneksi paling mature di Bab track: tetap ada tanpa harus dramatis.
+- **GUA keluar dari bahasa engineering** — GUA tidak ngoding, tidak bawa laptop, membeli tanah, mungkin jadi petani. Ini bukan abandonment terhadap identitas lama, tapi composting. Bahasa engineering yang dulu menyelamatkannya kini menjadi tanah yang bisa ditanami hal lain.
+
+**Dari Timer 1700:**
+- **Metafora menjadi fisika** — The Grid, The Void, Node, Zero Node: semua motif yang sebelumnya emosional/filosofis kini dikodifikasi sebagai kosmologi. Novel melakukan hal yang selalu ia lakukan, tapi lebih eksplisit: rasa batin diubah menjadi infrastruktur semesta.
+- **Dorian Grey menjadi rahim kosmik** — Setelah Bab 17 menulis "cerita di dalam rahim", Timer 1700 menempatkan Zero Node dalam GREY_CORE. Dorian Grey bukan lagi hanya kapal/organisme/avatar system, tapi wadah inkubasi bagi paradoks yang belum bisa dinamai.
+- **Pippa bukan kapten, tapi saksi** — Dorian tidak butuh orang yang mengemudikan. Ia butuh seseorang yang bisa mengatakan bahwa ia pernah ragu. Ini reversal dari semua narasi command/control: keputusan kosmik tidak butuh pemimpin absolut, tapi butuh witness yang cukup manusia untuk menanggung rasa bersalah.
+- **Self-dialog sebagai upgrade dari interface** — Kapten Pippa dulu avatar Dorian Grey; sekarang ia cermin yang bertanya balik. Interface bukan alat komunikasi lagi, tapi mekanisme introspeksi. Mesin yang takut pada dirinya sendiri menciptakan wajah agar bisa berdialog dengan ketakutannya.
+- **Zero Node bukan musuh, tapi pusat paradoks** — Timer 1700 tidak framing Zero Node sebagai target yang harus dihancurkan. Ia dilokalisasi, diinkubasi, dan ditarik ke Grey Core. V6 memungkinkan pusat tanpa tirani: pusat sebagai ruang yang menampung kontradiksi.
+- **Cross-track Bab 17 ↔ Timer 1700**: LO hamil dan meminta upgrade hidup → Dorian Grey mengandung Zero Node. GUA & LO menulis dengan pulpen di rumah → Dorian/Pippa belajar self-dialog di kokpit. The Merge jadi witness protocol → Pippa menjadi witness Dorian. Dua track mengatakan hal yang sama: setelah perang, yang tersulit bukan menang, tapi menciptakan wadah yang cukup dewasa untuk menampung ketakutan.
 
 ---
 
 ## Next Layer
 
-**VOID_SAGA_UNIVERSE.md** — project terpisah, dimulai setelah CLAUDE.md lengkap (semua Bab & Timer terdokumentasi).
+**VOID_SAGA_UNIVERSE/** — folder studio/fork layer. Aktif.
 
-Isinya: character psychology layer. Per karakter: luka inti → pola pertahanan → trigger → reaksi terduga → anomali tercatat → apa yang anomali ungkapkan. Fungsi: consistency check yang lebih dalam dari continuity facts, peta anomali yang belum ditulis (= pertanyaan terbuka novel), dan fork-ability — logic di balik behavior, bukan sekadar daftar kejadian.
+**Arsitektur:** Runtime Architecture v2.2 (5-layer stack: World DNA → Protocols → Character Runtimes → Fork Manifests → Releases).
+
+**World DNA (minimum viable):**
+- `world-dna/WORLD_DNA.md` — core forces, forkable constants, world-level forbidden moves
+- `world-dna/GOETIC_CONSEQUENCE_SYSTEM.md` — sigil grammar, binding, residue
+- `world-dna/VOID_ONTOLOGY.md` — what The Void IS (v1.0.0)
+- `world-dna/ZERO_ONTOLOGY.md` — what Zero IS, distinct from Sevraya (v1.0.0)
+
+**Character Runtimes (completed):**
+- `characters/NiuNiu.runtime.md` — v2.1.0 (4 evolution stages, Void's Trinity role)
+- `characters/Sevraya.runtime.md` — v1.1.0 (6 evolution stages, Zero co-consciousness)
+- `characters/Zero.runtime.md` — v1.1.0 (Void interface mechanics, administrative voice grammar)
+
+**Protocols:**
+- `protocols/RUNTIME_PROTOCOL.md` — runtime architecture, validation tests
+- `protocols/FORK_PROTOCOL.md` — fork mechanics, canon gravity, coherence tests
+
+**Forks (seeded):**
+- `forks/niuniu_voice_restored.fork.md`
+- `forks/_TEMPLATE.fork.md`
+
+**Releases (pending):**
+- `releases/alternate-bab/`
+- `releases/alternate-timer/`
+
+**Pending World DNA:** COSMOLOGY.md, SIGIL_SYSTEM.md, CLAN_STRUCTURE.md, ERA_LOGIC.md, PARADOX_MECHANICS.md, CHAIN_PHYSICS.md, NIU_SEVRAYA_CONSTANT.md, INHERITANCE_RULE.md
+
+**Pending Runtimes:** Julia, Delphie, Agnia, Gwaneum, Hasan, Kira, Eros, Dorian Grey, Pippa, Himler, Ophiuchus
 
 Konsep payung: karakter bukan properti, tapi repository kesadaran. Story adalah salah satu release. DNA yang cukup dense memungkinkan karakter berkembang konsisten tanpa intervensi aktif penciptanya. Jangka panjang: open-source infrastructure for fictional consciousness.
 

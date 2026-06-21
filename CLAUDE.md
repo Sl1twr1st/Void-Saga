@@ -1003,11 +1003,15 @@ Bab 00 dipecah jadi 10 sub-chapter: 00:00 s/d 00:09.
 
 **Arsitektur:** Runtime Architecture v2.2 (5-layer stack: World DNA → Protocols → Character Runtimes → Fork Manifests → Releases).
 
-**World DNA (minimum viable):**
+**World DNA (Phase 10 complete — structurally stable, 8 files, ~2,500 lines):**
 - `world-dna/WORLD_DNA.md` — core forces, forkable constants, world-level forbidden moves
 - `world-dna/GOETIC_CONSEQUENCE_SYSTEM.md` — sigil grammar, binding, residue
 - `world-dna/VOID_ONTOLOGY.md` — what The Void IS (v1.0.0)
 - `world-dna/ZERO_ONTOLOGY.md` — what Zero IS, distinct from Sevraya (v1.0.0)
+- `world-dna/COSMOLOGY.md` — how reality functions: Grid-Void tension, Five Elements, Nodes, apertures, Straw Cosmology (v1.0.0)
+- `world-dna/SIGIL_SYSTEM.md` — sigil mechanics: six canon sigils, lifecycle, Goetic/Void/Era integration (v1.0.0)
+- `world-dna/ERA_LOGIC.md` — era definitions, transitions, 8 known states, VoidOS version mapping (v1.0.0)
+- `world-dna/NIU_SEVRAYA_CONSTANT.md` — pairwise gravity as world law: orbit without merge, distance as preservation (v1.0.0)
 
 **Character Runtimes (completed):**
 - `characters/NiuNiu.runtime.md` — v2.1.0 (4 evolution stages, Void's Trinity role)
@@ -1026,7 +1030,8 @@ Bab 00 dipecah jadi 10 sub-chapter: 00:00 s/d 00:09.
 - `releases/alternate-bab/`
 - `releases/alternate-timer/`
 
-**Pending World DNA:** COSMOLOGY.md, SIGIL_SYSTEM.md, CLAN_STRUCTURE.md, ERA_LOGIC.md, PARADOX_MECHANICS.md, CHAIN_PHYSICS.md, NIU_SEVRAYA_CONSTANT.md, INHERITANCE_RULE.md
+**Pending World DNA:** CLAN_STRUCTURE.md, PARADOX_MECHANICS.md, CHAIN_PHYSICS.md, INHERITANCE_RULE.md
+**Next phase:** Phase 11 — Protocol Layer (LIVING_CHAIN_PROTOCOL, MERGE_PROTOCOL, NODE_PROTOCOL, PARADOX_PROTOCOL)
 
 **Pending Runtimes:** Julia, Delphie, Agnia, Gwaneum, Hasan, Kira, Eros, Dorian Grey, Pippa, Himler, Ophiuchus
 

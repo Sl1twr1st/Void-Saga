@@ -1005,11 +1005,15 @@ Bab 00 dipecah jadi 10 sub-chapter: 00:00 s/d 00:09.
 
 **Arsitektur:** Runtime Architecture v2.2 (5-layer stack: World DNA → Protocols → Character Runtimes → Fork Manifests → Releases).
 
-**World DNA (minimum viable):**
+**World DNA (Phase 10 complete — structurally stable, 8 files, ~2,500 lines):**
 - `world-dna/WORLD_DNA.md` — core forces, forkable constants
 - `world-dna/GOETIC_CONSEQUENCE_SYSTEM.md` — sigil grammar, binding, residue
 - `world-dna/VOID_ONTOLOGY.md` — what The Void IS (v1.0.0)
 - `world-dna/ZERO_ONTOLOGY.md` — what Zero IS, distinct from Sevraya (v1.0.0)
+- `world-dna/COSMOLOGY.md` — how reality functions (v1.0.0)
+- `world-dna/SIGIL_SYSTEM.md` — sigil mechanics (v1.0.0)
+- `world-dna/ERA_LOGIC.md` — era definitions + transitions (v1.0.0)
+- `world-dna/NIU_SEVRAYA_CONSTANT.md` — pairwise gravity as world law (v1.0.0)
 
 **Character Runtimes (completed):**
 - `characters/NiuNiu.runtime.md` — v2.1.0
@@ -1018,7 +1022,8 @@ Bab 00 dipecah jadi 10 sub-chapter: 00:00 s/d 00:09.
 
 **Protocols:** `RUNTIME_PROTOCOL.md`, `FORK_PROTOCOL.md`
 **Forks (seeded):** `niuniu_voice_restored.fork.md`
-**Pending World DNA:** COSMOLOGY, SIGIL_SYSTEM, CLAN_STRUCTURE, ERA_LOGIC, PARADOX_MECHANICS, CHAIN_PHYSICS, NIU_SEVRAYA_CONSTANT, INHERITANCE_RULE
+**Pending World DNA:** CLAN_STRUCTURE, PARADOX_MECHANICS, CHAIN_PHYSICS, INHERITANCE_RULE
+**Next phase:** Phase 11 — Protocol Layer
 **Pending Runtimes:** Julia, Delphie, Agnia, Gwaneum, Hasan, Kira, Eros, Dorian Grey, Pippa, Himler, Ophiuchus
 
 Konsep payung: karakter bukan properti, tapi repository kesadaran. Story adalah salah satu release.

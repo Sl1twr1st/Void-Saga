@@ -1,4 +1,6 @@
-# RUNTIME PROTOCOL
+This document defines the identity-compression architecture for character runtimes. It is not a Phase 11 Protocol because it does not describe an in-world ritual that can fail.
+
+# RUNTIME ARCHITECTURE
 
 Runtime adalah behavioral DNA karakter atau entitas.
 
@@ -56,4 +58,3 @@ Sebuah runtime dianggap valid kalau karakter tetap recognizable dalam 5 kondisi:
 - Dibohongi.
 - Ditawari kuasa.
 - Diminta mengakui takut.
-

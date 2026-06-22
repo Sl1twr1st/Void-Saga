@@ -10,6 +10,8 @@
 
 Phase 11 Protocol Layer document. Fork is not merely a variant file — it is an invocation. Once released, it cannot be taken back.
 
+FORK_PROTOCOL is a meta-protocol. It governs alternate reality creation, not bearer transformation, so it intentionally differs from invocation protocols in structure — it has Mechanism instead of Invocation + Participants, and its Cost → Residue chain operates on timelines rather than consciousnesses.
+
 This protocol defines what is summoned, what is paid, what remains, what can fail, and what cannot be known when a fork is created in the Void Saga universe.
 
 ---
@@ -140,3 +142,29 @@ What cannot be predicted once a fork is released:
 4. **Whether the fork returns.** An abandoned fork may be discovered, resumed, and completed by someone who was not the original forker. Distributed authorship means no fork is ever truly dead as long as its residue persists.
 
 5. **Pertanyaan baru yang muncul.** Every fork, by declaring "this could have been otherwise," introduces questions that canon never asked. These questions are the fork's most durable product. They outlast the fork's coherence, its author's attention, and its status in any registry.
+
+---
+
+## Canon Status
+
+### Evidenced Canon [E]
+
+- Fork adalah release alternatif dari VOID SAGA. Fork boleh mengubah canon event, POV, medium, outcome, atau genre. Fork tidak boleh menghapus konsekuensi. (Original FORK_PROTOCOL)
+- Canon utama adalah gravitasi, bukan polisi. (Original FORK_PROTOCOL)
+- Forks must declare: sumber runtime yang dipakai, divergence point, status terhadap canon utama, perubahan yang irreversible, pertanyaan baru yang muncul. (Anti-Pusat Rule)
+- Forks are governed by residue law — "pemanggilan selalu meninggalkan residue." (RESIDUE_THEORY.md, WORLD_DNA.md)
+- Fork coherence requires: wound consistency, voice integrity, canon boundary respect, possibility expansion, error preservation. (Fork Coherence Test)
+- Fork types: scene_fork, chapter_fork, character_fork, world_fork, app_fork. (Fork Types)
+
+### Inferred Canon [I]
+
+- **Ghost forks.** Abandoned or incomplete forks become ghost residue. The canonical precedent is the ghost commit (Bab 02.5). Fork residue is of the same class and may produce analogous effects.
+- **Canon gravity shift.** Each fork adds a body to the canon system. The gravitational effect scales with divergence scope. Whether accumulated forks shift the effective center of canon gravity is unresolved.
+- **Interference patterns.** Sigil residue produces interference (SIGIL_SYSTEM.md §6.4) [E]. Fork residue is structural remainder of the same class and may produce analogous interference between active forks.
+- **Fork consumption.** A speculative failure mode: the forker becomes unable to return from the divergence. Consistent with the binding principle (GOETIC: "pemanggil ikut berubah karena pemanggilan tersebut"). Not independently observed in canon.
+- **Cross-fork canon damage.** A fork that alters a world-level forbidden move without declaring the consequence may produce damage that ripples across all forks. Inferred from forbidden move constraints; no canon instance observed.
+- **Fork as residue form.** Fork is listed as a residue form in RESIDUE_THEORY.md. The fork itself is the structural remainder of the invocation.
+
+### Probable Canon [PC]
+
+- None currently. All fork mechanics are derived from evidenced canon or inferred from the Goetic consequence system.

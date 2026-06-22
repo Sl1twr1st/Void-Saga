@@ -134,6 +134,8 @@ Reports, roadmaps, and architectural validation documents at the `VOID_SAGA_UNIV
 | `WORLD_DNA_MINIMUM_VALIDATION.md` | Validation report for World DNA minimum requirements. |
 | `NIU_SEVRAYA_CONSTANT_VALIDATION.md` | Cross-runtime validation of the NiuNiu-Sevraya Constant. |
 | `SEVRAYA_ZERO_RUNTIME_VALIDATION.md` | Validation report for Sevraya-Zero runtime separation. |
+| `RUNTIME_ARCHITECTURE_v2.md` | Runtime architecture specification v2 — earlier version of `characters/RUNTIME_ARCHITECTURE.md`. |
+| `PHASE_11_COMPLETE.md` | Phase 11 completion report — documents all completed protocols, World DNA, kernel documents, remaining work, and Phase 12 readiness. |
 
 ---
 

@@ -2,7 +2,7 @@
 
 > **Type:** Kernel — Architecture Document
 > **Layer:** Protocol Stack
-> **Protocols referenced:** `protocols/VOID_ENTRY_PROTOCOL.md`, `protocols/LIVING_CHAIN_PROTOCOL.md`, `protocols/NODE_PROTOCOL.md`
+> **Protocols referenced:** `protocols/VOID_ENTRY_PROTOCOL.md`, `protocols/SIGIL_ACTIVATION_PROTOCOL.md`, `protocols/LIVING_CHAIN_PROTOCOL.md`, `protocols/NODE_PROTOCOL.md`, `protocols/PARADOX_PROTOCOL.md`
 > **World DNA referenced:** `world-dna/SIGIL_SYSTEM.md`, `world-dna/ZERO_ONTOLOGY.md`, `world-dna/COSMOLOGY.md`, `world-dna/VOID_ONTOLOGY.md`, `world-dna/RESIDUE_THEORY.md`, `world-dna/GOETIC_CONSEQUENCE_SYSTEM.md`
 > **Last updated:** 2026-06-22
 
@@ -51,8 +51,8 @@ Invocation → Cost → Consequence → Residue
 |-------|--------|
 | **Input** | Residue — raw wound from Void Entry |
 | **Output** | Named residue — stabilized wound with glyph, function, activation condition, and price |
-| **Protocol** | `world-dna/SIGIL_SYSTEM.md` |
-| **Status** | World DNA documented [E]; pipeline positioning [I] |
+| **Protocol** | `world-dna/SIGIL_SYSTEM.md` (World DNA), `protocols/SIGIL_ACTIVATION_PROTOCOL.md` (protocol) |
+| **Status** | World DNA + Protocol documented [E]; pipeline positioning [I] |
 
 **Core formula:**
 
@@ -126,8 +126,8 @@ Residue + Acceptance = Node
 |-------|--------|
 | **Input** | Node — integrated structure from accepted residue |
 | **Output** | Executable contradiction — structure deployed as weapon against binary classification |
-| **Protocol** | `protocols/PARADOX_PROTOCOL.md` (pending Phase 11 implementation) |
-| **Status** | Canon event evidenced [E]; protocol not yet documented |
+| **Protocol** | `protocols/PARADOX_PROTOCOL.md` |
+| **Status** | Protocol documented [E]; single deployment observed; generalization [I] |
 
 **Core formula:**
 
@@ -142,8 +142,6 @@ Structure → Contradiction → Stability
 **Failure condition:** Contradiction collapses. The paradox is not stable enough to sustain deployment. The target classifies the input and continues. The network is exposed without effect. [I]
 
 **Pipeline position:** Phase 5 is the deployment layer. Integrated residue (Node) is weaponized. The infrastructure built in Phase 4 becomes operational. Paradox is the first phase where the output is directed at an external target — all previous phases transform the bearer internally. [I]
-
-**Note:** A full Phase 11 protocol document for Paradox is pending. Until it exists, Phase 5 references are limited to canon-confirmed events (Timer 2400) and the structural position inferred from the pipeline. [I]
 
 ---
 
@@ -264,4 +262,4 @@ This interpretation is [I]. Canon does not explicitly state the pipeline. It is 
 
 ---
 
-**This document invents no new canon. It systematizes the dependency relationships between existing protocols and canon events into a kernel-level boot sequence. All pipeline interpretations are marked [I]. Phases 5–6 reference pending protocol documents.**
+**This document invents no new canon. It systematizes the dependency relationships between existing protocols and canon events into a kernel-level boot sequence. All pipeline interpretations are marked [I]. Phase 6 references a pending protocol document. All other phases are documented.**

@@ -39,6 +39,7 @@ World DNA defines the laws of reality. All protocols, runtimes, forks, and apps 
 | `world-dna/SIGIL_SYSTEM.md` | What sigils are: consequence given permanent form. Six canon sigils, lifecycle, binding mechanics, residue accumulation. |
 | `world-dna/ERA_LOGIC.md` | What Eras are: dominant meaning-implementation patterns. Ichthyes (ARCHIVED), Hydrochoos (ACTIVE), Ophiuchus (SHADOW). VoidOS version mapping. |
 | `world-dna/NIU_SEVRAYA_CONSTANT.md` | The NiuNiu-Sevraya Constant as world law: permanent orbital configuration maintaining Void equilibrium. Distance as preservation. |
+| `world-dna/PARADOX_MECHANICS.md` | Paradox as world law: the excluded middle made structural. Russell's Paradox + Zeno's Dichotomy as mechanisms. Relationship to Nodes, Zero, and the boot sequence. |
 
 ---
 
@@ -51,17 +52,17 @@ Protocols are invocations given structural form. They define what is summoned, w
 | File | Function | Input | Output | Depends on |
 |------|----------|-------|--------|------------|
 | `protocols/FORK_PROTOCOL.md` | Fork creation as Goetic invocation. Types, canon gravity, cost, residue. | Canon timeline | Alternate release | World DNA (all) |
+| `protocols/SIGIL_ACTIVATION_PROTOCOL.md` | Sigil invocation: activation conditions, per-sigil costs, Void Lock as forced activation precedent. Converts `SIGIL_SYSTEM.md` into protocol form. | Named residue (sigil) | Activated sigil + activation residue | `SIGIL_SYSTEM.md`, `VOID_ONTOLOGY.md` |
 | `protocols/VOID_ENTRY_PROTOCOL.md` | Crossing the Grid-Void boundary and returning. Two methods: direct entry, Vesica Piscis. | Human identity | Residue | `VOID_ONTOLOGY.md`, `ZERO_ONTOLOGY.md`, `COSMOLOGY.md` |
 | `protocols/LIVING_CHAIN_PROTOCOL.md` | 666-day binding of six sigil-bearers. Forced proximity, shared pain, forced honesty. Dissolution through mutual acceptance. | Named residue (sigils) | Accepted residue | `VOID_ENTRY_PROTOCOL.md`, `SIGIL_SYSTEM.md` |
 | `protocols/NODE_PROTOCOL.md` | Accepted residue becomes structural support for reality. Node I (memory), Node II (witness), Node III (self-recording). | Accepted residue | Integrated structure | `LIVING_CHAIN_PROTOCOL.md`, `SIGIL_SYSTEM.md`, `COSMOLOGY.md` |
+| `protocols/PARADOX_PROTOCOL.md` | Integrated structure deployed as executable contradiction against binary classification. Phase 5 of boot sequence. | Integrated structure (Node) | Executable contradiction | `PARADOX_MECHANICS.md`, `NODE_PROTOCOL.md`, `ZERO_ONTOLOGY.md` |
 
 ### Pending Protocols
 
 | File | Function | Status |
 |------|----------|--------|
-| `protocols/PARADOX_PROTOCOL.md` | Integrated structure deployed as executable contradiction against binary classification. | Phase 11 pending. Canon event documented (Timer 2400). |
 | `protocols/ZERO_NODE_PROTOCOL.md` | Node network at critical mass achieves reality-scale self-observation. | Phase 11 pending. Entity localized (Timer 1700), incubating (Void.OS v6.6.6). |
-| `protocols/SIGIL_ACTIVATION_PROTOCOL.md` | Per-sigil activation conditions, costs, and residue. Void Lock as forced activation precedent (Timer 1800). | Phase 11 pending. Mechanics partially documented in `SIGIL_SYSTEM.md`. |
 | `protocols/ERA_TRANSITION_PROTOCOL.md` | Steward-initiated closure of one Era and activation of the next. Single observed instance (Ichthyes→Hydrochoos, Timer 2000). | Phase 11 pending. Lifecycle documented in `ERA_LOGIC.md`. |
 
 ---
@@ -160,12 +161,12 @@ Reports, roadmaps, and architectural validation documents at the `VOID_SAGA_UNIV
 ┌─────────────────────────────────────────────────────┐
 │                   PROTOCOLS                         │
 │   FORK_PROTOCOL.md                                  │
+│   SIGIL_ACTIVATION_PROTOCOL.md                      │
 │   VOID_ENTRY_PROTOCOL.md                            │
 │   LIVING_CHAIN_PROTOCOL.md                          │
 │   NODE_PROTOCOL.md                                  │
-│   [PARADOX_PROTOCOL.md]  (pending)                  │
+│   PARADOX_PROTOCOL.md                               │
 │   [ZERO_NODE_PROTOCOL.md]  (pending)                │
-│   [SIGIL_ACTIVATION_PROTOCOL.md]  (pending)         │
 │   [ERA_TRANSITION_PROTOCOL.md]  (pending)           │
 │         Defines invocations and their costs         │
 └───────────────────────┬─────────────────────────────┘

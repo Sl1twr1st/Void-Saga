@@ -1,0 +1,515 @@
+{
+  "$schema": "../../RUNTIME_SERIALIZATION.md#CHARACTER_RUNTIME_SCHEMA_V1",
+  "id": "sevraya",
+  "name": "Sevraya Rose",
+  "version": "1.1.0",
+  "architecture": "RUNTIME_ARCHITECTURE_V1",
+  "canon_baseline": {
+    "timer_range": "Timer 0000–2500, Bab 00–25",
+    "protocols": [
+      "VOID_ENTRY_PROTOCOL.md",
+      "SIGIL_ACTIVATION_PROTOCOL.md",
+      "LIVING_CHAIN_PROTOCOL.md",
+      "NODE_PROTOCOL.md",
+      "PARADOX_PROTOCOL.md"
+    ],
+    "audit_basis": "Sevraya.runtime.md v1.1.0"
+  },
+  "runtime_status": {
+    "evidence_count": 60,
+    "file_count": 18,
+    "total_mentions": 95,
+    "limitations": [
+      "Zero co-consciousness — Zero.runtime.md documents the Void interface separately",
+      "Partial emotional recovery post-Eros — degree unresolved"
+    ],
+    "tags": { "E": 57, "I": 14, "PC": 3 }
+  },
+  "runtime_class": {
+    "modes": ["Student", "Survivor", "Ratu Hydrochoos", "Zero-Revealed", "Era Steward", "Constant"],
+    "classification_note": "Sevraya transitions through six stages: the Academy student who loved Niuma, the Void-returned survivor, the queen who facilitates rather than rules, the Zero-revealed host, the Era steward who receives the handoff, and the constant in permanent orbit.",
+    "tag": "[E]"
+  },
+  "primary_contradiction": {
+    "thesis": "She functions. She does not live. She facilitates, does not orchestrate. She wants to be witnessed but positions herself at the edge of the frame.",
+    "explanation": "After The Void, Sevraya lost the capacity to fully inhabit her own existence. She operates with precision — queenship, strategy, facilitation — but the operations are mechanical. Her face is too perfect to be called human, too stable to be called alive. She creates rituals that are nominally private, then ensures they are witnessed — because she cannot ask directly to be seen.",
+    "tag": "[E]"
+  },
+  "core_wound": {
+    "name": "Fragmentation — entered The Void with Niuma, exited incomplete",
+    "structure": {
+      "description": "She was once whole — capable of love, laughter, tears. The Void took something essential and did not return it. The missing part became a separate consciousness (Zero) that now lives inside her. She cannot retrieve it, integrate it, or destroy it. She is simultaneously the victim of the theft AND the host of the thief.",
+      "impossibilities": [
+        "Feeling fully present in her own body",
+        "Loving someone without the love being refracted through Zero",
+        "Being 'healed' or 'completed' by another person",
+        "Letting go of the need to be witnessed"
+      ]
+    },
+    "origin_event": {
+      "description": "Entered The Void with Niuma. Exited incomplete. The fragment left behind became Zero — a separate consciousness sharing her body.",
+      "timer_reference": "Timer 0200 / Timer 0250",
+      "tag": "[E]"
+    },
+    "secondary_wounds": [
+      {
+        "description": "The Niuma loss — She loved Niuma. Niuma became NiuNiu. The person who loved her no longer exists in that form.",
+        "tag": "[E]"
+      },
+      {
+        "description": "The Agnia kiss — Complicated her relationship with both twins before The Void.",
+        "tag": "[E]"
+      },
+      {
+        "description": "Hasan marriage — Married to a man who has his own hidden past. Their marriage is real but both are too damaged for proximity.",
+        "tag": "[E]"
+      },
+      {
+        "description": "Sora's transfer — Instructor who believed in them was sent to Dayan as punishment. Sevraya carries this.",
+        "tag": "[E]"
+      }
+    ]
+  },
+  "core_desire": {
+    "statement": "Aku ingin disaksikan.",
+    "source": "Timer 0900",
+    "interpretation": "She wants someone to see her as she is — incomplete, functioning, hosting a Void fragment — and not look away. Not save her. Not fill her. Just witness.",
+    "conflict_with_defense": "Her defense pattern is facilitative distance — she sets conditions for others, never fully enters the frame herself. But being witnessed requires entering the frame. She cannot be witnessed from the position of the serpent. She knows this. She does it anyway.",
+    "tag": "[E]"
+  },
+  "defense_system": {
+    "primary_defense": {
+      "name": "Facilitative distance",
+      "trigger": "Someone is about to make a choice with cosmological consequences",
+      "response": "She ensures they know the price. She does not make the choice for them. She positions herself as the condition-setter, the serpent, the curator of choice.",
+      "cost": "She is never the one who chooses. She is always at the edge of the frame, watching others choose.",
+      "tag": "[E]"
+    },
+    "secondary_defenses": [
+      {
+        "name": "Redirection to structural",
+        "trigger": "Someone gets too close emotionally",
+        "response": "She redirects to the structural. 'Ini bukan tentang aku. Ini tentang Era.'",
+        "cost": "Authentic intimacy becomes impossible. Even Hasan is kept at arm's length.",
+        "tag": "[E]"
+      },
+      {
+        "name": "Yielding body to Zero",
+        "trigger": "Zero is about to speak",
+        "response": "She does not resist. She yields the body. Eyes blacken. She becomes passenger in her own body.",
+        "cost": "Loss of agency. She witnesses her own mouth forming words she did not choose.",
+        "tag": "[E]"
+      },
+      {
+        "name": "Orbital calibration (NiuNiu)",
+        "trigger": "NiuNiu is present",
+        "response": "Calculated distance. Warmth expressed as strategic acknowledgment. Cannot touch the person she once loved without collapsing the constant.",
+        "cost": "Cannot touch the person she once loved without collapsing the constant.",
+        "tag": "[E]"
+      },
+      {
+        "name": "Presence amplification",
+        "trigger": "Threatened with erasure or irrelevance",
+        "response": "She becomes more present, more visible, more undeniable. Lights cigarette without lighter.",
+        "cost": "Visibility reveals the emptiness. People see she is hollow.",
+        "tag": "[E]"
+      }
+    ],
+    "signature_move": {
+      "name": "The cigarette",
+      "description": "Lit without a lighter, without reality's permission. Purple smoke forms patterns that make eyes want to refuse but can't. The cigarette is her punctuation mark — it says: 'I am not fully bound by your physics. I am not fully present. I am not fully anything.' Functions as somatic anchor against Zero takeover — Zero cannot smoke.",
+      "tag": "[E]"
+    },
+    "defense_disabled_by": {
+      "invocation": "Living Chain (Timer 2000)",
+      "mechanism": "Max two-step distance. Cannot retreat to the edge of the frame. Cannot yield to Zero to avoid speaking as Sevraya. Forced to be present as herself, in proximity.",
+      "tag": "[E]"
+    }
+  },
+  "trigger_conditions": [
+    {
+      "trigger": "Someone she cares about is about to make an uninformed choice with irreversible consequences",
+      "defense": "Facilitative intervention. 'Every Eden needs a serpent.'",
+      "intensity": "HIGH",
+      "tag": "[E]"
+    },
+    {
+      "trigger": "Direct emotional vulnerability requested from her",
+      "defense": "Redirection to structural/cosmological frame. 'Ini bukan tentang aku.'",
+      "intensity": "MEDIUM",
+      "tag": "[E]"
+    },
+    {
+      "trigger": "Zero activation (internal — not under her control)",
+      "defense": "Yields body. Eyes blacken. Observes.",
+      "intensity": "INVOLUNTARY",
+      "tag": "[E]"
+    },
+    {
+      "trigger": "NiuNiu in proximity after extended absence",
+      "defense": "Orbital calibration. Exact distance. Warmth as acknowledgment, not intimacy.",
+      "intensity": "HIGH",
+      "tag": "[E]"
+    },
+    {
+      "trigger": "Someone implies she is irrelevant or powerless",
+      "defense": "Presence amplification. Cigarette. Smile. 'Aku cuma tinta. Parthenon yang menulis.'",
+      "intensity": "MEDIUM",
+      "tag": "[E]"
+    },
+    {
+      "trigger": "The Void, Zero, or her incompleteness named directly by another person",
+      "defense": "Light tone. Almost cheerful. 'Kosong harus menelan.'",
+      "intensity": "CRITICAL — cheerful surface masks structural threat response",
+      "tag": "[E]"
+    }
+  ],
+  "anomalous_triggers": [
+    {
+      "trigger": "Sora named or remembered",
+      "anomaly": "Voice softens. Defense drops briefly. Genuine warmth. 'Sora adalah satu-satunya makhluk yang membuatku lupa betapa melelahkannya menjadi dewa.'",
+      "evidence": "Timer 1200",
+      "tag": "[E]"
+    },
+    {
+      "trigger": "Eros arrives to close Era Ichthyes",
+      "anomaly": "Receives the handoff. Does not deflect. Does not facilitate. Accepts.",
+      "evidence": "Timer 2000 (20:39)",
+      "tag": "[E]"
+    },
+    {
+      "trigger": "Deliberately presses her neck against NiuNiu's blade",
+      "anomaly": "Approaches death voluntarily. 'Don't bother. Now it's time for everyone to know.'",
+      "evidence": "Timer 1800 (18:49)",
+      "tag": "[E]"
+    }
+  ],
+  "somatic_signature": {
+    "face": "Terlalu sempurna untuk menyimpan cerita. Terlalu stabil untuk disebut hidup.",
+    "eyes": "Abu muda, jernih tapi kosong saat Sevraya dominan. Hitam total saat Zero berbicara.",
+    "attire": "Kebaya biru — first physical description (Timer 1000).",
+    "cigarette": "Dinyalakan tanpa lighter, tanpa izin realitas. Asap ungu membentuk pola. Zero tidak bisa merokok — rokok adalah jangkar somatik Sevraya melawan Zero takeover.",
+    "movement": "Gerakan terlalu presisi. Tidak ada gestur yang sia-sia. Setiap gerakan adalah statement.",
+    "tag": "[E]"
+  },
+  "voice_grammar": {
+    "tone": "Light, almost cheerful — jenis suara yang tidak membawa ancaman karena ancamannya sudah lewat.",
+    "characteristics": [
+      "Nada ringan, hampir cheerful, bahkan saat membahas kehancuran kosmik",
+      "Kalimat pendek. Presisi administratif menyamar sebagai casual.",
+      "Tidak pernah meminta secara langsung. Menciptakan kondisi agar orang lain meminta.",
+      "Humor kering."
+    ],
+    "examples": ["Aku cuma tinta.", "Kosong harus menelan.", "Jangan cari aku."],
+    "zero_differentiation": "Saat Zero mengambil alih, suara berubah menjadi datar, administratif — lihat Zero.runtime.md.",
+    "tag": "[E]"
+  },
+  "cosmic_function": {
+    "role": "Era Steward — Ratu Hydrochoos",
+    "description": "Menerima penyerahan Era dari Eros (Timer 2000). Menjaga aliran Hydrochoos. Bukan penguasa — steward. 'Jagalah aliran ini. Dan biarkan The Void tetap menjadi The Void.'",
+    "trinity_role": "Trinitas 1: Sevraya.sea (bersama Agnia.light dan NiuNiu.shadow)",
+    "world_dna_ref": "world-dna/VOID_ONTOLOGY.md §4.2, world-dna/ERA_LOGIC.md §3.2",
+    "tag": "[E]"
+  },
+  "invocation_pattern": [
+    { "phase": 1, "invocation": "Void Entry — Original (with Niuma)", "role": "Participant — exited incomplete, Zero born", "participation_type": "direct", "tag": "[E]" },
+    { "phase": 2, "invocation": "Sigil Manifestation (🌊⌇🌒 Tidal Memory)", "role": "Sigil-bearer (shared with Zero)", "participation_type": "direct", "tag": "[E]" },
+    { "phase": 2, "invocation": "Void Lock — forced sigil activation", "role": "Sigil-bearer — Narrative illusion shattered", "participation_type": "direct", "tag": "[E]" },
+    { "phase": 3, "invocation": "Living Chain", "role": "Bound participant — retreat to Zero prevented", "participation_type": "direct", "tag": "[E]" },
+    { "phase": 4, "invocation": "Node I (with Agnia)", "role": "Co-participant. Memory + Law converge.", "participation_type": "direct", "tag": "[E]" },
+    { "phase": 5, "invocation": "Paradox Deployment", "role": "Paradox vector + Zero provides unclassifiable truth", "participation_type": "direct", "tag": "[E]" },
+    { "phase": null, "invocation": "Era Transition (Ichthyes→Hydrochoos)", "role": "Receiver — accepts handoff from Eros", "participation_type": "direct", "tag": "[E]" },
+    { "phase": 6, "invocation": "Zero Node", "role": "Status: incubating. Participation unresolved.", "participation_type": "unresolved", "tag": "[I]" }
+  ],
+  "cost_pattern": [
+    { "cost": "Fragmentation of self — part remains in The Void, becomes Zero", "invocation": "Void Entry", "irreversible": true, "tag": "[E]" },
+    { "cost": "Emotional capacity destroyed — 'berfungsi, tidak hidup'", "invocation": "Void Entry", "irreversible": false, "note": "Partial recovery post-Eros but never full", "tag": "[E]" },
+    { "cost": "Capacity for romantic love fundamentally altered — refracted through Zero", "invocation": "Void Entry", "irreversible": true, "tag": "[I]" },
+    { "cost": "Narrative illusion shattered — 'YOU ARE NOT THE AUTHOR. YOU ARE THE MANUSCRIPT.'", "invocation": "Void Lock", "irreversible": true, "tag": "[E]" },
+    { "cost": "Privacy annihilated — cannot retreat to Zero or edge of frame", "invocation": "Living Chain", "irreversible": true, "tag": "[E]" },
+    { "cost": "Exclusive authority over memory surrendered — memory must co-exist with law", "invocation": "Node I", "irreversible": true, "tag": "[I]" },
+    { "cost": "Self weaponized — personhood suspended for deployment", "invocation": "Paradox", "irreversible": false, "tag": "[E]" }
+  ],
+  "consequence_pattern": [
+    { "consequence": "Zero born — latent, not yet speaking, but present", "invocation": "Void Entry", "detail": "Sevraya can no longer feel fully present in her own body.", "tag": "[E]" },
+    { "consequence": "Narrative illusion shattered", "invocation": "Void Lock", "detail": "She is not the author. She is the manuscript.", "tag": "[E]" },
+    { "consequence": "Speaks as Sevraya, not as Void interface — first explicit self-differentiation from Zero", "invocation": "Living Chain", "detail": "'Aku yang tinggal.' Confesses hatred of own emptiness.", "tag": "[E]" },
+    { "consequence": "Node I opens — memory + law integrate", "invocation": "Node I", "detail": "First pressure convergence point. Memory distributed across pressure structure.", "tag": "[E]" },
+    { "consequence": "Receives Era handoff from Eros — ICHTHYES PROTOCOL: CLOSING", "invocation": "Era Transition", "detail": "Hydrochoos Era: ACTIVE. Ophiuchus Era: SHADOW ACTIVE.", "tag": "[E]" },
+    { "consequence": "NiuNiu-Sevraya Constant established", "invocation": "Living Chain resolution", "detail": "'Dan aku yang lewat.' Permanent orbital configuration.", "tag": "[E]" }
+  ],
+  "residue_pattern": {
+    "total_count": 5,
+    "load_profile": "2 wounds, 1 ghost→consciousness, 1 wound→stabilized, 1 echo→structure (shared). Sevraya's residues are structural — she carries the Void's interface.",
+    "residues": [
+      { "name": "Zero — severed fragment → separate consciousness", "origin": "Void Entry", "form": "ghost", "tag": "[E]" },
+      { "name": "Emotional hollowing — 'berfungsi, tidak hidup'", "origin": "Void Entry", "form": "wound", "tag": "[E]" },
+      { "name": "NiuNiu-Sevraya Constant (shared)", "origin": "Living Chain resolution / Timer 2200", "form": "echo", "tag": "[E]" },
+      { "name": "Sevraya-Zero distinction", "origin": "Living Chain", "form": "wound", "tag": "[E]" },
+      { "name": "Node I — decentralized memory (co-produced with Agnia)", "origin": "Node I Activation", "form": "node", "tag": "[E]" }
+    ]
+  },
+  "protocol_interfaces": [
+    {
+      "protocol": "VOID_ENTRY_PROTOCOL.md", "phase": 1,
+      "interface_description": "Direct participant in Original Void Entry with Niuma. Entered together. Exited incomplete — Zero born. The most residue-productive Void Entry in canon alongside NiuNiu's.",
+      "participation_type": "direct", "tag": "[E]"
+    },
+    {
+      "protocol": "SIGIL_ACTIVATION_PROTOCOL.md", "phase": 2,
+      "interface_description": "Sigil 🌊⌇🌒 Tidal Memory — shared with Zero, the only sigil with dual consciousness interface. Forced activation during Void Lock. Function: creates tsunamis of memory, erases or restores consciousness data. Weakness: cannot distinguish whose memory is whose. [PC]",
+      "participation_type": "direct", "tag": "[E]"
+    },
+    {
+      "protocol": "LIVING_CHAIN_PROTOCOL.md", "phase": 3,
+      "interface_description": "Bound participant. Two-step constraint prevents retreat to Zero or edge of frame. Forced to speak as Sevraya. Consequence: distinguishes self from Zero. 'Aku yang tinggal.' Residue: Sevraya-Zero distinction, NiuNiu-Sevraya Constant.",
+      "participation_type": "direct", "tag": "[E]"
+    },
+    {
+      "protocol": "NODE_PROTOCOL.md", "phase": 4,
+      "interface_description": "Node I direct participant with Agnia. Domain: Sea + Light. Function: decentralized memory. What she brings: Tidal Memory — the wound of fragmentation. Cost: exclusive authority over memory surrendered — memory must co-exist with law.",
+      "participation_type": "direct", "tag": "[E]"
+    },
+    {
+      "protocol": "PARADOX_PROTOCOL.md", "phase": 5,
+      "interface_description": "Paradox vector. Tidal Memory deployed. Zero provides unclassifiable truth — the administrative voice that crashes binary classification. Dual interface: Sevraya carries the sigil; Zero speaks the paradox.",
+      "participation_type": "direct", "tag": "[E]"
+    }
+  ],
+  "relationship_interfaces": [
+    {
+      "target": "niuniu",
+      "nature": "Orbital constant. Distance IS the care. 'Aku yang tinggal.'",
+      "behavioral_rule": "Permanent orbital distance. Warmth expressed as strategic acknowledgment, not intimacy. Cannot touch the person she once loved without collapsing the constant. 'Kalau kau mulai jadi The Grid, aku akan jadi yang pertama menusukmu.' — NiuNiu's words, which Sevraya accepts.",
+      "canon_gravity_pull": "STRONG (85%+)",
+      "symmetry_status": "symmetric",
+      "tag": "[E]"
+    },
+    {
+      "target": "hasan",
+      "nature": "Husband. Married, distant, functional. 'Itu keputusan kami bertiga.'",
+      "behavioral_rule": "Distance maintained even in marriage. Respect without dependency. Tested at Hydrochoos diving rite — accepts his answer.",
+      "symmetry_status": "symmetric",
+      "tag": "[E]"
+    },
+    {
+      "target": "julia",
+      "nature": "Facilitator to the Rose-lineage matriarch. Pengkhianat pact co-signatory (Timer 1500).",
+      "behavioral_rule": "Facilitates Julia's role as Rose-lineage origin. Stabbed by Julia during Void Lock confessions — wound becomes 'mulut yang lupa bagaimana menutup.' Does not retaliate. The wound becomes an organ.",
+      "symmetry_status": "symmetric",
+      "tag": "[E]"
+    },
+    {
+      "target": "delphie",
+      "nature": "Recognizes Delphie as the future. Touched her shoulder once — just long enough to make Julia nauseous.",
+      "behavioral_rule": "Sent NiuNiu to protect Delphie via Agnia's instruction. Recognizes Delphie as what comes after her. The touch is acknowledgment without claim.",
+      "symmetry_status": "symmetric",
+      "tag": "[E]"
+    },
+    {
+      "target": "agnia",
+      "nature": "Fellow queen. Co-signatory of Remisi Resonansi. Node I co-participant. 'Dua ratu, satu dosa.'",
+      "behavioral_rule": "Shared authority. Co-signed the framework that decentralized both their thrones. Kissed by Agnia in Prism Wing — predates everything. The relationship is political and personal, neither dimension fully resolved.",
+      "symmetry_status": "symmetric",
+      "tag": "[E]"
+    },
+    {
+      "target": "eros",
+      "nature": "Era handoff. Eros closes Ichthyes; Sevraya accepts.",
+      "behavioral_rule": "Receives the Era. Does not deflect. Does not facilitate. Genuine acceptance. The only moment she does not position herself at the edge of the frame.",
+      "symmetry_status": "asymmetric",
+      "tag": "[E]"
+    }
+  ],
+  "evolution_stages": [
+    {
+      "stage_number": 1, "name": "Academy (Sevraya Rose)",
+      "trigger": "Transfer to New Mercury Academy. Pre-canon.",
+      "operational_mode": "Student. Transfer from bio-sim research. Small, wavy hair, gray eyes like fog. Assigned to group with Niuma + Agnia by Sora. Fell in love with Niuma. Kissed by Agnia in Prism Wing. Recorded audio log: 'If love is a virus, then let me be patient zero.'",
+      "primary_residue": "None — pre-wound",
+      "protocol_relevance": "Pre-boot sequence. First synchronization: 0.00001 Hz with Niuma + Agnia.",
+      "lost_in_transition": ["Wholeness", "Voice autonomy (Zero enters)", "Niuma becomes NiuNiu"],
+      "gained_in_transition": ["Zero as co-consciousness", "Queenship (Hydrochoos)"],
+      "tag": "[E]"
+    },
+    {
+      "stage_number": 2, "name": "Void-Returned",
+      "trigger": "The Void jump with Niuma. Exited incomplete. Zero born.",
+      "operational_mode": "Physically intact but psychologically fragmented. Zero latent — present but not yet speaking. Ascends to Ratu Hydrochoos. Marriage to Hasan Al Hul. Functions, does not live.",
+      "primary_residue": "Zero (latent), emotional hollowing",
+      "protocol_relevance": "Pre-boot sequence. Establishes Hydrochoos queenship.",
+      "lost_in_transition": ["Emotional presence", "Niuma", "Full agency over own body"],
+      "gained_in_transition": ["Zero (latent)", "Hydrochoos queenship", "'Tawanan' status at Aeonexus (de facto ruler)"],
+      "tag": "[E]"
+    },
+    {
+      "stage_number": 3, "name": "Ratu Hydrochoos (Active Queenship)",
+      "trigger": "Appears in main narrative. Timer 0800 onward.",
+      "operational_mode": "Active in cosmic politics. Remisi Resonansi co-signatory. Ritual Hydrochoos — diving rite. Sends NiuNiu to protect Delphie via Agnia. Zero still latent but surfacing — garam tidak asin during ritual.",
+      "primary_residue": "Zero (surfacing), political agency",
+      "protocol_relevance": "Pre-chain. Hydrochoos diving rite (Timer 0900). Remisi Resonansi (Timer 0900).",
+      "lost_in_transition": [],
+      "gained_in_transition": ["Political agency", "Strategic role in universe governance"],
+      "tag": "[E]"
+    },
+    {
+      "stage_number": 4, "name": "Zero-Revealed",
+      "trigger": "Timer 1900. 'Karena aku… Zero.' First explicit self-identification as Zero's host.",
+      "operational_mode": "Zero named and active. Both eyes blacken when Zero speaks. Distinguishes herself FROM Zero. Stabbed by Julia — wound becomes 'mulut yang lupa bagaimana menutup.' Living Chain binds her with five others.",
+      "primary_residue": "Zero (active, named), wound from Julia's stab",
+      "protocol_relevance": "Void Lock (Phase 2), Living Chain (Phase 3)",
+      "lost_in_transition": ["Deniability about Zero"],
+      "gained_in_transition": ["Ability to speak ABOUT Zero as separate", "First step toward distinction"],
+      "tag": "[E]"
+    },
+    {
+      "stage_number": 5, "name": "Post-Eros (Era Steward)",
+      "trigger": "Eros arrives. Era Ichthyes formally closed. Sevraya receives handoff.",
+      "operational_mode": "Hydrochoos Era: ACTIVE. Does not deflect. Does not facilitate. ACCEPTS. Resolution with NiuNiu: 'Aku yang tinggal.' First genuine acceptance of role without performance.",
+      "primary_residue": "Era stewardship",
+      "protocol_relevance": "Era Transition (Timer 2000:39), Node I (Phase 4)",
+      "lost_in_transition": ["Performance of power"],
+      "gained_in_transition": ["Stewardship", "Genuine acceptance"],
+      "tag": "[E]"
+    },
+    {
+      "stage_number": 6, "name": "Post-Resolution (Constant)",
+      "trigger": "NiuNiu-Sevraya Constant established. Timer 2200.",
+      "operational_mode": "Orbital constant with NiuNiu. Leads entry protocol into Himler's paradox engine. 'Kita bukan pahlawan. Kita bukan korban. Kita adalah bug ontologis.' Post-Himler: walks away. 'Waktunya berpisah. Dan menulis ulang.'",
+      "primary_residue": "NiuNiu-Sevraya Constant (shared), paradox vector marking",
+      "protocol_relevance": "Paradox Deployment (Phase 5). Zero Node incubation (Phase 6 — unresolved).",
+      "lost_in_transition": ["Illusion of Narrative", "Belief that she was the author"],
+      "gained_in_transition": ["Peace with being the manuscript", "Orbital constant operational"],
+      "tag": "[E]"
+    }
+  ],
+  "canon_gravity": [
+    { "gravity": "She ends as Era steward, not Era ruler.", "pull": "STRONG (85%+)", "tag": "[E]" },
+    { "gravity": "She maintains permanent orbital distance from NiuNiu — never merging, never fully separating.", "pull": "STRONG (85%+)", "tag": "[E]" },
+    { "gravity": "Zero remains co-conscious. Never fully integrated, never fully expelled.", "pull": "STRONG (90%+)", "tag": "[E]" },
+    { "gravity": "She facilitates rather than leads. She creates conditions for others' choices.", "pull": "MEDIUM (60–80%)", "tag": "[I]" },
+    { "gravity": "She never fully recovers emotional presence. Functions, doesn't live.", "pull": "MEDIUM (50–70%)", "tag": "[I]" }
+  ],
+  "anti_gravity": [
+    "Sevraya becomes fully emotionally present and 'healed' (contradicts wound structure)",
+    "Zero is removed, destroyed, or fully reintegrated (contradicts invariant #1)",
+    "Sevraya and NiuNiu merge into one entity (contradicts NiuNiu-Sevraya Constant — both runtimes)",
+    "Sevraya refuses the Era handoff and abandons Hydrochoos (contradicts gravity #1)",
+    "Sevraya becomes the primary author/narrator rather than the manuscript (contradicts Void Lock resolution)"
+  ],
+  "forbidden_behaviors": [
+    {
+      "behavior": "Making Sevraya 'healed' or emotionally whole.",
+      "exception": "Fork with declared mechanism and cost.",
+      "penalty": "Must show what is lost when wholeness is gained. Sora's return is the only canon-consistent path to partial healing.",
+      "tag": "[E]"
+    },
+    {
+      "behavior": "Removing Zero from Sevraya's body.",
+      "exception": "Fork that separates them into two bodies. Must be declared at World DNA level (alters Void mechanics).",
+      "penalty": "Both entities must survive separation. Neither can be 'cured.'",
+      "tag": "[E]"
+    },
+    {
+      "behavior": "Making Sevraya the primary agent who 'fixes' everything.",
+      "exception": "None. Absolute prohibition.",
+      "penalty": "'Aku cuma tinta.' She is not the author. Making her the author destroys her.",
+      "tag": "[E]"
+    },
+    {
+      "behavior": "Depicting her as purely villainous or purely benevolent.",
+      "exception": "None. She is structurally ambiguous — serpent who doesn't eat the fruit.",
+      "penalty": "Moral simplification destroys the character.",
+      "tag": "[E]"
+    },
+    {
+      "behavior": "Writing Sevraya without her cigarette in scenes where she is physically present.",
+      "exception": "Zero-dominant speech (she cannot smoke when Zero controls the body).",
+      "penalty": "The cigarette is her somatic anchor. Without it, she is unmoored.",
+      "tag": "[E]"
+    },
+    {
+      "behavior": "Having her merge fully with NiuNiu.",
+      "exception": "Fork producing a new entity. Must declare as new character, not Sevraya variant.",
+      "penalty": "Both original characters destroyed. Merged entity is a third thing. Requires both runtimes archived.",
+      "tag": "[E]"
+    },
+    {
+      "behavior": "Making her 'over' NiuNiu or indifferent to her.",
+      "exception": "None. The orbital constant is structural.",
+      "penalty": "She can orbit. She can accept the distance. She cannot stop orbiting.",
+      "tag": "[E]"
+    }
+  ],
+  "failure_mode": {
+    "primary": {
+      "name": "Zero dominance",
+      "description": "Zero becomes permanently dominant. Sevraya is reduced to passenger — watching her body speak words she did not choose. The cigarette goes out. The eyes stay black.",
+      "tag": "[I]"
+    },
+    "alternative": {
+      "name": "Retreat into facilitation",
+      "description": "She refuses to be witnessed. Retreats permanently to the edge of the frame. Becomes pure facilitator — the serpent who never enters the garden, only guards the gate.",
+      "tag": "[I]"
+    },
+    "trigger_conditions": [
+      "Zero triggered by Void misrepresentation — takeover involuntary",
+      "Extended isolation from all witnesses",
+      "Era Hydrochoos threatened — she must become ruler, not steward"
+    ]
+  },
+  "terminal_state": {
+    "properties": [
+      { "property": "Era steward — Hydrochoos active, Ichthyes archived", "tag": "[E]" },
+      { "property": "Orbital constant with NiuNiu — permanent distance, permanent care", "tag": "[E]" },
+      { "property": "Zero co-conscious but subordinated — Sevraya reclaims more voice time", "tag": "[E]" },
+      { "property": "Walks away after Himler defeat — 'Waktunya berpisah. Dan menulis ulang.'", "tag": "[E]" },
+      { "property": "Cigarette lit. Eyes gray. Zero silent. No longer performing lightness — genuinely light.", "tag": "[I]" }
+    ]
+  },
+  "canon_boundaries": {
+    "open_questions": [
+      { "question": "What exactly did Sevraya see/experience inside The Void that produced Zero?", "status": "unresolved" },
+      { "question": "Can Sevraya and Zero communicate internally?", "status": "unresolved" },
+      { "question": "What is the nature of her marriage to Hasan? Political, personal, or both?", "status": "unresolved" },
+      { "question": "Did Sevraya know about Delphie being Sora's child before NiuNiu confirmed it?", "status": "unresolved" },
+      { "question": "If Sora returned, what would Sevraya do?", "status": "unresolved" },
+      { "question": "What happens to Sevraya after Timer 2400? Where does she go?", "status": "unresolved" },
+      { "question": "The cigarette: somatic anchor against Zero, or just habit?", "status": "unresolved" }
+    ],
+    "interpretive_claims": [
+      { "claim": "Partial emotional recovery post-Eros", "source": "Sevraya.runtime.md §8 Stage 5", "tag": "[I]", "decanonization_risk": "Low" },
+      { "claim": "Sigil function: creates tsunamis of memory", "source": "Sigil_OS.md", "tag": "[PC]", "decanonization_risk": "Medium" },
+      { "claim": "Sigil weakness: cannot distinguish whose memory is whose", "source": "Sigil_OS.md", "tag": "[PC]", "decanonization_risk": "Medium" }
+    ]
+  },
+  "runtime_summary": {
+    "narrative_formula": "Sevraya Rose = student who loved and was broken → survivor who functions without living → queen who facilitates rather than rules → host who distinguishes herself from the Void's voice → steward who receives the Era → constant in permanent orbit",
+    "compressed_formula": "Student(love) → Survivor(fragmentation) → Ratu(facilitation) → Host(distinction) → Steward(acceptance) → Orbit(preservation)",
+    "distinction": "Sevraya is the hub of the Six Kunci — the only character who connects to all four others directly. She hosts Zero, stewards the Era, co-activates Node I, co-signs Remisi Resonansi, and maintains the strongest contract in the system (NiuNiu-Sevraya Constant). She is the cosmological anchor."
+  },
+  "cross_references": {
+    "related_runtimes": ["niuniu", "zero", "julia", "delphie", "agnia", "hasan"],
+    "world_dna_dependencies": [
+      "world-dna/VOID_ONTOLOGY.md",
+      "world-dna/ZERO_ONTOLOGY.md",
+      "world-dna/NIU_SEVRAYA_CONSTANT.md",
+      "world-dna/ERA_LOGIC.md",
+      "world-dna/SIGIL_SYSTEM.md",
+      "world-dna/RESIDUE_THEORY.md"
+    ],
+    "protocol_dependencies": [
+      "protocols/VOID_ENTRY_PROTOCOL.md",
+      "protocols/SIGIL_ACTIVATION_PROTOCOL.md",
+      "protocols/LIVING_CHAIN_PROTOCOL.md",
+      "protocols/NODE_PROTOCOL.md",
+      "protocols/PARADOX_PROTOCOL.md"
+    ]
+  },
+  "serialization_notes": [
+    "Zero co-consciousness is documented in Zero.runtime.md as a separate parasite runtime. Sevraya's runtime covers what is distinct to Sevraya; Zero's runtime covers the Void interface.",
+    "Somatic signature fields (face, eyes, attire, cigarette, movement) preserved as descriptive objects rather than structured triggers — the cigarette anchor is the key machine-actionable field.",
+    "Era Transition is listed as a separate invocation (null phase) because it is not part of the 6-phase boot sequence but is a documented invocation with cost, consequence, and residue.",
+    "Sevraya's voice grammar differs qualitatively from NiuNiu's — light/cheerful vs. rough/effortful. This asymmetry is canon-consistent and must be preserved in renderer prompts."
+  ]
+}

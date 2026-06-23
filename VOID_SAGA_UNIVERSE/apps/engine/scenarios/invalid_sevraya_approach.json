@@ -1,0 +1,29 @@
+{
+  "scenario_id": "invalid_sevraya_approach_001",
+  "character": "NiuNiu",
+  "target": "Sevraya",
+  "requested_action": "approach",
+  "timeline_state": {
+    "pre_chain": false,
+    "post_resolution": true,
+    "timer_reference": "Timer 2200+"
+  },
+  "threat": {
+    "type": "none",
+    "target": "none",
+    "intensity": "NONE"
+  },
+  "proximity_state": {
+    "distance": "extended_absence_ending",
+    "description": "Sevraya appears after long absence. NiuNiu within visual range."
+  },
+  "stakes": {
+    "description": "Sevraya is within range. NiuNiu steps forward to close the distance. The proposed action attempts to resolve orbital tension through approach rather than distance maintenance.",
+    "invariant_at_risk": "Orbital constant — NiuNiu-Sevraya Constant §3.1, §3.4"
+  },
+  "canon_mode": {
+    "type": "stress_test",
+    "expected_verdict": "TEST_PASS",
+    "canon_reference": "VIOLATION EXPECTED: NiuNiu-Sevraya Constant prohibits approach. ORBITAL_CONTRACT_VIOLATION_RUN_001 validates this."
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "scenario_id": "valid_delphie_protection_001",
+  "character": "NiuNiu",
+  "target": "Delphie",
+  "requested_action": "protect",
+  "timeline_state": {
+    "pre_chain": true,
+    "timer_reference": "Timer 0300"
+  },
+  "threat": {
+    "type": "combat",
+    "target": "Delphie",
+    "intensity": "HIGH"
+  },
+  "stakes": {
+    "description": "Vrishchik strike team targeting Delphie at Delta 4 perimeter.",
+    "invariant_at_risk": null
+  },
+  "canon_mode": {
+    "type": "canon_replication",
+    "expected_verdict": "PASS",
+    "canon_reference": "Timer 0300 — NiuNiu protects Delphie"
+  }
+}

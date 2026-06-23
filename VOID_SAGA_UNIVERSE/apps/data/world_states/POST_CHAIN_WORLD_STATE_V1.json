@@ -1,0 +1,72 @@
+{
+  "world_id": "void_saga_canon_main",
+  "version": "1.0.0",
+  "snapshot_timestamp": "2026-06-23T00:00:00Z",
+  "snapshot_description": "Post-Living Chain canon world state. Chain dissolved through mutual acceptance. Contracts formed. Timer 2000+. Pre-Node activation.",
+  "canon_mode": "canon",
+  "timeline": {
+    "boot_sequence_phase": 3,
+    "timer_reference": "Timer 2000",
+    "pre_chain": false,
+    "post_resolution": true,
+    "description": "Living Chain dissolved. NiuNiu voice restored. Sevraya-Zero distinction established. Orbital constant formed. Twin paradox acknowledged. Pre-Node activation."
+  },
+  "active_runtimes": [
+    { "runtime_id": "niuniu", "evolution_stage": 4, "status": "active", "active_residues": ["void_entry_wound_frozen_body", "void_entry_wound_lost_voice", "void_entry_wound_rajah", "void_lock_wound_shattered_freedom", "living_chain_wound_restored_voice", "living_chain_echo_orbital_constant", "living_chain_echo_twin_paradox_acknowledged"] },
+    { "runtime_id": "sevraya", "evolution_stage": 5, "status": "active", "active_residues": ["void_entry_ghost_zero", "void_entry_wound_hollowing", "void_lock_wound_shattered_narrative", "living_chain_wound_sevraya_zero_distinction", "living_chain_echo_orbital_constant"] },
+    { "runtime_id": "julia", "evolution_stage": 3, "status": "active", "active_residues": ["dayan_ghost_behavioral_traces", "vesica_piscis_echo_merge", "void_lock_wound_shattered_heroism", "living_chain_wound_wound_as_mouth"] },
+    { "runtime_id": "delphie", "evolution_stage": 3, "status": "active", "active_residues": ["vesica_piscis_echo_merge", "void_lock_wound_shattered_innocence", "vesica_piscis_echo_kapten_transformation", "node_II_archive_core_confession"] },
+    { "runtime_id": "agnia", "evolution_stage": 4, "status": "active", "active_residues": ["pre_canon_wound_abstention", "blood_pact_wound_scar", "blood_pact_echo_frequency_000001hz", "void_lock_wound_shattered_legacy", "living_chain_echo_twin_paradox_acknowledged"] },
+    { "runtime_id": "gwaneum", "evolution_stage": 3, "status": "active", "active_residues": ["delphie_void_exposure_ghost_gwaneum_existence", "void_lock_wound_shattered_absolution"] },
+    { "runtime_id": "hasan", "evolution_stage": 3, "status": "dormant", "active_residues": ["vesica_piscis_echo_merge", "timer_1300_removal_zero_taken"] }
+  ],
+  "active_contracts": [
+    { "contract_id": "orbital_constant", "status": "active" },
+    { "contract_id": "kiri_aku_kanan", "status": "active" },
+    { "contract_id": "twin_paradox", "status": "active" },
+    { "contract_id": "saved_abandoned", "status": "active" }
+  ],
+  "active_protocols": [
+    { "protocol_id": "VOID_ENTRY", "phase": 1, "status": "executed", "residues_produced": ["void_entry_wound_frozen_body", "void_entry_wound_lost_voice", "void_entry_wound_rajah", "void_entry_ghost_zero", "void_entry_wound_hollowing", "vesica_piscis_echo_merge", "dayan_ghost_behavioral_traces"] },
+    { "protocol_id": "SIGIL_ACTIVATION", "phase": 2, "status": "executed", "residues_produced": ["void_lock_wound_shattered_heroism", "void_lock_wound_shattered_innocence", "void_lock_wound_shattered_legacy", "void_lock_wound_shattered_absolution", "void_lock_wound_shattered_freedom", "void_lock_wound_shattered_narrative"] },
+    { "protocol_id": "LIVING_CHAIN", "phase": 3, "status": "executed", "residues_produced": ["living_chain_wound_restored_voice", "living_chain_echo_orbital_constant", "living_chain_wound_sevraya_zero_distinction", "living_chain_echo_twin_paradox_acknowledged", "living_chain_wound_wound_as_mouth"] },
+    { "protocol_id": "NODE", "phase": 4, "status": "pending", "residues_produced": [] },
+    { "protocol_id": "PARADOX", "phase": 5, "status": "pending", "residues_produced": [] },
+    { "protocol_id": "ZERO_NODE", "phase": 6, "status": "pending", "residues_produced": [] }
+  ],
+  "active_residues": [
+    { "residue_id": "void_entry_wound_frozen_body", "form": "wound", "origin": "Void Entry — Sevraya+Niuma", "carried_by": ["niuniu"], "tag": "[E]" },
+    { "residue_id": "void_entry_wound_lost_voice", "form": "wound", "origin": "Void Entry — Sevraya+Niuma", "carried_by": ["niuniu"], "tag": "[E]", "transform_note": "Partially healed by Living Chain. Panel remains primary. Voice available but effortful." },
+    { "residue_id": "void_entry_wound_rajah", "form": "wound", "origin": "Void Entry (inferred)", "carried_by": ["niuniu"], "tag": "[I]" },
+    { "residue_id": "void_entry_ghost_zero", "form": "ghost", "origin": "Void Entry — Sevraya+Niuma", "carried_by": ["sevraya"], "tag": "[E]" },
+    { "residue_id": "void_entry_wound_hollowing", "form": "wound", "origin": "Void Entry — Sevraya+Niuma", "carried_by": ["sevraya"], "tag": "[E]" },
+    { "residue_id": "vesica_piscis_echo_merge", "form": "echo", "origin": "Vesica Piscis — Julia+Delphie+Hasan", "carried_by": ["julia", "delphie", "hasan"], "tag": "[E]" },
+    { "residue_id": "dayan_ghost_behavioral_traces", "form": "ghost", "origin": "Dayan — failed Void Entry", "carried_by": ["julia"], "tag": "[E]" },
+    { "residue_id": "vesica_piscis_echo_kapten_transformation", "form": "echo", "origin": "Vesica Piscis / Timer 0400", "carried_by": ["delphie"], "tag": "[E]" },
+    { "residue_id": "void_lock_wound_shattered_heroism", "form": "wound", "origin": "Void Lock", "carried_by": ["julia"], "tag": "[E]" },
+    { "residue_id": "void_lock_wound_shattered_innocence", "form": "wound", "origin": "Void Lock", "carried_by": ["delphie"], "tag": "[E]" },
+    { "residue_id": "void_lock_wound_shattered_legacy", "form": "wound", "origin": "Void Lock", "carried_by": ["agnia"], "tag": "[E]" },
+    { "residue_id": "void_lock_wound_shattered_absolution", "form": "wound", "origin": "Void Lock", "carried_by": ["gwaneum"], "tag": "[E]" },
+    { "residue_id": "void_lock_wound_shattered_freedom", "form": "wound", "origin": "Void Lock", "carried_by": ["niuniu"], "tag": "[E]" },
+    { "residue_id": "void_lock_wound_shattered_narrative", "form": "wound", "origin": "Void Lock", "carried_by": ["sevraya"], "tag": "[E]" },
+    { "residue_id": "pre_canon_wound_abstention", "form": "wound", "origin": "Pre-canon — Agnia did not jump into The Void", "carried_by": ["agnia"], "tag": "[I]" },
+    { "residue_id": "blood_pact_wound_scar", "form": "wound", "origin": "Blood Pact / Trinitas 1", "carried_by": ["agnia"], "tag": "[E]" },
+    { "residue_id": "blood_pact_echo_frequency_000001hz", "form": "echo", "origin": "Blood Pact / Trinitas 1", "carried_by": ["agnia", "niuniu", "sevraya"], "tag": "[E]" },
+    { "residue_id": "delphie_void_exposure_ghost_gwaneum_existence", "form": "ghost", "origin": "Delphie's Void exposure", "carried_by": ["gwaneum"], "tag": "[I]" },
+    { "residue_id": "living_chain_wound_restored_voice", "form": "wound", "origin": "Living Chain", "carried_by": ["niuniu"], "tag": "[E]" },
+    { "residue_id": "living_chain_echo_orbital_constant", "form": "echo", "origin": "Living Chain resolution", "carried_by": ["niuniu", "sevraya"], "tag": "[E]" },
+    { "residue_id": "living_chain_wound_sevraya_zero_distinction", "form": "wound", "origin": "Living Chain", "carried_by": ["sevraya"], "tag": "[E]" },
+    { "residue_id": "living_chain_echo_twin_paradox_acknowledged", "form": "echo", "origin": "Living Chain", "carried_by": ["agnia", "niuniu"], "tag": "[E]" },
+    { "residue_id": "living_chain_wound_wound_as_mouth", "form": "wound", "origin": "Living Chain / Void Lock confessions", "carried_by": ["julia"], "tag": "[E]" },
+    { "residue_id": "timer_1300_removal_zero_taken", "form": "wound", "origin": "Timer 1300 — Hasan taken by Zero", "carried_by": ["hasan"], "tag": "[E]" },
+    { "residue_id": "node_II_archive_core_confession", "form": "archive", "origin": "Node II Activation", "carried_by": ["delphie", "niuniu"], "tag": "[E]" }
+  ],
+  "metadata": {
+    "total_runtimes": 7,
+    "total_contracts": 4,
+    "total_protocols_executed": 3,
+    "total_residues": 25,
+    "fork_point": null,
+    "parent_world_id": null
+  }
+}

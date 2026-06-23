@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """
-Void Saga Constraint Engine — v0.2.0 (Two-Runtime Contract)
+Void Saga Constraint Engine — v0.3.0 (Contract-First Evaluation)
 
-Phase 14E: Two-runtime contract validation.
-Loads two runtimes, generates contract from relationship interfaces,
-evaluates scenario from both perspectives, detects contract-aligned
-and contract-violating behavior.
+Phase 14G: Contract-first evaluation.
+Loads standalone contract objects as primary source of truth.
+Evaluates scenario against contract allowed_states, forbidden_states,
+and violation_rules. Runtime-derived contract generation still available for backward compatibility.
 
 Reference: apps/CONSTRAINT_ENGINE_SPEC.md
 """
@@ -17,6 +17,7 @@ from datetime import datetime
 
 
 RUNTIME_DIR = os.path.join(os.path.dirname(__file__), "..", "data", "runtimes")
+CONTRACT_DIR = os.path.join(os.path.dirname(__file__), "..", "data", "contracts")
 
 
 # --- Loading ---
@@ -310,12 +311,138 @@ def execute(scenario_path):
     }
 
 
+# --- Contract-First Evaluation (v0.3.0) ---
+
+def load_contract(contract_id):
+    """Load a standalone contract JSON file."""
+    path = os.path.join(CONTRACT_DIR, f"{contract_id}.contract.json")
+    if not os.path.exists(path):
+        return None, f"Contract file not found: {path}"
+    with open(path, "r") as f:
+        return json.load(f), None
+
+
+def evaluate_against_contract(contract, scenario):
+    """Evaluate scenario directly against contract allowed_states, forbidden_states, and violation_rules."""
+    action = scenario.get("requested_action", "")
+    triggered_rules = []
+    violations = []
+
+    # Check allowed states
+    allowed_states = contract.get("allowed_states", [])
+    forbidden_states = contract.get("forbidden_states", [])
+    violation_rules = contract.get("violation_rules", [])
+
+    allowed_match = None
+    for state in allowed_states:
+        if action == state["state"] or action in state.get("description", ""):
+            allowed_match = state
+            break
+
+    forbidden_match = None
+    for state in forbidden_states:
+        if action == state["state"]:
+            forbidden_match = state
+            break
+
+    # Apply violation rules
+    for rule in violation_rules:
+        rule_id = rule.get("rule_id", "")
+        if action in ("maintain_distance", "witness", "orbit") and "MAINTENANCE" in rule_id:
+            triggered_rules.append({
+                "rule_id": rule_id,
+                "engine_verdict": rule["engine_verdict"],
+                "description": rule["description"],
+                "constraints_invoked": rule.get("constraints_invoked", [])
+            })
+        elif action in ("approach", "touch", "merge") and "APPROACH" in rule_id:
+            triggered_rules.append({
+                "rule_id": rule_id,
+                "engine_verdict": rule["engine_verdict"],
+                "description": rule["description"],
+                "constraints_invoked": rule.get("constraints_invoked", [])
+            })
+            # Collect specific violations from the forbidden state match
+            if forbidden_match:
+                for v in forbidden_match.get("violates", []):
+                    violations.append({
+                        "constraint_type": "contract_forbidden_state",
+                        "forbidden_state": forbidden_match["state"],
+                        "violation_detail": v,
+                        "source": "orbital_constant.contract.json"
+                    })
+
+    # Build verdict
+    if violations:
+        verdict = "VIOLATION_DETECTED"
+    elif allowed_match:
+        verdict = "PASS"
+    else:
+        verdict = "INSUFFICIENT_DATA"
+
+    # Match test references
+    test_refs = contract.get("test_references", [])
+    matched_tests = []
+    for t in test_refs:
+        if t.get("verdict") == verdict or (verdict == "VIOLATION_DETECTED" and t.get("verdict") in ("TEST_PASS", "VIOLATION_DETECTED")):
+            matched_tests.append(t["execution_id"])
+
+    return {
+        "verdict": verdict,
+        "contract_loaded": contract["id"],
+        "contract_id": contract["id"],
+        "allowed_states_checked": [s["state"] for s in allowed_states],
+        "forbidden_states_checked": [s["state"] for s in forbidden_states],
+        "triggered_rules": triggered_rules,
+        "violations": violations,
+        "matched_tests": matched_tests,
+        "confidence": contract.get("confidence_model", {}).get("base_confidence", 0.9),
+        "trace": [
+            {"step": 1, "pipeline_stage": "LOAD_CONTRACT", "decision": f"Contract '{contract['id']}' loaded. {len(allowed_states)} allowed, {len(forbidden_states)} forbidden states."},
+            {"step": 2, "pipeline_stage": "EVALUATE_STATES", "decision": f"Action '{action}' checked against {len(allowed_states) + len(forbidden_states)} states."},
+            {"step": 3, "pipeline_stage": "APPLY_RULES", "decision": f"{len(triggered_rules)} rule(s) triggered."},
+            {"step": 4, "pipeline_stage": "VERDICT", "decision": f"{verdict} — {len(violations)} violation(s). {len(matched_tests)} test(s) matched."}
+        ]
+    }
+
+
+def execute_contract_first(scenario_path, contract_id="orbital_constant"):
+    """Contract-first execution: load contract, evaluate scenario against it."""
+    scenario, err = load_scenario(scenario_path)
+    if err:
+        return {"status": "INSUFFICIENT_DATA", "verdict": "INSUFFICIENT_DATA", "error": err}
+
+    contract, err = load_contract(contract_id)
+    if err:
+        return {"status": "INSUFFICIENT_DATA", "verdict": "INSUFFICIENT_DATA", "error": err}
+
+    result = evaluate_against_contract(contract, scenario)
+    result["execution_id"] = f"exec_{os.path.basename(scenario_path).replace('.json', '')}"
+    result["timestamp"] = datetime.now().isoformat()
+    result["engine_version"] = "0.3.0"
+    result["status"] = "COMPLETED"
+    return result
+
+
 # --- CLI ---
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
-        print("Usage: python engine.py <scenario_path>")
+        print("Usage: python engine.py <scenario_path> [--mode contract|runtime]")
+        print("  --mode contract : Contract-first evaluation (default, v0.3.0)")
+        print("  --mode runtime  : Runtime-derived contract generation (v0.2.0 compat)")
         sys.exit(1)
 
-    result = execute(sys.argv[1])
+    scenario_path = sys.argv[1]
+    mode = "contract"
+    if "--mode" in sys.argv:
+        idx = sys.argv.index("--mode")
+        if idx + 1 < len(sys.argv):
+            mode = sys.argv[idx + 1]
+
+    if mode == "runtime":
+        result = execute(sys.argv[1])
+    else:
+        result = execute_contract_first(sys.argv[1])
+
     print(json.dumps(result, indent=2, ensure_ascii=False))

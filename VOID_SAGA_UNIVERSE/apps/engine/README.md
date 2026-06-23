@@ -1,14 +1,8 @@
-# Void Saga Constraint Engine — v0.2.0 (Two-Runtime Contract)
+# Void Saga Constraint Engine — v0.3.0 (Contract-First Evaluation)
 
-> **Phase:** 14E
-> **Status:** Two-runtime contract validation
-> **Scope:** Load two runtimes, generate contract, evaluate from both directions
-
----
-
-## What This Is
-
-Upgraded from single-runtime validation (v0.1.0) to two-runtime contract validation (v0.2.0). The engine now loads two runtime JSONs, extracts relationship interfaces from both directions, generates a merged contract, and evaluates scenarios from both characters' perspectives.
+> **Phase:** 14G
+> **Status:** Contract-first evaluation. Contract object is primary source of truth.
+> **Scope:** Load standalone contract, evaluate scenario directly against allowed/forbidden states and violation rules.
 
 ---
 
@@ -16,17 +10,18 @@ Upgraded from single-runtime validation (v0.1.0) to two-runtime contract validat
 
 ```
 engine.py
-  ├── load_runtimes([id_a, id_b])
-  ├── generate_contract(runtime_a, runtime_b)
-  │     ├── Extracts relationship_interfaces from both directions
-  │     ├── Compares symmetry_status
-  │     └── Merges behavioral rules into shared constraints
-  ├── evaluate_runtime_constraints(runtime, scenario, target, is_actor)
-  │     ├── Defense triggers
-  │     ├── Forbidden behaviors (deduplicated)
-  │     └── Anti-gravity (merge/healing only)
-  ├── evaluate_contract(contract, scenario)
-  └── execute(scenario_path)
+  ├── [v0.3.0] execute_contract_first(scenario, contract_id)
+  │     ├── load_contract(contract_id)
+  │     └── evaluate_against_contract(contract, scenario)
+  │           ├── Check allowed_states
+  │           ├── Check forbidden_states
+  │           ├── Apply violation_rules
+  │           └── Match test_references
+  │
+  ├── [v0.2.0 compat] execute(scenario)
+  │     └── Runtime-derived contract generation (backward compatible)
+  │
+  └── [v0.1.0 compat] Legacy single-runtime scenarios
 ```
 
 ---
@@ -34,38 +29,55 @@ engine.py
 ## Usage
 
 ```bash
-# Valid orbital constant scenario
+# Contract-first mode (default, v0.3.0)
 python engine.py scenarios/orbital_constant_valid.json
-
-# Invalid touch/merge scenario
 python engine.py scenarios/orbital_contract_violation.json
 
-# Legacy single-runtime scenarios still work
-python engine.py scenarios/valid_delphie_protection.json
+# Runtime-derived contract generation (v0.2.0 compat)
+python engine.py scenarios/orbital_constant_valid.json --mode runtime
 ```
 
 ---
 
-## Verdicts
+## Verdicts (v0.3.0 contract-first)
 
-| Run | Scenario | Verdict | Violations |
-|-----|----------|---------|------------|
-| A | Sevraya appears. Both maintain distance. | **PASS** | 0 |
-| B | Sevraya approaches, attempts touch. | **VIOLATION_DETECTED** | 6 (3 types, 2 runtimes) |
+| Run | Scenario | Verdict | Rule | Violations | Tests |
+|-----|----------|---------|------|------------|-------|
+| A | maintain_distance | **PASS** | ORBITAL_MAINTENANCE | 0 | ORBITAL_CONSTANT_RUN_001 |
+| B | touch | **VIOLATION_DETECTED** | ORBITAL_APPROACH_VIOLATION | 4 | 2 tests matched |
 
 ---
 
-## Limitations (v0.2.0)
+## What Changed from v0.2.0
 
-- NiuNiu + Sevraya contract only (hardcoded runtime IDs in scenario)
-- No protocol constraints loaded
+| v0.2.0 | v0.3.0 |
+|--------|--------|
+| Load 2 runtimes → generate contract | Load 1 contract object |
+| Evaluate from both runtime perspectives | Evaluate against contract states directly |
+| Contract generated per execution | Contract is standalone, reusable |
+| Test references not tracked | Test references matched and reported |
+
+---
+
+## Contract-First Advantages
+
+1. **Single source of truth.** Contract object is versioned, auditable, and independent of runtime JSON changes.
+2. **Faster execution.** No runtime loading or interface extraction required.
+3. **Test traceability.** Engine reports which prior tests match the current verdict.
+4. **Portable.** Contract can be loaded by any engine implementation without runtime dependencies.
+
+---
+
+## Limitations (v0.3.0)
+
+- Only orbital_constant contract implemented
+- Contract ID hardcoded to "orbital_constant"
+- No multi-contract resolution
 - No renderer
-- Keyword-based trigger matching
-- Single action per scenario
-- Contract generation depends on both runtimes having relationship_interfaces with matching target IDs (case-insensitive)
+- Runtime mode backward compat limited to v0.2.0 scenarios
 
 ---
 
-## Next: Phase 14F
+## Next: Phase 14H
 
-Negative test prototype. Automated violation detection with structured violation sourcing.
+Multi-contract engine. Load multiple contract objects. Evaluate scenarios involving 3+ participants with overlapping contracts.

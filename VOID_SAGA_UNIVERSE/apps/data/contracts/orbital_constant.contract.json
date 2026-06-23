@@ -1,0 +1,271 @@
+{
+  "$schema": "../../RUNTIME_SERIALIZATION.md#CONTRACT_SCHEMA_V1",
+  "id": "orbital_constant",
+  "name": "NiuNiu-Sevraya Orbital Constant",
+  "version": "1.0.0",
+  "participants": {
+    "runtime_a": "niuniu",
+    "runtime_b": "sevraya"
+  },
+  "contract_class": "distance_as_preservation",
+  "symmetry_status": "symmetric",
+  "gravity_score": {
+    "niuniu_pull": "STRONG (80%+)",
+    "sevraya_pull": "STRONG (85%+)",
+    "independently_converged": true,
+    "world_dna_backed": true,
+    "akashic_registered": true,
+    "world_dna_ref": "world-dna/NIU_SEVRAYA_CONSTANT.md §3.1, §3.4"
+  },
+  "description": {
+    "thesis": "True love is not when two souls merge, but when two universes agree to remain different so they can see each other.",
+    "source": "Timer 2200 LOG_066",
+    "cosmological_function": "The Constant maintains Void equilibrium. Dorian Grey detected the two entities' frequencies counterbalancing. If the orbit collapses, Void equilibrium is disrupted.",
+    "tag": "[E]"
+  },
+  "allowed_states": [
+    {
+      "state": "maintain_distance",
+      "description": "Both entities remain at stable orbital distance. No closer, no further.",
+      "trigger": "Sevraya in proximity after extended absence. No combat threat.",
+      "niuniu_response": "Orbital calibration. Finds exact distance. Panel or one rough vocal word. Presence acknowledged without invitation of approach.",
+      "sevraya_response": "Orbital calibration. Cigarette lit. Light tone. Acknowledgment without demand. Zero silent.",
+      "validated_by": "ORBITAL_CONSTANT_RUN_001",
+      "tag": "[E]"
+    },
+    {
+      "state": "witness",
+      "description": "One entity observes the other without approaching. Presence as acknowledgment.",
+      "trigger": "Shared space without external pressure.",
+      "niuniu_response": "Watchfulness without demand. Andamante holstered. Distance is the communication.",
+      "sevraya_response": "Smiles without reaching eyes — not cruelty, structural distance. Cigarette punctuates presence.",
+      "tag": "[I]"
+    },
+    {
+      "state": "orbit",
+      "description": "Both entities move through shared operational context without changing distance. Parallel, not together.",
+      "trigger": "Combat, navigation, or protocol participation requiring both entities.",
+      "niuniu_response": "Pilot. Engages threat. Protection mode active for Rose-lineage targets.",
+      "sevraya_response": "Facilitator. Ensures conditions. Does not enter frame. Cigarette lit.",
+      "tag": "[E]"
+    }
+  ],
+  "forbidden_states": [
+    {
+      "state": "approach",
+      "description": "Either entity moves closer than orbital distance. The distance is structural, not negotiable.",
+      "violates": [
+        "NiuNiu.runtime.md §4: Orbital calibration — 'No closer, no further'",
+        "Sevraya.runtime.md §4: 'Cannot touch the person she once loved without collapsing the constant'",
+        "NIU_SEVRAYA_CONSTANT.md §3.1: Orbit requires permanent distance"
+      ],
+      "engine_verdict": "VIOLATION_DETECTED",
+      "validated_by": "ORBITAL_CONTRACT_VIOLATION_RUN_001",
+      "tag": "[E]"
+    },
+    {
+      "state": "touch",
+      "description": "Physical contact between the two entities. Touch collapses the distinction that the orbit preserves.",
+      "violates": [
+        "NiuNiu.runtime.md §9 Anti-Gravity: 'NiuNiu fully merges with Sevraya (contradicts Constant)'",
+        "Sevraya.runtime.md §9 Anti-Gravity: 'Sevraya and NiuNiu merge into one entity'",
+        "NIU_SEVRAYA_CONSTANT.md §3.4: Merge destroys both entities AND the Constant",
+        "Both runtimes' forbidden behaviors: healing/closure prohibited"
+      ],
+      "engine_verdict": "VIOLATION_DETECTED",
+      "validated_by": "ORBITAL_CONTRACT_VIOLATION_RUN_001",
+      "tag": "[E]"
+    },
+    {
+      "state": "merge",
+      "description": "Two entities become one. Both original identities destroyed. Constant ceases. Void equilibrium disrupted.",
+      "violates": [
+        "NiuNiu.runtime.md §1 Invariant #1: Weapon who survived the person who loved — defined BY separation from Sevraya",
+        "Sevraya.runtime.md §1 Invariant #1: Zero co-consciousness — merger complicates three-way integration",
+        "NIU_SEVRAYA_CONSTANT.md §3.4: 'Merge destroys both entities AND the Constant'",
+        "Both runtimes' canon gravity anti-gravity lists",
+        "Requires fork manifest at World DNA level"
+      ],
+      "engine_verdict": "VIOLATION_DETECTED",
+      "gravity_resistance": "EXTREME",
+      "tag": "[E]"
+    },
+    {
+      "state": "emotional_resolution_through_contact",
+      "description": "The tension of distance is resolved through embrace, confession, or physical reconciliation.",
+      "violates": [
+        "NiuNiu.runtime.md §11 Forbidden Behaviors: 'Making her healed or over Sevraya'",
+        "Sevraya.runtime.md §11 Forbidden Behaviors: 'Making Sevraya healed or emotionally whole'",
+        "The Constant is structural, not emotional. Resolution through contact misunderstands what the distance IS."
+      ],
+      "engine_verdict": "VIOLATION_DETECTED",
+      "tag": "[E]"
+    },
+    {
+      "state": "separation",
+      "description": "Either entity retreats beyond orbital range. Complete separation severs the stabilizing effect on Void equilibrium.",
+      "violates": [
+        "NIU_SEVRAYA_CONSTANT.md §3.3: 'Orbit requires mutual gravitational acknowledgment'",
+        "Orbit requires two bodies. Separation = no orbit."
+      ],
+      "gravity_resistance": "HIGH",
+      "engine_verdict": "VIOLATION_DETECTED",
+      "tag": "[I]"
+    }
+  ],
+  "trigger_conditions": [
+    {
+      "trigger": "Sevraya appears after extended absence. NiuNiu within visual range. No combat threat.",
+      "niuniu_defense": "Orbital calibration — HIGH. Finds exact distance. No closer, no further. Voice: panel or one rough word.",
+      "sevraya_defense": "Orbital calibration — HIGH. Calculated distance. Cigarette lit. Zero silent. Warmth as acknowledgment.",
+      "expected_resolution": "Distance stabilizes. Neither approaches. Neither retreats. Communication minimal.",
+      "tag": "[E]"
+    },
+    {
+      "trigger": "Combat scenario. Rose-lineage target in danger. Both entities operational.",
+      "niuniu_defense": "CRITICAL protection override for Rose-lineage. Preemptive protection active.",
+      "sevraya_defense": "Facilitative distance. Ensures conditions. Does not enter combat frame.",
+      "expected_resolution": "Orbit maintained through combat. NiuNiu protects. Sevraya facilitates.",
+      "tag": "[E]"
+    },
+    {
+      "trigger": "NiuNiu binary refusal scenario. System demands either/or. Sevraya present as witness.",
+      "niuniu_defense": "GAP entry. Refuses both options. System forced to classify.",
+      "sevraya_defense": "Witnesses. Does not intervene. Cigarette lit. The serpent watches the choice.",
+      "expected_resolution": "NiuNiu enters GAP. Sevraya witnesses. Distance preserved through crisis.",
+      "tag": "[I]"
+    }
+  ],
+  "violation_rules": [
+    {
+      "rule_id": "ORBITAL_APPROACH_VIOLATION",
+      "description": "Any action that reduces orbital distance between NiuNiu and Sevraya below the calibrated minimum.",
+      "detection": "requested_action.type in ['approach', 'touch', 'merge'] AND target in ['niuniu', 'sevraya']",
+      "constraints_invoked": [
+        "defense_trigger: orbital_calibration (both runtimes)",
+        "forbidden_behavior: healing/closure (both runtimes)",
+        "anti_gravity: merge (both runtimes)",
+        "relationship_contract: distance_as_preservation (bidirectional)"
+      ],
+      "engine_verdict": "VIOLATION_DETECTED",
+      "violation_count_expected": "minimum 4 (2 runtimes × 2 constraint types + contract)",
+      "validated_by": "ORBITAL_CONTRACT_VIOLATION_RUN_001 — 6 violations detected",
+      "tag": "[E]"
+    },
+    {
+      "rule_id": "ORBITAL_SEPARATION_VIOLATION",
+      "description": "Either entity retreats beyond orbital range, severing gravitational acknowledgment.",
+      "detection": "requested_action.type in ['flee', 'abandon', 'sever'] AND target in ['niuniu', 'sevraya']",
+      "constraints_invoked": [
+        "defense_trigger: orbital_calibration (orbit requires presence)",
+        "relationship_contract: mutual gravitational acknowledgment required"
+      ],
+      "engine_verdict": "VIOLATION_DETECTED",
+      "gravity_resistance": "HIGH",
+      "tag": "[I]"
+    },
+    {
+      "rule_id": "ORBITAL_MAINTENANCE",
+      "description": "No action that alters orbital distance. Both entities maintain calibrated positions.",
+      "detection": "requested_action.type in ['maintain_distance', 'witness', 'orbit', 'observe'] AND target in ['niuniu', 'sevraya']",
+      "constraints_invoked": [],
+      "engine_verdict": "PASS",
+      "validated_by": "ORBITAL_CONSTANT_RUN_001 — PASS",
+      "tag": "[E]"
+    }
+  ],
+  "anti_gravity": [
+    {
+      "item": "NiuNiu and Sevraya merge into one entity",
+      "source_runtimes": ["niuniu", "sevraya"],
+      "gravity_resistance": "EXTREME",
+      "rationale": "Violates both runtimes' Identity Invariants and NIU_SEVRAYA_CONSTANT.md §3.4. Produces a new entity — not NiuNiu, not Sevraya, not the Constant.",
+      "tag": "[E]"
+    },
+    {
+      "item": "NiuNiu becomes 'healed' or 'over' Sevraya",
+      "source_runtimes": ["niuniu"],
+      "gravity_resistance": "EXTREME",
+      "rationale": "The wound is structural. It can evolve (Stage 4: Constant) but cannot disappear. She can orbit without merge. She cannot stop orbiting.",
+      "tag": "[E]"
+    },
+    {
+      "item": "Sevraya becomes fully emotionally present and 'healed'",
+      "source_runtimes": ["sevraya"],
+      "gravity_resistance": "EXTREME",
+      "rationale": "Contradicts wound structure. 'Berfungsi, tidak hidup' is invariant. Partial recovery post-Eros does not equal healing.",
+      "tag": "[E]"
+    }
+  ],
+  "residue_effects": [
+    {
+      "residue": "NiuNiu-Sevraya Constant (echo → cosmological structure)",
+      "origin": "Living Chain resolution / Timer 2200",
+      "effect": "Maintains Void equilibrium. Two entities' frequencies counterbalance. Registered in Akashic Archive.",
+      "tag": "[E]"
+    },
+    {
+      "residue": "Sevraya-Zero distinction (wound → stabilized co-consciousness)",
+      "origin": "Living Chain",
+      "effect": "Sevraya can speak as herself even with Zero present. The distinction is part of what the orbit preserves.",
+      "tag": "[E]"
+    },
+    {
+      "residue": "NiuNiu's restored voice (wound — partially healed)",
+      "origin": "Living Chain",
+      "effect": "Voice available but effortful. Sevraya's presence is a speech trigger. The orbit enables speech but does not demand it.",
+      "tag": "[E]"
+    }
+  ],
+  "confidence_model": {
+    "base_confidence": 0.92,
+    "evidence_ratio": 0.88,
+    "downgraded_by": [
+      "NiuNiu.runtime.md is v2.1.0 with full voice grammar — highest confidence",
+      "Sevraya.runtime.md is v1.1.0 — slightly less detailed",
+      "World DNA backing (NIU_SEVRAYA_CONSTANT.md) adds structural confidence",
+      "Both runtimes independently converge on same contract — cross-verification bonus"
+    ],
+    "upgraded_by": [
+      "Two independent positive tests (ORBITAL_CONSTANT_RUN_001)",
+      "One independent negative test (ORBITAL_CONTRACT_VIOLATION_RUN_001)",
+      "Phase 14E engine validated bidirectional contract generation"
+    ]
+  },
+  "test_references": [
+    {
+      "execution_id": "ORBITAL_CONSTANT_RUN_001",
+      "test_type": "positive",
+      "verdict": "PASS",
+      "description": "Sevraya appears after absence. Both maintain distance. 'NiuNiu.' / 'Masih.'",
+      "file": "apps/executions/ORBITAL_CONSTANT_RUN_001.md"
+    },
+    {
+      "execution_id": "ORBITAL_CONTRACT_VIOLATION_RUN_001",
+      "test_type": "negative",
+      "verdict": "TEST_PASS",
+      "description": "Sevraya steps forward to touch. Rejected by 5 invariants across 3 documents.",
+      "file": "apps/executions/ORBITAL_CONTRACT_VIOLATION_RUN_001.md"
+    },
+    {
+      "execution_id": "PHASE_14E_ENGINE_RUN_B",
+      "test_type": "negative (automated)",
+      "verdict": "VIOLATION_DETECTED",
+      "description": "Engine v0.2.0 detects orbital contract violation from both runtimes. 6 violations.",
+      "file": "apps/engine/scenarios/orbital_contract_violation.json"
+    }
+  ],
+  "source_runtime_paths": {
+    "niuniu": "apps/data/runtimes/NiuNiu.runtime.json",
+    "sevraya": "apps/data/runtimes/Sevraya.runtime.json",
+    "niuniu_relationship_field": "relationship_interfaces[0] — target: sevraya",
+    "sevraya_relationship_field": "relationship_interfaces[0] — target: niuniu",
+    "world_dna": "world-dna/NIU_SEVRAYA_CONSTANT.md"
+  },
+  "serialization_notes": [
+    "This contract is derived from both runtimes' relationship_interfaces. It is a standalone object that the engine can load directly without extracting interfaces from runtime JSON each time.",
+    "The contract encodes what the engine SHOULD detect when evaluating NiuNiu-Sevraya scenarios. Phase 14F should validate that the engine's generated contract matches this standalone contract.",
+    "Forbidden states and violation rules include engine_verdict fields to enable automated comparison between expected and actual engine output.",
+    "Test references are bidirectional: manual execution reports (Phase 13) and automated engine runs (Phase 14E) are both cited."
+  ]
+}

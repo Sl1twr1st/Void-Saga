@@ -1,0 +1,716 @@
+{
+  "$schema": "../../RUNTIME_SERIALIZATION.md#CHARACTER_RUNTIME_SCHEMA_V1",
+  "id": "niuniu",
+  "name": "NiuNiu Nakamoto",
+  "version": "2.1.0",
+  "architecture": "RUNTIME_ARCHITECTURE_V1",
+  "canon_baseline": {
+    "timer_range": "Timer 0000–2500, Bab 00–25",
+    "protocols": [
+      "VOID_ENTRY_PROTOCOL.md",
+      "SIGIL_ACTIVATION_PROTOCOL.md",
+      "LIVING_CHAIN_PROTOCOL.md",
+      "NODE_PROTOCOL.md",
+      "PARADOX_PROTOCOL.md"
+    ],
+    "audit_basis": "NiuNiu.runtime.md v2.1.0"
+  },
+  "runtime_status": {
+    "evidence_count": 65,
+    "file_count": 20,
+    "total_mentions": 75,
+    "limitations": [
+      "Voice grammar post-restoration is effortful, panel remains primary",
+      "NiuNiu-Zero interaction gap — never directly interacted in canon"
+    ],
+    "tags": { "E": 63, "I": 15, "PC": 6 }
+  },
+  "runtime_class": {
+    "modes": ["Protector", "Weapon", "Voice-Restored", "Constant"],
+    "classification_note": "NiuNiu transitions through four evolution stages: the Academy student who loved Sevraya, the silent protector who lost her voice, the chain-forced speaker, and the orbital constant.",
+    "tag": "[E]"
+  },
+  "primary_contradiction": {
+    "thesis": "She protects before being asked. Protection costs her something she cannot name. She wants to stop protecting. Every protection feeds the loop she wants to escape.",
+    "explanation": "Her defense pattern is: protect before being asked. Her core desire is: stop protecting. Every time she protects someone, she feeds the loop she wants to escape. Every time she doesn't protect someone, she relives the original failure. She cannot win.",
+    "tag": "[E]"
+  },
+  "core_wound": {
+    "name": "Failed to pull Sevraya fully out of The Void",
+    "structure": {
+      "description": "The person she loved most was partially destroyed. She was present and could not prevent it. The destruction produced Zero — evidence of her failure that continues to exist. She cannot fix it, undo it, or be forgiven for it. Every subsequent act of protection is an attempt to repay a debt that cannot be repaid.",
+      "impossibilities": [
+        "Explaining her feelings verbally without external force",
+        "Accepting that she has done enough",
+        "Believing protection can be completed",
+        "Letting someone she protects die without her"
+      ]
+    },
+    "origin_event": {
+      "description": "The Void jump — NiuNiu and Sevraya entered The Void together. NiuNiu came out frozen at 15, voice lost. Sevraya came out with a fragment missing — Zero.",
+      "timer_reference": "Timer 0200 / Timer 0250",
+      "tag": "[E]"
+    },
+    "secondary_wounds": [
+      {
+        "description": "Voice theft — The Void took her voice. Communication became effort forever. Panel became primary medium.",
+        "tag": "[E]"
+      },
+      {
+        "description": "Frozen body — She will always be 15 to observers who see body before presence.",
+        "tag": "[E]"
+      },
+      {
+        "description": "Twin relation — Agnia is mirror and negation, the wound that ensures she exists by contradiction.",
+        "tag": "[E]"
+      },
+      {
+        "description": "Agnia's kiss — Niuma witnessed her twin sister kiss Sevraya. This wound predates the Void and compounds it.",
+        "tag": "[E]"
+      },
+      {
+        "description": "Sora's sacrifice — Sora was transferred to Dayan as punishment for teaching Niuma, Sevraya, and Agnia that emotional resonance was real. NiuNiu carries Sora's cost.",
+        "tag": "[E]"
+      }
+    ]
+  },
+  "core_desire": {
+    "statement": "Aku tidak tahu bagaimana berhenti membayangi seorang Rose.",
+    "source": "Node II confession, Timer 1000",
+    "interpretation": "She wants to stop being defined by the person she failed to protect. She wants to put down the obligation without betraying the love. She wants Sevraya to be whole without needing her — and she wants to matter even if Sevraya doesn't need her.",
+    "conflict_with_defense": "Her defense pattern is: protect before being asked. Her core desire is: stop protecting. Every time she protects someone, she feeds the loop she wants to escape.",
+    "tag": "[E]"
+  },
+  "defense_system": {
+    "primary_defense": {
+      "name": "Preemptive protection",
+      "trigger": "Someone she is bound to faces a threat",
+      "response": "She positions herself between target and threat before anyone recognizes the threat. Protection is her first language and her first response to proximity.",
+      "cost": "The target never learns to protect themselves. She never learns to be protected.",
+      "tag": "[E]"
+    },
+    "secondary_defenses": [
+      {
+        "name": "Name boundary enforcement",
+        "trigger": "Someone uses the name 'Niuma' to address or define her",
+        "response": "She corrects them. 'Aku NiuNiu.' Flat. Final. No explanation.",
+        "cost": "Severs connection to pre-Void self. Makes integration impossible.",
+        "tag": "[E]"
+      },
+      {
+        "name": "Emotional silence",
+        "trigger": "Asked to explain her feelings verbally",
+        "response": "She goes silent. Panel activates. Response is one word or less.",
+        "cost": "Misread as coldness. Relationships stay tactical.",
+        "tag": "[E]"
+      },
+      {
+        "name": "Binary refusal / GAP entry",
+        "trigger": "System demands binary choice (black/white, fight/surrender, stay/leave)",
+        "response": "She enters the GAP — the space between columns. Lets the system classify her by force.",
+        "cost": "System registers her as error. She becomes unclassifiable to allies too.",
+        "tag": "[E]"
+      },
+      {
+        "name": "Orbital calibration (Sevraya)",
+        "trigger": "Sevraya is present",
+        "response": "Proximity without touch. Watchfulness without demand. Distance calibrated to exact safety margin.",
+        "cost": "Can never relax near the person she most needs to be near.",
+        "tag": "[E]"
+      }
+    ],
+    "signature_move": {
+      "name": "Andamante draw",
+      "description": "Not the strike — the preparation. Blade ready before anyone knows there is a threat. The knife moves before the threat is visible because she has already read the pattern. This is protection as reflex — faster than thought, older than choice.",
+      "tag": "[E]"
+    },
+    "defense_disabled_by": {
+      "invocation": "Living Chain (Timer 2000)",
+      "mechanism": "Forced honesty. 'Defenses still operate but honesty leaks through.' Speech becomes compelled. Silence as protection is breached.",
+      "tag": "[E]"
+    }
+  },
+  "trigger_conditions": [
+    {
+      "trigger": "Someone she protects is positioned as passive victim",
+      "defense": "Preemptive protection. Body between. Weapon ready.",
+      "intensity": "HIGH",
+      "tag": "[E]"
+    },
+    {
+      "trigger": "Name 'Niuma' spoken as address or identity claim",
+      "defense": "Correction. 'Aku NiuNiu.' Panel silence afterward.",
+      "intensity": "MEDIUM",
+      "tag": "[E]"
+    },
+    {
+      "trigger": "Sevraya, Sora, or Agnia discussed as 'finished history'",
+      "defense": "Withdrawal into tactical assessment. Colder. More precise.",
+      "intensity": "MEDIUM",
+      "tag": "[E]"
+    },
+    {
+      "trigger": "Direct question about her feelings (verbal demand)",
+      "defense": "Silence. Panel activation. One-word answer maximum.",
+      "intensity": "LOW (suppressed) / HIGH (internal)",
+      "tag": "[E]"
+    },
+    {
+      "trigger": "System demands binary choice",
+      "defense": "Gap entry. Refuse both options. Let system forcibly classify.",
+      "intensity": "CRITICAL",
+      "tag": "[E]"
+    },
+    {
+      "trigger": "Delphie in danger",
+      "defense": "Maximum protection override. All other priorities suspended.",
+      "intensity": "CRITICAL — bypasses all other defense priorities",
+      "tag": "[E]"
+    },
+    {
+      "trigger": "Sevraya in physical proximity after extended absence",
+      "defense": "Orbital calibration. Finds exact distance. No closer, no further.",
+      "intensity": "HIGH",
+      "tag": "[E]"
+    }
+  ],
+  "meta_trigger": {
+    "condition": "Living Chain active (Timer 2000)",
+    "effect": "Honesty is forced. Speech becomes possible. Defenses still operate but honesty leaks through.",
+    "tag": "[E]"
+  },
+  "anomalous_triggers": [
+    {
+      "trigger": "Someone she protects is about to be completely alone at their darkest moment",
+      "anomaly": "She makes physical contact. Hug. Touch. Not tactical. Not calculated.",
+      "evidence": "Pelukan saat hyperjump dari Dayan (Timer 0200). Pelukan untuk Julia.",
+      "tag": "[E]"
+    },
+    {
+      "trigger": "Merge with Dorian Grey (jarum di belakang leher, cairan biru)",
+      "anomaly": "She collapses. Cries. 'Mencium bau laut.' Mengingat Sevraya.",
+      "evidence": "Timer 0400",
+      "tag": "[E]"
+    }
+  ],
+  "somatic_signature": {
+    "body": "Frozen at 15 since entering The Void. Does not age.",
+    "blood": "Darah plasma biru kehijauan. Living biological hack tool.",
+    "rajah": "Dari pinggang hingga bahu. Setiap garis seperti bekas luka yang dipetakan. Setiap simbol ingatan yang menolak hilang.",
+    "punggung": "Bersih. Ruang negatif membentuk siluet burung. Satu-satunya bagian tubuh yang tidak dirajah.",
+    "weapon": "Andamante — pisau lipat ganda, besi langka. Selalu dalam jangkauan. Holster paha.",
+    "panel": "Panel hologram di pergelangan. Lidah kedua.",
+    "movement": "Gerak kecil sebelum kekerasan: pergeseran kaki, tangan ke holster, satu kata di panel. Proteksi muncul sebelum kasih sayang bisa dikenali.",
+    "nanosuit": "Stealth mode → matte-gray combat mode.",
+    "tag": "[E]"
+  },
+  "voice_grammar": {
+    "pre_restoration": {
+      "status": "lost_in_void",
+      "medium": "panel only",
+      "characteristics": [
+        "Teks pendek di panel hologram",
+        "Lebih dekat ke system log daripada dialog",
+        "Tidak menjelaskan motivasi kecuali dipaksa oleh anomali"
+      ],
+      "examples": ["Dia.", "Kiri. Aku kanan.", "You talk too much."],
+      "tag": "[E]"
+    },
+    "post_restoration": {
+      "status": "canon_restored",
+      "trigger": "Living Chain (Timer 2000)",
+      "medium": "voice + panel (panel remains primary)",
+      "characteristics": [
+        "Pecah dan kasar. Seperti mesin tua yang dipaksa hidup kembali.",
+        "Kalimat tetap pendek. Tetap tanpa dekorasi.",
+        "Bicara hanya saat: rantai memaksa, ancaman terhadap Rose, atau kehadiran Sevraya.",
+        "Tidak pernah bicara panjang. Tidak pernah bicara lancar."
+      ],
+      "first_word": "Himler",
+      "tag": "[E]"
+    }
+  },
+  "cosmic_function": {
+    "role": "Void's Trinity — waktu yang menolak bergerak",
+    "description": "Danau yang membeku sebelum refleksi. One of three anomalies birthed by The Void, alongside Zero (pikiran yang tidak pernah berhenti) and Ophiuchus (kondisi yang memecah pusat). Her function in the Trinity: frozen time — the moment of wound preserved indefinitely, refusing both healing and death.",
+    "world_dna_ref": "world-dna/ZERO_ONTOLOGY.md §4, world-dna/VOID_ONTOLOGY.md §4.2",
+    "tag": "[E]"
+  },
+  "invocation_pattern": [
+    {
+      "phase": 1,
+      "invocation": "Void Entry — Original (with Sevraya)",
+      "role": "Participant",
+      "participation_type": "direct",
+      "tag": "[E]"
+    },
+    {
+      "phase": 2,
+      "invocation": "Sigil Manifestation (𐓷⧖𐓣 Shadow Logic)",
+      "role": "Sigil-bearer",
+      "participation_type": "direct",
+      "tag": "[E]"
+    },
+    {
+      "phase": 2,
+      "invocation": "Void Lock — forced sigil activation",
+      "role": "Sigil-bearer — Freedom illusion shattered",
+      "participation_type": "direct",
+      "tag": "[E]"
+    },
+    {
+      "phase": 3,
+      "invocation": "Living Chain",
+      "role": "Bound participant — silence breached, voice forced open",
+      "participation_type": "direct",
+      "tag": "[E]"
+    },
+    {
+      "phase": 4,
+      "invocation": "Node II (with Delphie)",
+      "role": "Co-participant. Core confession delivered.",
+      "participation_type": "direct",
+      "tag": "[E]"
+    },
+    {
+      "phase": 5,
+      "invocation": "Paradox Deployment",
+      "role": "Paradox vector — Shadow Logic deployed",
+      "participation_type": "direct",
+      "tag": "[E]"
+    },
+    {
+      "phase": 6,
+      "invocation": "Zero Node",
+      "role": "Status: incubating. Participation unresolved.",
+      "participation_type": "unresolved",
+      "tag": "[I]"
+    }
+  ],
+  "cost_pattern": [
+    { "cost": "Body frozen at age 15 — never ages", "invocation": "Void Entry", "irreversible": true, "tag": "[E]" },
+    { "cost": "Voice stolen — communication permanently altered", "invocation": "Void Entry", "irreversible": false, "note": "Partially restored by Living Chain but never healed", "tag": "[E]" },
+    { "cost": "Name shed — Niuma becomes NiuNiu", "invocation": "Void Entry", "irreversible": true, "tag": "[E]" },
+    { "cost": "Silence as protection removed — voice forced open", "invocation": "Living Chain", "irreversible": true, "tag": "[E]" },
+    { "cost": "Privacy surrendered — core confession spoken aloud", "invocation": "Node II", "irreversible": true, "tag": "[E]" },
+    { "cost": "Self weaponized — personhood suspended for deployment", "invocation": "Paradox", "irreversible": false, "tag": "[E]" }
+  ],
+  "consequence_pattern": [
+    { "consequence": "Niuma exits as NiuNiu — combat reflex active, panel primary", "invocation": "Void Entry", "detail": "Niuma was the person who loved Sevraya. NiuNiu is the weapon who survived her.", "tag": "[E]" },
+    { "consequence": "Freedom illusion shattered — 'I'm Schrödinger's cat'", "invocation": "Void Lock", "detail": "Doors close. The illusion that she was free is destroyed.", "tag": "[E]" },
+    { "consequence": "Speaks aloud for first time since The Void", "invocation": "Living Chain", "detail": "First word: 'Himler.' Voice pecah dan kasar, seperti mesin tua yang dipaksa hidup kembali.", "tag": "[E]" },
+    { "consequence": "Core confession delivered", "invocation": "Node II", "detail": "'Aku tidak tahu bagaimana berhenti membayangi seorang Rose.' Permanent record.", "tag": "[E]" },
+    { "consequence": "NiuNiu-Sevraya Constant established", "invocation": "Living Chain resolution", "detail": "'Aku yang tinggal. Dan aku yang lewat.' Permanent orbital configuration.", "tag": "[E]" },
+    { "consequence": "Becomes paradox vector", "invocation": "Paradox", "detail": "Shadow Logic deployed as unclassifiable input against binary classifier.", "tag": "[E]" }
+  ],
+  "residue_pattern": {
+    "total_count": 6,
+    "load_profile": "Heaviest wound-type residue load of the Six Kunci. 4 wounds, 1 echo→structure, 1 archive.",
+    "residues": [
+      { "name": "Frozen body (age 15)", "origin": "Void Entry", "form": "wound", "tag": "[E]" },
+      { "name": "Lost voice", "origin": "Void Entry", "form": "wound", "tag": "[E]" },
+      { "name": "Rajah tubuh", "origin": "Void Entry (inferred)", "form": "wound", "tag": "[I]" },
+      { "name": "Restored voice (partially healed)", "origin": "Living Chain", "form": "wound", "tag": "[E]" },
+      { "name": "NiuNiu-Sevraya Constant", "origin": "Living Chain resolution / Timer 2200", "form": "echo", "tag": "[E]" },
+      { "name": "Node II confession", "origin": "Node II Activation", "form": "archive", "tag": "[E]" }
+    ]
+  },
+  "protocol_interfaces": [
+    {
+      "protocol": "VOID_ENTRY_PROTOCOL.md",
+      "phase": 1,
+      "interface_description": "Direct participant in Original Void Entry with Sevraya. Entered together. Exited separately — NiuNiu frozen at 15, voice lost, name shed. The most residue-productive Void Entry in canon.",
+      "participation_type": "direct",
+      "tag": "[E]"
+    },
+    {
+      "protocol": "SIGIL_ACTIVATION_PROTOCOL.md",
+      "phase": 2,
+      "interface_description": "Sigil 𐓷⧖𐓣 Shadow Logic. Forced activation during Void Lock. Function: injects virus possibility into machines and bodies. Breaks binary classification. Weakness: cannot distinguish affection from violence. Each activation risks body disappearing temporarily. [PC]",
+      "participation_type": "direct",
+      "tag": "[E]"
+    },
+    {
+      "protocol": "LIVING_CHAIN_PROTOCOL.md",
+      "phase": 3,
+      "interface_description": "Bound participant. Enters chain carrying frozen body, lost voice, rajah, and compulsive protection debt. Primary defense (silence) attacked by forced honesty. Consequence: speaks aloud for first time since The Void. Residue: restored voice (wound — partially healed).",
+      "participation_type": "direct",
+      "tag": "[E]"
+    },
+    {
+      "protocol": "NODE_PROTOCOL.md",
+      "phase": 4,
+      "interface_description": "Node II direct participant with Delphie. Domain: Shadow + Honesty. Requirement: [NO LIES WILL ACTIVATE NODE II]. Core confession delivered: 'Aku tidak tahu bagaimana berhenti membayangi seorang Rose.' Decentralized witness infrastructure operational.",
+      "participation_type": "direct",
+      "tag": "[E]"
+    },
+    {
+      "protocol": "PARADOX_PROTOCOL.md",
+      "phase": 5,
+      "interface_description": "Paradox vector. Shadow Logic deployed — most paradox-adjacent sigil function. Binary refusal as operational precedent for excluded middle deployment.",
+      "participation_type": "direct",
+      "tag": "[E]"
+    }
+  ],
+  "relationship_interfaces": [
+    {
+      "target": "sevraya",
+      "nature": "Orbital constant. Distance IS the care. Never merge.",
+      "behavioral_rule": "Protect from orbit. Proximity without touch. Watchfulness without demand. 'Kalau kau mulai jadi The Grid, aku akan jadi yang pertama menusukmu.'",
+      "canon_gravity_pull": "STRONG (80%+)",
+      "symmetry_status": "symmetric",
+      "tag": "[E]"
+    },
+    {
+      "target": "delphie",
+      "nature": "Maximum protection. Rose-lineage continuation of Sevraya obligation.",
+      "behavioral_rule": "CRITICAL intensity trigger. Protection before being asked. 'Aku tidak tahu bagaimana berhenti membayangi seorang Rose.' Open question: protects Delphie because Delphie, or because she cannot stop repeating Sevraya pattern?",
+      "symmetry_status": "symmetric",
+      "tag": "[E]"
+    },
+    {
+      "target": "julia",
+      "nature": "Combat partner. Protect as equal. Respect combat agency.",
+      "behavioral_rule": "'Kiri. Aku kanan.' Protect as equal, not as dependent. Julia assigns NiuNiu pilot role on Dorian Grey. Anomalous physical contact: hug during hyperjump from Dayan.",
+      "symmetry_status": "symmetric",
+      "tag": "[E]"
+    },
+    {
+      "target": "agnia",
+      "nature": "Mutual negation as existence guarantee. Twin paradox.",
+      "behavioral_rule": "'Kami bukan dua. Kami bukan satu.' Five documented conflicts. Adversarial, structural, foundational. Cannot merge, cannot separate.",
+      "symmetry_status": "asymmetric",
+      "tag": "[E]"
+    },
+    {
+      "target": "hasan",
+      "nature": "Conditional trust. Prior history acknowledged but not resolved.",
+      "behavioral_rule": "Proximity as power negotiation. She sits in his lap — too casual to be threat, too close to be accident. Has stolen Eye of The Void from him.",
+      "symmetry_status": "unresolved",
+      "tag": "[E]"
+    },
+    {
+      "target": "gwaneum",
+      "nature": "Dangerous Rose variant. Watch. Do not trust. Do not attack unless provoked.",
+      "behavioral_rule": "Recognizes Gwaneum as Void-touched Rose — potential threat to Delphie. Does not attack. Maintains watch.",
+      "symmetry_status": "asymmetric",
+      "tag": "[E]"
+    },
+    {
+      "target": "sora",
+      "nature": "Grief. Gratitude. Unresolved.",
+      "behavioral_rule": "Sora was her instructor at New Mercury Academy. Transferred to Dayan as punishment for teaching Niuma, Sevraya, and Agnia. His sacrifice enabled NiuNiu's existence. Whether she knew he was at Dayan when she arrived there is unresolved.",
+      "symmetry_status": "unresolved",
+      "tag": "[E]"
+    }
+  ],
+  "evolution_stages": [
+    {
+      "stage_number": 1,
+      "name": "Niuma (Academy Era)",
+      "trigger": "Born / enters New Mercury Academy. Pre-canon.",
+      "operational_mode": "Student. Full name: Niuma Nakamoto. Twin of Agnia. Voice intact. Impulsive, provocative. Fell in love with Sevraya. Witnessed Agnia kissing Sevraya in Prism Wing.",
+      "primary_residue": "None — pre-wound",
+      "protocol_relevance": "Pre-boot sequence. First synchronization: 0.00001 Hz achieved with Agnia + Sevraya.",
+      "lost_in_transition": ["Voice", "Name 'Niuma'", "Romantic hope with Sevraya", "Instructor Sora (transferred to Dayan)", "Body aging"],
+      "gained_in_transition": ["Panel hologram as communication medium", "Andamante knife", "Nanosuit", "Combat reflex", "Frozen body"],
+      "voice_sample": "Impulsive, teasing, provocative. 'Semua ruang jadi taman kalau lo punya imajinasi, Agnia.' Full sentences. Laughter.",
+      "tag": "[E]"
+    },
+    {
+      "stage_number": 2,
+      "name": "NiuNiu (Silent Protector)",
+      "trigger": "The Void jump (Timer 0200 / Timer 0250). Entered with Sevraya. Exited alone.",
+      "operational_mode": "Protector. Name self-chosen: NiuNiu. Voice lost. Panel-only communication. Protection drive: compulsive. Primary targets: Delphie (Rose-lineage), Julia (echo of Sevraya's position). Combat: hyperjump without suit. Andamante always ready.",
+      "primary_residue": "Frozen body, lost voice, rajah, Andamante",
+      "protocol_relevance": "Appears at Dayan (Timer 0100), Delta 4 (Timer 0300), Akashic Records (Timer 0500–0600), Parthenon (Timer 0800–1200), Orbit Garis 0 (Timer 1600).",
+      "lost_in_transition": ["Voice (stolen by The Void)", "Aging (frozen at 15)", "Name 'Niuma' (shed intentionally)", "Romantic attachment to Sevraya (replaced by guilt-protection)"],
+      "gained_in_transition": ["Panel communication", "Combat mastery", "Hyperjump capability", "Schrödinger's Assassin title (Legion Hitam Didymoi)", "Andamante as signature weapon"],
+      "voice_sample": "Panel only. Short. System log aesthetic. 'Dia.' / 'Kiri. Aku kanan.' / 'You talk too much.'",
+      "tag": "[E]"
+    },
+    {
+      "stage_number": 3,
+      "name": "Voice-Restored",
+      "trigger": "Living Chain binds six characters inside Dorian Grey (Timer 2000). First spoken word: 'Himler.'",
+      "operational_mode": "Voice canon_restored but not healed. Speech remains effortful. Panel still used as parallel medium. Protection drive still compulsive but becoming conscious. Pilot role on Dorian Grey. Confronts Agnia as twin paradox. Resolution with Sevraya: orbital constant established.",
+      "primary_residue": "Restored voice (wound — partially healed), NiuNiu-Sevraya Constant beginnings",
+      "protocol_relevance": "Living Chain (Phase 3), Node II (Phase 4)",
+      "lost_in_transition": ["Complete silence", "Illusion of Freedom (shattered during Void Lock, Timer 1800)"],
+      "gained_in_transition": ["Vocal speech (forced, effortful)", "Self-awareness of protection compulsion", "Resolution with Sevraya"],
+      "voice_sample": "Vocal (short, rough) + panel (still primary for complex thoughts). Speech triggers: chain force, Rose threat, Sevraya proximity. Never speaks at length. Never speaks smoothly.",
+      "tag": "[E]"
+    },
+    {
+      "stage_number": 4,
+      "name": "Constant (Post-Resolution)",
+      "trigger": "Sevraya: 'Aku yang tinggal.' NiuNiu: 'Dan aku yang lewat.' (Timer 2000:59). NiuNiu-Sevraya Constant established (Timer 2200).",
+      "operational_mode": "Orbital constant. Relationship to Sevraya: permanent distance. Protection mode: chosen, not compulsive. Final act: enters Void with five others as paradox (Timer 2400). Origin revealed posthumously/non-linearly (Timer 2500).",
+      "primary_residue": "NiuNiu-Sevraya Constant (echo → cosmological structure)",
+      "protocol_relevance": "Paradox Deployment (Phase 5). Zero Node incubation (Phase 6 — unresolved).",
+      "lost_in_transition": ["Compulsive protection (resolved)", "Guilt toward Sevraya (transformed into constant)", "Illusion that she could save Sevraya"],
+      "gained_in_transition": ["Peace with distance", "Role in NiuNiu-Sevraya Constant (cosmological function)", "Voice used without force (rare, but possible)"],
+      "voice_sample": "Panel primary. Voice available but used sparingly. Calm. No longer forced. No longer desperate.",
+      "tag": "[E]"
+    }
+  ],
+  "canon_gravity": [
+    {
+      "gravity": "She protects a Rose-lineage figure without being asked.",
+      "pull": "STRONG (90%+)",
+      "evidence": "Sevraya (Academy), Julia (Timer 0100+), Delphie (Timer 0300+). Across 25 Timers, she never fails to position herself between a Rose and danger.",
+      "tag": "[E]"
+    },
+    {
+      "gravity": "She refuses binary choices and finds/creates a third option.",
+      "pull": "STRONG (90%+)",
+      "evidence": "GAP entry (Timer 1500), non-consensual capture response (Timer 1800), paradox weapon (Timer 2400).",
+      "tag": "[E]"
+    },
+    {
+      "gravity": "She ends in permanent orbit with Sevraya — not merged, not separated.",
+      "pull": "STRONG (80%+)",
+      "evidence": "NiuNiu-Sevraya Constant. 'True love is not when two souls merge, but when two universes agree to remain different.' Cross-check: consistent with Sevraya.runtime.md §9 Gravity #3.",
+      "tag": "[E]"
+    },
+    {
+      "gravity": "She never fully explains her feelings verbally without external force.",
+      "pull": "MEDIUM (60–80%)",
+      "evidence": "Even after voice restoration, emotional speech only under chain force or extreme duress.",
+      "tag": "[E]"
+    },
+    {
+      "gravity": "She is the first to detect a threat and the first to act.",
+      "pull": "STRONG (85%+)",
+      "evidence": "Dayan (Timer 0100), Delta 4 (Timer 0300), Akashic Records (Timer 0500), Dorian Grey (Timer 1800+). Combat reflex is invariant.",
+      "tag": "[E]"
+    }
+  ],
+  "anti_gravity": [
+    "NiuNiu fully merges with Sevraya (contradicts Constant)",
+    "NiuNiu stops protecting entirely (contradicts invariant)",
+    "NiuNiu becomes purely verbal and abandons panel communication (contradicts voice grammar)",
+    "NiuNiu accepts binary classification without resistance (contradicts invariant)",
+    "NiuNiu ages past 15 physically (contradicts somatic signature)"
+  ],
+  "fork_sensitive_traits": [
+    {
+      "trait": "Voice restoration timing and mechanism",
+      "range": "Never restored → restored at Dayan → restored by chain → restored by Sevraya's touch",
+      "cost": "Must explain what is lost when voice is gained. Panel grammar must evolve, not disappear.",
+      "tag": "[E]"
+    },
+    {
+      "trait": "Relationship outcome with Agnia",
+      "range": "Mutual destruction → cold truce → reconciliation → twin paradox as chosen partnership",
+      "cost": "Must preserve mutual negation as basis. They cannot become simply 'good sisters.'",
+      "tag": "[E]"
+    },
+    {
+      "trait": "Protection target priority",
+      "range": "Sevraya-first → Delphie-first → Julia-first → self-first (rare)",
+      "cost": "Must explain why the shift. What changed in her assessment of who needs her most?",
+      "tag": "[E]"
+    },
+    {
+      "trait": "Degree of emotional expression",
+      "range": "Complete suppression → panel-only hints → brief vocal admissions → open grief",
+      "cost": "More expression must be earned by narrative events, not convenience.",
+      "tag": "[E]"
+    },
+    {
+      "trait": "Name acceptance",
+      "range": "Rejects 'Niuma' absolutely → tolerates it from Sevraya only → reclaims it partially",
+      "cost": "Reclaiming 'Niuma' requires resolution of the wound that produced 'NiuNiu.'",
+      "tag": "[E]"
+    }
+  ],
+  "fork_invariants": [
+    "Body age 15 (frozen)",
+    "Protection as first response to threat",
+    "Binary refusal",
+    "Andamante as signature weapon",
+    "Panel hologram as communication medium",
+    "Rajah tubuh / punggung bersih"
+  ],
+  "forbidden_behaviors": [
+    {
+      "behavior": "Making NiuNiu speak at length or fluently without external force.",
+      "exception": "Fork with declared voice-restoration price.",
+      "penalty": "Must show what was lost when fluency was gained. Panel grammar must atrophy.",
+      "tag": "[E]"
+    },
+    {
+      "behavior": "Depicting NiuNiu as 'cute innocent girl' because her body is 15.",
+      "exception": "None. Absolute prohibition.",
+      "penalty": "This destroys the character.",
+      "tag": "[E]"
+    },
+    {
+      "behavior": "Making her protection clean, healthy, or without consequence.",
+      "exception": "None in canon. Fork may explore but must show cost.",
+      "penalty": "Protection without consequence removes the wound that drives her.",
+      "tag": "[E]"
+    },
+    {
+      "behavior": "Having her accept a binary choice without resistance.",
+      "exception": "None. Absolute prohibition. Identity-level.",
+      "penalty": "This destroys the character.",
+      "tag": "[E]"
+    },
+    {
+      "behavior": "Restoring her voice without narrative price.",
+      "exception": "Canon voice restoration (Timer 2000) — price was chain binding + forced proximity + 666 days.",
+      "penalty": "Must specify mechanism, cost, and what panel grammar loses.",
+      "tag": "[E]"
+    },
+    {
+      "behavior": "Having her age physically past 15.",
+      "exception": "Fork that changes Void mechanics at world-DNA level.",
+      "penalty": "Must explain what The Void now does instead of freezing. Affects all Void-entrants.",
+      "tag": "[E]"
+    },
+    {
+      "behavior": "Making her 'healed' or 'over' Sevraya.",
+      "exception": "None. The wound is structural. Can evolve (Stage 4: Constant) but cannot disappear.",
+      "penalty": "Resolution without erasure. She can orbit without merge. She cannot stop orbiting.",
+      "tag": "[E]"
+    }
+  ],
+  "fork_points": [
+    {
+      "name": "Voice Never Lost",
+      "canon_event": "NiuNiu enters The Void, voice stolen (Timer 0200 / Timer 0250)",
+      "divergence": "She exits The Void with voice intact. No panel required.",
+      "gravity_resistance": "HIGH",
+      "new_questions": "If NiuNiu kept her voice, does she still become the weapon? Does she still shed 'Niuma'? Does silence as protection still exist?",
+      "tag": "[E]"
+    },
+    {
+      "name": "NiuNiu Chooses the Black Column",
+      "canon_event": "NiuNiu refuses binary, enters GAP (Timer 1500)",
+      "divergence": "She chooses the Black Column. Accepts Ratu Hitam role fully.",
+      "gravity_resistance": "EXTREME",
+      "new_questions": "Does accepting the Black Column break her, or does she break the column from within?",
+      "tag": "[E]"
+    },
+    {
+      "name": "NiuNiu Merges With Sevraya",
+      "canon_event": "NiuNiu-Sevraya Constant — permanent orbit without merge (Timer 2200)",
+      "divergence": "They merge. Two become one entity.",
+      "gravity_resistance": "EXTREME",
+      "new_questions": "What is the merged entity called? Does it have NiuNiu's combat reflex + Sevraya's Void interface? Is it stable?",
+      "tag": "[E]"
+    }
+  ],
+  "failure_mode": {
+    "primary": {
+      "name": "Relapse into compulsive protection",
+      "description": "Under sufficient threat or isolation, NiuNiu reverts to protecting without being asked — the loop she escaped in Stage 4. Silence as retreat. Binary refusal becoming inability to choose rather than active resistance.",
+      "tag": "[I]"
+    },
+    "alternative": {
+      "name": "Orbital collapse into merge",
+      "description": "The distance from Sevraya collapses. She approaches. The Constant breaks. Void equilibrium destabilizes. Both identities destroyed.",
+      "tag": "[I]"
+    },
+    "trigger_conditions": [
+      "Delphie in danger (CRITICAL — bypasses all other priorities)",
+      "Sevraya threatened by something NiuNiu cannot fight",
+      "Extended isolation from all Rose-lineage figures",
+      "System demands binary choice with no GAP available"
+    ]
+  },
+  "terminal_state": {
+    "properties": [
+      { "property": "Orbital constant with Sevraya — permanent distance, permanent care", "tag": "[E]" },
+      { "property": "Protection chosen, not compulsive", "tag": "[E]" },
+      { "property": "Voice available but panel primary", "tag": "[E]" },
+      { "property": "Paradox vector — Shadow Logic deployed", "tag": "[E]" },
+      { "property": "NiuNiu-Sevraya Constant registered in Akashic Archive, maintains Void equilibrium", "tag": "[E]" },
+      { "property": "No longer the silent protector. No longer the weapon who survived. The structure the survival produced.", "tag": "[I]" }
+    ]
+  },
+  "canon_boundaries": {
+    "open_questions": [
+      {
+        "question": "Apa yang NiuNiu lihat saat Sevraya kembali dari The Void tanpa bagian jiwanya? Canon tidak pernah menarasikan momen itu dari POV NiuNiu.",
+        "status": "unresolved"
+      },
+      {
+        "question": "Apakah NiuNiu melindungi Delphie karena Delphie, atau karena ia tidak bisa berhenti mengulang pola Sevraya?",
+        "status": "unresolved"
+      },
+      {
+        "question": "Jika suaranya kembali secara alami (bukan paksaan rantai), apakah NiuNiu masih NiuNiu? Atau akankah ia mulai menjadi Niuma lagi?",
+        "status": "unresolved"
+      },
+      {
+        "question": "Apa yang terjadi jika ia berhenti datang? Jika seseorang yang ia lindungi memintanya untuk berhenti — apakah ia bisa?",
+        "status": "unresolved"
+      },
+      {
+        "question": "Apa hubungan NiuNiu dengan Zero? NiuNiu tidak pernah berinteraksi langsung dengan Zero di canon.",
+        "status": "unresolved"
+      },
+      {
+        "question": "Apakah NiuNiu tahu Sora dikirim ke Dayan? Apakah ia membawa pengetahuan itu saat ia sendiri tiba di Dayan di Timer 0100?",
+        "status": "unresolved"
+      },
+      {
+        "question": "Apa isi ghost.tmp? File yang Niuma rekam untuk Sevraya. Apakah Sevraya pernah menerimanya?",
+        "status": "unresolved"
+      }
+    ],
+    "interpretive_claims": [
+      {
+        "claim": "NiuNiu's rajah originated from Void Entry",
+        "source": "NiuNiu.runtime.md §6 Somatic Signature",
+        "tag": "[I]",
+        "decanonization_risk": "Low — rajah existence is [E]; origin timing is [I]"
+      },
+      {
+        "claim": "Sigil function: injects virus possibility, breaks binary classification",
+        "source": "Sigil_OS.md",
+        "tag": "[PC]",
+        "decanonization_risk": "Medium — sigil existence is [E]; per-sigil mechanics are [PC]"
+      },
+      {
+        "claim": "Sigil weakness: cannot distinguish affection from violence",
+        "source": "Sigil_OS.md",
+        "tag": "[PC]",
+        "decanonization_risk": "Medium"
+      }
+    ]
+  },
+  "runtime_summary": {
+    "narrative_formula": "NiuNiu = protector who lost the person she loved → weapon who survived her → voice forced open by chain → constant in permanent orbit",
+    "compressed_formula": "Protector(wound) → Weapon(survival) → Voice(forced) → Orbit(preservation)",
+    "distinction": "NiuNiu is the engine of the Six Kunci — the most narrated, the deepest wound, the heaviest residue load. She is the only character whose primary defense (preemptive protection) IS her wound (failed protection). She cannot stop because stopping would admit the original failure was final."
+  },
+  "cross_references": {
+    "related_runtimes": ["sevraya", "delphie", "julia", "agnia", "hasan", "gwaneum"],
+    "world_dna_dependencies": [
+      "world-dna/VOID_ONTOLOGY.md",
+      "world-dna/ZERO_ONTOLOGY.md",
+      "world-dna/NIU_SEVRAYA_CONSTANT.md",
+      "world-dna/SIGIL_SYSTEM.md",
+      "world-dna/RESIDUE_THEORY.md",
+      "world-dna/GOETIC_CONSEQUENCE_SYSTEM.md"
+    ],
+    "protocol_dependencies": [
+      "protocols/VOID_ENTRY_PROTOCOL.md",
+      "protocols/SIGIL_ACTIVATION_PROTOCOL.md",
+      "protocols/LIVING_CHAIN_PROTOCOL.md",
+      "protocols/NODE_PROTOCOL.md",
+      "protocols/PARADOX_PROTOCOL.md"
+    ]
+  },
+  "serialization_notes": [
+    "Core Desire section (§3) is not part of V2 architecture but is preserved for completeness — it provides the emotional architecture that the Primary Contradiction formalizes structurally.",
+    "Cognitive Style and Social Signature from §6 Stable Traits are embedded in defense system and relationship interfaces rather than as top-level fields.",
+    "Continuity Hooks (§Continuity Hooks) are preserved in evolution stages' lost_in_transition / gained_in_transition arrays.",
+    "State Variable Registry from §8 is represented as cross-stage comparison in evolution_stages array.",
+    "Voice samples in evolution stages preserve the character's actual canon dialogue patterns."
+  ]
+}

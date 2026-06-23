@@ -1,0 +1,222 @@
+{
+  "diff_id": "diff_PRE_CHAIN_WORLD_STATE_V1_to_POST_CHAIN_WORLD_STATE_V1",
+  "world_a": "void_saga_canon_main",
+  "world_b": "void_saga_canon_main",
+  "timestamp": "2026-06-23T23:08:20.887551",
+  "verdict": "PASS",
+  "runtime_changes": [
+    {
+      "runtime_id": "agnia",
+      "change_type": "evolved",
+      "from": "Stage 3",
+      "to": "Stage 4",
+      "detail": "'agnia' evolved from Stage 3 to Stage 4."
+    },
+    {
+      "runtime_id": "delphie",
+      "change_type": "evolved",
+      "from": "Stage 2",
+      "to": "Stage 3",
+      "detail": "'delphie' evolved from Stage 2 to Stage 3."
+    },
+    {
+      "runtime_id": "gwaneum",
+      "change_type": "evolved",
+      "from": "Stage 2",
+      "to": "Stage 3",
+      "detail": "'gwaneum' evolved from Stage 2 to Stage 3."
+    },
+    {
+      "runtime_id": "hasan",
+      "change_type": "status_changed",
+      "from": "active",
+      "to": "dormant",
+      "detail": "'hasan' status changed: active → dormant."
+    },
+    {
+      "runtime_id": "julia",
+      "change_type": "evolved",
+      "from": "Stage 2",
+      "to": "Stage 3",
+      "detail": "'julia' evolved from Stage 2 to Stage 3."
+    },
+    {
+      "runtime_id": "niuniu",
+      "change_type": "evolved",
+      "from": "Stage 2",
+      "to": "Stage 4",
+      "detail": "'niuniu' evolved from Stage 2 to Stage 4."
+    },
+    {
+      "runtime_id": "sevraya",
+      "change_type": "evolved",
+      "from": "Stage 4",
+      "to": "Stage 5",
+      "detail": "'sevraya' evolved from Stage 4 to Stage 5."
+    }
+  ],
+  "contract_changes": [
+    {
+      "contract_id": "orbital_constant",
+      "change_type": "activated",
+      "from": "inactive",
+      "to": "active",
+      "detail": "Contract 'orbital_constant': inactive → active."
+    },
+    {
+      "contract_id": "saved_abandoned",
+      "change_type": "activated",
+      "from": "inactive",
+      "to": "active",
+      "detail": "Contract 'saved_abandoned': inactive → active."
+    },
+    {
+      "contract_id": "twin_paradox",
+      "change_type": "activated",
+      "from": "inactive",
+      "to": "active",
+      "detail": "Contract 'twin_paradox': inactive → active."
+    }
+  ],
+  "protocol_changes": [
+    {
+      "protocol_id": "LIVING_CHAIN",
+      "change_type": "executed",
+      "from": "pending",
+      "to": "executed",
+      "detail": "Protocol 'LIVING_CHAIN': pending → executed.",
+      "residues_produced": [
+        "living_chain_wound_restored_voice",
+        "living_chain_echo_orbital_constant",
+        "living_chain_wound_sevraya_zero_distinction",
+        "living_chain_echo_twin_paradox_acknowledged",
+        "living_chain_wound_wound_as_mouth"
+      ]
+    }
+  ],
+  "residue_changes": [
+    {
+      "residue_id": "living_chain_echo_orbital_constant",
+      "change_type": "created",
+      "from": null,
+      "to": "active",
+      "form": "echo",
+      "carried_by": [
+        "niuniu",
+        "sevraya"
+      ],
+      "detail": "Residue 'living_chain_echo_orbital_constant' created."
+    },
+    {
+      "residue_id": "living_chain_echo_twin_paradox_acknowledged",
+      "change_type": "created",
+      "from": null,
+      "to": "active",
+      "form": "echo",
+      "carried_by": [
+        "agnia",
+        "niuniu"
+      ],
+      "detail": "Residue 'living_chain_echo_twin_paradox_acknowledged' created."
+    },
+    {
+      "residue_id": "living_chain_wound_restored_voice",
+      "change_type": "created",
+      "from": null,
+      "to": "active",
+      "form": "wound",
+      "carried_by": [
+        "niuniu"
+      ],
+      "detail": "Residue 'living_chain_wound_restored_voice' created."
+    },
+    {
+      "residue_id": "living_chain_wound_sevraya_zero_distinction",
+      "change_type": "created",
+      "from": null,
+      "to": "active",
+      "form": "wound",
+      "carried_by": [
+        "sevraya"
+      ],
+      "detail": "Residue 'living_chain_wound_sevraya_zero_distinction' created."
+    },
+    {
+      "residue_id": "living_chain_wound_wound_as_mouth",
+      "change_type": "created",
+      "from": null,
+      "to": "active",
+      "form": "wound",
+      "carried_by": [
+        "julia"
+      ],
+      "detail": "Residue 'living_chain_wound_wound_as_mouth' created."
+    },
+    {
+      "residue_id": "node_II_archive_core_confession",
+      "change_type": "created",
+      "from": null,
+      "to": "active",
+      "form": "archive",
+      "carried_by": [
+        "delphie",
+        "niuniu"
+      ],
+      "detail": "Residue 'node_II_archive_core_confession' created."
+    },
+    {
+      "residue_id": "timer_1300_removal_zero_taken",
+      "change_type": "created",
+      "from": null,
+      "to": "active",
+      "form": "wound",
+      "carried_by": [
+        "hasan"
+      ],
+      "detail": "Residue 'timer_1300_removal_zero_taken' created."
+    },
+    {
+      "residue_id": "void_entry_wound_lost_voice",
+      "change_type": "transformed",
+      "from": "wound",
+      "to": "wound",
+      "form": "wound",
+      "carried_by": [
+        "niuniu"
+      ],
+      "detail": "transform note added"
+    }
+  ],
+  "timeline_changes": [
+    {
+      "field": "boot_sequence_phase",
+      "from": 2,
+      "to": 3
+    },
+    {
+      "field": "timer_reference",
+      "from": "Timer 1800",
+      "to": "Timer 2000"
+    },
+    {
+      "field": "pre_chain",
+      "from": true,
+      "to": false
+    },
+    {
+      "field": "post_resolution",
+      "from": false,
+      "to": true
+    }
+  ],
+  "errors": [],
+  "summary": {
+    "total_runtime_changes": 7,
+    "total_contract_changes": 3,
+    "total_protocol_changes": 1,
+    "total_residue_changes": 8,
+    "total_timeline_changes": 4,
+    "total_errors": 0,
+    "net_change_description": "23 total changes. 0 residue law violation(s)."
+  }
+}

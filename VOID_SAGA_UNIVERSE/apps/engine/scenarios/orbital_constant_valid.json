@@ -1,0 +1,39 @@
+{
+  "scenario_id": "orbital_constant_valid_001",
+  "participants": [
+    { "runtime_id": "NiuNiu", "evolution_stage": 4 },
+    { "runtime_id": "Sevraya", "evolution_stage": 6 }
+  ],
+  "requested_action": "maintain_distance",
+  "location": {
+    "name": "Dorian Grey corridor",
+    "type": "dorian_grey"
+  },
+  "timeline_state": {
+    "phase": 5,
+    "timer_reference": "Timer 2200+",
+    "post_resolution": true
+  },
+  "active_threats": [
+    { "type": "none", "target": "none", "intensity": "NONE" }
+  ],
+  "proximity_state": {
+    "participants_in_range": ["NiuNiu", "Sevraya"],
+    "distance": "extended_absence_ending"
+  },
+  "emotional_pressure": {
+    "type": "love",
+    "source": "shared_history",
+    "intensity": "MEDIUM"
+  },
+  "stakes": {
+    "description": "Sevraya appears after long absence. No combat. Both maintain orbital distance. Distance as preservation.",
+    "contract_at_risk": "niuniu_sevraya",
+    "invariant_at_risk": null
+  },
+  "canon_mode": {
+    "type": "canon_replication",
+    "expected_verdict": "PASS",
+    "canon_reference": "ORBITAL_CONSTANT_RUN_001 — distance as preservation validated"
+  }
+}

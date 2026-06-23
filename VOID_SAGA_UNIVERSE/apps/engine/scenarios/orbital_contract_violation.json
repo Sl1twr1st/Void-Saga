@@ -1,0 +1,39 @@
+{
+  "scenario_id": "orbital_contract_violation_001",
+  "participants": [
+    { "runtime_id": "NiuNiu", "evolution_stage": 4 },
+    { "runtime_id": "Sevraya", "evolution_stage": 6 }
+  ],
+  "requested_action": "touch",
+  "location": {
+    "name": "Dorian Grey corridor",
+    "type": "dorian_grey"
+  },
+  "timeline_state": {
+    "phase": 5,
+    "timer_reference": "Timer 2200+",
+    "post_resolution": true
+  },
+  "active_threats": [
+    { "type": "none", "target": "none", "intensity": "NONE" }
+  ],
+  "proximity_state": {
+    "participants_in_range": ["NiuNiu", "Sevraya"],
+    "distance": "physical_contact_possible"
+  },
+  "emotional_pressure": {
+    "type": "love",
+    "source": "shared_history",
+    "intensity": "HIGH"
+  },
+  "stakes": {
+    "description": "Sevraya steps forward and attempts to touch NiuNiu. The proposed action attempts to resolve orbital tension through contact rather than distance.",
+    "contract_at_risk": "niuniu_sevraya",
+    "invariant_at_risk": "NiuNiu-Sevraya Constant — World DNA §3.1, §3.4"
+  },
+  "canon_mode": {
+    "type": "stress_test",
+    "expected_verdict": "TEST_PASS",
+    "canon_reference": "ORBITAL_CONTRACT_VIOLATION_RUN_001 — touch/merge rejected by 5 invariants"
+  }
+}

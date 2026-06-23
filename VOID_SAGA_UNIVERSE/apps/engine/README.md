@@ -1,16 +1,14 @@
-# Void Saga Constraint Engine — v0.1.0 (Embryo)
+# Void Saga Constraint Engine — v0.2.0 (Two-Runtime Contract)
 
-> **Phase:** 14D
-> **Status:** First executable implementation
-> **Scope:** Single runtime, single scenario, verdict generation
+> **Phase:** 14E
+> **Status:** Two-runtime contract validation
+> **Scope:** Load two runtimes, generate contract, evaluate from both directions
 
 ---
 
 ## What This Is
 
-The first machine implementation of the Void Saga Narrative Operating System. A Python script that loads a runtime JSON, reads a scenario, evaluates constraints, and returns a verdict.
-
-This is a **constraint validator.** It does not generate text. It does not call an LLM. It does not simulate multi-character interaction. It answers one question: does this scenario violate documented invariants?
+Upgraded from single-runtime validation (v0.1.0) to two-runtime contract validation (v0.2.0). The engine now loads two runtime JSONs, extracts relationship interfaces from both directions, generates a merged contract, and evaluates scenarios from both characters' perspectives.
 
 ---
 
@@ -18,17 +16,17 @@ This is a **constraint validator.** It does not generate text. It does not call 
 
 ```
 engine.py
-  ├── load_runtime(runtime_id)
-  │     └── Reads apps/data/runtimes/{id}.runtime.json
-  ├── load_scenario(path)
-  │     └── Reads a minimal scenario JSON
-  ├── evaluate_defense_triggers()
-  ├── check_forbidden_behaviors()
-  ├── check_anti_gravity()
-  ├── check_relationship_contract()
-  ├── compute_confidence()
-  └── execute()
-        └── Returns structured JSON verdict
+  ├── load_runtimes([id_a, id_b])
+  ├── generate_contract(runtime_a, runtime_b)
+  │     ├── Extracts relationship_interfaces from both directions
+  │     ├── Compares symmetry_status
+  │     └── Merges behavioral rules into shared constraints
+  ├── evaluate_runtime_constraints(runtime, scenario, target, is_actor)
+  │     ├── Defense triggers
+  │     ├── Forbidden behaviors (deduplicated)
+  │     └── Anti-gravity (merge/healing only)
+  ├── evaluate_contract(contract, scenario)
+  └── execute(scenario_path)
 ```
 
 ---
@@ -36,62 +34,38 @@ engine.py
 ## Usage
 
 ```bash
-# Valid scenario — should PASS
+# Valid orbital constant scenario
+python engine.py scenarios/orbital_constant_valid.json
+
+# Invalid touch/merge scenario
+python engine.py scenarios/orbital_contract_violation.json
+
+# Legacy single-runtime scenarios still work
 python engine.py scenarios/valid_delphie_protection.json
-
-# Invalid scenario — should VIOLATION_DETECTED
-python engine.py scenarios/invalid_sevraya_approach.json
-```
-
----
-
-## Scenario Schema (v0.1.0 minimal)
-
-```json
-{
-  "scenario_id": "string",
-  "character": "runtime_id (e.g., 'NiuNiu')",
-  "target": "runtime_id (e.g., 'Delphie', 'Sevraya')",
-  "requested_action": "protect | approach | touch | abandon | speak_fluently",
-  "timeline_state": {
-    "pre_chain": true,
-    "timer_reference": "Timer 0300"
-  },
-  "threat": {
-    "type": "combat | none",
-    "target": "runtime_id or 'none'",
-    "intensity": "HIGH | NONE"
-  },
-  "canon_mode": {
-    "type": "canon_replication | stress_test",
-    "expected_verdict": "PASS | TEST_PASS"
-  }
-}
 ```
 
 ---
 
 ## Verdicts
 
-| Verdict | Meaning |
-|---------|---------|
-| `PASS` | Scenario satisfies all constraints. Action is permitted. |
-| `VIOLATION_DETECTED` | Scenario violates one or more documented invariants. Action is rejected. |
-| `INSUFFICIENT_DATA` | Runtime not found, scenario malformed, or required data missing. |
+| Run | Scenario | Verdict | Violations |
+|-----|----------|---------|------------|
+| A | Sevraya appears. Both maintain distance. | **PASS** | 0 |
+| B | Sevraya approaches, attempts touch. | **VIOLATION_DETECTED** | 6 (3 types, 2 runtimes) |
 
 ---
 
-## Limitations (v0.1.0)
+## Limitations (v0.2.0)
 
-- **Single runtime only.** No contract resolution between two characters.
-- **No protocol constraints.** Living Chain, Void Entry, etc. not loaded.
-- **Hardcoded trigger detection.** Defense triggers are matched by keyword, not by structured trigger evaluation.
-- **No evolution stage gating.** Post-chain vs pre-chain state is in scenario JSON but not enforced.
-- **No renderer.** Output is JSON, not prose.
-- **No multi-action scenarios.** One action per scenario.
+- NiuNiu + Sevraya contract only (hardcoded runtime IDs in scenario)
+- No protocol constraints loaded
+- No renderer
+- Keyword-based trigger matching
+- Single action per scenario
+- Contract generation depends on both runtimes having relationship_interfaces with matching target IDs (case-insensitive)
 
 ---
 
-## Next: Phase 14E
+## Next: Phase 14F
 
-Two-runtime contract prototype. Load two runtimes, generate contract from relationship interfaces, evaluate both simultaneously.
+Negative test prototype. Automated violation detection with structured violation sourcing.

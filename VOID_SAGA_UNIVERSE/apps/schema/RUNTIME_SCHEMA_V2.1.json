@@ -1,0 +1,707 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://voidsaga.id/schemas/RUNTIME_SCHEMA_V2.1.json",
+  "title": "Void Saga — Character Runtime Schema v2.1",
+  "description": "Canonical schema for all Void Saga character runtime JSON files. 29 required fields, engine-consumable, validated against NiuNiu v2.1.0 and Sevraya v1.1.0.",
+  "type": "object",
+  "required": [
+    "id",
+    "name",
+    "version",
+    "architecture",
+    "runtime_status",
+    "runtime_class",
+    "primary_contradiction",
+    "core_wound",
+    "core_desire",
+    "defense_system",
+    "trigger_conditions",
+    "voice_grammar",
+    "invocation_pattern",
+    "cost_pattern",
+    "consequence_pattern",
+    "residue_pattern",
+    "relationship_interfaces",
+    "evolution_stages",
+    "canon_gravity",
+    "anti_gravity",
+    "forbidden_behaviors",
+    "failure_mode",
+    "terminal_state",
+    "fork_sensitive_traits",
+    "fork_invariants",
+    "fork_points",
+    "sigil",
+    "stress_test_prompts",
+    "state_variables"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "Reference to this schema file for validation."
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z_]+$",
+      "description": "Machine-readable character identifier. Lowercase, underscores only. Used as primary key by engine."
+    },
+    "name": {
+      "type": "string",
+      "description": "Full display name of the character."
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "Semantic version of this runtime file."
+    },
+    "architecture": {
+      "type": "string",
+      "const": "RUNTIME_ARCHITECTURE_V2.1",
+      "description": "Architecture version this runtime was built against."
+    },
+    "canon_baseline": {
+      "type": "object",
+      "description": "Metadata about canon sources and protocol coverage.",
+      "properties": {
+        "timer_range": { "type": "string" },
+        "protocols": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "audit_basis": { "type": "string" }
+      }
+    },
+    "runtime_status": {
+      "type": "object",
+      "description": "Evidence counts, limitations, and tag taxonomy.",
+      "required": ["evidence_count", "tags"],
+      "properties": {
+        "evidence_count": { "type": "integer", "minimum": 0 },
+        "file_count": { "type": "integer", "minimum": 0 },
+        "total_mentions": { "type": "integer", "minimum": 0 },
+        "limitations": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "tags": {
+          "type": "object",
+          "required": ["E", "I", "PC"],
+          "properties": {
+            "E": { "type": "integer", "minimum": 0 },
+            "I": { "type": "integer", "minimum": 0 },
+            "PC": { "type": "integer", "minimum": 0 }
+          }
+        }
+      }
+    },
+    "runtime_class": {
+      "type": "object",
+      "description": "Operational modes and classification of this character.",
+      "required": ["modes"],
+      "properties": {
+        "modes": {
+          "type": "array",
+          "items": { "type": "string" },
+          "minItems": 1
+        },
+        "classification_note": { "type": "string" },
+        "tag": { "type": "string", "enum": ["[E]", "[I]", "[PC]"] }
+      }
+    },
+    "primary_contradiction": {
+      "type": "object",
+      "description": "Core behavioral driver — the structural contradiction that defines this character.",
+      "required": ["thesis"],
+      "properties": {
+        "thesis": { "type": "string" },
+        "explanation": { "type": "string" },
+        "tag": { "type": "string", "enum": ["[E]", "[I]", "[PC]"] }
+      }
+    },
+    "core_wound": {
+      "type": "object",
+      "description": "The originating wound. Defines what was lost and what can never be recovered.",
+      "required": ["name", "structure", "origin_event"],
+      "properties": {
+        "name": { "type": "string" },
+        "structure": {
+          "type": "object",
+          "required": ["description", "impossibilities"],
+          "properties": {
+            "description": { "type": "string" },
+            "impossibilities": {
+              "type": "array",
+              "items": { "type": "string" },
+              "minItems": 1
+            }
+          }
+        },
+        "origin_event": {
+          "type": "object",
+          "required": ["description"],
+          "properties": {
+            "description": { "type": "string" },
+            "timer_reference": { "type": "string" },
+            "tag": { "type": "string", "enum": ["[E]", "[I]", "[PC]"] }
+          }
+        },
+        "secondary_wounds": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["description", "tag"],
+            "properties": {
+              "description": { "type": "string" },
+              "tag": { "type": "string", "enum": ["[E]", "[I]", "[PC]"] }
+            }
+          }
+        }
+      }
+    },
+    "core_desire": {
+      "type": "object",
+      "description": "What the character wants most. Often conflicts with their defense system.",
+      "required": ["statement"],
+      "properties": {
+        "statement": { "type": "string" },
+        "source": { "type": "string" },
+        "interpretation": { "type": "string" },
+        "conflict_with_defense": { "type": "string" },
+        "tag": { "type": "string", "enum": ["[E]", "[I]", "[PC]"] }
+      }
+    },
+    "defense_system": {
+      "type": "object",
+      "description": "Defense patterns with WHEN/THEN/COST. Used by engine Step 6.",
+      "required": ["primary_defense", "signature_move"],
+      "properties": {
+        "primary_defense": {
+          "type": "object",
+          "required": ["name", "trigger", "response", "cost"],
+          "properties": {
+            "name": { "type": "string" },
+            "trigger": { "type": "string" },
+            "response": { "type": "string" },
+            "cost": { "type": "string" },
+            "tag": { "type": "string", "enum": ["[E]", "[I]", "[PC]"] }
+          }
+        },
+        "secondary_defenses": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["name", "trigger", "response", "cost"],
+            "properties": {
+              "name": { "type": "string" },
+              "trigger": { "type": "string" },
+              "response": { "type": "string" },
+              "cost": { "type": "string" },
+              "tag": { "type": "string", "enum": ["[E]", "[I]", "[PC]"] }
+            }
+          }
+        },
+        "signature_move": {
+          "type": "object",
+          "required": ["name", "description"],
+          "properties": {
+            "name": { "type": "string" },
+            "description": { "type": "string" },
+            "tag": { "type": "string", "enum": ["[E]", "[I]", "[PC]"] }
+          }
+        },
+        "defense_disabled_by": {
+          "type": "object",
+          "properties": {
+            "invocation": { "type": "string" },
+            "mechanism": { "type": "string" },
+            "tag": { "type": "string", "enum": ["[E]", "[I]", "[PC]"] }
+          }
+        }
+      }
+    },
+    "trigger_conditions": {
+      "type": "array",
+      "description": "When defenses fire, with intensity levels. Used by engine Step 6.",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["trigger", "defense", "intensity", "tag"],
+        "properties": {
+          "trigger": { "type": "string" },
+          "defense": { "type": "string" },
+          "intensity": {
+            "type": "string",
+            "enum": ["LOW", "MEDIUM", "HIGH", "CRITICAL", "INVOLUNTARY"]
+          },
+          "tag": { "type": "string", "enum": ["[E]", "[I]", "[PC]"] }
+        }
+      }
+    },
+    "meta_trigger": {
+      "type": "object",
+      "description": "Global condition that modifies all trigger behavior. Optional — only for characters under system-wide effects (e.g., Living Chain).",
+      "properties": {
+        "condition": { "type": "string" },
+        "effect": { "type": "string" },
+        "tag": { "type": "string", "enum": ["[E]", "[I]", "[PC]"] }
+      }
+    },
+    "anomalous_triggers": {
+      "type": "array",
+      "description": "Edge-case triggers where character behaves against their own defense pattern.",
+      "items": {
+        "type": "object",
+        "required": ["trigger", "anomaly", "tag"],
+        "properties": {
+          "trigger": { "type": "string" },
+          "anomaly": { "type": "string" },
+          "evidence": { "type": "string" },
+          "tag": { "type": "string", "enum": ["[E]", "[I]", "[PC]"] }
+        }
+      }
+    },
+    "somatic_signature": {
+      "type": "object",
+      "description": "Physical presence and body language. Character-specific — shape varies. Used by prompt compiler for physical description injection.",
+      "minProperties": 1
+    },
+    "voice_grammar": {
+      "type": "object",
+      "description": "How this character speaks. Structure is character-appropriate. NiuNiu uses pre/post-restoration split. Sevraya uses flat structure with Zero differentiation. Other characters may use their own shape. Used by prompt compiler and voice validator.",
+      "minProperties": 1
+    },
+    "cosmic_function": {
+      "type": "object",
+      "description": "Cosmological role. Only applicable to Void's Trinity members and Era Stewards.",
+      "properties": {
+        "role": { "type": "string" },
+        "description": { "type": "string" },
+        "trinity_role": { "type": "string" },
+        "world_dna_ref": { "type": "string" },
+        "tag": { "type": "string", "enum": ["[E]", "[I]", "[PC]"] }
+      }
+    },
+    "invocation_pattern": {
+      "type": "array",
+      "description": "Which boot-sequence phases this character participated in. Used by engine Step 9 (protocol gating).",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["phase", "invocation", "role", "participation_type", "tag"],
+        "properties": {
+          "phase": {
+            "oneOf": [
+              { "type": "integer", "minimum": 1, "maximum": 6 },
+              { "type": "null" }
+            ],
+            "description": "Boot sequence phase number. null for non-phase invocations (e.g., Era Transition)."
+          },
+          "invocation": { "type": "string" },
+          "role": { "type": "string" },
+          "participation_type": {
+            "type": "string",
+            "enum": ["direct", "indirect", "unresolved"]
+          },
+          "tag": { "type": "string", "enum": ["[E]", "[I]", "[PC]"] }
+        }
+      }
+    },
+    "cost_pattern": {
+      "type": "array",
+      "description": "Costs paid per invocation. Each cost is tagged with irreversibility.",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["cost", "invocation", "irreversible", "tag"],
+        "properties": {
+          "cost": { "type": "string" },
+          "invocation": { "type": "string" },
+          "irreversible": { "type": "boolean" },
+          "note": { "type": "string" },
+          "tag": { "type": "string", "enum": ["[E]", "[I]", "[PC]"] }
+        }
+      }
+    },
+    "consequence_pattern": {
+      "type": "array",
+      "description": "Consequences produced by each invocation.",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["consequence", "invocation", "detail", "tag"],
+        "properties": {
+          "consequence": { "type": "string" },
+          "invocation": { "type": "string" },
+          "detail": { "type": "string" },
+          "tag": { "type": "string", "enum": ["[E]", "[I]", "[PC]"] }
+        }
+      }
+    },
+    "residue_pattern": {
+      "type": "object",
+      "description": "Residues carried by this character. Used by state validator and state diff engine.",
+      "required": ["total_count", "load_profile", "residues"],
+      "properties": {
+        "total_count": { "type": "integer", "minimum": 0 },
+        "load_profile": { "type": "string" },
+        "residues": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["name", "origin", "form", "tag"],
+            "properties": {
+              "name": { "type": "string" },
+              "origin": { "type": "string" },
+              "form": {
+                "type": "string",
+                "enum": ["wound", "ghost", "echo", "node", "archive", "error", "runtime", "fork", "sigil"]
+              },
+              "tag": { "type": "string", "enum": ["[E]", "[I]", "[PC]"] }
+            }
+          }
+        }
+      }
+    },
+    "protocol_interfaces": {
+      "type": "array",
+      "description": "Protocol-level interface descriptions. Derived from invocation_pattern. Useful for documentation.",
+      "items": {
+        "type": "object",
+        "required": ["protocol", "phase", "interface_description", "participation_type", "tag"],
+        "properties": {
+          "protocol": { "type": "string" },
+          "phase": { "type": "integer", "minimum": 1, "maximum": 6 },
+          "interface_description": { "type": "string" },
+          "participation_type": {
+            "type": "string",
+            "enum": ["direct", "indirect", "unresolved"]
+          },
+          "tag": { "type": "string", "enum": ["[E]", "[I]", "[PC]"] }
+        }
+      }
+    },
+    "relationship_interfaces": {
+      "type": "array",
+      "description": "Behavioral rules for each relationship. Used by engine Step 7 (contract check).",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["target", "nature", "behavioral_rule", "symmetry_status", "tag"],
+        "properties": {
+          "target": { "type": "string" },
+          "nature": { "type": "string" },
+          "behavioral_rule": { "type": "string" },
+          "canon_gravity_pull": {
+            "type": "string",
+            "description": "Strength of canon gravity on this relationship. e.g., 'STRONG (85%+)'"
+          },
+          "symmetry_status": {
+            "type": "string",
+            "enum": ["symmetric", "asymmetric", "unresolved"]
+          },
+          "tag": { "type": "string", "enum": ["[E]", "[I]", "[PC]"] }
+        }
+      }
+    },
+    "evolution_stages": {
+      "type": "array",
+      "description": "Character evolution across stages. Each stage defines state, residues, protocol relevance, and voice. Used by engine Step 5 and state validator.",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "stage_number",
+          "name",
+          "trigger",
+          "operational_mode",
+          "primary_residue",
+          "protocol_relevance",
+          "lost_in_transition",
+          "gained_in_transition",
+          "voice_sample",
+          "tag"
+        ],
+        "properties": {
+          "stage_number": { "type": "integer", "minimum": 1 },
+          "name": { "type": "string" },
+          "trigger": { "type": "string" },
+          "operational_mode": { "type": "string" },
+          "primary_residue": { "type": "string" },
+          "protocol_relevance": { "type": "string" },
+          "lost_in_transition": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "gained_in_transition": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "voice_sample": {
+            "type": "string",
+            "description": "Canon dialogue sample for this stage. CRITICAL for prompt compiler. Must be sourced from canon text. Use '[I] reconstructed from narrative voice, not direct dialogue' if no direct quote exists."
+          },
+          "tag": { "type": "string", "enum": ["[E]", "[I]", "[PC]"] }
+        }
+      }
+    },
+    "canon_gravity": {
+      "type": "array",
+      "description": "What must happen — invariant behaviors across all canon timelines. Used by engine Step 10.",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["gravity", "pull", "tag"],
+        "properties": {
+          "gravity": { "type": "string" },
+          "pull": { "type": "string" },
+          "evidence": { "type": "string" },
+          "tag": { "type": "string", "enum": ["[E]", "[I]", "[PC]"] }
+        }
+      }
+    },
+    "anti_gravity": {
+      "type": "array",
+      "description": "What must NOT happen. Violating these breaks the character. Used by engine Step 10.",
+      "minItems": 1,
+      "items": { "type": "string" }
+    },
+    "forbidden_behaviors": {
+      "type": "array",
+      "description": "HARD constraints. Each rule has an exception path and penalty. Used by engine Step 8. Tags determine whether violation is ERROR ([E]) or WARNING ([I]/[PC]).",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["behavior", "exception", "penalty", "tag"],
+        "properties": {
+          "behavior": { "type": "string" },
+          "exception": { "type": "string" },
+          "penalty": { "type": "string" },
+          "tag": { "type": "string", "enum": ["[E]", "[I]", "[PC]"] }
+        }
+      }
+    },
+    "fork_sensitive_traits": {
+      "type": "array",
+      "description": "Traits that CAN be modified in forks, with defined range and cost. Used by fork coherence validator.",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["trait", "range", "cost", "tag"],
+        "properties": {
+          "trait": { "type": "string" },
+          "range": { "type": "string" },
+          "cost": { "type": "string" },
+          "tag": { "type": "string", "enum": ["[E]", "[I]", "[PC]"] }
+        }
+      }
+    },
+    "fork_invariants": {
+      "type": "array",
+      "description": "Traits that CANNOT change in ANY fork. HARD boundary. Used by fork coherence validator.",
+      "minItems": 1,
+      "items": { "type": "string" }
+    },
+    "fork_points": {
+      "type": "array",
+      "description": "Named fork scenarios. Each defines a canon divergence point and its consequences. Used by fork system UX.",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["name", "canon_event", "divergence", "gravity_resistance", "tag"],
+        "properties": {
+          "name": { "type": "string" },
+          "canon_event": { "type": "string" },
+          "divergence": { "type": "string" },
+          "gravity_resistance": {
+            "type": "string",
+            "enum": ["LOW", "MEDIUM", "HIGH", "EXTREME"]
+          },
+          "new_questions": { "type": "string" },
+          "tag": { "type": "string", "enum": ["[E]", "[I]", "[PC]"] }
+        }
+      }
+    },
+    "failure_mode": {
+      "type": "object",
+      "description": "How the character breaks. Used by engine Step 5 (boundary condition).",
+      "required": ["primary", "trigger_conditions"],
+      "properties": {
+        "primary": {
+          "type": "object",
+          "required": ["name", "description", "tag"],
+          "properties": {
+            "name": { "type": "string" },
+            "description": { "type": "string" },
+            "tag": { "type": "string", "enum": ["[E]", "[I]", "[PC]"] }
+          }
+        },
+        "alternative": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "description": { "type": "string" },
+            "tag": { "type": "string", "enum": ["[E]", "[I]", "[PC]"] }
+          }
+        },
+        "trigger_conditions": {
+          "type": "array",
+          "items": { "type": "string" },
+          "minItems": 1
+        }
+      }
+    },
+    "terminal_state": {
+      "type": "object",
+      "description": "End-state properties. What is true when the character's arc resolves. Used by state validator.",
+      "required": ["properties"],
+      "properties": {
+        "properties": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["property", "tag"],
+            "properties": {
+              "property": { "type": "string" },
+              "tag": { "type": "string", "enum": ["[E]", "[I]", "[PC]"] }
+            }
+          }
+        }
+      }
+    },
+    "sigil": {
+      "type": "object",
+      "description": "Dedicated top-level sigil reference. Consolidates sigil info previously scattered across invocation_pattern, protocol_interfaces, and relationship_interfaces. Used by engine Step 9 (sigil activation check).",
+      "required": ["name", "function", "status", "tag"],
+      "properties": {
+        "glyph": {
+          "type": "string",
+          "description": "Unicode sigil symbol. Required for sigil-bearers. null for non-bearers."
+        },
+        "name": { "type": "string" },
+        "function": { "type": "string" },
+        "activation_condition": { "type": "string" },
+        "weakness": { "type": "string" },
+        "shared_with": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Other character IDs that share this sigil. e.g., Sevraya and Zero share Tidal Memory."
+        },
+        "status": {
+          "type": "string",
+          "enum": ["bearer", "shared", "unconfirmed", "none"],
+          "description": "bearer = confirmed sigil-bearer. shared = co-bearer with another character. unconfirmed = probable canon only. none = not a sigil-bearer."
+        },
+        "tag": { "type": "string", "enum": ["[E]", "[I]", "[PC]"] }
+      }
+    },
+    "stress_test_prompts": {
+      "type": "array",
+      "description": "Scenarios designed to test whether the runtime produces correct constraint violations. Used by engine test suite and Narrative Compiler validation.",
+      "minItems": 3,
+      "maxItems": 5,
+      "items": {
+        "type": "object",
+        "required": ["scenario", "expected_violation"],
+        "properties": {
+          "scenario": { "type": "string" },
+          "expected_violation": { "type": "string" },
+          "expected_canon_score_range": {
+            "type": "string",
+            "description": "e.g., '< 0.3', '0.7–0.9', '≥ 0.8'"
+          }
+        }
+      }
+    },
+    "state_variables": {
+      "type": "object",
+      "description": "Mutable internal states with schema, valid values, and transition rules. Used by state validator and state diff engine.",
+      "minProperties": 1,
+      "patternProperties": {
+        "^[a-z_]+$": {
+          "type": "object",
+          "required": ["type", "current_value", "valid_values"],
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": ["string", "enum", "integer", "boolean"]
+            },
+            "current_value": {},
+            "valid_values": {
+              "type": "array",
+              "minItems": 1
+            },
+            "transition_rules": {
+              "type": "array",
+              "items": { "type": "string" },
+              "description": "Natural-language transition rules. e.g., 'voice_status: silent → restored requires Living Chain trigger'"
+            }
+          }
+        }
+      }
+    },
+    "canon_boundaries": {
+      "type": "object",
+      "description": "Open questions and interpretive claims. Documentation — not consumed by engine.",
+      "properties": {
+        "open_questions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["question", "status"],
+            "properties": {
+              "question": { "type": "string" },
+              "status": { "type": "string", "enum": ["unresolved", "partial", "resolved"] }
+            }
+          }
+        },
+        "interpretive_claims": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["claim", "source", "tag"],
+            "properties": {
+              "claim": { "type": "string" },
+              "source": { "type": "string" },
+              "tag": { "type": "string", "enum": ["[E]", "[I]", "[PC]"] },
+              "decanonization_risk": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "runtime_summary": {
+      "type": "object",
+      "description": "Human-facing summary. Documentation — not consumed by engine.",
+      "properties": {
+        "narrative_formula": { "type": "string" },
+        "compressed_formula": { "type": "string" },
+        "distinction": { "type": "string" }
+      }
+    },
+    "cross_references": {
+      "type": "object",
+      "description": "Links to related runtimes, world DNA, and protocol documents.",
+      "properties": {
+        "related_runtimes": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "world_dna_dependencies": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "protocol_dependencies": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "serialization_notes": {
+      "type": "array",
+      "description": "Engineering notes about serialization decisions. Not consumed by engine.",
+      "items": { "type": "string" }
+    }
+  },
+  "additionalProperties": false
+}

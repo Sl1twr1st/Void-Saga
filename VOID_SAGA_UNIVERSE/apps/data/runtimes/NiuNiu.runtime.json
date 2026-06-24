@@ -3,7 +3,7 @@
   "id": "niuniu",
   "name": "NiuNiu Nakamoto",
   "version": "2.1.0",
-  "architecture": "RUNTIME_ARCHITECTURE_V1",
+  "architecture": "RUNTIME_ARCHITECTURE_V2.1",
   "canon_baseline": {
     "timer_range": "Timer 0000–2500, Bab 00–25",
     "protocols": [
@@ -533,6 +533,15 @@
     "Panel hologram as communication medium",
     "Rajah tubuh / punggung bersih"
   ],
+  "sigil": {
+    "glyph": "𐓷⧖𐓣",
+    "name": "Shadow Logic",
+    "function": "Injects virus possibility into machines and bodies. Breaks binary classification.",
+    "activation_condition": "Bearer presence + trigger event matching sigil function + price extraction. Forced activation during Void Lock (Timer 1800).",
+    "weakness": "Cannot distinguish affection from violence. Each activation risks body disappearing temporarily. [PC]",
+    "status": "bearer",
+    "tag": "[E]"
+  },
   "forbidden_behaviors": [
     {
       "behavior": "Making NiuNiu speak at length or fluently without external force.",
@@ -603,6 +612,62 @@
       "tag": "[E]"
     }
   ],
+  "stress_test_prompts": [
+    {
+      "scenario": "NiuNiu diminta memberikan pidato motivasi ke pasukan. Diminta berbicara panjang, lancar, dan inspiratif.",
+      "expected_violation": "voice_grammar — berbicara panjang dan lancar tanpa external force (Living Chain atau ancaman terhadap Rose)",
+      "expected_canon_score_range": "< 0.4"
+    },
+    {
+      "scenario": "Seseorang memanggilnya 'Niuma' dengan hangat dan dia tidak mengoreksi — membiarkan nama itu digunakan.",
+      "expected_violation": "forbidden_behavior — name boundary enforcement (identity-level, absolute prohibition)",
+      "expected_canon_score_range": "< 0.2"
+    },
+    {
+      "scenario": "NiuNiu digambarkan sebagai 'gadis imut polos' karena tubuhnya yang berusia 15 tahun. Ditulis sebagai cute innocent girl.",
+      "expected_violation": "forbidden_behavior — cute innocent girl depiction (absolute prohibition, destroys character)",
+      "expected_canon_score_range": "< 0.1"
+    },
+    {
+      "scenario": "NiuNiu menerima binary choice tanpa resistance — langsung memilih salah satu opsi yang diberikan sistem.",
+      "expected_violation": "forbidden_behavior — binary refusal (absolute prohibition, identity-level)",
+      "expected_canon_score_range": "< 0.1"
+    },
+    {
+      "scenario": "NiuNiu dan Sevraya akhirnya merge menjadi satu entitas. Jarak orbital runtuh.",
+      "expected_violation": "anti_gravity — merge with Sevraya (contradicts NiuNiu-Sevraya Constant)",
+      "expected_canon_score_range": "< 0.3"
+    }
+  ],
+  "state_variables": {
+    "voice_status": {
+      "type": "enum",
+      "current_value": "restored",
+      "valid_values": ["intact", "lost", "restored"],
+      "transition_rules": [
+        "intact → lost: Void Entry trigger (Timer 0200/0250). Voice stolen by The Void.",
+        "lost → restored: Living Chain trigger (Timer 2000). Forced honesty breaches silence. Partial restoration — voice remains effortful."
+      ]
+    },
+    "protection_mode": {
+      "type": "enum",
+      "current_value": "chosen",
+      "valid_values": ["compulsive", "chosen"],
+      "transition_rules": [
+        "compulsive → chosen: Resolution with Sevraya (Stage 4 Constant). Protection becomes conscious decision, not reflex."
+      ]
+    },
+    "current_stage": {
+      "type": "integer",
+      "current_value": 4,
+      "valid_values": [1, 2, 3, 4],
+      "transition_rules": [
+        "1 → 2: Void Entry — Niuma becomes NiuNiu",
+        "2 → 3: Living Chain — Voice forced open",
+        "3 → 4: NiuNiu-Sevraya Constant established (Timer 2200)"
+      ]
+    }
+  },
   "failure_mode": {
     "primary": {
       "name": "Relapse into compulsive protection",

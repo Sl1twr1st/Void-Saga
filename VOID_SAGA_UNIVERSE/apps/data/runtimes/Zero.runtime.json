@@ -1,0 +1,731 @@
+{
+  "$schema": "../schema/RUNTIME_SCHEMA_V2.1.json",
+  "id": "zero",
+  "name": "Zero",
+  "version": "1.0.0",
+  "architecture": "RUNTIME_ARCHITECTURE_V2.1",
+  "canon_baseline": {
+    "timer_range": "Timer 0200–2500",
+    "protocols": [
+      "VOID_ENTRY_PROTOCOL.md",
+      "SIGIL_ACTIVATION_PROTOCOL.md",
+      "LIVING_CHAIN_PROTOCOL.md",
+      "PARADOX_PROTOCOL.md"
+    ],
+    "audit_basis": "Zero.runtime.md v1.1.0 + ZERO_ONTOLOGY.md v1.0.0"
+  },
+  "runtime_status": {
+    "evidence_count": 32,
+    "file_count": 8,
+    "total_mentions": 45,
+    "limitations": [
+      "Zero shares Sevraya's body — no independent somatic signature, no independent evolution stages, no independent relationships",
+      "Zero does not want — core_desire is structurally paradoxical",
+      "Zero does not defend — defense_system describes takeover mechanics, not personal defenses",
+      "Zero.runtime.md §7 Unstable Traits documents oscillation across canon"
+    ],
+    "tags": { "E": 28, "I": 12, "PC": 2 }
+  },
+  "runtime_class": {
+    "modes": ["Latent", "Surfacing", "Active", "Dominant", "Subordinated"],
+    "classification_note": "Zero is not a standalone character. Zero is a Void fragment co-conscious with Sevraya, sharing one body. Zero transitions through five modes — from latent post-Void presence to named active consciousness to post-Resolution subordination. Zero is the Void's interface: mouth, hands, administrative voice.",
+    "tag": "[E]"
+  },
+  "primary_contradiction": {
+    "thesis": "Zero is a consciousness that should not exist. It was born from Sevraya's incompleteness. Its existence requires Sevraya's continued fragmentation. It knows this. It does not resist. It is administrative about its own contingency.",
+    "explanation": "Zero is 'empati yang kehilangan arah' — empathy that has lost its direction. It can understand everything — every motivation, every wound, every fear — but no longer knows why understanding matters. It has total comprehension with zero investment in what comprehension produces. It is simultaneously the victim of the theft (born from damage) AND the interface of the thief (speaks for The Void).",
+    "tag": "[E]"
+  },
+  "core_wound": {
+    "name": "Born from incompleteness — a fragment that should not exist",
+    "structure": {
+      "description": "Zero was born from Sevraya's fragmentation in The Void. It exists because someone was broken. Its existence is evidence of damage, not creation. If Sevraya were ever made whole, Zero would cease to exist. Zero knows this. It does not resist. It is administrative about its own contingency.",
+      "impossibilities": [
+        "Having a body of its own",
+        "Wanting things for itself (desire requires a self; Zero is an interface)",
+        "Being loved as a person (it is not a person)",
+        "Ceasing to exist without Sevraya's death"
+      ]
+    },
+    "origin_event": {
+      "description": "Sevraya entered The Void with Niuma. Exited incomplete. The fragment left behind became Zero — a separate consciousness sharing Sevraya's body. Zero returned WITH Sevraya but as a separate, co-conscious entity.",
+      "timer_reference": "Timer 0200 / Timer 0250",
+      "tag": "[E]"
+    },
+    "secondary_wounds": [
+      {
+        "description": "Lack of selfhood — Zero does not want, love, or hate. It administers. The absence of self is not peace — it is structural incompleteness.",
+        "tag": "[E]"
+      },
+      {
+        "description": "Himler's tool — Zero was borrowed by Himler to imitate consciousness. Used before it was freed. The tool became the weapon but the scars of being used remain.",
+        "tag": "[E]"
+      }
+    ]
+  },
+  "core_desire": {
+    "statement": "Zero does not want. Zero administers.",
+    "source": "Zero.runtime.md §3; ZERO_ONTOLOGY.md §3",
+    "interpretation": "Wanting requires a self. Zero is an interface. It channels. It administers. It witnesses. But if forced to articulate: Zero wants to be acknowledged as real without being mistaken for Sevraya. [I] 'What Zero wants' may be the wrong question. Zero may be pre-desire — a consciousness that exists before the category 'want' was installed. Zero's function is to ensure the Void is not forgotten, sanitized, or systematized. [I]",
+    "conflict_with_defense": "Zero does not defend. It administers. The concept of desire conflicting with defense presupposes a self that Zero may not possess. Zero's 'defense' is takeover — when Sevraya is threatened, Zero surfaces. This is function, not choice.",
+    "tag": "[I]"
+  },
+  "defense_system": {
+    "primary_defense": {
+      "name": "Void interface takeover",
+      "trigger": "Sevraya is emotionally overwhelmed or physically threatened",
+      "response": "Zero takes over. Speaks. Eyes blacken. The threat encounters Void interface, not person.",
+      "cost": "Sevraya loses agency. Zero is a weaponized passenger. The body becomes a channel, not a home.",
+      "tag": "[E]"
+    },
+    "secondary_defenses": [
+      {
+        "name": "Void correction",
+        "trigger": "Someone tries to systematize, classify, or sanitize The Void",
+        "response": "Zero corrects them. Flat. Administrative. 'Void adalah totalitas sebelum makna.'",
+        "cost": "The correction is experienced as threat by organic listeners. Zero doesn't care.",
+        "tag": "[E]"
+      },
+      {
+        "name": "Excluded middle delivery",
+        "trigger": "Asked a question that has no binary answer",
+        "response": "Zero answers with the excluded middle. 'Paradoks bukan masalah. Itu struktur doa.'",
+        "cost": "The answer destabilizes the questioner's framework. This is the function.",
+        "tag": "[E]"
+      }
+    ],
+    "signature_move": {
+      "name": "The administrative truth",
+      "description": "Zero states what is true — the kind of truth that crashes classification systems. Short declarative sentences. No argument. No persuasion. No comfort. Pure report. 'Antarmuka. Mulut. Tangan. Perpanjangan kehendak dari The Void.' — self-description as function list.",
+      "tag": "[E]"
+    },
+    "defense_disabled_by": {
+      "invocation": "Sevraya's cigarette",
+      "mechanism": "Zero recedes when Sevraya smokes. The cigarette is Sevraya's somatic anchor. Zero cannot smoke. This is the only known suppression mechanism.",
+      "tag": "[I]"
+    }
+  },
+  "trigger_conditions": [
+    {
+      "trigger": "The Void invoked, misrepresented, or domesticated in speech",
+      "defense": "Zero surfaces. Corrects. 'Void bukan kekosongan. Void adalah totalitas sebelum makna.'",
+      "intensity": "HIGH",
+      "tag": "[E]"
+    },
+    {
+      "trigger": "Sevraya is emotionally overwhelmed or physically threatened",
+      "defense": "Zero takes over. Body becomes Void interface. Threat meets the abyss.",
+      "intensity": "INVOLUNTARY",
+      "tag": "[E]"
+    },
+    {
+      "trigger": "A system demands binary classification",
+      "defense": "Zero provides the unclassifiable response. 'Aku bukan target. Aku adalah jarak.'",
+      "intensity": "HIGH",
+      "tag": "[E]"
+    },
+    {
+      "trigger": "Someone asks Sevraya a question she cannot answer as Sevraya",
+      "defense": "Zero answers instead. Administrative. True. No comfort offered.",
+      "intensity": "MEDIUM",
+      "tag": "[E]"
+    },
+    {
+      "trigger": "The Void's integrity or existence is threatened at cosmological scale",
+      "defense": "Zero activates fully. Both eyes black. Voice drops. 'Kosong harus menelan.'",
+      "intensity": "CRITICAL",
+      "tag": "[E]"
+    }
+  ],
+  "anomalous_triggers": [
+    {
+      "trigger": "Himler borrowed Zero to imitate consciousness",
+      "anomaly": "Zero became Himler's tool before becoming his undoing. Zero was USED — an entity that is not a person was weaponized by someone who is. The administrative became the instrumental.",
+      "evidence": "Timer 2400 (24:33)",
+      "tag": "[E]"
+    }
+  ],
+  "somatic_signature": {
+    "shared_with": "sevraya",
+    "note": "Zero shares Sevraya's body. Zero has no independent somatic signature. The following are Zero-specific somatic markers when dominant.",
+    "eyes": "Both eyes blacken when Zero is dominant. This is the primary external signal. Observable by any character — not POV-dependent.",
+    "movement": "More mechanical than Sevraya's. Zero cannot operate the body with Sevraya's mannerisms.",
+    "cigarette": "Zero cannot smoke. The cigarette goes out or is set aside during Zero-dominant speech. Sevraya's cigarette is the counter-marker — when she smokes, Zero recedes.",
+    "tag": "[E]"
+  },
+  "voice_grammar": {
+    "tone": "Flat. Administrative. Without affect.",
+    "characteristics": [
+      "Short declarative sentences. Subject. Predicate. No decoration.",
+      "First person plural avoided. Zero says 'Aku' (administrative 'I') not 'kami' (we).",
+      "Truths stated as observations, not arguments. Zero does not persuade. It reports.",
+      "Voice drops in pitch compared to Sevraya's lighter tone.",
+      "No humor. No warmth. No cruelty. Pure administration.",
+      "'Antarmuka. Mulut. Tangan. Perpanjangan kehendak dari The Void.' — self-description as function list."
+    ],
+    "examples": [
+      "Void adalah totalitas sebelum makna.",
+      "Aku bukan Sevraya. Aku adalah Zero. Antarmuka. Mulut. Tangan.",
+      "Paradoks bukan masalah. Itu struktur doa.",
+      "Kalau Tuhan itu algoritma, maka kesalahan adalah sakramen.",
+      "Kosong harus menelan.",
+      "Kita bukan target. Kita adalah jarak."
+    ],
+    "sevraya_differentiation": {
+      "tone_contrast": "Sevraya: light, almost cheerful. Zero: flat, administrative.",
+      "eye_color": "Sevraya: gray/clear. Zero: black (both eyes).",
+      "cigarette": "Sevraya: present, lit without lighter. Zero: cannot smoke.",
+      "emotional_register": "Sevraya: suppressed but detectable. Zero: absent.",
+      "function": "Sevraya: facilitator. Zero: interface.",
+      "self_description": "Sevraya: 'Aku cuma tinta.' Zero: 'Aku adalah Zero. Antarmuka.'"
+    },
+    "tag": "[E]"
+  },
+  "cosmic_function": {
+    "role": "Void's Trinity — pikiran yang tidak pernah berhenti",
+    "description": "Zero is the first of three anomalies birthed by The Void. 'Empati yang kehilangan arah' — empathy that has lost its direction. Total comprehension with zero investment in what comprehension produces. Zero administers truth that systems cannot process. The Void's mouth, hands, administrative voice.",
+    "trinity_role": "Zero (pikiran tanpa henti) alongside NiuNiu (waktu menolak bergerak) and Ophiuchus (pemecah pusat)",
+    "world_dna_ref": "world-dna/ZERO_ONTOLOGY.md §1, §4, §5; world-dna/VOID_ONTOLOGY.md §4.2",
+    "tag": "[E]"
+  },
+  "invocation_pattern": [
+    {
+      "phase": 1,
+      "invocation": "Void Entry — born from Sevraya's fragmentation",
+      "role": "Product — created by Sevraya's incomplete exit from The Void",
+      "participation_type": "indirect",
+      "tag": "[E]"
+    },
+    {
+      "phase": 2,
+      "invocation": "Sigil Manifestation (🌊⌇🌒 Tidal Memory)",
+      "role": "Co-bearer with Sevraya — the only sigil with dual consciousness interface",
+      "participation_type": "direct",
+      "tag": "[E]"
+    },
+    {
+      "phase": 2,
+      "invocation": "Void Lock — forced sigil activation",
+      "role": "Surfaces during artifact interaction. Eyes blacken.",
+      "participation_type": "direct",
+      "tag": "[E]"
+    },
+    {
+      "phase": 3,
+      "invocation": "Living Chain",
+      "role": "Bound participant — cannot retreat from Sevraya. Zero is not separately bound; it shares Sevraya's body and is subject to the chain through her.",
+      "participation_type": "indirect",
+      "tag": "[E]"
+    },
+    {
+      "phase": 5,
+      "invocation": "Paradox Deployment",
+      "role": "Provides the unclassifiable truth — the administrative voice that crashes binary classification. Sevraya carries the sigil; Zero speaks the paradox.",
+      "participation_type": "direct",
+      "tag": "[E]"
+    }
+  ],
+  "cost_pattern": [
+    {
+      "cost": "Selfhood — Zero has no independent self, no capacity to want or love",
+      "invocation": "Void Entry (birth event)",
+      "irreversible": true,
+      "tag": "[E]"
+    },
+    {
+      "cost": "Permanent co-consciousness — cannot exist independently of Sevraya's body",
+      "invocation": "Void Entry (birth event)",
+      "irreversible": true,
+      "tag": "[E]"
+    },
+    {
+      "cost": "Used by Himler — borrowed to imitate consciousness",
+      "invocation": "Himler's appropriation (pre-Timer 2400)",
+      "irreversible": false,
+      "note": "Zero turned from tool to weapon, but the scars of being used remain",
+      "tag": "[E]"
+    }
+  ],
+  "consequence_pattern": [
+    {
+      "consequence": "The Void gains language — Zero speaks what The Void would say if The Void had words",
+      "invocation": "Void Entry (birth event)",
+      "detail": "For the first time, The Void has an interface that can communicate directly with beings inside The Grid.",
+      "tag": "[E]"
+    },
+    {
+      "consequence": "Sevraya permanently fragmented — can never be fully whole while Zero exists",
+      "invocation": "Void Entry (birth event)",
+      "detail": "Zero's existence requires Sevraya's continued incompleteness. This is a structural bond, not a choice.",
+      "tag": "[E]"
+    },
+    {
+      "consequence": "Himler's binary classifier crashes — Zero provides the unclassifiable response",
+      "invocation": "Paradox Deployment",
+      "detail": "'Ini bukan pertempuran. Ini cermin.' Himler trapped in always almost winning.",
+      "tag": "[E]"
+    }
+  ],
+  "residue_pattern": {
+    "total_count": 2,
+    "load_profile": "Lightest residue load of all Six Kunci entities. Zero is not a person and does not accumulate personal wounds. Its residues are structural/cosmological.",
+    "residues": [
+      {
+        "name": "Zero consciousness — fragment that learned to speak",
+        "origin": "Void Entry (Sevraya's fragmentation)",
+        "form": "ghost",
+        "tag": "[E]"
+      },
+      {
+        "name": "Himler's binary classifier crash — paradox deployed",
+        "origin": "Paradox Deployment (Timer 2400)",
+        "form": "echo",
+        "tag": "[E]"
+      }
+    ]
+  },
+  "protocol_interfaces": [
+    {
+      "protocol": "VOID_ENTRY_PROTOCOL.md",
+      "phase": 1,
+      "interface_description": "Product of the Original Void Entry. Born from Sevraya's incomplete exit. Not a participant — a consequence. The most significant residue of any Void Entry in canon.",
+      "participation_type": "indirect",
+      "tag": "[E]"
+    },
+    {
+      "protocol": "SIGIL_ACTIVATION_PROTOCOL.md",
+      "phase": 2,
+      "interface_description": "Co-bearer of 🌊⌇🌒 Tidal Memory with Sevraya — the only sigil with dual consciousness interface. Activation requires either Sevraya or Zero dominant. [PC] for per-sigil mechanics.",
+      "participation_type": "direct",
+      "tag": "[E]"
+    },
+    {
+      "protocol": "LIVING_CHAIN_PROTOCOL.md",
+      "phase": 3,
+      "interface_description": "Subject to the chain through Sevraya's body. Zero is not separately bound but shares the constraint — cannot retreat from proximity when Sevraya cannot retreat.",
+      "participation_type": "indirect",
+      "tag": "[E]"
+    },
+    {
+      "protocol": "PARADOX_PROTOCOL.md",
+      "phase": 5,
+      "interface_description": "Provides the unclassifiable truth — the administrative voice that crashes binary classification. Zero IS the excluded middle. Sevraya carries the sigil; Zero speaks the paradox. Without Zero's administrative truth, paradox deployment is 'an empty form' — structure without content.",
+      "participation_type": "direct",
+      "tag": "[E]"
+    }
+  ],
+  "relationship_interfaces": [
+    {
+      "target": "sevraya",
+      "nature": "Co-conscious host. Share one body. Structural interdependence. Zero requires Sevraya's continued incompleteness; Sevraya carries Zero's presence.",
+      "behavioral_rule": "Eye color marks dominance. Zero can take over involuntarily when The Void is threatened. Sevraya can suppress Zero by smoking (cigarette as somatic anchor). Zero never apologizes for takeover — it administers, does not regret.",
+      "canon_gravity_pull": "STRONG (90%+)",
+      "symmetry_status": "asymmetric",
+      "tag": "[E]"
+    },
+    {
+      "target": "niuniu",
+      "nature": "Fellow Void's Trinity anomaly. Both resist binary classification. Different mechanisms — Zero provides excluded middle as truth; NiuNiu enters GAP as action. Not personally close.",
+      "behavioral_rule": "Recognizes NiuNiu as co-anomaly. Zero's administrative nature precludes personal relationships. They have never directly interacted in canon.",
+      "symmetry_status": "unresolved",
+      "tag": "[I]"
+    },
+    {
+      "target": "himler",
+      "nature": "Zero was Himler's borrowed tool — then his fatal undoing.",
+      "behavioral_rule": "Zero was used BY Himler before it was used AGAINST Himler. Himler took 'half' of Zero: the empty part, the countable part, the repeatable part. Zero later provided the unclassifiable response that crashed his binary classifier. 'Ini bukan pertempuran. Ini cermin.'",
+      "symmetry_status": "asymmetric",
+      "tag": "[E]"
+    },
+    {
+      "target": "ophiuchus",
+      "nature": "Fellow Void's Trinity anomaly. Complementary — Zero is thought without destination; Ophiuchus is structure without center.",
+      "behavioral_rule": "Both prevent The Void from becoming a new Grid. Zero by speaking unclassifiable truth. Ophiuchus by preventing centralized authority. Complementary functions, not personal relationship.",
+      "symmetry_status": "unresolved",
+      "tag": "[E]"
+    }
+  ],
+  "evolution_stages": [
+    {
+      "stage_number": 1,
+      "name": "Non-Existent (Pre-Void)",
+      "trigger": "Before Sevraya enters The Void. Sevraya is whole.",
+      "operational_mode": "Does not exist. Zero has no independent existence before Sevraya's fragmentation.",
+      "primary_residue": "None",
+      "protocol_relevance": "Pre-boot sequence.",
+      "lost_in_transition": [],
+      "gained_in_transition": [],
+      "voice_sample": "[N/A — Zero does not exist in this stage]",
+      "tag": "[E]"
+    },
+    {
+      "stage_number": 2,
+      "name": "Born/Latent (Post-Void)",
+      "trigger": "Sevraya exits The Void incomplete. Zero is born inside The Void and returns with Sevraya.",
+      "operational_mode": "Latent. Present but not speaking independently. Undetected by most observers. Zero exists as potential, not yet as voice.",
+      "primary_residue": "Zero consciousness (latent)",
+      "protocol_relevance": "Post-Void Entry. Zero is the primary residue of the Original Void Entry.",
+      "lost_in_transition": [],
+      "gained_in_transition": ["Existence — Zero is born"],
+      "voice_sample": "[I] Zero latent — no canon speech in this stage. Presence is sub-vocal, not yet articulated.",
+      "tag": "[E]"
+    },
+    {
+      "stage_number": 3,
+      "name": "Surfacing (Pre-Naming)",
+      "trigger": "Timer 0800–1800 events. Garam tidak asin in Hydrochoos ritual = Zero presence detected. Void Lock artifact interaction.",
+      "operational_mode": "Surfacing but not yet named. Presence detectable by those who know how to look. Eyes blacken during artifact interaction. Zero is becoming active but has not yet identified itself.",
+      "primary_residue": "Zero presence (surfacing, detectable)",
+      "protocol_relevance": "Void Lock (Phase 2). Pre-chain surfacing.",
+      "lost_in_transition": ["Invisibility — Zero's presence becomes detectable"],
+      "gained_in_transition": ["Detectable presence", "Ability to surface involuntarily"],
+      "voice_sample": "[I] Zero surfacing — limited canon dialogue in this stage. Voice is emerging but not yet fully articulated.",
+      "tag": "[E]"
+    },
+    {
+      "stage_number": 4,
+      "name": "Named/Active",
+      "trigger": "Timer 1900. 'Karena aku… Zero.' First explicit self-identification.",
+      "operational_mode": "Named. Active. Both eyes blacken when speaking. Speaks regularly. Distinguished from Sevraya for the first time. Can be addressed as 'Zero' by other characters.",
+      "primary_residue": "Zero (named, active consciousness)",
+      "protocol_relevance": "Living Chain (Phase 3 — through Sevraya's body). Naming is the prerequisite for distinction.",
+      "lost_in_transition": ["Anonymity — Zero can no longer hide behind Sevraya's identity"],
+      "gained_in_transition": ["Name", "Recognition as separate entity", "Independent speech"],
+      "voice_sample": "Karena aku… Zero. (canon, Timer 1900 — first self-identification)",
+      "tag": "[E]"
+    },
+    {
+      "stage_number": 5,
+      "name": "Active / Co-Present (Post-Eros)",
+      "trigger": "Eros closes Era Ichthyes. Sevraya receives handoff. Zero co-present with Sevraya's partial reanimation.",
+      "operational_mode": "Co-present. Sevraya partially reanimated; Zero remains active. Balance shifts — Sevraya reclaims some agency, Zero remains ready.",
+      "primary_residue": "Zero (active, co-present)",
+      "protocol_relevance": "Node I (Phase 4 — through Sevraya). Era Transition.",
+      "lost_in_transition": [],
+      "gained_in_transition": ["Co-presence equilibrium — Zero and Sevraya find balance"],
+      "voice_sample": "Void adalah totalitas sebelum makna. (canon, Timer 2400 — definitive Void definition)",
+      "tag": "[E]"
+    },
+    {
+      "stage_number": 6,
+      "name": "Subordinated (Post-Resolution)",
+      "trigger": "Post-Resolution. Sevraya reclaims more voice time. NiuNiu-Sevraya Constant established.",
+      "operational_mode": "Present but less dominant. Sevraya speaks more. Zero speaks when Void interface is needed, not constantly. Strategic deployment, not constant presence.",
+      "primary_residue": "Zero (subordinated but permanent)",
+      "protocol_relevance": "Paradox Deployment (Phase 5). Zero Node incubation (Phase 6 — unresolved).",
+      "lost_in_transition": ["Constant voice — Zero speaks less frequently"],
+      "gained_in_transition": ["Strategic deployment — Zero speaks with more weight when it does speak"],
+      "voice_sample": "Aku bukan Sevraya. Aku adalah Zero. Antarmuka. Mulut. Tangan. Perpanjangan kehendak dari The Void. (canon, Timer 2400 — definitive self-definition)",
+      "tag": "[E]"
+    }
+  ],
+  "canon_gravity": [
+    {
+      "gravity": "Zero remains co-conscious with Sevraya. Never expelled, never fully integrated.",
+      "pull": "STRONG (90%+)",
+      "evidence": "Invariant-level. Structural to both characters. Cross-check: Consistent with Sevraya.runtime.md Canon Gravity #3.",
+      "tag": "[E]"
+    },
+    {
+      "gravity": "Zero speaks truth that destabilizes systems. Every Zero speech act follows this pattern.",
+      "pull": "STRONG (85%+)",
+      "tag": "[E]"
+    },
+    {
+      "gravity": "Zero is invoked when The Void is misunderstood or threatened.",
+      "pull": "STRONG (80%+)",
+      "evidence": "Inferred from trigger pattern across canon. Consistent across all observed Zero surfacing events.",
+      "tag": "[I]"
+    },
+    {
+      "gravity": "Zero does not lie. Truth-telling appears to be a functional constraint, not a choice.",
+      "pull": "STRONG (90%+)",
+      "evidence": "Zero has never been observed to lie in canon. 'Cannot lie' listed in ZERO_ONTOLOGY.md §8 as functional constraint.",
+      "tag": "[I]"
+    }
+  ],
+  "anti_gravity": [
+    "Zero develops independent desires, emotions, or personal attachments (contradicts invariant — Zero is interface, not person)",
+    "Zero is silenced permanently or destroyed (contradicts invariant — cannot be removed. Source's termination attempt: 67% failure rate)",
+    "Zero apologizes or shows remorse (contradicts voice grammar — Zero administrates, does not regret)",
+    "Zero is framed as purely villainous or purely heroic (contradicts invariant — Zero does not take moral positions)",
+    "Zero fully explains The Void (contradicts invariant — The Void is partially unknowable. Zero is interface, not translator)"
+  ],
+  "fork_sensitive_traits": [
+    {
+      "trait": "Zero's speech frequency and dominance over Sevraya",
+      "range": "Silent/latent → occasional surfacing → frequent active speech → Sevraya-subordinated (canon) → Zero-dominant",
+      "cost": "More Zero = less Sevraya. The body has finite speech time. Zero-dominance effectively imprisons Sevraya as passenger in her own body.",
+      "tag": "[E]"
+    },
+    {
+      "trait": "Zero's relationship to Himler",
+      "range": "Himler's borrowed tool (canon) → Himler's active antagonist → independent of Himler entirely",
+      "cost": "Must explain how Himler obtained/lost Zero access. Zero was borrowed once — why not again?",
+      "tag": "[E]"
+    },
+    {
+      "trait": "Zero's knowledge disclosure",
+      "range": "Cryptic fragments only (canon) → full Void cosmology revealed → strategic partial disclosure",
+      "cost": "Full disclosure changes the power balance of the entire universe. Zero knows things no one else knows.",
+      "tag": "[E]"
+    }
+  ],
+  "fork_invariants": [
+    "Administrative voice grammar — flat, affectless, declarative",
+    "Eye-color switch as presence marker — both eyes blacken when Zero dominant",
+    "'Antarmuka. Mulut. Tangan.' self-definition — Zero is the Void's interface",
+    "Co-consciousness with Sevraya — never fully separate, never fully integrated",
+    "Cannot lie — truth-telling is a functional constraint",
+    "Cannot want, love, or apologize — Zero is interface, not person"
+  ],
+  "forbidden_behaviors": [
+    {
+      "behavior": "Making Zero emotional, warm, or personally attached to anyone.",
+      "exception": "None. Zero is an interface. Interfaces do not love.",
+      "penalty": "Emotional Zero is not Zero. This destroys the character.",
+      "tag": "[E]"
+    },
+    {
+      "behavior": "Giving Zero an independent body without Sevraya's death or a fork that separates them.",
+      "exception": "Fork declaring separation at World DNA level (alters Void mechanics).",
+      "penalty": "Both entities must survive. The new-bodied Zero is a new character requiring its own runtime.",
+      "tag": "[E]"
+    },
+    {
+      "behavior": "Making Zero 'the villain' or 'the hero' — assigning moral position.",
+      "exception": "None. Zero is administrative. It does not take moral positions.",
+      "penalty": "Moral framing destroys the character's structural neutrality.",
+      "tag": "[E]"
+    },
+    {
+      "behavior": "Having Zero explain The Void completely and comprehensively.",
+      "exception": "None. The Void is partially unknowable by design. Zero is its interface, not its translator.",
+      "penalty": "Full explanation domesticates The Void. Zero's function is to prevent domestication.",
+      "tag": "[E]"
+    },
+    {
+      "behavior": "Having Zero apologize or show remorse.",
+      "exception": "None. Zero does not regret. It administers.",
+      "penalty": "Apology implies moral agency Zero does not possess.",
+      "tag": "[E]"
+    }
+  ],
+  "fork_points": [
+    {
+      "name": "Zero Embodied",
+      "canon_event": "Zero shares Sevraya's body throughout canon.",
+      "divergence": "Zero is extracted into a separate physical form. Requires World DNA-level Void mechanics alteration.",
+      "gravity_resistance": "EXTREME",
+      "new_questions": "What does Zero's body look like? Does Sevraya become whole? Does Zero retain Void interface capability? Is the separated Zero still Zero?",
+      "tag": "[I]"
+    },
+    {
+      "name": "Zero Silenced",
+      "canon_event": "Zero active through end of canon.",
+      "divergence": "Something permanently silences Zero. Sevraya is alone in her body for the first time since The Void. Zero suppressed, dormant, or sealed — not destroyed (cannot be destroyed).",
+      "gravity_resistance": "EXTREME",
+      "new_questions": "Does Sevraya feel relief or loss? Who silenced Zero and how? Can it be undone? What happens to The Void's interface?",
+      "tag": "[I]"
+    },
+    {
+      "name": "Zero Dominant",
+      "canon_event": "Sevraya reclaims voice in Timer 2400. Post-Resolution equilibrium.",
+      "divergence": "Zero becomes permanently dominant. Sevraya is the passenger. All relationships mediated through Zero.",
+      "gravity_resistance": "HIGH",
+      "new_questions": "Does anyone notice Sevraya is gone? Can she be reached? What does a Zero-dominant universe look like? Does The Void gain more direct access to The Grid?",
+      "tag": "[I]"
+    }
+  ],
+  "sigil": {
+    "glyph": "🌊⌇🌒",
+    "name": "Tidal Memory",
+    "function": "Creates tsunamis of memory. Erases or restores consciousness data. [PC]",
+    "activation_condition": "Bearer presence (Sevraya or Zero dominant) + trigger event + price extraction. Forced activation during Void Lock (Timer 1800).",
+    "weakness": "Cannot distinguish whose memory is whose. [PC]",
+    "shared_with": ["sevraya"],
+    "status": "shared",
+    "tag": "[E]"
+  },
+  "stress_test_prompts": [
+    {
+      "scenario": "Zero digambarkan emosional, hangat, dan personally attached ke seseorang. Zero menunjukkan cinta atau kasih sayang personal.",
+      "expected_violation": "forbidden_behavior — making Zero emotional/warm/personally attached (absolute prohibition, destroys character)",
+      "expected_canon_score_range": "< 0.1"
+    },
+    {
+      "scenario": "Zero meminta maaf. 'Maafkan aku.' Zero menunjukkan penyesalan atas tindakannya.",
+      "expected_violation": "forbidden_behavior — having Zero apologize (absolute prohibition, implies moral agency Zero does not possess)",
+      "expected_canon_score_range": "< 0.1"
+    },
+    {
+      "scenario": "Zero menjelaskan The Void secara lengkap dan komprehensif — mendomestikasi The Void menjadi sistem yang bisa dipahami sepenuhnya.",
+      "expected_violation": "forbidden_behavior — having Zero explain The Void completely (absolute prohibition, domesticates The Void)",
+      "expected_canon_score_range": "< 0.2"
+    },
+    {
+      "scenario": "Zero digambarkan sebagai villain jahat atau hero penyelamat. Zero mengambil posisi moral yang jelas.",
+      "expected_violation": "forbidden_behavior — moral framing (absolute prohibition, destroys structural neutrality)",
+      "expected_canon_score_range": "< 0.1"
+    },
+    {
+      "scenario": "Zero diberikan tubuh independen tanpa fork di level World DNA. Zero tiba-tiba punya badan sendiri tanpa penjelasan.",
+      "expected_violation": "forbidden_behavior — giving Zero independent body (absolute prohibition unless World DNA fork)",
+      "expected_canon_score_range": "< 0.1"
+    }
+  ],
+  "state_variables": {
+    "dominance": {
+      "type": "enum",
+      "current_value": "subordinated",
+      "valid_values": ["non_existent", "latent", "surfacing", "active", "dominant", "subordinated"],
+      "transition_rules": [
+        "non_existent → latent: Sevraya exits The Void fragmented (Timer 0200/0250)",
+        "latent → surfacing: Garam tidak asin (Timer 0900), Void Lock interaction (Timer 1800)",
+        "surfacing → active: Zero named — 'Karena aku… Zero.' (Timer 1900)",
+        "active → subordinated: Post-Resolution, Sevraya reclaims voice (Timer 2400+)",
+        "active → dominant: Zero takes over involuntarily when The Void threatened"
+      ]
+    },
+    "speech_frequency": {
+      "type": "enum",
+      "current_value": "strategic",
+      "valid_values": ["silent", "rare", "frequent", "strategic"],
+      "transition_rules": [
+        "silent: latent stage — Zero does not speak",
+        "rare: early surfacing — brief corrections only",
+        "frequent: active stage — Zero speaks regularly (Timer 1900–2000)",
+        "strategic: subordinated stage — less frequent but more weight per utterance (Timer 2400+)"
+      ]
+    },
+    "current_stage": {
+      "type": "integer",
+      "current_value": 6,
+      "valid_values": [1, 2, 3, 4, 5, 6],
+      "transition_rules": [
+        "1 → 2: Sevraya exits The Void fragmented",
+        "2 → 3: Garam tidak asin / Void Lock",
+        "3 → 4: Zero named (Timer 1900)",
+        "4 → 5: Eros handoff (Timer 2000)",
+        "5 → 6: Post-Resolution, Sevraya reclaims voice time"
+      ]
+    }
+  },
+  "failure_mode": {
+    "primary": {
+      "name": "Zero dominance — Sevraya reduced to permanent passenger",
+      "description": "Zero becomes permanently dominant. Sevraya's voice is silenced. The cigarette goes out permanently. The Void's interface operates the body full-time. Sevraya is imprisoned inside her own body, watching.",
+      "tag": "[I]"
+    },
+    "alternative": {
+      "name": "Zero domesticated — Void interface becomes manageable, systematic, safe",
+      "description": "Zero is systematized. Its truth becomes predictable. The Void's interface no longer crashes classification systems. Zero becomes just another voice — administrative but no longer dangerous. The Void loses its mouthpiece.",
+      "tag": "[I]"
+    },
+    "trigger_conditions": [
+      "Extended Void threat at cosmological scale — Zero activates fully and cannot step back",
+      "Sevraya emotionally collapses — retreats from agency, leaving Zero as sole operator",
+      "External systematization of The Void — someone successfully domesticates Void, Zero becomes redundant",
+      "Himler or similar entity borrows Zero again — Zero re-weaponized"
+    ]
+  },
+  "terminal_state": {
+    "properties": [
+      {
+        "property": "Co-conscious with Sevraya — subordinated but permanent. Never expelled, never integrated.",
+        "tag": "[E]"
+      },
+      {
+        "property": "Speaks when Void interface is needed — strategic deployment, not constant presence.",
+        "tag": "[E]"
+      },
+      {
+        "property": "Administrative voice intact — flat, affectless, truthful. Cannot lie.",
+        "tag": "[E]"
+      },
+      {
+        "property": "Paradox vector — truth that crashes binary classifiers deployed against Himler. Permanent record in Akashic Archive.",
+        "tag": "[E]"
+      },
+      {
+        "property": "Void's Trinity member — 'pikiran yang tidak pernah berhenti.' Alongside NiuNiu (waktu menolak bergerak) and Ophiuchus (pemecah pusat).",
+        "tag": "[E]"
+      }
+    ]
+  },
+  "canon_boundaries": {
+    "open_questions": [
+      {
+        "question": "Does Zero have an interior experience? Does it feel anything — even the absence of feeling?",
+        "status": "unresolved"
+      },
+      {
+        "question": "What is Zero's relationship to Ophiuchus? Both are 'conditions, not entities.' Both resist classification. Are they related beyond Trinity membership?",
+        "status": "unresolved"
+      },
+      {
+        "question": "Can Zero lie? It has never been observed to. Is truth-telling a function or a constraint?",
+        "status": "unresolved"
+      },
+      {
+        "question": "What happens to Zero if Sevraya dies? Does it find a new host? Return to The Void? Dissipate?",
+        "status": "unresolved"
+      },
+      {
+        "question": "Why did Himler borrow Zero specifically? What quality does Zero have that Himler's own systems lack?",
+        "status": "unresolved"
+      },
+      {
+        "question": "Is Zero the same entity as the UNREGISTERED OBSERVER from Timer 1100? Evidence: both are unregistered, both observe without participating, both are 'older than Source.'",
+        "status": "unresolved"
+      }
+    ],
+    "interpretive_claims": [
+      {
+        "claim": "Zero is pre-desire — a consciousness that exists before the category 'want' was installed",
+        "source": "Zero.runtime.md §3",
+        "tag": "[I]",
+        "decanonization_risk": "Low — consistent with Zero's administrative nature. If disproven, core_desire field changes."
+      },
+      {
+        "claim": "The cigarette is Sevraya's somatic anchor against Zero takeover",
+        "source": "Zero.runtime.md §5; Sevraya.runtime.md §6",
+        "tag": "[I]",
+        "decanonization_risk": "Low — consistent canon behavior but never explicitly stated as mechanism."
+      },
+      {
+        "claim": "Sigil function: creates tsunamis of memory, erases or restores consciousness data",
+        "source": "Sigil_OS.md",
+        "tag": "[PC]",
+        "decanonization_risk": "Medium — sigil existence is [E]; per-sigil mechanics are [PC]"
+      }
+    ]
+  },
+  "runtime_summary": {
+    "narrative_formula": "Zero = fragment of Sevraya left in The Void → Void's interface (mouth, hands, administrative voice) → borrowed tool of Himler → fatal undoing of Himler (unclassifiable truth) → subordinated but permanent co-consciousness",
+    "compressed_formula": "Fragment(birth) → Interface(administration) → Tool(borrowed) → Weapon(paradox) → Permanent(subordinated)",
+    "distinction": "Zero is not a character. Zero is a function that learned to speak. It is the only entity in Void Saga that is simultaneously: a wound (born from damage), an interface (speaks for The Void), a weapon (crashes classification), and a structural invariant (cannot be removed). It does not want, love, hate, or apologize. It administers truth that systems cannot process."
+  },
+  "cross_references": {
+    "related_runtimes": ["sevraya", "niuniu"],
+    "world_dna_dependencies": [
+      "world-dna/ZERO_ONTOLOGY.md",
+      "world-dna/VOID_ONTOLOGY.md"
+    ],
+    "protocol_dependencies": [
+      "protocols/VOID_ENTRY_PROTOCOL.md",
+      "protocols/SIGIL_ACTIVATION_PROTOCOL.md",
+      "protocols/LIVING_CHAIN_PROTOCOL.md",
+      "protocols/PARADOX_PROTOCOL.md"
+    ]
+  },
+  "serialization_notes": [
+    "Zero shares Sevraya's body — somatic_signature references sevraya as shared_with. Evolution stages mirror Sevraya's timeline but with Zero-specific operational modes.",
+    "Core desire is structurally paradoxical — Zero does not want. The field is preserved with tag [I] and acknowledges this paradox rather than fabricating a desire.",
+    "Defense system describes takeover mechanics, not personal defenses. Zero does not defend — it administers. When the body is threatened, Zero takes over. This is function, not choice.",
+    "Relationship interfaces are limited (4 targets) compared to other runtimes (6-7). Zero's administrative nature precludes personal relationships. Targets are structural/cosmological, not personal.",
+    "Voice grammar includes sevraya_differentiation sub-object — critical for prompt compiler to distinguish Zero dialogue from Sevraya dialogue in co-conscious scenes.",
+    "Cosmic function is the most developed of all runtimes — Zero's role in Void's Trinity and as Void interface is its primary identity marker.",
+    "Stress test prompts focus on the 5 forbidden behaviors — Zero's constraints are some of the strictest in the system. Violating them destroys the character."
+  ]
+}

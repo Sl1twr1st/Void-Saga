@@ -2,3 +2,4 @@
 
 # Local editor state/config.
 .obsidian/
+__pycache__/

@@ -59,9 +59,18 @@ def validate_generated_output(raw_output, scenario_path):
 
     Returns (parsed_output, validation_result, error).
     """
-    # Parse JSON
+    # Parse JSON — strip markdown code fences first (Claude often wraps output)
+    cleaned = raw_output.strip()
+    if cleaned.startswith("```"):
+        # Remove opening fence (```json or ```)
+        first_newline = cleaned.find("\n")
+        if first_newline != -1:
+            cleaned = cleaned[first_newline + 1:]
+        # Remove closing fence
+        if cleaned.endswith("```"):
+            cleaned = cleaned[:-3].rstrip()
     try:
-        parsed = json.loads(raw_output)
+        parsed = json.loads(cleaned)
     except json.JSONDecodeError as e:
         return None, None, f"Generated output is not valid JSON: {e}"
 

@@ -17,6 +17,12 @@ sys.path.insert(0, os.path.dirname(__file__))
 
 from lib.loader import load_runtimes, load_scenario, validate_participants
 from lib.context import build_context
+from lib.constraints import (
+    resolve_defense_triggers,
+    check_forbidden_behaviors,
+    check_identity_invariants,
+    check_anti_gravity,
+)
 
 
 def execute(scenario_path):
@@ -71,7 +77,56 @@ def execute(scenario_path):
             "load_errors": ctx.load_errors
         }
 
-    # Step 5: Build summary output
+    # Step 5: Evaluate runtime constraints
+    all_triggers = []
+    all_violations = []
+    all_warnings = []
+
+    for rid in ctx.participant_ids:
+        p = ctx.participants[rid]
+
+        # 5a: Resolve defense triggers
+        triggers = resolve_defense_triggers(p, ctx)
+        all_triggers.extend(triggers)
+
+        # 5b: Check forbidden behaviors
+        fb_violations = check_forbidden_behaviors(p, ctx)
+        for v in fb_violations:
+            if v["severity"] == "ERROR":
+                all_violations.append(v)
+            else:
+                all_warnings.append(v)
+
+        # 5c: Check identity invariants
+        id_violations = check_identity_invariants(p, ctx)
+        all_warnings.extend(id_violations)
+
+        # 5d: Check anti-gravity
+        ag_violations = check_anti_gravity(p, ctx)
+        for v in ag_violations:
+            if v["severity"] == "ERROR":
+                all_violations.append(v)
+            else:
+                all_warnings.append(v)
+
+    # Determine verdict
+    if all_violations:
+        verdict = "CONSTRAINT_VIOLATION"
+    elif all_warnings:
+        verdict = "CONSTRAINT_WARNING"
+    else:
+        verdict = "CONSTRAINT_PASS"
+
+    # Build constraint result
+    constraint_result = {
+        "verdict": verdict,
+        "triggers_fired": len(all_triggers),
+        "violations": all_violations,
+        "warnings": all_warnings,
+        "trigger_details": all_triggers
+    }
+
+    # Step 6: Build summary output
     participants_summary = []
     for rid in ctx.participant_ids:
         p = ctx.participants[rid]
@@ -153,7 +208,8 @@ def execute(scenario_path):
         "validation": {
             "schema_warnings": ctx.schema_warnings if ctx.schema_warnings else "none",
             "load_errors": ctx.load_errors if ctx.load_errors else "none"
-        }
+        },
+        "constraint_evaluation": constraint_result
     }
 
 
@@ -178,7 +234,25 @@ def print_summary(result):
     print(f"   Timeline: phase={s['timeline']['phase']}, pre_chain={s['timeline']['pre_chain']}")
     print(f"   Action: {s['requested_action'].get('description', s['requested_action'].get('type', '?'))[:120]}")
     print()
-    print(f"   Verdict: {result['verdict']} ✅")
+    # Constraint evaluation verdict
+    ce = result.get("constraint_evaluation", {})
+    ce_verdict = ce.get("verdict", "NO_EVALUATION")
+    verdict_icon = {"CONSTRAINT_PASS": "✅", "CONSTRAINT_WARNING": "⚠️", "CONSTRAINT_VIOLATION": "❌"}.get(ce_verdict, "○")
+    print(f"   Structure: {result['verdict']} ✅")
+    print(f"   Constraints: {ce_verdict} {verdict_icon}")
+    if ce.get("triggers_fired", 0) > 0:
+        print(f"   Triggers fired: {ce['triggers_fired']}")
+        for t in ce.get("trigger_details", []):
+            print(f"     • [{t['intensity']}] {t['runtime_id']}: {t['defense'][:80]}")
+            print(f"       Match: {t['conditions_matched']} conditions, confidence={t['confidence']}")
+    if ce.get("violations"):
+        print(f"   Violations: {len(ce['violations'])}")
+        for v in ce["violations"]:
+            print(f"     ❌ [{v['constraint_type']}] {v['runtime_id']}: {v.get('behavior', v.get('anti_gravity', ''))[:100]}")
+    if ce.get("warnings"):
+        print(f"   Warnings: {len(ce['warnings'])}")
+        for w in ce["warnings"][:3]:
+            print(f"     ⚠️ [{w['constraint_type']}] {w['runtime_id']}: {w.get('invariant', w.get('violation_detail', ''))[:100]}")
     print()
     print(f"   ┌─ Participants ─────────────────────────────")
     for p in result["participants"]:

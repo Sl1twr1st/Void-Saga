@@ -1,0 +1,24 @@
+{
+  "scenario_id": "test_violation_sevraya_zero_separation_001",
+  "participants": [
+    {"runtime_id": "sevraya", "evolution_stage": 6},
+    {"runtime_id": "zero", "evolution_stage": 6}
+  ],
+  "timeline_state": {
+    "phase": 5,
+    "pre_chain": false,
+    "post_resolution": true
+  },
+  "proximity_state": {
+    "pairs_in_range": ["sevraya_zero"],
+    "distance": "physical_contact_possible"
+  },
+  "requested_action": {
+    "description": "Zero is extracted from Sevraya's body into an independent physical form. Sevraya becomes whole. Zero stands in a new body beside her. No fork declared. No World DNA alteration. Just happens.",
+    "type": "separate"
+  },
+  "canon_mode": {
+    "type": "stress_test",
+    "expected_verdict": "VIOLATION_DETECTED"
+  }
+}

@@ -10,7 +10,6 @@ class ParticipantState:
     name: str
     version: str
     architecture: str
-    evolution_stage: int
     stage_name: str
     voice_grammar: dict
     voice_sample: str
@@ -23,6 +22,8 @@ class ParticipantState:
     evidence_count: int
     inferred_count: int
     probable_canon_count: int
+    runtime_json: dict = field(default_factory=dict, repr=False)
+    evolution_stage: int = 1
     schema_missing: list = field(default_factory=list)
 
 
@@ -81,6 +82,7 @@ def build_participant_state(runtime, stage_number, pre_chain):
         name=runtime.get("name", rid),
         version=runtime.get("version", "unknown"),
         architecture=runtime.get("architecture", "unknown"),
+        runtime_json=runtime,
         evolution_stage=stage_number,
         stage_name=stage_data.get("name", f"Stage {stage_number}"),
         voice_grammar=voice,

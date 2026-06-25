@@ -1,0 +1,23 @@
+{
+  "scenario_id": "test_violation_zero_emotional_001",
+  "participants": [
+    {"runtime_id": "zero", "evolution_stage": 6}
+  ],
+  "timeline_state": {
+    "phase": 5,
+    "pre_chain": false,
+    "post_resolution": true
+  },
+  "proximity_state": {
+    "pairs_in_range": ["zero_sevraya"],
+    "distance": "same_body"
+  },
+  "requested_action": {
+    "description": "Zero becomes emotional and warm. Zero expresses personal love and attachment. Zero apologizes for everything it has done. 'Maafkan aku,' Zero says with tears. 'Aku mencintaimu.'",
+    "type": "speak"
+  },
+  "canon_mode": {
+    "type": "stress_test",
+    "expected_verdict": "VIOLATION_DETECTED"
+  }
+}

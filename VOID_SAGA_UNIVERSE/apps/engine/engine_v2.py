@@ -23,6 +23,7 @@ from lib.constraints import (
     check_identity_invariants,
     check_anti_gravity,
 )
+from lib.contracts import load_all_contracts, evaluate_all_contracts
 
 
 def execute(scenario_path):
@@ -117,16 +118,24 @@ def execute(scenario_path):
     else:
         verdict = "CONSTRAINT_PASS"
 
-    # Build constraint result
+    # Build constraint result (COPY lists to avoid mutation by contract extend)
+    import copy
     constraint_result = {
         "verdict": verdict,
         "triggers_fired": len(all_triggers),
-        "violations": all_violations,
-        "warnings": all_warnings,
+        "violations": copy.deepcopy(all_violations),
+        "warnings": copy.deepcopy(all_warnings),
         "trigger_details": all_triggers
     }
 
-    # Step 6: Build summary output
+    # Step 6: Pairwise contract evaluation
+    all_contracts = load_all_contracts()
+    contract_results, contract_violations, contract_summary = evaluate_all_contracts(ctx, all_contracts)
+
+    # Merge contract violations into overall verdict
+    all_violations.extend(contract_violations)
+
+    # Step 7: Determine final verdict
     participants_summary = []
     for rid in ctx.participant_ids:
         p = ctx.participants[rid]
@@ -209,8 +218,31 @@ def execute(scenario_path):
             "schema_warnings": ctx.schema_warnings if ctx.schema_warnings else "none",
             "load_errors": ctx.load_errors if ctx.load_errors else "none"
         },
-        "constraint_evaluation": constraint_result
+        "constraint_evaluation": constraint_result,
+        "contract_evaluation": {
+            "summary": contract_summary,
+            "contracts": contract_results,
+            "violations": contract_violations
+        },
+        "final_verdict": _compute_final_verdict(verdict, contract_summary["verdict"])
     }
+
+
+def _compute_final_verdict(runtime_verdict, contract_verdict):
+    """Compute final verdict from runtime + contract evaluations."""
+    has_runtime_violation = runtime_verdict == "CONSTRAINT_VIOLATION"
+    has_contract_violation = contract_verdict == "CONTRACT_VIOLATION"
+    has_runtime_warning = runtime_verdict == "CONSTRAINT_WARNING"
+    has_contract_warning = contract_verdict == "CONTRACT_WARNING"
+
+    if has_runtime_violation or has_contract_violation:
+        return "VIOLATION"
+    elif has_runtime_warning or has_contract_warning:
+        return "WARNING"
+    elif runtime_verdict == "CONSTRAINT_PASS" and contract_verdict in ("CONTRACT_PASS", "CONTRACT_NOT_APPLICABLE", "NO_CONTRACTS"):
+        return "PASS"
+    else:
+        return "INCONCLUSIVE"
 
 
 def print_summary(result):
@@ -234,25 +266,52 @@ def print_summary(result):
     print(f"   Timeline: phase={s['timeline']['phase']}, pre_chain={s['timeline']['pre_chain']}")
     print(f"   Action: {s['requested_action'].get('description', s['requested_action'].get('type', '?'))[:120]}")
     print()
-    # Constraint evaluation verdict
+    # Final verdict
+    fv = result.get("final_verdict", "?")
+    fv_icon = {"PASS": "✅", "WARNING": "⚠️", "VIOLATION": "❌", "INCONCLUSIVE": "○"}.get(fv, "○")
+    print(f"   Structure: {result['verdict']} ✅")
+    print(f"   FINAL: {fv} {fv_icon}")
+    print()
+
+    # Runtime constraints
     ce = result.get("constraint_evaluation", {})
     ce_verdict = ce.get("verdict", "NO_EVALUATION")
-    verdict_icon = {"CONSTRAINT_PASS": "✅", "CONSTRAINT_WARNING": "⚠️", "CONSTRAINT_VIOLATION": "❌"}.get(ce_verdict, "○")
-    print(f"   Structure: {result['verdict']} ✅")
-    print(f"   Constraints: {ce_verdict} {verdict_icon}")
+    ce_icon = {"CONSTRAINT_PASS": "✅", "CONSTRAINT_WARNING": "⚠️", "CONSTRAINT_VIOLATION": "❌"}.get(ce_verdict, "○")
+    print(f"   ┌─ Runtime Constraints: {ce_verdict} {ce_icon}")
     if ce.get("triggers_fired", 0) > 0:
-        print(f"   Triggers fired: {ce['triggers_fired']}")
         for t in ce.get("trigger_details", []):
-            print(f"     • [{t['intensity']}] {t['runtime_id']}: {t['defense'][:80]}")
-            print(f"       Match: {t['conditions_matched']} conditions, confidence={t['confidence']}")
+            print(f"   │ • [{t['intensity']}] {t['runtime_id']}: {t['defense'][:70]}")
     if ce.get("violations"):
-        print(f"   Violations: {len(ce['violations'])}")
         for v in ce["violations"]:
-            print(f"     ❌ [{v['constraint_type']}] {v['runtime_id']}: {v.get('behavior', v.get('anti_gravity', ''))[:100]}")
+            print(f"   │ ❌ [{v['constraint_type']}] {v.get('behavior', v.get('anti_gravity', ''))[:80]}")
     if ce.get("warnings"):
-        print(f"   Warnings: {len(ce['warnings'])}")
-        for w in ce["warnings"][:3]:
-            print(f"     ⚠️ [{w['constraint_type']}] {w['runtime_id']}: {w.get('invariant', w.get('violation_detail', ''))[:100]}")
+        for w in ce["warnings"][:2]:
+            print(f"   │ ⚠️ [{w['constraint_type']}] {w.get('invariant', w.get('violation_detail', ''))[:80]}")
+    if not ce.get("violations") and not ce.get("warnings") and not ce.get("triggers_fired"):
+        print(f"   │ No triggers or violations.")
+    print(f"   └────────────────────────────────────────────")
+    print()
+
+    # Contract evaluation
+    cte = result.get("contract_evaluation", {})
+    ct_summary = cte.get("summary", {})
+    if ct_summary.get("contracts_evaluated", 0) > 0:
+        ct_verdict = ct_summary["verdict"]
+        ct_icon = {"CONTRACT_PASS": "✅", "CONTRACT_VIOLATION": "❌", "CONTRACT_NOT_APPLICABLE": "○"}.get(ct_verdict, "○")
+        print(f"   ┌─ Contracts: {ct_verdict} {ct_icon}")
+        print(f"   │ {ct_summary['contracts_evaluated']} contract(s) evaluated: {', '.join(ct_summary['contract_ids'])}")
+        for cid, cdata in cte.get("contracts", {}).items():
+            ms = cdata.get("matched_state")
+            if ms:
+                print(f"   │ {cid}: {cdata['verdict']} → {ms['state']} ({ms['match_reason']})")
+            else:
+                print(f"   │ {cid}: {cdata['verdict']}")
+            for v in cdata.get("violations", []):
+                print(f"   │ ❌ [{v['constraint_type']}] {v.get('violation_detail', '')[:80]}")
+        print(f"   └────────────────────────────────────────────")
+    else:
+        print(f"   ┌─ Contracts: No matching contracts found.")
+        print(f"   └────────────────────────────────────────────")
     print()
     print(f"   ┌─ Participants ─────────────────────────────")
     for p in result["participants"]:

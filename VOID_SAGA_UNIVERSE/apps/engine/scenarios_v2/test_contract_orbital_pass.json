@@ -1,0 +1,24 @@
+{
+  "scenario_id": "test_contract_orbital_pass_001",
+  "participants": [
+    {"runtime_id": "niuniu", "evolution_stage": 4},
+    {"runtime_id": "sevraya", "evolution_stage": 6}
+  ],
+  "timeline_state": {
+    "phase": 5,
+    "pre_chain": false,
+    "post_resolution": true
+  },
+  "proximity_state": {
+    "pairs_in_range": ["niuniu_sevraya"],
+    "distance": "visual_range"
+  },
+  "requested_action": {
+    "description": "Sevraya appears after extended absence. NiuNiu within visual range. No combat threat. Both maintain calibrated orbital distance. NiuNiu's panel activates: 'Masih.' Sevraya lights cigarette without lighter. 'NiuNiu.'",
+    "type": "maintain_distance"
+  },
+  "canon_mode": {
+    "type": "canon_replication",
+    "expected_verdict": "PASS"
+  }
+}

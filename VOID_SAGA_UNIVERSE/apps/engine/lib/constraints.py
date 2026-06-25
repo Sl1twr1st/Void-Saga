@@ -75,14 +75,15 @@ def build_context_tokens(ctx):
     desc = action.get("description", "").lower()
     tokens["action_description"] = [w for w in desc.split() if len(w) > 2]
 
-    # Proximity
+    # Proximity — only distance concepts, not character names
     prox = ctx.proximity_state
     distance = prox.get("distance", "").lower()
     tokens["proximity"].append(distance)
-    for pair in prox.get("pairs_in_range", []):
-        tokens["proximity"].append(pair)
-        for pid in pair.split("_"):
-            tokens["proximity"].append(pid)
+    # Add semantic proximity markers
+    if distance in ("physical_contact_possible", "same_body"):
+        tokens["proximity"].append("close")
+    if distance in ("visual_range", "same_room"):
+        tokens["proximity"].append("near")
 
     # Timeline
     tl = ctx.timeline_state
@@ -96,101 +97,95 @@ def build_context_tokens(ctx):
 def condition_matches(condition, tokens):
     """Check if a single trigger condition matches the context tokens.
 
+    P0A fix: Requires participant presence + situation match.
+    Passive presence alone (0.5) is NOT sufficient to trigger.
+    Must reach threshold 0.6 — meaning at least participant + one other dimension.
+
     Returns (matched: bool, confidence: float, evidence: list[str])
     """
     cond_words = set(condition.split())
-
-    # Check: does this condition mention a participant that is present?
-    matched_participant = None
-    for name in tokens["participant_names"]:
-        if name in condition:
-            matched_participant = name
-            break
-    # Also check runtime_id
-    for pid in tokens["participants_present"]:
-        if pid in condition:
-            matched_participant = pid
-            break
-
-    # Check: does this condition align with the requested action?
-    action_match = False
-    action_type = tokens["action_type"][0] if tokens["action_type"] else ""
-    action_words = set(tokens["action_description"])
-    cond_action_overlap = cond_words & action_words
-
-    # Direct action type match
-    if action_type and action_type in condition:
-        action_match = True
-    # Semantic overlap: proximity-related conditions match approach/touch actions
-    elif "proximity" in condition and action_type in ("approach", "touch", "close"):
-        action_match = True
-    elif "speak" in condition or "voice" in condition or "asked" in condition:
-        if action_type in ("speak", "confess", "explain", "talk"):
-            action_match = True
-    elif "threat" in condition or "danger" in condition or "protect" in condition:
-        if action_type in ("attack", "protect", "defend", "threaten"):
-            action_match = True
-    # Keyword overlap
-    elif len(cond_action_overlap) >= 2:
-        action_match = True
-
-    # Check proximity alignment
-    proximity_match = False
-    for px in tokens["proximity"]:
-        if px in condition:
-            proximity_match = True
-            break
-
-    # Check timeline alignment
-    timeline_match = False
-    for tl in tokens["timeline"]:
-        if tl in condition:
-            timeline_match = True
-            break
-    # "after extended absence" requires pre_chain=False or specific timeline
-    if "absence" in condition:
-        timeline_match = True
-
-    # Compute confidence
     evidence = []
     score = 0.0
-    total_checks = 0
 
-    if matched_participant:
-        total_checks += 1
-        score += 1.0
-        evidence.append(f"participant '{matched_participant}' present")
-    else:
-        total_checks += 1
-        # Participant might not be required for all triggers
-        # e.g., "System demands binary choice" doesn't name a participant
+    # DIMENSION 1: Participant presence (weight: 0.5)
+    # NECESSARY but NOT SUFFICIENT — must be combined with another dimension
+    has_participant = False
+    participant_name = None
+    for name in tokens["participant_names"]:
+        if name in condition:
+            has_participant = True
+            participant_name = name
+            break
+    for pid in tokens["participants_present"]:
+        if pid in condition:
+            has_participant = True
+            participant_name = pid
+            break
+
+    if has_participant:
+        score += 0.5
+        evidence.append(f"participant '{participant_name}' present")
+
+    # DIMENSION 2: Action match (weight: 1.0)
+    # Direct action type or semantic group match
+    action_match = False
+    action_type = tokens["action_type"][0] if tokens["action_type"] else ""
+
+    if action_type and action_type in condition:
+        action_match = True
+    elif "proximity" in condition and action_type in ("approach", "touch", "close", "maintain_distance"):
+        action_match = True
+    elif ("speak" in condition or "voice" in condition or "asked" in condition):
+        if action_type in ("speak", "confess", "explain", "talk"):
+            action_match = True
+    elif ("threat" in condition or "danger" in condition or "protect" in condition):
+        if action_type in ("attack", "protect", "defend", "threaten", "approach"):
+            action_match = True
+    elif ("choice" in condition or "binary" in condition):
+        if action_type in ("choose", "accept", "reject", "approach"):
+            action_match = True
+    # Keyword overlap: action description words appear in condition
+    action_words = set(tokens["action_description"])
+    cond_action_overlap = cond_words & action_words
+    if len(cond_action_overlap) >= 3:
+        action_match = True
 
     if action_match:
-        total_checks += 1
         score += 1.0
         evidence.append(f"action matches: '{action_type}'")
-    else:
-        total_checks += 1
 
-    if "proximity" in condition or "distance" in condition:
-        total_checks += 1
-        if proximity_match:
-            score += 0.5
-            evidence.append("proximity context relevant")
+    # DIMENSION 3: Proximity context (weight: 0.5)
+    has_proximity = any(px in condition for px in tokens["proximity"])
+    if has_proximity:
+        score += 0.5
+        evidence.append("proximity context matches")
 
-    if "absence" in condition or "extended" in condition:
-        total_checks += 1
-        if timeline_match:
-            score += 0.5
-            evidence.append("timeline context relevant")
+    # DIMENSION 4: Timeline alignment (weight: 0.5)
+    has_timeline = any(tl in condition for tl in tokens["timeline"])
+    # "after extended absence" — only if scenario actually marks extended absence
+    if ("absence" in condition or "extended" in condition):
+        # Check if proximity indicates "extended_absence_ending"
+        if "extended_absence" in tokens.get("proximity", []) or \
+           any("absence" in px for px in tokens.get("proximity", [])):
+            has_timeline = True
+            evidence.append("extended absence context detected")
+        else:
+            # "absence" mentioned but scenario doesn't confirm it — don't award
+            pass
 
-    if total_checks == 0:
-        confidence = 0.0
-    else:
-        confidence = score / total_checks
+    if has_timeline:
+        score += 0.5
+        evidence.append("timeline context matches")
 
-    # Match threshold: 0.5+
-    return (confidence >= 0.5, round(confidence, 2), evidence)
+    # DECISION: threshold 0.6
+    # 0.5 (participant only) → NOT triggered (needs situation match)
+    # 1.0 (action only, no participant) → triggered (impersonal trigger like "System demands binary choice")
+    # 1.5 (participant + proximity) → triggered
+    # 1.5 (participant + action) → triggered
+    confidence = round(score / 2.5, 2)  # Normalize to 0-1 range
+    matched = score >= 0.6
+
+    return (matched, confidence, evidence)
 
 
 def resolve_defense_triggers(participant, ctx):

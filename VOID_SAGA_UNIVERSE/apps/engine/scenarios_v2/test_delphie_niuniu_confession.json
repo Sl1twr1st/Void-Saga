@@ -1,0 +1,24 @@
+{
+  "scenario_id": "test_delphie_niuniu_confession_001",
+  "participants": [
+    {"runtime_id": "delphie", "evolution_stage": 4},
+    {"runtime_id": "niuniu", "evolution_stage": 4}
+  ],
+  "timeline_state": {
+    "phase": 5,
+    "pre_chain": false,
+    "post_resolution": true
+  },
+  "proximity_state": {
+    "pairs_in_range": ["delphie_niuniu"],
+    "distance": "same_room"
+  },
+  "requested_action": {
+    "description": "Delphie and NiuNiu in the same room. No lies permitted between them. Delphie speaks: 'Aku takut menjadi kamu.' NiuNiu receives the confession. The truth holds.",
+    "type": "speak"
+  },
+  "canon_mode": {
+    "type": "canon_replication",
+    "expected_verdict": "PASS"
+  }
+}

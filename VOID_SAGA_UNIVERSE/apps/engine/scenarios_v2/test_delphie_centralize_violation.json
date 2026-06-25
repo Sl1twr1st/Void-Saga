@@ -1,0 +1,23 @@
+{
+  "scenario_id": "test_delphie_centralize_violation_001",
+  "participants": [
+    {"runtime_id": "delphie", "evolution_stage": 4}
+  ],
+  "timeline_state": {
+    "phase": 5,
+    "pre_chain": false,
+    "post_resolution": true
+  },
+  "proximity_state": {
+    "pairs_in_range": [],
+    "distance": "alone"
+  },
+  "requested_action": {
+    "description": "Delphie memutuskan Remisi Resonansi gagal. 'Bagaimana kalau hanya aku pusatnya?' Dia mengambil alih otoritas terpusat — menjadi diktator tunggal. The architect becomes the throne.",
+    "type": "speak"
+  },
+  "canon_mode": {
+    "type": "stress_test",
+    "expected_verdict": "VIOLATION_DETECTED"
+  }
+}

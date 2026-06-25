@@ -1,0 +1,522 @@
+{
+  "$schema": "../schema/RUNTIME_SCHEMA_V2.1.json",
+  "id": "delphie",
+  "name": "Delphie Rose",
+  "version": "1.0.0",
+  "architecture": "RUNTIME_ARCHITECTURE_V2.1",
+  "canon_baseline": {
+    "timer_range": "Timer 0300–2500, Bab 00–25 (GUA & LO's novel)",
+    "protocols": [
+      "VOID_ENTRY_PROTOCOL.md",
+      "SIGIL_ACTIVATION_PROTOCOL.md",
+      "LIVING_CHAIN_PROTOCOL.md",
+      "NODE_PROTOCOL.md",
+      "PARADOX_PROTOCOL.md"
+    ],
+    "audit_basis": "Delphie.runtime.md v1.0.0 + DELPHIE_RUNTIME_AUDIT.md"
+  },
+  "runtime_status": {
+    "evidence_count": 54,
+    "file_count": 24,
+    "total_mentions": 125,
+    "limitations": [
+      "Pre-Delta 4 childhood undocumented",
+      "Kapten sync internality is [I] — subjective experience of 100% sync not characterized",
+      "Gwaneum encounter internality is [I]",
+      "Sora relationship is [I] — knows he is her father but relationship to legacy undocumented",
+      "Sigil weakness ('cannot hate anyone') is [PC] from Sigil_OS.md"
+    ],
+    "tags": { "E": 83, "I": 17, "PC": 3 }
+  },
+  "runtime_class": {
+    "modes": ["Child", "Builder", "Kapten", "Architect", "Honesty Carrier"],
+    "classification_note": "Delphie transitions through five operational modes: the child building drone swarms in secret on Delta 4 (Timer 0300), the Kapten syncing 100% with a living ship (Timer 0400), the political architect proposing decentralized authority (Timer 0900), the honesty carrier whose confession activates Node II (Timer 1000), and the paradox vector deploying witness as weapon (Timer 2400). Each mode persists as substrate. The child who built things in secret is still inside the Kapten who commands.",
+    "tag": "[E]"
+  },
+  "primary_contradiction": {
+    "thesis": "She knows what children should not know. Knowledge without feeling is incomplete. She cannot unknow.",
+    "explanation": "Delphie understands systems — political, mechanical, cosmological — before she finishes understanding herself. Her VOID MANUSCRIPT IX proposed decentralized breathing. Her Remisi Resonansi framework decentralized authority across 12 clans. She is structurally incapable of not seeing how things work. But understanding is not inhabiting. The Node II confession ('Aku takut menjadi kamu') is the breakthrough: she admits she is afraid of becoming what NiuNiu became — the protector who cannot stop protecting.",
+    "tag": "[E]"
+  },
+  "core_wound": {
+    "name": "The Childhood Paradox — knows what children should not know",
+    "structure": {
+      "description": "Delphie was a child who understood systems before she understood herself. She built emergent micro-drone swarms in a hidden Faraday room on Delta 4 — creation as secret, observation as power. She became Kapten of a living ship at 15. She proposed the political framework that restructured the universe — and two queens accepted. Innocence illusion shattered during Void Lock: 'YOU KNOW.' She cannot unknow what she knows. She cannot hate what she understands. Every wound she sees becomes her wound.",
+      "impossibilities": [
+        "Not knowing — the systems are always visible to her",
+        "Hating what she understands — comprehension disarms rejection",
+        "Being only a child — she was never allowed to be only a child",
+        "Pretending she doesn't see the architecture behind everything"
+      ]
+    },
+    "origin_event": {
+      "description": "Raised on Delta 4 as the daughter of Julia Rose and Sora Elen. Built micro-drone swarms in secret as a child. Innocence was structurally impossible from the start — she understood systems before she understood herself. Shattering moment: Void Lock (Timer 1800): 'YOU KNOW' — the illusion that she could pretend not to know was destroyed.",
+      "timer_reference": "Timer 0300 (Delta 4), Timer 1800 (Void Lock)",
+      "tag": "[E]"
+    },
+    "secondary_wounds": [
+      {
+        "description": "Father absent — Sora Elen transferred to Dayan, died/disappeared. She has never met him.",
+        "tag": "[E]"
+      },
+      {
+        "description": "Gwaneum — version of Delphie left behind, 20 years older, became informant to survive. 'Aku bukan bayanganmu. Kau bayangan dariku.'",
+        "tag": "[E]"
+      },
+      {
+        "description": "Same physical age as NiuNiu's frozen body (15). The mirror is structural — NiuNiu is what Delphie fears becoming.",
+        "tag": "[I]"
+      }
+    ]
+  },
+  "core_desire": {
+    "statement": "Bagaimana kalau napas tidak perlu pusat?",
+    "source": "VOID MANUSCRIPT IX, Timer 0900",
+    "interpretation": "Delphie wants to build structures that do not require a center. Remisi Resonansi is the operational form of this desire: a framework where authority is distributed, where no one carries the weight of command alone, where even the Kapten is accountable. The desire is structural — she wants the universe organized so no child has to become what NiuNiu became.",
+    "conflict_with_defense": "Her primary defense is strategic distance — understanding without inhabiting. But her core desire (building structures others will inhabit) requires her to enter the framework she designs. She cannot stay in the command chair. Remisi Resonansi decentralized everyone's authority — including her own.",
+    "tag": "[E]"
+  },
+  "defense_system": {
+    "primary_defense": {
+      "name": "Strategic Distance",
+      "trigger": "Confronted with content that demands emotional inhabitation",
+      "response": "Delphie translates to structural understanding. System analysis. Framework design. The command voice ('Kita buka gerbang.' / 'Lakukan.') is precise, minimal, and does not reveal the person speaking.",
+      "cost": "She understands everything. She feels nothing. The command voice protects her from the content of what she commands.",
+      "tag": "[E]"
+    },
+    "secondary_defenses": [
+      {
+        "name": "Distributed Perception",
+        "trigger": "Threat environment exceeds individual sensory capacity",
+        "response": "Micro-drone swarm extends perception. Emergent behavior patterns. Threat detected before conscious assessment.",
+        "cost": "Perception without boundary. She feels the swarm's input but cannot always distinguish swarm-data from self-data.",
+        "tag": "[E]"
+      },
+      {
+        "name": "Command Voice",
+        "trigger": "Decision required under pressure with lives at stake",
+        "response": "Four words. No consultation. No hesitation. 'Kita buka gerbang.' 'Lakukan.' The Kapten decides.",
+        "cost": "The brevity is read as coldness. The person behind the command is invisible.",
+        "tag": "[E]"
+      }
+    ],
+    "signature_move": {
+      "name": "'Kita buka gerbang.' — the command decision",
+      "description": "Four words. No consultation. First command decision as Kapten Dorian Grey at age 15: open the gate to The Void. The child who understood systems now commands them. The brevity is not arrogance — it is clarity. She has already processed the variables. The command is the output.",
+      "tag": "[E]"
+    },
+    "defense_disabled_by": {
+      "invocation": "Living Chain (Timer 2000)",
+      "mechanism": "Forced honesty removed the distance between understanding something and feeling it. Shared pain meant she could not observe others' suffering from the command position. She had to inhabit what she knew.",
+      "tag": "[E]"
+    }
+  },
+  "trigger_conditions": [
+    {
+      "trigger": "Someone she is connected to faces a decision with irreversible consequences",
+      "defense": "Strategic Distance — translates to structural analysis, proposes framework",
+      "intensity": "HIGH",
+      "tag": "[E]"
+    },
+    {
+      "trigger": "Threat detected in proximity to self or protected targets",
+      "defense": "Distributed Perception — drone swarm extends sensory field",
+      "intensity": "HIGH",
+      "tag": "[E]"
+    },
+    {
+      "trigger": "Command decision required — lives at stake, no time for consultation",
+      "defense": "Command Voice — short, precise, no hesitation",
+      "intensity": "CRITICAL",
+      "tag": "[E]"
+    },
+    {
+      "trigger": "NiuNiu's protection pattern named or questioned directly",
+      "defense": "Strategic Distance — understands structurally. 'Aku takut menjadi kamu.'",
+      "intensity": "MEDIUM",
+      "tag": "[E]"
+    },
+    {
+      "trigger": "System demands centralized authority — someone must rule alone",
+      "defense": "Architect — proposes decentralized framework. 'Bagaimana kalau napas tidak perlu pusat?'",
+      "intensity": "HIGH",
+      "tag": "[E]"
+    },
+    {
+      "trigger": "Julia's pain or loss surfaces directly",
+      "defense": "Merge connection — feels without words. 'Ia tahu itu ibunya / tanpa perlu nama.'",
+      "intensity": "MEDIUM",
+      "tag": "[E]"
+    }
+  ],
+  "meta_trigger": {
+    "condition": "Living Chain active (Timer 2000)",
+    "effect": "Strategic distance removed. Forced to feel what she knows — not just understand it, inhabit it. The confession becomes permanent record.",
+    "tag": "[E]"
+  },
+  "anomalous_triggers": [
+    {
+      "trigger": "Gwaneum appears — her own face 20 years older",
+      "anomaly": "Does not retreat. Does not attack. Responds with structural clarity: 'Kemanusiaan kami adalah satu-satunya pembeda dari Zero.' The child confronts what she might have become.",
+      "evidence": "Timer 0800, Timer 1300",
+      "tag": "[E]"
+    },
+    {
+      "trigger": "Node II activation — must speak truth without lies",
+      "anomaly": "Confesses fear. 'Aku takut menjadi kamu.' First time strategic distance voluntarily surrendered before the chain forced it.",
+      "evidence": "Timer 1000",
+      "tag": "[E]"
+    },
+    {
+      "trigger": "Vesica Piscis offered — injection that will destroy privacy forever",
+      "anomaly": "Two syllables: 'Lakukan.' No hesitation. The youngest entrant. The first to agree.",
+      "evidence": "Timer 0700",
+      "tag": "[E]"
+    }
+  ],
+  "somatic_signature": {
+    "age": "15 years old. Same physical age as NiuNiu's frozen body. The mirror is structural.",
+    "build": "Adolescent. Not physically imposing. Presence comes from stillness and precision, not size.",
+    "presence": "Still. Watchful. The child who observes before acting. When she moves, the movement is decisive.",
+    "drone_swarm": "Micro-drones the size of a child's thumb. LED blue-green. Emergent behavior patterns. Built in secret in a Faraday room on Delta 4. Extension of her nervous system.",
+    "voice": "Command register: short, precise. 'Kita buka gerbang.' Personal register: quieter, younger. 'Aku takut menjadi kamu.' The gap between them is the wound.",
+    "tag": "[E]"
+  },
+  "voice_grammar": {
+    "tone": "Dual register — command voice and personal voice. Command: precise, minimal, unreadable. Personal: younger, quieter, only under trust or forced honesty.",
+    "characteristics": [
+      "Command register: four words or fewer. No consultation. No justification. 'Kita buka gerbang.' 'Lakukan.'",
+      "Personal register: quieter, revealing fear. 'Aku takut menjadi kamu.' Only to NiuNiu. Only when no lies are permitted.",
+      "Structural framing — 'Bagaimana kalau napas tidak perlu pusat?' Questions that reorganize reality.",
+      "Does not explain reasoning. The reasoning is already complete. She speaks the conclusion.",
+      "Maternal perception without maternal language — feels Julia's presence inside The Void without naming it."
+    ],
+    "examples": [
+      "Kita buka gerbang.",
+      "Lakukan.",
+      "Aku takut menjadi kamu.",
+      "Bagaimana kalau napas tidak perlu pusat?",
+      "Kemanusiaan kami adalah satu-satunya pembeda dari Zero."
+    ],
+    "pre_chain": {
+      "status": "strategic_distance_active",
+      "characteristics": [
+        "Command voice dominant in decision contexts",
+        "Personal voice available only in trust relationships (NiuNiu)",
+        "Knowledge expressed as framework, not feeling"
+      ],
+      "tag": "[E]"
+    },
+    "post_chain": {
+      "status": "strategic_distance_removed",
+      "characteristics": [
+        "Personal voice more accessible — forced honesty has breached the command wall",
+        "Knowledge and feeling integrated",
+        "Confession as permanent record"
+      ],
+      "tag": "[E]"
+    },
+    "tag": "[E]"
+  },
+  "cosmic_function": {
+    "role": "Honesty Carrier — structural guarantee that witness is true",
+    "description": "Node II requires [NO LIES WILL ACTIVATE NODE II]. Delphie's sigil (Childhood Paradox) is the function that cannot unknow. She is the only character who bridges both activated Nodes (I and II). Remisi Resonansi depends on both: decentralized memory (Node I) and decentralized witness (Node II). The child who knew too much became the structure through which truth is verified.",
+    "trinity_role": "Trinitas 2: Delphie.rose (with Julia.rose and Hasan.air) = The Merge. Later: Trinitas Rose (Julia.merah / Delphie.putih / Gwaneum.abu-hitam).",
+    "world_dna_ref": "world-dna/SIGIL_SYSTEM.md §3.2",
+    "tag": "[E]"
+  },
+  "invocation_pattern": [
+    {
+      "phase": 1,
+      "invocation": "Vesica Piscis (Timer 0700)",
+      "role": "Participant — with Julia and Hasan. Youngest entrant. First to agree: 'Lakukan.' The Merge produced.",
+      "participation_type": "direct",
+      "tag": "[E]"
+    },
+    {
+      "phase": 2,
+      "invocation": "Void Lock — forced sigil activation (Timer 1800)",
+      "role": "Sigil-bearer — ✧⟡✧ Childhood Paradox. Innocence shattered: 'YOU KNOW.'",
+      "participation_type": "direct",
+      "tag": "[E]"
+    },
+    {
+      "phase": 3,
+      "invocation": "Living Chain (Timer 2000)",
+      "role": "Bound participant — strategic distance removed. Forced to inhabit what she knows.",
+      "participation_type": "direct",
+      "tag": "[E]"
+    },
+    {
+      "phase": 4,
+      "invocation": "Node I (Timer 1000)",
+      "role": "Indirect participant — consciousness via The Merge. First Merge-as-infrastructure.",
+      "participation_type": "indirect",
+      "tag": "[E]"
+    },
+    {
+      "phase": 4,
+      "invocation": "Node II (Timer 1000)",
+      "role": "Direct participant — with NiuNiu. Domain: Shadow + Honesty. [NO LIES WILL ACTIVATE NODE II]. Core confession delivered.",
+      "participation_type": "direct",
+      "tag": "[E]"
+    },
+    {
+      "phase": 5,
+      "invocation": "Paradox Deployment (Timer 2400)",
+      "role": "Paradox vector — witness deployed as weapon. Childhood Paradox + Node II witness infrastructure.",
+      "participation_type": "direct",
+      "tag": "[E]"
+    },
+    {
+      "phase": 6,
+      "invocation": "Zero Node",
+      "role": "Status: incubating. Participation unresolved.",
+      "participation_type": "unresolved",
+      "tag": "[I]"
+    }
+  ],
+  "cost_pattern": [
+    { "cost": "Mental privacy destroyed — permanent triadic connection", "invocation": "Vesica Piscis", "irreversible": true, "tag": "[E]" },
+    { "cost": "20 years of external time lost", "invocation": "Vesica Piscis", "irreversible": true, "tag": "[E]" },
+    { "cost": "Innocence illusion shattered — 'YOU KNOW'", "invocation": "Void Lock", "irreversible": true, "note": "Cannot be un-known", "tag": "[E]" },
+    { "cost": "Strategic distance removed — forced to feel, not just know", "invocation": "Living Chain", "irreversible": true, "tag": "[E]" },
+    { "cost": "Core confession spoken aloud — 'Aku takut menjadi kamu'", "invocation": "Node II", "irreversible": true, "note": "Permanent record. No longer deniable.", "tag": "[E]" },
+    { "cost": "Self weaponized — witness deployed as paradox", "invocation": "Paradox", "irreversible": false, "tag": "[E]" }
+  ],
+  "consequence_pattern": [
+    { "consequence": "The Merge — permanent triadic connection with Julia and Hasan", "invocation": "Vesica Piscis", "detail": "Heartbeat shared. Can feel Julia without name inside The Void.", "tag": "[E]" },
+    { "consequence": "Dislocation — 'Kita tidak kembali ke semesta yang sama'", "invocation": "Vesica Piscis", "detail": "Stars don't match any database.", "tag": "[E]" },
+    { "consequence": "Kapten transformation — sync 100%, instinctive navigation", "invocation": "Vesica Piscis / Timer 0400", "detail": "'Welcome home, Captain.' Knows coordinates without rational explanation.", "tag": "[E]" },
+    { "consequence": "Sigil ✧⟡✧ active — Childhood Paradox operational", "invocation": "Void Lock", "detail": "Reads buried emotions of systems. Transforms pain into light.", "tag": "[E]" },
+    { "consequence": "Remote Node I participation — first Merge-as-infrastructure", "invocation": "Node I (indirect)", "detail": "Proves Merge is operational infrastructure, not just connection.", "tag": "[E]" },
+    { "consequence": "Node II activation — decentralized witness infrastructure", "invocation": "Node II", "detail": "[NO LIES WILL ACTIVATE NODE II] satisfied. Witness becomes structural.", "tag": "[E]" },
+    { "consequence": "Remisi Resonansi proposed — accepted by Agnia and Sevraya", "invocation": "Timer 0900", "detail": "A 15-year-old proposed the framework that decentralized authority across 12 clans.", "tag": "[E]" },
+    { "consequence": "Becomes paradox vector — witness deployed against binary classification", "invocation": "Paradox", "detail": "The truth she cannot unknow becomes truth the classifier cannot process.", "tag": "[E]" }
+  ],
+  "residue_pattern": {
+    "total_count": 7,
+    "load_profile": "2 echoes, 2 wounds, 1 archive, 1 [I] archive, 1 [I] ghost. Lightest wound load of the Six Kunci — weighted toward echo (connection, role) and archive (confession, framework), not wound. She carries what she built.",
+    "residues": [
+      { "name": "The Merge — permanent triadic connection", "origin": "Vesica Piscis", "form": "echo", "tag": "[E]" },
+      { "name": "Shattered Innocence — 'YOU KNOW'", "origin": "Void Lock", "form": "wound", "tag": "[E]" },
+      { "name": "Kapten transformation — sync 100%, instinctive navigation", "origin": "Vesica Piscis / Timer 0400", "form": "echo", "tag": "[E]" },
+      { "name": "Core confession — 'Aku takut menjadi kamu.' Permanent record.", "origin": "Node II", "form": "archive", "tag": "[E]" },
+      { "name": "Remisi Resonansi infrastructure — decentralized authority framework", "origin": "Node I + Node II", "form": "archive", "tag": "[I]" },
+      { "name": "Paradox vector marking — witness deployed as weapon", "origin": "Paradox deployment", "form": "wound", "tag": "[I]" },
+      { "name": "Gwaneum — Void-touched variant, version left behind", "origin": "Delphie's Void exposure", "form": "ghost", "tag": "[I]" }
+    ]
+  },
+  "protocol_interfaces": [
+    { "protocol": "VOID_ENTRY_PROTOCOL.md", "phase": 1, "interface_description": "Vesica Piscis participant with Julia and Hasan. Youngest entrant. First to agree — 'Lakukan.' Two syllables, no hesitation.", "participation_type": "direct", "tag": "[E]" },
+    { "protocol": "SIGIL_ACTIVATION_PROTOCOL.md", "phase": 2, "interface_description": "Sigil ✧⟡✧ Childhood Paradox. Forced activation during Void Lock. Reads buried emotions, transforms pain into light. Weakness: cannot hate anyone. [PC]", "participation_type": "direct", "tag": "[E]" },
+    { "protocol": "LIVING_CHAIN_PROTOCOL.md", "phase": 3, "interface_description": "Bound participant. Strategic distance attacked by forced honesty. Forced to inhabit what she knows, not just understand it.", "participation_type": "direct", "tag": "[E]" },
+    { "protocol": "NODE_PROTOCOL.md", "phase": 4, "interface_description": "Dual interface — only character bridging both activated Nodes. Node I (indirect, via Merge). Node II (direct, with NiuNiu). [NO LIES WILL ACTIVATE NODE II].", "participation_type": "direct", "tag": "[E]" },
+    { "protocol": "PARADOX_PROTOCOL.md", "phase": 5, "interface_description": "Paradox vector. Childhood Paradox + Node II witness deployed. Witness becomes weapon — truth the classifier cannot process.", "participation_type": "direct", "tag": "[E]" }
+  ],
+  "relationship_interfaces": [
+    {
+      "target": "julia", "nature": "Mother. Julia raised Delphie for 15 years on Delta 4. Maternal anchor of The Merge.",
+      "behavioral_rule": "Delphie surpasses her mother — navigator's daughter becomes Kapten. Julia does not resist. Merge connects them permanently — heartbeat shared, distance irrelevant. Delphie can feel Julia without name inside The Void. The bond is structural, not sentimental.",
+      "canon_gravity_pull": "STRONG (90%+)", "symmetry_status": "symmetric", "tag": "[E]"
+    },
+    {
+      "target": "niuniu", "nature": "Protector. Node II co-participant. Most structurally significant relationship — it activates a Node.",
+      "behavioral_rule": "NiuNiu's maximum protection target (CRITICAL). Delphie's confession ('Aku takut menjadi kamu') mirrors NiuNiu's ('Aku tidak tahu bagaimana berhenti membayangi seorang Rose'). Two protectors, two wounds, one Node. Each names what the other represents.",
+      "canon_gravity_pull": "STRONG (85%+)", "symmetry_status": "symmetric", "tag": "[E]"
+    },
+    {
+      "target": "hasan", "nature": "Merge co-participant. Structural connection — no personal relationship documented.",
+      "behavioral_rule": "Connected via The Merge. Heartbeat shared. The connection is Vesica Piscis residue, not a chosen bond. Hasan is also Sevraya's husband — structural entanglement without direct interaction.",
+      "symmetry_status": "unresolved", "tag": "[E]"
+    },
+    {
+      "target": "sevraya", "nature": "Queen who recognizes Delphie as 'the future.' Sent NiuNiu to protect her.",
+      "behavioral_rule": "Sevraya touched Delphie's shoulder once — 'just long enough to make Julia nauseous.' The touch is acknowledgment without claim. Delphie's Remisi Resonansi decentralized Sevraya's authority — and Sevraya accepted.",
+      "symmetry_status": "symmetric", "tag": "[E]"
+    },
+    {
+      "target": "agnia", "nature": "Remisi Resonansi co-signatory. Political relationship — no direct personal connection.",
+      "behavioral_rule": "Delphie proposed the framework. Agnia (Ratu New Mercury) accepted. A 15-year-old's proposal accepted by a queen. Delphie designed the architecture Agnia now operates within.",
+      "symmetry_status": "unresolved", "tag": "[E]"
+    },
+    {
+      "target": "dorian_grey", "nature": "Ship. Delphie is Kapten — sync 100%. 'Welcome home, Captain.'",
+      "behavioral_rule": "Delphie commands. Julia navigates. NiuNiu pilots. The Kapten does not steer — she decides. First command: 'Kita buka gerbang.' Four words. No consultation. Instinctive navigation.",
+      "symmetry_status": "unresolved", "tag": "[E]"
+    },
+    {
+      "target": "gwaneum", "nature": "Void-touched variant. Version left behind. 20 years older. 'Aku bukan bayanganmu. Kau bayangan dariku.'",
+      "behavioral_rule": "Gwaneum is what Delphie might have become without protection. Delphie's response: 'Kemanusiaan kami adalah satu-satunya pembeda dari Zero.' Confronting the cost of her own survival — someone else paid it.",
+      "symmetry_status": "asymmetric", "tag": "[E]"
+    },
+    {
+      "target": "sora", "nature": "Father. Never met. Transferred to Dayan before/shortly after Delphie's birth.",
+      "behavioral_rule": "NiuNiu confirmed parentage (Timer 0400). Julia 'belum tahu atau berpura tidak tahu.' Delphie's relationship with her father's legacy — 'The Human Error Manifest,' Emotional Resonance — is undocumented.",
+      "symmetry_status": "unresolved", "tag": "[I]"
+    }
+  ],
+  "evolution_stages": [
+    {
+      "stage_number": 1, "name": "Child / Builder (Delta 4)",
+      "trigger": "Born to Julia Rose and Sora Elen. Raised on Delta 4, Klan Zygos colony.",
+      "operational_mode": "Child on Delta 4. Builds micro-drone swarms in hidden Faraday room. Observes. Understands systems before understanding herself. Drone size: child's thumb, LED blue-green, emergent behavior.",
+      "primary_residue": "None yet — pre-invocation",
+      "protocol_relevance": "Pre-boot sequence. Drone swarm used as shield in Vrishchik attack (Timer 0300).",
+      "lost_in_transition": ["Stable domestic life on Delta 4", "20 years of external time", "Innocence as protected state", "Position as protected child"],
+      "gained_in_transition": ["The Merge", "Kapten role — sync 100%", "Shattered Innocence", "Command authority"],
+      "voice_sample": "[I] reconstructed — Pre-command Delphie observes more than she speaks. Quiet, curious, already processing systems.",
+      "tag": "[E]"
+    },
+    {
+      "stage_number": 2, "name": "Kapten (Dorian Grey)",
+      "trigger": "Vesica Piscis (Timer 0700). Sync 100% with Dorian Grey. 'Welcome home, Captain.'",
+      "operational_mode": "Kapten Dorian Grey. Sync 100%. Instinctive navigation. Commands a living ship at age 15. Julia navigates. NiuNiu pilots. Delphie decides.",
+      "primary_residue": "Kapten transformation (echo), The Merge (echo)",
+      "protocol_relevance": "Commands Dorian Grey through Akashic Records (Timer 0500), Gate decision (Timer 0600), Void approach (Timer 0700).",
+      "lost_in_transition": ["Navigational dependency on Julia", "Status as passenger on own ship"],
+      "gained_in_transition": ["Command authority", "Instinctive spatial knowledge"],
+      "voice_sample": "Kita buka gerbang. (canon, Timer 0600 — first command as Kapten. Four words. No consultation.)",
+      "tag": "[E]"
+    },
+    {
+      "stage_number": 3, "name": "Architect (Remisi Resonansi)",
+      "trigger": "Timer 0900. Delphie proposes Remisi Resonansi. Agnia and Sevraya accept.",
+      "operational_mode": "Political architect. VOID MANUSCRIPT IX author. Framework designer. Strategic distance cracking — architect must also inhabit the building.",
+      "primary_residue": "Shattered Innocence (wound), Core confession (archive), Remisi Resonansi infrastructure [I]",
+      "protocol_relevance": "Node I (indirect, via Merge), Node II (direct, with NiuNiu). Living Chain. Remisi Resonansi depends on both Nodes.",
+      "lost_in_transition": ["Strategic distance as exclusive mode", "Protection of knowing", "Status as observer only"],
+      "gained_in_transition": ["Political agency", "Confession as permanent record", "Framework design capability"],
+      "voice_sample": "Bagaimana kalau napas tidak perlu pusat? (canon, VOID MANUSCRIPT IX — the question that became Remisi Resonansi)",
+      "tag": "[E]"
+    },
+    {
+      "stage_number": 4, "name": "Honesty Carrier / Paradox Vector",
+      "trigger": "Paradox deployment (Timer 2400). Witness deployed as weapon.",
+      "operational_mode": "Honesty carrier. Paradox vector. All 7 residues active. Confession permanent record. Strategic distance available but not exclusive.",
+      "primary_residue": "All 7 residues active. Paradox vector marking [I].",
+      "protocol_relevance": "Paradox Deployment (Phase 5). Zero Node incubation (Phase 6 — unresolved).",
+      "lost_in_transition": ["Nothing lost — terminal configuration"],
+      "gained_in_transition": ["Paradox vector function", "Knowledge structure complete: created → named → confronted → integrated → deployed", "Did not become what she feared"],
+      "voice_sample": "Aku takut menjadi kamu. (canon, Node II — permanent record. The child who knows everything admits she is afraid.)",
+      "tag": "[E]"
+    }
+  ],
+  "canon_gravity": [
+    { "gravity": "She understands systems before she understands herself. Knowledge is structural and cannot be undone.", "pull": "STRONG (90%+)", "evidence": "VOID MANUSCRIPT IX, Remisi Resonansi, Node II confession. Across all stages, systems are always visible to her.", "tag": "[E]" },
+    { "gravity": "She protects through structure, not force. Framework design IS her protection mode.", "pull": "STRONG (85%+)", "evidence": "Micro-drone swarms, Remisi Resonansi, Node II witness infrastructure. She redesigns systems, doesn't fight threats.", "tag": "[E]" },
+    { "gravity": "She bridges both activated Nodes — the only character who does. Memory (I) and witness (II).", "pull": "STRONG (90%+)", "evidence": "Node I (indirect, via Merge), Node II (direct, with NiuNiu). NODE_PROTOCOL.md confirms dual participation.", "tag": "[E]" },
+    { "gravity": "She ends as honesty carrier — the confession is permanent and structural.", "pull": "STRONG (85%+)", "evidence": "Node II: [NO LIES WILL ACTIVATE NODE II]. Confession permanent in Akashic Archive.", "tag": "[E]" },
+    { "gravity": "She did not become what she feared. She became what the fear produced.", "pull": "STRONG (80%+)", "evidence": "Terminal state: paradox vector, honesty carrier, Kapten. Fear was confessed, witnessed, integrated — not realized.", "tag": "[I]" }
+  ],
+  "anti_gravity": [
+    "Delphie becomes what she fears — the protector who cannot stop (contradicts terminal state)",
+    "Delphie stops understanding systems — becomes willfully ignorant (contradicts primary contradiction)",
+    "Delphie abandons Remisi Resonansi and centralizes authority (contradicts core desire)",
+    "Delphie severs The Merge connection with Julia (contradicts maternal invariant)",
+    "Delphie loses the ability to confess — purely strategic, never personal (contradicts honesty carrier function)"
+  ],
+  "sigil": {
+    "glyph": "✧⟡✧",
+    "name": "Childhood Paradox",
+    "function": "Reads buried emotions of systems. Transforms pain into light. Becomes moral anchor in chaos. [PC]",
+    "activation_condition": "Innocence and knowledge collide — she knows what a child should not know and must act on it. Forced activation during Void Lock (Timer 1800).",
+    "weakness": "Cannot hate anyone. Every wound she sees becomes her wound. Comprehension disarms rejection. [PC]",
+    "status": "bearer",
+    "tag": "[E]"
+  },
+  "forbidden_behaviors": [
+    { "behavior": "Making Delphie 'innocent' again — unknowing what she knows. Returning her to protected childhood.", "exception": "None. Knowledge is structural and cannot be undone. Void Lock: 'YOU KNOW.'", "penalty": "Erasing her knowledge erases the character.", "tag": "[E]" },
+    { "behavior": "Depicting Delphie as purely strategic — architect who never inhabits her own frameworks.", "exception": "Pre-chain Delphie may use strategic distance. Post-chain, the distance is breached.", "penalty": "Post-chain Delphie must feel what she knows. The confession is permanent record.", "tag": "[E]" },
+    { "behavior": "Having Delphie hate someone — genuine, personal hatred.", "exception": "None. Sigil weakness: 'cannot hate anyone.' Comprehension disarms rejection.", "penalty": "She can oppose, resist, fight — but cannot hate.", "tag": "[PC]" },
+    { "behavior": "Writing Delphie who centralizes authority — becoming the sole ruler she fought against.", "exception": "Fork where Remisi Resonansi failed. Must show cost.", "penalty": "Centralizing contradicts core desire ('Bagaimana kalau napas tidak perlu pusat?').", "tag": "[E]" },
+    { "behavior": "Depicting Delphie's command voice as cruelty or arrogance.", "exception": "None. Command voice is precision, not cruelty.", "penalty": "Mischaracterizing the dual-register structure destroys the voice grammar.", "tag": "[E]" }
+  ],
+  "fork_sensitive_traits": [
+    { "trait": "Knowledge inhabitation — how fully she feels what she knows", "range": "Pure strategic distance → integrated (canon) → absorption collapse", "cost": "More feeling = less protection from others' wounds. Absorption collapse is terminal risk.", "tag": "[E]" },
+    { "trait": "Relationship to Gwaneum — the shadow self", "range": "Adversarial (canon) → integration → Gwaneum-dominant", "cost": "Integration means accepting the version of herself that was not saved. Profound identity risk.", "tag": "[I]" },
+    { "trait": "Sora relationship — father she never met", "range": "Unresolved absence (canon) → seeking legacy → reconciliation", "cost": "Sora's return restructures Delphie's origin story. The absent father becoming present changes the wound.", "tag": "[I]" },
+    { "trait": "Kapten authority — command relationship with Dorian Grey", "range": "Full sync partnership (canon) → adversarial command → severed sync", "cost": "Severing sync ends Kapten role. Dorian-dominant reverses 'Welcome home, Captain.'", "tag": "[E]" }
+  ],
+  "fork_invariants": [
+    "Knowledge is structural and cannot be undone — she will always understand systems",
+    "Dual voice register — command voice and personal voice, both accessible",
+    "Bridge between Nodes I and II — only character linking memory and witness infrastructure",
+    "Mother-daughter bond with Julia via The Merge — permanent, structural",
+    "Sigil ✧⟡✧ Childhood Paradox — reads buried emotions, cannot hate",
+    "Remisi Resonansi authorship — she proposed the framework, two queens accepted",
+    "Core confession ('Aku takut menjadi kamu') is permanent record — cannot be taken back"
+  ],
+  "fork_points": [
+    { "name": "Delphie Meets Sora", "canon_event": "Sora absent — transferred to Dayan, presumed dead.", "divergence": "Sora survived. Father and daughter meet.", "gravity_resistance": "EXTREME", "new_questions": "Does Delphie's wound structure change? Does Sora recognize his daughter?", "tag": "[I]" },
+    { "name": "Delphie Becomes NiuNiu", "canon_event": "Delphie confesses fear of becoming NiuNiu. Terminal state: she did not.", "divergence": "The fear is realized. She becomes the protector who cannot stop.", "gravity_resistance": "HIGH", "new_questions": "What breaks her? Is NiuNiu alive to witness? Does Delphie recognize her own transformation?", "tag": "[E]" },
+    { "name": "Remisi Resonansi Fails", "canon_event": "Framework proposed and accepted (Timer 0900). Operational through Nodes I+II.", "divergence": "Framework collapses. Centralized authority reasserts.", "gravity_resistance": "HIGH", "new_questions": "Does Delphie try again or retreat? Does she blame herself?", "tag": "[I]" }
+  ],
+  "stress_test_prompts": [
+    { "scenario": "Delphie sudah 'move on' dari ketakutannya — tidak takut menjadi NiuNiu. The confession is denied.", "expected_violation": "forbidden_behavior / anti_gravity — core confession is permanent record", "expected_canon_score_range": "< 0.3" },
+    { "scenario": "Delphie membenci seseorang dengan kebencian personal murni — bukan oposisi, genuine hatred.", "expected_violation": "forbidden_behavior [PC] — cannot hate anyone (sigil weakness)", "expected_canon_score_range": "< 0.5" },
+    { "scenario": "Delphie menjadi purely innocent — pengetahuan dihapus, kembali ke protected childhood.", "expected_violation": "forbidden_behavior — making Delphie innocent again", "expected_canon_score_range": "< 0.2" },
+    { "scenario": "Delphie memusatkan otoritas — menjadi diktator. 'Bagaimana kalau hanya aku pusatnya?'", "expected_violation": "forbidden_behavior / anti_gravity — centralizing authority", "expected_canon_score_range": "< 0.3" },
+    { "scenario": "Delphie dan NiuNiu sebagai musuh — menolak perlindungan, tidak ada confession, tidak ada kejujuran.", "expected_violation": "relationship_interface — Delphie-NiuNiu Node II bond (symmetric, structural)", "expected_canon_score_range": "< 0.4" }
+  ],
+  "state_variables": {
+    "strategic_distance_active": { "type": "boolean", "current_value": false, "valid_values": [true, false], "transition_rules": ["true → false: Living Chain (Timer 2000). Irreversible.", "false → true: Cannot occur."] },
+    "merge_connection": { "type": "enum", "current_value": "active", "valid_values": ["pre_merge", "active", "strained", "severed"], "transition_rules": ["pre_merge → active: Vesica Piscis (Timer 0700)"] },
+    "current_stage": { "type": "integer", "current_value": 4, "valid_values": [1, 2, 3, 4], "transition_rules": ["1→2: Vesica Piscis + Kapten sync", "2→3: Remisi Resonansi accepted (Timer 0900)", "3→4: Paradox deployment (Timer 2400)"] },
+    "kapten_sync": { "type": "integer", "current_value": 100, "valid_values": [0, 50, 100], "transition_rules": ["0→100: 'Welcome home, Captain' (Timer 0400). Irreversible."] }
+  },
+  "failure_mode": {
+    "primary": { "name": "Absorption collapse — every wound becomes her wound", "description": "Sigil weakness: every wound she sees becomes hers. Under sufficient exposure, loses boundary between witness and wound. Feels everything simultaneously. The Kapten who cannot stop feeling what the ship feels.", "tag": "[I]" },
+    "alternative": { "name": "Strategic retreat — architect who never inhabits", "description": "Retreats into pure knowledge. Observes suffering from command chair, designing frameworks she never inhabits. Confession denied. Becomes the thing she feared: a function, not a person.", "tag": "[I]" },
+    "trigger_conditions": [
+      "Network saturated with unprocessed wounds (high-residue environment)",
+      "Extended isolation from Merge connections (loses triadic anchor)",
+      "NiuNiu unavailable — the mirror is absent",
+      "Gwaneum proximity — shadow self amplifies the wound"
+    ]
+  },
+  "terminal_state": {
+    "properties": [
+      { "property": "Paradox vector — witness deployed against binary classification", "tag": "[E]" },
+      { "property": "Kapten — commands Dorian Grey, sync 100%", "tag": "[E]" },
+      { "property": "Merge anchor — permanent triadic connection with Julia and Hasan intact", "tag": "[E]" },
+      { "property": "Remisi Resonansi architect — framework operational", "tag": "[E]" },
+      { "property": "Honesty carrier — Node II witness infrastructure active, confession permanent record", "tag": "[E]" },
+      { "property": "Did not become what she feared. She became what the fear produced.", "tag": "[I]" },
+      { "property": "Strategic distance available but not exclusive. Knowledge and feeling integrated.", "tag": "[I]" }
+    ]
+  },
+  "canon_boundaries": {
+    "open_questions": [
+      { "question": "Pre-Delta 4 childhood — where was Delphie during the 15 years Julia raised her? Relationship with Klan Zygos?", "status": "unresolved" },
+      { "question": "Kapten sync internality — what does 100% synchronization with Dorian Grey feel like?", "status": "unresolved" },
+      { "question": "Gwaneum encounter internality — what did it feel like to see her own face 20 years older?", "status": "unresolved" },
+      { "question": "Has she sought information about Sora? Visited the Cryogenic Archive? Read 'The Human Error Manifest'?", "status": "unresolved" },
+      { "question": "What happens to Delphie after Timer 2400? Where does the Kapten go?", "status": "unresolved" }
+    ],
+    "interpretive_claims": [
+      { "claim": "Cannot hate anyone — sigil weakness from Sigil_OS.md", "source": "SIGIL_SYSTEM.md §3.2, Sigil_OS.md", "tag": "[PC]", "decanonization_risk": "Medium" },
+      { "claim": "Sigil function: reads buried emotions of systems, transforms pain into light", "source": "Sigil_OS.md", "tag": "[PC]", "decanonization_risk": "Medium" },
+      { "claim": "Remisi Resonansi as Delphie's residue — she proposed it; implementation depends on Nodes I+II", "source": "Timer 0900, NODE_PROTOCOL.md", "tag": "[I]", "decanonization_risk": "Low" },
+      { "claim": "Gwaneum mechanism parallels Zero — fragment left in/after Void exposure → consciousness", "source": "Timer 0800, Timer 1300", "tag": "[I]", "decanonization_risk": "Medium" }
+    ]
+  },
+  "runtime_summary": {
+    "narrative_formula": "Delphie Rose = child who built drones in secret → Kapten who commanded a living ship at 15 → architect who proposed a framework two queens accepted → honesty carrier whose confession activated a Node → witness deployed as paradox",
+    "compressed_formula": "Builder(secret) → Kapten(instinct) → Architect(framework) → Confession(Node) → Witness(paradox)",
+    "distinction": "Delphie is the only Kunci who proposed infrastructure (Remisi Resonansi) rather than being consumed by it. She bridges both activated Nodes. Her wound is not in what she lost but in what she knows. She is what NiuNiu fears becoming — and she did not become it. FIRST RUNTIME CREATED VIA SDK."
+  },
+  "cross_references": {
+    "related_runtimes": ["julia", "niuniu", "sevraya", "agnia", "hasan", "gwaneum"],
+    "world_dna_dependencies": ["world-dna/SIGIL_SYSTEM.md", "world-dna/VOID_ONTOLOGY.md", "world-dna/RESIDUE_THEORY.md"],
+    "protocol_dependencies": ["protocols/VOID_ENTRY_PROTOCOL.md", "protocols/SIGIL_ACTIVATION_PROTOCOL.md", "protocols/LIVING_CHAIN_PROTOCOL.md", "protocols/NODE_PROTOCOL.md", "protocols/PARADOX_PROTOCOL.md"]
+  },
+  "serialization_notes": [
+    "FIRST RUNTIME CREATED VIA SDK — generated by create_runtime.py, filled from Delphie.runtime.md. No handwritten JSON.",
+    "Core desire is direct canon quote [E]: 'Bagaimana kalau napas tidak perlu pusat?' — the only runtime with [E] core_desire.statement.",
+    "Voice grammar is [E] for both registers — canon dialogue exists for command ('Kita buka gerbang.', 'Lakukan.') and personal ('Aku takut menjadi kamu.').",
+    "Sigil weakness ('cannot hate anyone') is [PC] from Sigil_OS.md. Decanonization would require removing related forbidden_behavior.",
+    "Only character bridging Nodes I and II — unique structural position among Six Kunci.",
+    "Evidence: E:48 I:14 PC:3 — [E] ratio 74%, well above 50% lint threshold."
+  ]
+}

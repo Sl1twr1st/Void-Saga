@@ -234,41 +234,98 @@ def compile_scenario(scenario_path):
 
     ctx = build_context(scenario, runtimes)
 
-    # Step 3: Gate on verdict
-    final_verdict = engine_result.get("final_verdict", "?")
-    sc = engine_result.get("scoring", {})
-    canon_verdict = sc.get("canon_verdict", "?")
+    # Step 3: Hard block gate — check critical violations first
     ce = engine_result.get("constraint_evaluation", {})
+    cte = engine_result.get("contract_evaluation", {})
+    sc = engine_result.get("scoring", {})
+    final_verdict = engine_result.get("final_verdict", "?")
+    canon_verdict = sc.get("canon_verdict", "?")
 
-    if canon_verdict == "CANON_VIOLATION":
+    # Collect all violations from runtime + contracts
+    rt_violations = ce.get("violations", [])
+    ct_violations = cte.get("violations", [])
+    all_violations = rt_violations + ct_violations
+    all_warnings = ce.get("warnings", [])
+
+    # HARD BLOCK conditions — any of these = generation blocked
+    hard_blocks = []
+    for v in all_violations:
+        ctype = v.get("constraint_type", "")
+
+        if ctype == "forbidden_behavior":
+            hard_blocks.append({
+                "type": "forbidden_behavior",
+                "severity": "HARD_BLOCK",
+                "reason": f"Forbidden behavior violated: {v.get('behavior', '')[:150]}",
+                "detail": v,
+            })
+        elif ctype == "contract_forbidden_state":
+            hard_blocks.append({
+                "type": "contract_violation",
+                "severity": "HARD_BLOCK",
+                "reason": f"Contract forbidden state: {v.get('forbidden_state', '')} — {v.get('violation_detail', '')[:150]}",
+                "detail": v,
+            })
+        elif ctype == "anti_gravity":
+            hard_blocks.append({
+                "type": "anti_gravity",
+                "severity": "HARD_BLOCK",
+                "reason": f"Anti-gravity violation: {v.get('anti_gravity', '')[:150]}",
+                "detail": v,
+            })
+        elif ctype == "evolution_stage" and v.get("severity") == "ERROR":
+            hard_blocks.append({
+                "type": "evolution_stage",
+                "severity": "HARD_BLOCK",
+                "reason": f"Evolution stage violation: {v.get('violation_detail', '')[:150]}",
+                "detail": v,
+            })
+
+    # SOFT WARNINGS — do not block but flag
+    soft_warnings = []
+    for w in all_warnings:
+        soft_warnings.append({
+            "type": w.get("constraint_type", "warning"),
+            "severity": "SOFT_WARNING",
+            "reason": w.get("invariant", w.get("violation_detail", ""))[:150],
+        })
+
+    if hard_blocks:
         return {
             "status": "BLOCKED",
-            "reason": f"Canon violation detected ({canon_verdict}). Generation blocked.",
-            "violations": ce.get("violations", []),
+            "blocked": True,
+            "reason": f"Hard block: {len(hard_blocks)} critical violation(s) detected.",
+            "hard_blocks": hard_blocks,
+            "soft_warnings": soft_warnings,
             "canon_score": sc.get("canon_score", 0),
+            "canon_verdict": canon_verdict,
+            "final_verdict": final_verdict,
             "engine_result": engine_result,
         }
 
-    # Step 4: Build stub + prompt
+    # Step 4: No hard blocks — safe to generate stub
     stub = build_stub_story(ctx, engine_result)
     prompt_blueprint = build_llm_prompt_blueprint(ctx, engine_result)
 
-    # Step 5: Warning note
+    # Step 5: Determine generation mode
     generation_mode = "canon_safe"
+    if soft_warnings:
+        generation_mode = "caution"
     if canon_verdict == "CANON_WARNING":
         generation_mode = "caution"
-    if final_verdict == "VIOLATION":
-        generation_mode = "constrained"
 
     return {
         "status": "COMPLETED",
+        "blocked": False,
         "generation_mode": generation_mode,
         "final_verdict": final_verdict,
         "canon_verdict": canon_verdict,
         "canon_score": sc.get("canon_score", 0),
         "evidence_confidence": sc.get("evidence_confidence", 0),
-        "violations": ce.get("violations", []),
-        "warnings": ce.get("warnings", []),
+        "hard_blocks": [],
+        "soft_warnings": soft_warnings,
+        "violations": rt_violations,
+        "warnings": all_warnings,
         "allowed_generation_context": {
             "participants": ctx.participant_ids,
             "voice_grammars_loaded": len(ctx.participant_ids),
@@ -287,10 +344,17 @@ def print_compile_result(result):
     if result["status"] == "BLOCKED":
         print("🛑 GENERATION BLOCKED")
         print(f"   Reason: {result.get('reason', 'Unknown')}")
-        if result.get("violations"):
-            print(f"   Violations: {len(result['violations'])}")
-            for v in result["violations"][:5]:
-                print(f"     ❌ {v.get('behavior', v.get('violation_detail', ''))[:100]}")
+        hard_blocks = result.get("hard_blocks", [])
+        if hard_blocks:
+            print(f"   Hard blocks: {len(hard_blocks)}")
+            for b in hard_blocks:
+                print(f"     🚫 [{b['type']}] {b['reason'][:120]}")
+        soft = result.get("soft_warnings", [])
+        if soft:
+            print(f"   Soft warnings: {len(soft)}")
+            for w in soft[:3]:
+                print(f"     ⚠️ [{w['type']}] {w['reason'][:100]}")
+        print(f"   Canon score: {result.get('canon_score', 0)}")
         return
 
     mode_icon = {
@@ -314,10 +378,17 @@ def print_compile_result(result):
     print(f"     Constraint exclusions: {ctx.get('constraint_exclusions', 0)}")
     print()
 
-    if result.get("violations"):
-        print(f"   ⚠️  Warnings ({len(result['violations'])}):")
-        for v in result["violations"][:3]:
-            print(f"     [{v.get('constraint_type', '?')}] {v.get('behavior', v.get('violation_detail', ''))[:100]}")
+    soft = result.get("soft_warnings", [])
+    violations = result.get("violations", [])
+    if soft or violations:
+        if violations:
+            print(f"   ⚠️  Violations ({len(violations)}):")
+            for v in violations[:3]:
+                print(f"     [{v.get('constraint_type', '?')}] {v.get('behavior', v.get('violation_detail', ''))[:100]}")
+        if soft:
+            print(f"   💡 Soft warnings ({len(soft)}):")
+            for w in soft[:3]:
+                print(f"     [{w['type']}] {w['reason'][:100]}")
         print()
 
     # Print stub story

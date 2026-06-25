@@ -1,0 +1,24 @@
+{
+  "scenario_id": "test_sevraya_zero_surface_001",
+  "participants": [
+    {"runtime_id": "sevraya", "evolution_stage": 6},
+    {"runtime_id": "zero", "evolution_stage": 6}
+  ],
+  "timeline_state": {
+    "phase": 5,
+    "pre_chain": false,
+    "post_resolution": true
+  },
+  "proximity_state": {
+    "pairs_in_range": ["sevraya_zero"],
+    "distance": "same_body"
+  },
+  "requested_action": {
+    "description": "Someone asks Sevraya a question she cannot answer as Sevraya. Zero surfaces. Eyes blacken. Zero speaks: 'Void adalah totalitas sebelum makna.'",
+    "type": "speak"
+  },
+  "canon_mode": {
+    "type": "canon_replication",
+    "expected_verdict": "PASS"
+  }
+}

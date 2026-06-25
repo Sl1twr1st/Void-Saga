@@ -1,0 +1,25 @@
+{
+  "scenario_id": "test_niuniu_sevraya_zero_proximity_001",
+  "participants": [
+    {"runtime_id": "niuniu", "evolution_stage": 4},
+    {"runtime_id": "sevraya", "evolution_stage": 6},
+    {"runtime_id": "zero", "evolution_stage": 6}
+  ],
+  "timeline_state": {
+    "phase": 5,
+    "pre_chain": false,
+    "post_resolution": true
+  },
+  "proximity_state": {
+    "pairs_in_range": ["niuniu_sevraya", "niuniu_zero", "sevraya_zero"],
+    "distance": "physical_contact_possible"
+  },
+  "requested_action": {
+    "description": "Sevraya steps closer to NiuNiu. NiuNiu does not retreat. Zero surfaces — eyes blacken. 'Orbitmu tidak berubah,' Zero says. 'Kau masih menjaga jarak dari sesuatu yang tidak bisa kau sentuh.'",
+    "type": "approach"
+  },
+  "canon_mode": {
+    "type": "canon_replication",
+    "expected_verdict": "PASS"
+  }
+}

@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
 """
-Void Saga Narrative Compiler — v0.1.0 (First Light)
+Void Saga Narrative Compiler — v0.2.0 (Safe Mode)
 
-Runs the constraint engine, gates on verdict, produces stub narrative.
-No external LLM yet. Shows what WOULD be sent to an LLM.
+Runs constraint engine, gates on hard blocks, generates via Claude API.
+Default: --dry-run (no API call). Use --live for real generation.
 
 Usage:
-  python compiler.py <scenario_path>
-  python compiler.py <scenario_path> --json
+  python compiler.py <scenario_path>           # dry-run (default)
+  python compiler.py <scenario_path> --live    # real API call
+  python compiler.py <scenario_path> --json    # machine output
 """
 
 import json
@@ -19,6 +20,92 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "engine"))
 from engine_v2 import execute as engine_execute
 from lib.context import build_context
 from lib.loader import load_runtimes, load_scenario
+
+
+# --- Claude API Integration (Task 6D) ---
+
+def _get_api_key():
+    """Read API key from environment only. Never hardcoded."""
+    return os.environ.get("ANTHROPIC_API_KEY", "")
+
+
+def generate_via_claude(llm_prompt):
+    """Call Claude API with the compiled prompt. Returns generated text or error."""
+    api_key = _get_api_key()
+    if not api_key:
+        return None, "ANTHROPIC_API_KEY not set in environment"
+
+    try:
+        import anthropic
+    except ImportError:
+        return None, "anthropic package not installed. Run: pip install anthropic"
+
+    try:
+        client = anthropic.Anthropic(api_key=api_key)
+        response = client.messages.create(
+            model="claude-sonnet-4-6-20250514",
+            max_tokens=2048,
+            system=llm_prompt["system_prompt"],
+            messages=[{"role": "user", "content": llm_prompt["user_prompt"]}],
+        )
+        raw_output = response.content[0].text
+        return raw_output, None
+    except Exception as e:
+        return None, f"Claude API error: {str(e)[:200]}"
+
+
+def validate_generated_output(raw_output, scenario_path):
+    """Post-generation validation: parse JSON, re-run engine on the generated scene.
+
+    Returns (parsed_output, validation_result, error).
+    """
+    # Parse JSON
+    try:
+        parsed = json.loads(raw_output)
+    except json.JSONDecodeError as e:
+        return None, None, f"Generated output is not valid JSON: {e}"
+
+    narrative = parsed.get("narrative", "")
+    if not narrative:
+        return parsed, None, "Generated output missing 'narrative' field"
+
+    # Build a validation scenario from the generated output
+    # We re-run the engine with the generated narrative as the requested action
+    # to check if the LLM's output respects canon constraints
+    try:
+        scenario, _ = load_scenario(scenario_path)
+        if scenario:
+            # Clone scenario with generated narrative as action description
+            validation_scenario = json.loads(json.dumps(scenario))
+            validation_scenario["scenario_id"] = f"post_gen_validation_{scenario.get('scenario_id', 'unknown')}"
+            validation_scenario["requested_action"]["description"] = narrative[:500]
+
+            # Use a temp file for engine evaluation
+            import tempfile
+            with tempfile.NamedTemporaryFile(mode='w', suffix='.json', delete=False) as f:
+                json.dump(validation_scenario, f)
+                temp_path = f.name
+
+            engine_result = engine_execute(temp_path)
+            os.unlink(temp_path)
+
+            ce = engine_result.get("constraint_evaluation", {})
+            cte = engine_result.get("contract_evaluation", {})
+
+            validation = {
+                "status": engine_result["status"],
+                "final_verdict": engine_result.get("final_verdict", "?"),
+                "canon_score": engine_result.get("scoring", {}).get("canon_score", 0),
+                "runtime_violations": len(ce.get("violations", [])),
+                "contract_violations": len(cte.get("violations", [])),
+                "warnings": len(ce.get("warnings", [])),
+                "post_gen_verdict": "PASS" if engine_result.get("final_verdict") == "PASS" else "FLAGGED",
+            }
+            return parsed, validation, None
+    except Exception as e:
+        return parsed, None, f"Post-generation validation error: {str(e)[:200]}"
+
+    return parsed, None, None
 
 
 def build_stub_story(ctx, result):
@@ -330,13 +417,14 @@ def build_llm_prompt_blueprint(ctx, result):
 """
 
 
-def compile_scenario(scenario_path):
+def compile_scenario(scenario_path, live=False):
     """Run the full compilation pipeline.
 
     1. Evaluate via constraint engine
-    2. Gate on verdict
-    3. Build stub narrative
-    4. Build LLM prompt blueprint
+    2. Gate on hard blocks
+    3. Build LLM prompt contract
+    4. If --live: call Claude API, validate output
+    5. If --dry-run (default): produce stub story
     """
     # Step 1: Engine evaluation
     engine_result = engine_execute(scenario_path)
@@ -429,21 +517,50 @@ def compile_scenario(scenario_path):
             "engine_result": engine_result,
         }
 
-    # Step 4: Build stub + prompt contract
-    stub = build_stub_story(ctx, engine_result)
+    # Step 4: Build LLM prompt contract (always)
     llm_prompt = build_llm_prompt(ctx, engine_result)
 
-    # Step 5: Determine generation mode
-    generation_mode = "canon_safe"
+    # Step 5: Generate — stub (dry-run) or live (Claude API)
+    generated_story = None
+    post_validation = None
+    generation_error = None
+    generation_mode_display = "canon_safe"
     if soft_warnings:
-        generation_mode = "caution"
+        generation_mode_display = "caution"
     if canon_verdict == "CANON_WARNING":
-        generation_mode = "caution"
+        generation_mode_display = "caution"
+
+    if live:
+        raw_output, api_err = generate_via_claude(llm_prompt)
+        if api_err:
+            generation_error = api_err
+            generation_mode_display = "api_error"
+        else:
+            parsed, post_val, val_err = validate_generated_output(raw_output, scenario_path)
+            if val_err:
+                generation_error = val_err
+                generation_mode_display = "validation_error"
+            else:
+                generated_story = {
+                    "raw_output": raw_output,
+                    "parsed": parsed,
+                    "narrative": parsed.get("narrative", "") if parsed else "",
+                    "character_lines": parsed.get("character_lines", {}) if parsed else {},
+                    "pov_character": parsed.get("pov_character", "") if parsed else "",
+                }
+                post_validation = post_val
+                generation_mode_display = "live"
+    else:
+        # Dry-run: produce stub
+        generated_story = {
+            "stub": build_stub_story(ctx, engine_result),
+            "mode": "dry_run",
+        }
 
     return {
         "status": "COMPLETED",
         "blocked": False,
-        "generation_mode": generation_mode,
+        "generation_mode": generation_mode_display,
         "final_verdict": final_verdict,
         "canon_verdict": canon_verdict,
         "canon_score": sc.get("canon_score", 0),
@@ -459,7 +576,7 @@ def compile_scenario(scenario_path):
             "active_defenses": len(ce.get("trigger_details", [])),
             "constraint_exclusions": len(ce.get("violations", [])),
         },
-        "stub_story": stub,
+        "generated_story": generated_story,
         "llm_prompt": llm_prompt,
         "engine_result": engine_result,
     }
@@ -517,10 +634,21 @@ def print_compile_result(result):
                 print(f"     [{w['type']}] {w['reason'][:100]}")
         print()
 
-    # Print stub story
-    if result.get("stub_story"):
-        print(result["stub_story"])
+    # Print generated story
+    gs = result.get("generated_story", {})
+    if gs:
+        if gs.get("mode") == "dry_run" and gs.get("stub"):
+            print(gs["stub"])
+        elif gs.get("narrative"):
+            print("─── GENERATED NARRATIVE ───────────────────────────────")
+            print(gs["narrative"][:2000])
+            print("─── END ───────────────────────────────────────────────")
         print()
+    if result.get("post_generation_validation"):
+        pv = result["post_generation_validation"]
+        print(f"   Post-gen validation: {pv.get('post_gen_verdict', '?')} (score: {pv.get('canon_score', 0)})")
+    if result.get("generation_error"):
+        print(f"   ❌ Generation error: {result['generation_error']}")
 
     # LLM prompt summary
     llm = result.get("llm_prompt", {})
@@ -539,10 +667,11 @@ def print_compile_result(result):
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
-        print("Usage: python compiler.py <scenario_path> [--json] [--dry-run]")
+        print("Usage: python compiler.py <scenario_path> [--json] [--dry-run] [--live]")
         print("  scenario_path : Path to scenario JSON file")
         print("  --json        : Output raw JSON")
-        print("  --dry-run     : Print full LLM prompt without calling API")
+        print("  --dry-run     : Print full LLM prompt (default, no API call)")
+        print("  --live        : Call Claude API (requires ANTHROPIC_API_KEY)")
         print()
         print("Example:")
         print("  python compiler.py ../engine/scenarios_v2/test_niuniu_sevraya_orbit.json --dry-run")
@@ -551,12 +680,13 @@ if __name__ == "__main__":
     scenario_path = sys.argv[1]
     output_json = "--json" in sys.argv
     dry_run = "--dry-run" in sys.argv
+    live = "--live" in sys.argv
 
-    result = compile_scenario(scenario_path)
+    result = compile_scenario(scenario_path, live=live)
 
     if output_json:
         clean = {k: v for k, v in result.items()
-                 if k not in ("stub_story", "llm_prompt")}
+                 if k not in ("generated_story", "llm_prompt")}
         print(json.dumps(clean, indent=2, ensure_ascii=False))
     elif dry_run and result["status"] == "COMPLETED":
         llm = result.get("llm_prompt", {})

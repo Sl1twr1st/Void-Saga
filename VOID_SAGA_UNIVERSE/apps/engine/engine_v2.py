@@ -24,6 +24,7 @@ from lib.constraints import (
     check_anti_gravity,
 )
 from lib.contracts import load_all_contracts, evaluate_all_contracts
+from lib.scoring import aggregate_scores
 
 
 def execute(scenario_path):
@@ -118,13 +119,16 @@ def execute(scenario_path):
     else:
         verdict = "CONSTRAINT_PASS"
 
-    # Build constraint result (COPY lists to avoid mutation by contract extend)
-    import copy
+    # Save runtime-only lists before contract evaluation extends them
+    runtime_violations = list(all_violations)
+    runtime_warnings = list(all_warnings)
+
+    # Build constraint result
     constraint_result = {
         "verdict": verdict,
         "triggers_fired": len(all_triggers),
-        "violations": copy.deepcopy(all_violations),
-        "warnings": copy.deepcopy(all_warnings),
+        "violations": runtime_violations,
+        "warnings": runtime_warnings,
         "trigger_details": all_triggers
     }
 
@@ -132,10 +136,12 @@ def execute(scenario_path):
     all_contracts = load_all_contracts()
     contract_results, contract_violations, contract_summary = evaluate_all_contracts(ctx, all_contracts)
 
-    # Merge contract violations into overall verdict
-    all_violations.extend(contract_violations)
+    # Step 7: Canon score aggregation (uses original runtime lists + separate contract list)
+    canon_score, evidence_conf, canon_verdict, score_details = aggregate_scores(
+        ctx, runtime_violations, runtime_warnings, contract_violations
+    )
 
-    # Step 7: Determine final verdict
+    # Step 8: Determine final verdict
     participants_summary = []
     for rid in ctx.participant_ids:
         p = ctx.participants[rid]
@@ -223,6 +229,12 @@ def execute(scenario_path):
             "summary": contract_summary,
             "contracts": contract_results,
             "violations": contract_violations
+        },
+        "scoring": {
+            "canon_score": canon_score,
+            "evidence_confidence": evidence_conf,
+            "canon_verdict": canon_verdict,
+            "breakdown": score_details
         },
         "final_verdict": _compute_final_verdict(verdict, contract_summary["verdict"])
     }
@@ -312,7 +324,25 @@ def print_summary(result):
     else:
         print(f"   ┌─ Contracts: No matching contracts found.")
         print(f"   └────────────────────────────────────────────")
-    print()
+    # Canon score
+    sc = result.get("scoring", {})
+    if sc:
+        cs = sc.get("canon_score", 0)
+        ec = sc.get("evidence_confidence", 0)
+        cv = sc.get("canon_verdict", "?")
+        cv_icon = {"CANON_PASS": "✅", "CANON_WARNING": "⚠️", "CANON_VIOLATION": "❌"}.get(cv, "○")
+        bar = "█" * int(cs * 10) + "░" * (10 - int(cs * 10))
+        print(f"   ┌─ Scores ───────────────────────────────────")
+        print(f"   │ Canon: {cs} {bar} {cv} {cv_icon}")
+        print(f"   │ Evidence confidence: {ec}")
+        bd = sc.get("breakdown", {})
+        pb = bd.get("penalty_breakdown", {})
+        if pb.get("total_penalty", 0) > 0:
+            print(f"   │ Penalty: {pb['total_penalty']} across {bd.get('total_constraints', '?')} constraints")
+            for item in pb.get("items", [])[:5]:
+                print(f"   │   -{item['penalty']:.2f} [{item.get('constraint_type','?')}] {item.get('detail','')[:60]}")
+        print(f"   └────────────────────────────────────────────")
+    print(f"")
     print(f"   ┌─ Participants ─────────────────────────────")
     for p in result["participants"]:
         print(f"   │ {p['name']} ({p['runtime_id']}) v{p['version']}")

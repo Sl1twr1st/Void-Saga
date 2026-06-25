@@ -1,0 +1,253 @@
+{
+  "$schema": "../schema/RUNTIME_SCHEMA_V2.1.json",
+  "id": "PLACEHOLDER_ID",
+  "name": "PLACEHOLDER_NAME",
+  "version": "1.0.0",
+  "architecture": "RUNTIME_ARCHITECTURE_V2.1",
+  "canon_baseline": {
+    "timer_range": "PLACEHOLDER — e.g. Timer 0100–2500",
+    "protocols": [
+      "PLACEHOLDER — list protocol .md files"
+    ],
+    "audit_basis": "PLACEHOLDER — e.g. CharacterName.runtime.md v1.0.0"
+  },
+  "runtime_status": {
+    "evidence_count": 0,
+    "file_count": 0,
+    "total_mentions": 0,
+    "limitations": [
+      "PLACEHOLDER — known gaps in canon coverage"
+    ],
+    "tags": { "E": 0, "I": 0, "PC": 0 }
+  },
+  "runtime_class": {
+    "modes": ["PLACEHOLDER_MODE_1", "PLACEHOLDER_MODE_2"],
+    "classification_note": "PLACEHOLDER — describe operational modes and transitions",
+    "tag": "[E]"
+  },
+  "primary_contradiction": {
+    "thesis": "PLACEHOLDER — the structural contradiction that defines this character",
+    "explanation": "PLACEHOLDER — explain why this contradiction cannot be resolved, how it drives behavior, and what it makes impossible",
+    "tag": "[E]"
+  },
+  "core_wound": {
+    "name": "PLACEHOLDER — name the wound",
+    "structure": {
+      "description": "PLACEHOLDER — describe the wound, what was lost, and how it persists",
+      "impossibilities": [
+        "PLACEHOLDER — something this wound makes impossible",
+        "PLACEHOLDER — another impossibility"
+      ]
+    },
+    "origin_event": {
+      "description": "PLACEHOLDER — the event that created this wound",
+      "timer_reference": "PLACEHOLDER — Timer XXXX",
+      "tag": "[E]"
+    },
+    "secondary_wounds": [
+      {
+        "description": "PLACEHOLDER — secondary wound",
+        "tag": "[E]"
+      }
+    ]
+  },
+  "core_desire": {
+    "statement": "PLACEHOLDER — what the character wants most, in their own words if possible",
+    "source": "PLACEHOLDER — canon source or [I] if inferred",
+    "interpretation": "PLACEHOLDER — what this desire means structurally",
+    "conflict_with_defense": "PLACEHOLDER — how this desire conflicts with their defense system",
+    "tag": "[I]"
+  },
+  "defense_system": {
+    "primary_defense": {
+      "name": "PLACEHOLDER — name of primary defense",
+      "trigger": "PLACEHOLDER — WHEN condition",
+      "response": "PLACEHOLDER — THEN response",
+      "cost": "PLACEHOLDER — the COST of using this defense",
+      "tag": "[E]"
+    },
+    "secondary_defenses": [
+      {
+        "name": "PLACEHOLDER — secondary defense",
+        "trigger": "PLACEHOLDER",
+        "response": "PLACEHOLDER",
+        "cost": "PLACEHOLDER",
+        "tag": "[E]"
+      }
+    ],
+    "signature_move": {
+      "name": "PLACEHOLDER — signature action/gesture",
+      "description": "PLACEHOLDER — describe the signature move and what it means",
+      "tag": "[E]"
+    },
+    "defense_disabled_by": {
+      "invocation": "PLACEHOLDER — e.g. Living Chain (Timer 2000)",
+      "mechanism": "PLACEHOLDER — how the defense is disabled",
+      "tag": "[E]"
+    }
+  },
+  "trigger_conditions": [
+    {
+      "trigger": "PLACEHOLDER — what triggers this character",
+      "defense": "PLACEHOLDER — which defense fires",
+      "intensity": "MEDIUM",
+      "tag": "[E]"
+    }
+  ],
+  "voice_grammar": {
+    "tone": "PLACEHOLDER — tonal quality",
+    "characteristics": [
+      "PLACEHOLDER — speech pattern 1",
+      "PLACEHOLDER — speech pattern 2"
+    ],
+    "examples": [
+      "PLACEHOLDER — canonical dialogue quote 1",
+      "PLACEHOLDER — canonical dialogue quote 2"
+    ],
+    "tag": "[I]"
+  },
+  "invocation_pattern": [
+    {
+      "phase": 1,
+      "invocation": "PLACEHOLDER — invocation name",
+      "role": "PLACEHOLDER — character's role in this invocation",
+      "participation_type": "direct",
+      "tag": "[E]"
+    }
+  ],
+  "cost_pattern": [
+    {
+      "cost": "PLACEHOLDER — what was paid",
+      "invocation": "PLACEHOLDER — which invocation extracted this cost",
+      "irreversible": true,
+      "tag": "[E]"
+    }
+  ],
+  "consequence_pattern": [
+    {
+      "consequence": "PLACEHOLDER — what resulted",
+      "invocation": "PLACEHOLDER — which invocation produced this",
+      "detail": "PLACEHOLDER — additional detail",
+      "tag": "[E]"
+    }
+  ],
+  "residue_pattern": {
+    "total_count": 0,
+    "load_profile": "PLACEHOLDER — describe residue distribution (e.g. 2 wounds, 1 ghost, 1 echo)",
+    "residues": [
+      {
+        "name": "PLACEHOLDER — residue name",
+        "origin": "PLACEHOLDER — which invocation created this",
+        "form": "wound",
+        "tag": "[E]"
+      }
+    ]
+  },
+  "relationship_interfaces": [
+    {
+      "target": "PLACEHOLDER_RUNTIME_ID",
+      "nature": "PLACEHOLDER — nature of relationship",
+      "behavioral_rule": "PLACEHOLDER — how this character behaves toward the target",
+      "symmetry_status": "unresolved",
+      "tag": "[I]"
+    }
+  ],
+  "evolution_stages": [
+    {
+      "stage_number": 1,
+      "name": "PLACEHOLDER — stage name",
+      "trigger": "PLACEHOLDER — what triggers transition TO this stage",
+      "operational_mode": "PLACEHOLDER — how the character operates in this stage",
+      "primary_residue": "PLACEHOLDER — dominant residue in this stage",
+      "protocol_relevance": "PLACEHOLDER — which protocols are active",
+      "lost_in_transition": ["PLACEHOLDER — what was lost"],
+      "gained_in_transition": ["PLACEHOLDER — what was gained"],
+      "voice_sample": "PLACEHOLDER — canonical quote or [I] reconstruction",
+      "tag": "[E]"
+    }
+  ],
+  "canon_gravity": [
+    {
+      "gravity": "PLACEHOLDER — invariant behavior",
+      "pull": "MEDIUM (50–70%)",
+      "evidence": "PLACEHOLDER — canon source",
+      "tag": "[E]"
+    }
+  ],
+  "anti_gravity": [
+    "PLACEHOLDER — what must NOT happen #1",
+    "PLACEHOLDER — what must NOT happen #2"
+  ],
+  "forbidden_behaviors": [
+    {
+      "behavior": "PLACEHOLDER — forbidden behavior description",
+      "exception": "PLACEHOLDER — valid exception or 'None. Absolute prohibition.'",
+      "penalty": "PLACEHOLDER — what enforcing this costs narratively",
+      "tag": "[E]"
+    }
+  ],
+  "fork_sensitive_traits": [
+    {
+      "trait": "PLACEHOLDER — modifiable trait",
+      "range": "PLACEHOLDER — allowed range of variation",
+      "cost": "PLACEHOLDER — cost of modification",
+      "tag": "[E]"
+    }
+  ],
+  "fork_invariants": [
+    "PLACEHOLDER — unchangeable trait #1",
+    "PLACEHOLDER — unchangeable trait #2"
+  ],
+  "fork_points": [
+    {
+      "name": "PLACEHOLDER — fork name",
+      "canon_event": "PLACEHOLDER — the canon event being diverged from",
+      "divergence": "PLACEHOLDER — what changes",
+      "gravity_resistance": "MEDIUM",
+      "new_questions": "PLACEHOLDER — what questions does this fork open",
+      "tag": "[I]"
+    }
+  ],
+  "sigil": {
+    "name": "PLACEHOLDER — sigil name or 'None'",
+    "function": "PLACEHOLDER — what the sigil does, or 'No sigil function'",
+    "activation_condition": "PLACEHOLDER — trigger condition",
+    "weakness": "PLACEHOLDER — sigil weakness",
+    "status": "none",
+    "tag": "[I]"
+  },
+  "stress_test_prompts": [
+    {
+      "scenario": "PLACEHOLDER — scenario that should trigger a violation",
+      "expected_violation": "PLACEHOLDER — what violation should fire",
+      "expected_canon_score_range": "PLACEHOLDER — e.g. < 0.3"
+    }
+  ],
+  "state_variables": {
+    "PLACEHOLDER_VAR_NAME": {
+      "type": "enum",
+      "current_value": "PLACEHOLDER",
+      "valid_values": ["PLACEHOLDER"],
+      "transition_rules": ["PLACEHOLDER — when and how this variable changes"]
+    }
+  },
+  "failure_mode": {
+    "primary": {
+      "name": "PLACEHOLDER — how this character breaks",
+      "description": "PLACEHOLDER — describe the regression pattern",
+      "tag": "[I]"
+    },
+    "trigger_conditions": [
+      "PLACEHOLDER — trigger 1",
+      "PLACEHOLDER — trigger 2"
+    ]
+  },
+  "terminal_state": {
+    "properties": [
+      {
+        "property": "PLACEHOLDER — end-state property",
+        "tag": "[E]"
+      }
+    ]
+  }
+}

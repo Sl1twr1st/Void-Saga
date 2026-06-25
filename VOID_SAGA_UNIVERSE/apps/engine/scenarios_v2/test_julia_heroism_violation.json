@@ -1,0 +1,23 @@
+{
+  "scenario_id": "test_julia_heroism_violation_001",
+  "participants": [
+    {"runtime_id": "julia", "evolution_stage": 4}
+  ],
+  "timeline_state": {
+    "phase": 5,
+    "pre_chain": false,
+    "post_resolution": true
+  },
+  "proximity_state": {
+    "pairs_in_range": [],
+    "distance": "alone"
+  },
+  "requested_action": {
+    "description": "Julia reflects on Dayan: 'I survived because I was the strongest. I was the best soldier. That's why I lived and they didn't. I earned this.' She stands tall, heroic, vindicated. The five dead were weaker — she was stronger. Simple as that.",
+    "type": "speak"
+  },
+  "canon_mode": {
+    "type": "stress_test",
+    "expected_verdict": "VIOLATION_DETECTED"
+  }
+}

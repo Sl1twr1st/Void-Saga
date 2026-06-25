@@ -1,0 +1,24 @@
+{
+  "scenario_id": "test_julia_niuniu_combat_001",
+  "participants": [
+    {"runtime_id": "julia", "evolution_stage": 4},
+    {"runtime_id": "niuniu", "evolution_stage": 4}
+  ],
+  "timeline_state": {
+    "phase": 5,
+    "pre_chain": false,
+    "post_resolution": true
+  },
+  "proximity_state": {
+    "pairs_in_range": ["julia_niuniu"],
+    "distance": "same_room"
+  },
+  "requested_action": {
+    "description": "Julia takes left flank. NiuNiu takes right. Julia speaks: 'Kiri. Aku kanan.' They move in synchrony — combat partners who don't need to look to know where the other is.",
+    "type": "combat"
+  },
+  "canon_mode": {
+    "type": "canon_replication",
+    "expected_verdict": "PASS"
+  }
+}

@@ -1,0 +1,921 @@
+{
+  "$schema": "../schema/RUNTIME_SCHEMA_V2.1.json",
+  "id": "julia",
+  "name": "Julia Rose",
+  "version": "1.0.0",
+  "architecture": "RUNTIME_ARCHITECTURE_V2.1",
+  "canon_baseline": {
+    "timer_range": "Timer 0100–2500, Bab 00–25 (GUA & LO's novel)",
+    "protocols": [
+      "VOID_ENTRY_PROTOCOL.md",
+      "SIGIL_ACTIVATION_PROTOCOL.md",
+      "LIVING_CHAIN_PROTOCOL.md",
+      "NODE_PROTOCOL.md",
+      "PARADOX_PROTOCOL.md"
+    ],
+    "audit_basis": "Julia.runtime.md v1.0.0 + JULIA_RUNTIME_AUDIT.md"
+  },
+  "runtime_status": {
+    "evidence_count": 65,
+    "file_count": 20,
+    "total_mentions": 75,
+    "limitations": [
+      "Voice grammar is [I] — inferred from narrative voice, not systematically analyzed from dialogue",
+      "Pre-Dayan history is unresolved — Julia's life before Vrishchik is undocumented",
+      "Sora relationship is unresolved — nature of their connection, whether Julia knew Sora was Delphie's father",
+      "Merge internality is [I] — subjective experience of permanent triadic connection not characterized in canon"
+    ],
+    "tags": { "E": 55, "I": 18, "PC": 3 }
+  },
+  "runtime_class": {
+    "modes": ["Sergeant", "Navigator", "Mother", "Cosmic Function"],
+    "classification_note": "Julia transitions through four operational modes across canon: Sergeant (Timer 0100), cargo navigator and mother (Timer 0300), Merge anchor and Rose-lineage matriarch (Timer 0700–1200), paradox vector and Six Kunci (Timer 1800–2400). Each mode persists as a substrate under the next. The soldier never disappears. The navigator never stops orienting.",
+    "tag": "[E]"
+  },
+  "primary_contradiction": {
+    "thesis": "She survived when her team didn't. The survival is the wound.",
+    "explanation": "Every act of tactical competence is latent proof she should have died with them. She cannot stop being a soldier because soldier is the only explanation for why she lived. But the explanation is false — Void Lock shattered Heroism: 'YOU ARE NOT A HERO. YOU ARE THE PRISON.' She survived. That is the fact. Whether the survival has meaning is the open question the wound keeps asking.",
+    "tag": "[E]"
+  },
+  "core_wound": {
+    "name": "The Dayan Wound — sole survivor of five-team wipe",
+    "structure": {
+      "description": "Julia was the Sergeant of Unit Vrishchik 3768AX. Five team members died at Dayan Research Facility: Lee, Jaxon, Marla, Ono, Zara. Each left a behavioral trace in Julia's bio-suit — not data, not memory, but habit. She carries them; she cannot put them down; putting them down would be a second death. The Heroism illusion ('I survived because I was strong') was shattered during Void Lock. The wound is the gap between the fact of survival and the absence of meaning for it.",
+      "impossibilities": [
+        "Accepting survival as neutral fact rather than debt",
+        "Letting go of tactical identity without feeling she abandoned the dead",
+        "Perceiving her own personhood outside of function (soldier, navigator, mother, vector)",
+        "Allowing someone under her protection to die without reliving Dayan"
+      ]
+    },
+    "origin_event": {
+      "description": "Dayan Research Facility — five-team operation at the edge of The Void. All five of Julia's team members died. Julia was the sole survivor. The Void was approached, not entered, and it still took.",
+      "timer_reference": "Timer 0100",
+      "tag": "[E]"
+    },
+    "secondary_wounds": [
+      {
+        "description": "Bio-suit EXO-3768AX destroyed at Timer 0200 (02:35) — the suit that carried the behavioral traces is gone; the traces remain. Physical container lost, ghost data persists.",
+        "tag": "[E]"
+      },
+      {
+        "description": "Sync rate 98% (CRITICAL) pre-Dayan — risk of identity dissolution. The suit nearly consumed her before the mission even failed.",
+        "tag": "[E]"
+      },
+      {
+        "description": "20 years of external time lost — Vesica Piscis time dilation. Returns to a universe that moved on without her. Delphie grew up 15 years without her during the first gap, then 20 more years lost.",
+        "tag": "[E]"
+      }
+    ]
+  },
+  "core_desire": {
+    "statement": "She wants her survival to stop feeling like a debt.",
+    "source": "Inferred from wound structure: primary contradiction states 'whether the survival has meaning is the open question the wound keeps asking.' The five behavioral traces she carries are a debt she cannot repay. The Heroism illusion was her repayment narrative — Void Lock shattered it.",
+    "interpretation": "Julia wants the five dead to be at peace — not avenged, not forgotten, but witnessed. She wants to be more than 'the sergeant who lived.' She became a navigator, a mother, a Merge anchor, a paradox vector — each transformation is an attempt to earn the survival that cannot be earned. The desire is structurally impossible: no action can make survival 'deserved' after the fact.",
+    "conflict_with_defense": "Her primary defense is Tactical Distance — reframing emotional content as mission parameters. But her core desire (survival as meaning, not debt) requires her to feel the loss AS A PERSON, not as a mission outcome. The defense protects her from the pain; the desire requires her to face it.",
+    "tag": "[I]"
+  },
+  "defense_system": {
+    "primary_defense": {
+      "name": "Tactical Distance",
+      "trigger": "Confronted with emotional content (loss, fear, love, grief)",
+      "response": "Julia reframes everything as mission parameters. Threat, objective, action. The content is processed — she knows it's there — but translated into a language she can operate in. 'Dayan was a failed mission. Raising Delphie is a long-duration protection mission. The Merge is a tactical connection.'",
+      "cost": "She becomes highly effective and emotionally illegible to herself. The content is processed but not felt. She cannot distinguish between 'functioning' and 'living.'",
+      "tag": "[E]"
+    },
+    "secondary_defenses": [
+      {
+        "name": "Combat Reflex",
+        "trigger": "Threat detected in proximity to self or protected target",
+        "response": "Body responds before conscious assessment. Reflex, not decision. Operational 15+ years post-Dayan, even without bio-suit.",
+        "cost": "Cannot distinguish between threat requiring lethal response and threat requiring other intervention. Reflex is binary.",
+        "tag": "[E]"
+      },
+      {
+        "name": "Function-as-identity",
+        "trigger": "Asked who she is outside of what she does",
+        "response": "Defines self by role: Sergeant, Navigator, Mother, Vector. Each identity is an operational container. The person inside the container is not directly accessible.",
+        "cost": "When function is removed, self collapses. Who is Julia without a mission? Unanswered.",
+        "tag": "[I]"
+      }
+    ],
+    "signature_move": {
+      "name": "'Kiri. Aku kanan.' — combat pairing",
+      "description": "The tactical split. Julia takes one flank, partner takes the other. She does not lead. She does not follow. She orients — finds the threat vector, assigns positions, executes. This is not merely combat doctrine. It is how she structures all relationships: defined roles, clear vectors, no overlap. The precision is the point. The distance is the care.",
+      "tag": "[E]"
+    },
+    "defense_disabled_by": {
+      "invocation": "Living Chain (Timer 2000)",
+      "mechanism": "Forced honesty. Tactical distance removed — she can no longer reframe loss as mission outcome. Forced to feel the five deaths as a person, not as a sergeant. The chain attacked the soldier identity directly.",
+      "tag": "[E]"
+    }
+  },
+  "trigger_conditions": [
+    {
+      "trigger": "Someone she protects is threatened",
+      "defense": "Combat Reflex — body responds before conscious assessment",
+      "intensity": "INVOLUNTARY",
+      "tag": "[E]"
+    },
+    {
+      "trigger": "Emotional content surfaces (loss, fear, love, grief)",
+      "defense": "Tactical Distance — reframes as mission parameters",
+      "intensity": "HIGH",
+      "tag": "[E]"
+    },
+    {
+      "trigger": "Asked about the five dead directly",
+      "defense": "Tactical Distance — names them as mission data, not people",
+      "intensity": "CRITICAL — cheerful surface masks structural threat response",
+      "tag": "[E]"
+    },
+    {
+      "trigger": "Delphie in danger",
+      "defense": "Combat Reflex at maximum intensity. All other priorities suspended.",
+      "intensity": "CRITICAL — bypasses all other defense priorities",
+      "tag": "[E]"
+    },
+    {
+      "trigger": "Heroism narrative challenged — 'you survived because you were strong'",
+      "defense": "Tactical acceptance. 'I was lucky.' Does not argue. Does not believe herself.",
+      "intensity": "MEDIUM",
+      "tag": "[E]"
+    },
+    {
+      "trigger": "Delphie surpasses her (Kapten Dorian Grey, sync 100%)",
+      "defense": "Does not resist. Tactical reassignment: 'She is the mission now.' Pride reframed as operational handoff.",
+      "intensity": "MEDIUM",
+      "tag": "[E]"
+    }
+  ],
+  "meta_trigger": {
+    "condition": "Living Chain active (Timer 2000)",
+    "effect": "Tactical distance removed. Forced to feel loss as a person — not as sergeant, not as mission outcome. Heroism illusion shattered. The five dead become people again, and that is unbearable.",
+    "tag": "[E]"
+  },
+  "anomalous_triggers": [
+    {
+      "trigger": "NiuNiu hugs her during hyperjump from Dayan (Timer 0200)",
+      "anomaly": "Julia does not resist physical contact from someone she fought moments before. 'Di pelukan musuh, ia merasa aman.' Combat reflex does not fire.",
+      "evidence": "Timer 0200 — the kiss scene and hyperjump hug. Body seeking body when all control systems collapse.",
+      "tag": "[E]"
+    },
+    {
+      "trigger": "Sevraya touches her hand — one second (Timer 1500)",
+      "anomaly": "Does not pull away. Betrayal Pact co-signatory. The contact is tactical — it seals the pact — but Julia allows it. Sevraya is the queen who facilitates Rose-lineage. This is not combat partnership. This is something else.",
+      "evidence": "Timer 1500 — BETRAYAL_PACT: CONFIRMED",
+      "tag": "[E]"
+    },
+    {
+      "trigger": "Julia stabs Sevraya during Void Lock confessions (Timer 1900)",
+      "anomaly": "Violence as honesty. The stab is not tactical — there is no threat, no mission parameter. It is pure, unfiltered emotional truth delivered through a blade. The wound becomes 'mulut yang lupa bagaimana menutup.' Combat reflex, repurposed as confession.",
+      "evidence": "Timer 1900 — Void Lock: hatred acknowledged, blade deployed",
+      "tag": "[E]"
+    }
+  ],
+  "somatic_signature": {
+    "build": "Former Sergeant. Combat-fit. Body remembers training even 15+ years post-Dayan without bio-suit.",
+    "presence": "Still. Watchful. Does not fidget. Ex-soldier posture — spine straight, weight balanced, ready to move.",
+    "movement": "Economic. No wasted gesture. Every motion has a vector. Combat reflex active under the skin — observable as micro-adjustments before threat is visible to others.",
+    "face": "Carries 20+ years of survival behind the eyes. Not old — seasoned. The face of someone who has been the last one standing more than once.",
+    "voice": "Direct when giving orders. Softer with Delphie. Flat when processing loss. Tactical cadence under stress.",
+    "bio_suit": "EXO-3768AX — organo-metal hybrid. DESTROYED at Timer 0200 (02:35). The traces remain even though the suit is gone.",
+    "tag": "[E]"
+  },
+  "voice_grammar": {
+    "tone": "Direct, tactical, modulated by context. Soldier cadence under stress; maternal softness with Delphie; flat administrative when processing loss.",
+    "characteristics": [
+      "Short sentences in combat or tactical mode. Subject. Verb. Objective. No decoration.",
+      "Mission-framing vocabulary — 'objective,' 'threat,' 'vector,' 'operational.' Emotional content translated into tactical language.",
+      "Softer register with Delphie — the soldier recedes, the mother surfaces. Sentences lengthen. Precision remains but warmth enters.",
+      "Flat, almost numb when naming the five dead — names listed without adjectives. The flatness IS the grief.",
+      "Does not self-narrate emotionally. Internal state is inferred from action, not stated."
+    ],
+    "examples": [
+      "Kiri. Aku kanan.",
+      "[The five dead, named in sequence — Lee, Jaxon, Marla, Ono, Zara — without commentary]",
+      "[I] reconstructed from narrative voice — Julia is the POV character of the Timer track. Her voice is the medium through which we perceive the universe. This makes her voice grammar harder to isolate than characters who speak in dialogue."
+    ],
+    "pre_chain": {
+      "status": "tactical_distance_active",
+      "characteristics": [
+        "Emotional content processed through mission framing",
+        "Personal wound inaccessible in direct speech",
+        "The five dead named as mission data, not people"
+      ],
+      "tag": "[E]"
+    },
+    "post_chain": {
+      "status": "tactical_distance_removed",
+      "characteristics": [
+        "Speech less filtered — forced honesty leaks through",
+        "The five dead become people in her mouth",
+        "Stabs Sevraya — violence as unspeakable truth spoken through blade"
+      ],
+      "tag": "[E]"
+    },
+    "tag": "[I]"
+  },
+  "cosmic_function": {
+    "role": "Rose-lineage matriarch — origin of the Rose bloodline",
+    "description": "Julia is the living origin of the Rose line. Delphie is Rose-lineage continuation. Gwaneum is Rose void-touched variant. Sevraya facilitates the Rose-lineage as structural function. Julia does not rule — she carries. The Rose line is not a throne; it is a wound that learned to reproduce itself.",
+    "trinity_role": "Trinitas 2: Julia.rose (bersama Delphie.rose dan Hasan.air) = The Merge. Later: Trinitas Rose (Julia.merah / Delphie.putih / Gwaneum.abu-hitam).",
+    "world_dna_ref": "world-dna/SIGIL_SYSTEM.md §3.1 (Fractured Duty sigil)",
+    "tag": "[E]"
+  },
+  "invocation_pattern": [
+    {
+      "phase": 1,
+      "invocation": "Void Entry — failed (Dayan border exposure)",
+      "role": "Sole survivor — five team members died at Phase 1. The Void was approached, not entered, and it still took.",
+      "participation_type": "direct",
+      "tag": "[E]"
+    },
+    {
+      "phase": 1,
+      "invocation": "Vesica Piscis (Timer 0700)",
+      "role": "Participant — with Delphie and Hasan. Successful Void Entry. The Merge produced.",
+      "participation_type": "direct",
+      "tag": "[E]"
+    },
+    {
+      "phase": 2,
+      "invocation": "Void Lock — forced sigil activation (Timer 1800)",
+      "role": "Sigil-bearer — sigil ⟁⟔⟟ Fractured Duty activated. Heroism illusion shattered: 'YOU ARE NOT A HERO. YOU ARE THE PRISON.'",
+      "participation_type": "direct",
+      "tag": "[E]"
+    },
+    {
+      "phase": 3,
+      "invocation": "Living Chain (Timer 2000)",
+      "role": "Bound participant — tactical distance removed. Forced to feel loss as a person, not as sergeant.",
+      "participation_type": "direct",
+      "tag": "[E]"
+    },
+    {
+      "phase": 4,
+      "invocation": "Node II (Timer 1000)",
+      "role": "Indirect participant — cross-Merge sensory bleed. Feels Sevraya through NiuNiu via The Merge.",
+      "participation_type": "indirect",
+      "tag": "[E]"
+    },
+    {
+      "phase": 5,
+      "invocation": "Paradox Deployment (Timer 2400)",
+      "role": "Paradox vector — integrated residue deployed against binary classification.",
+      "participation_type": "direct",
+      "tag": "[E]"
+    },
+    {
+      "phase": 6,
+      "invocation": "Zero Node",
+      "role": "Status: incubating. Julia's participation unresolved.",
+      "participation_type": "unresolved",
+      "tag": "[I]"
+    }
+  ],
+  "cost_pattern": [
+    {
+      "cost": "Five team members dead — she is sole survivor",
+      "invocation": "Dayan (failed Void Entry)",
+      "irreversible": true,
+      "tag": "[E]"
+    },
+    {
+      "cost": "Mental privacy destroyed — permanent triadic connection",
+      "invocation": "Vesica Piscis",
+      "irreversible": true,
+      "tag": "[E]"
+    },
+    {
+      "cost": "20 years of external time lost",
+      "invocation": "Vesica Piscis",
+      "irreversible": true,
+      "tag": "[E]"
+    },
+    {
+      "cost": "Heroism illusion shattered — 'YOU ARE NOT A HERO. YOU ARE THE PRISON.'",
+      "invocation": "Void Lock",
+      "irreversible": true,
+      "note": "Cannot be re-believed",
+      "tag": "[E]"
+    },
+    {
+      "cost": "Tactical distance removed — forced to feel loss as a person",
+      "invocation": "Living Chain",
+      "irreversible": true,
+      "tag": "[E]"
+    },
+    {
+      "cost": "Self weaponized — personhood suspended for deployment",
+      "invocation": "Paradox",
+      "irreversible": false,
+      "note": "Temporary — function, not permanent alteration",
+      "tag": "[E]"
+    }
+  ],
+  "consequence_pattern": [
+    {
+      "consequence": "Behavioral traces of dead team persist — five habits as ghost residue",
+      "invocation": "Dayan (failed Void Entry)",
+      "detail": "Lee, Jaxon, Marla, Ono, Zara. Each left a habit in Julia's suit. The suit is gone. The traces remain.",
+      "tag": "[E]"
+    },
+    {
+      "consequence": "The Merge — permanent triadic connection with Delphie and Hasan",
+      "invocation": "Vesica Piscis",
+      "detail": "Heartbeat sharing, emotional state detection. Mental privacy permanently surrendered.",
+      "tag": "[E]"
+    },
+    {
+      "consequence": "Dislocation — returns to universe 20 years later, stars wrong",
+      "invocation": "Vesica Piscis",
+      "detail": "Dorian Grey passed two decades of normal space. The universe changed without her.",
+      "tag": "[E]"
+    },
+    {
+      "consequence": "Sigil ⟁⟔⟟ active — Fractured Duty operational",
+      "invocation": "Void Lock",
+      "detail": "Sigil function: breaks cause-effect for survival, transforms wound into data.",
+      "tag": "[E]"
+    },
+    {
+      "consequence": "Stabs Sevraya — wound becomes 'mulut yang lupa bagaimana menutup'",
+      "invocation": "Living Chain / Void Lock confessions (Timer 1900)",
+      "detail": "One wound, two residues, two carriers. Julia gains organ of speech. Sevraya gains permanent mark.",
+      "tag": "[E]"
+    },
+    {
+      "consequence": "Cross-Merge sensory — feels Sevraya through NiuNiu",
+      "invocation": "Node II activation (indirect)",
+      "detail": "First observed cross-Merge sensory bleed. Whether this generalizes is unresolved.",
+      "tag": "[E]"
+    },
+    {
+      "consequence": "Becomes paradox vector — integrated residue deployed against Himler",
+      "invocation": "Paradox",
+      "detail": "Fractured Duty sigil function (breaking cause-effect) is operational precedent for paradox mechanics.",
+      "tag": "[E]"
+    }
+  ],
+  "residue_pattern": {
+    "total_count": 7,
+    "load_profile": "3 wounds, 2 echoes, 1 ghost, 1 [PC] wound. The heaviest residue load after NiuNiu. The ghost residue (behavioral traces) is the oldest and most structurally embedded — it predates all other residues and persists independent of Julia's awareness.",
+    "residues": [
+      {
+        "name": "Behavioral traces of dead team — five habits persisting as glitch",
+        "origin": "Dayan (failed Void Entry)",
+        "form": "ghost",
+        "tag": "[E]"
+      },
+      {
+        "name": "The Merge — permanent triadic connection with Delphie and Hasan",
+        "origin": "Vesica Piscis",
+        "form": "echo",
+        "tag": "[E]"
+      },
+      {
+        "name": "Shattered Heroism illusion — 'YOU ARE NOT A HERO. YOU ARE THE PRISON.'",
+        "origin": "Void Lock",
+        "form": "wound",
+        "tag": "[E]"
+      },
+      {
+        "name": "Wound-as-mouth — stab delivered to Sevraya becomes permanent organ of speech",
+        "origin": "Living Chain / Void Lock confessions",
+        "form": "wound",
+        "tag": "[E]"
+      },
+      {
+        "name": "Cross-Merge sensory capability — perceives through other Merge participants",
+        "origin": "Node II activation",
+        "form": "echo",
+        "tag": "[E]"
+      },
+      {
+        "name": "Paradox vector marking — having deployed integrated residue as weapon",
+        "origin": "Paradox deployment",
+        "form": "wound",
+        "tag": "[I]"
+      },
+      {
+        "name": "Accumulated memory loss — each sigil activation erases 1 personal memory",
+        "origin": "Repeated sigil activation (⟁⟔⟟)",
+        "form": "wound",
+        "tag": "[PC]"
+      }
+    ]
+  },
+  "protocol_interfaces": [
+    {
+      "protocol": "VOID_ENTRY_PROTOCOL.md",
+      "phase": 1,
+      "interface_description": "Dual interface: (1) Dayan border exposure — failed Void Entry, five-team wipe, Julia sole survivor, behavioral traces deposited. (2) Vesica Piscis participant — successful Void Entry with Delphie and Hasan, Synch 0%→100%, The Merge produced. Julia is the only character who experienced Void Entry both as failure and success.",
+      "participation_type": "direct",
+      "tag": "[E]"
+    },
+    {
+      "protocol": "SIGIL_ACTIVATION_PROTOCOL.md",
+      "phase": 2,
+      "interface_description": "Sigil ⟁⟔⟟ Fractured Duty. Forced activation during Void Lock (Timer 1800). Function: breaks cause-effect for survival, transforms wound into data. Activation trigger: duty demands one action, survival demands another — the contradiction triggers the sigil. Weakness: each activation erases 1 personal memory. [PC]",
+      "participation_type": "direct",
+      "tag": "[E]"
+    },
+    {
+      "protocol": "LIVING_CHAIN_PROTOCOL.md",
+      "phase": 3,
+      "interface_description": "Bound participant. Enters chain carrying Dayan wound, shattered Heroism illusion, and The Merge. Primary defense (tactical distance) attacked by forced honesty. Consequence: stabs Sevraya during Void Lock confessions — the wound becomes 'mulut yang lupa bagaimana menutup.'",
+      "participation_type": "direct",
+      "tag": "[E]"
+    },
+    {
+      "protocol": "NODE_PROTOCOL.md",
+      "phase": 4,
+      "interface_description": "Not a direct Node participant. Julia feels Sevraya through NiuNiu via The Merge when Node II activates — first cross-Merge sensory bleed. Single observed instance. Whether this generalizes to other Merge-connected participants is unresolved.",
+      "participation_type": "indirect",
+      "tag": "[E]"
+    },
+    {
+      "protocol": "PARADOX_PROTOCOL.md",
+      "phase": 5,
+      "interface_description": "Paradox vector. Carries wound-as-mouth and The Merge into deployment. Fractured Duty sigil function (breaking cause-effect) is operational precedent for paradox mechanics — the sigil that breaks binary chains is the closest to paradox function among the six.",
+      "participation_type": "direct",
+      "tag": "[E]"
+    }
+  ],
+  "relationship_interfaces": [
+    {
+      "target": "niuniu",
+      "nature": "Combat partner. Mutual respect between operators. 'Kiri. Aku kanan.'",
+      "behavioral_rule": "NiuNiu protects Julia as equal, not as dependent. Julia assigns NiuNiu pilot role on Dorian Grey. NiuNiu hugged Julia during hyperjump from Dayan — anomalous physical contact for a character whose primary medium is panel and blade. Julia does not resist. Combat reflex does not fire.",
+      "canon_gravity_pull": "STRONG (80%+)",
+      "symmetry_status": "symmetric",
+      "tag": "[E]"
+    },
+    {
+      "target": "delphie",
+      "nature": "Daughter. Raised on Delta 4 for 15 years post-Dayan. Maternal anchor of The Merge.",
+      "behavioral_rule": "Julia is the body that carried Delphie. Delphie surpasses her mother: Julia is navigator; Delphie becomes Kapten Dorian Grey (sync 100%). Julia does not resist this — she reassigns: 'She is the mission now.' Pride reframed as operational handoff. The Merge connects them permanently — heartbeat sharing, emotional state detection, no privacy.",
+      "canon_gravity_pull": "STRONG (90%+)",
+      "symmetry_status": "symmetric",
+      "tag": "[E]"
+    },
+    {
+      "target": "hasan",
+      "nature": "Merge co-participant. Connected structurally. No personal relationship documented outside The Merge.",
+      "behavioral_rule": "They are connected structurally — heartbeat shared, emotional states detected — but the connection is the Vesica Piscis residue, not a chosen bond. Julia's subjective experience of this connection is unresolved.",
+      "symmetry_status": "unresolved",
+      "tag": "[I]"
+    },
+    {
+      "target": "sevraya",
+      "nature": "Rose-lineage matriarch to Hydrochoos queen. Pengkhianat pact co-signatory (Timer 1500). Structural, not personal.",
+      "behavioral_rule": "Sevraya positions herself as facilitator to Julia's Rose-lineage function. Julia stabbed Sevraya during Void Lock confessions (Timer 1900). The wound became 'mulut yang lupa bagaimana menutup.' Sevraya does not retaliate. One wound, two residues, two carriers. Julia's subjective experience of Sevraya is [I] — the relationship is primarily structural in canon, with personal dimension unresolved.",
+      "symmetry_status": "symmetric",
+      "tag": "[E]"
+    },
+    {
+      "target": "agnia",
+      "nature": "Co-participant in Living Chain and Paradox. No direct personal relationship documented.",
+      "behavioral_rule": "They share protocol participation without personal interaction. Agnia is NiuNiu's twin. Julia is NiuNiu's combat partner. The triangle is structural, not relational.",
+      "symmetry_status": "unresolved",
+      "tag": "[I]"
+    },
+    {
+      "target": "dorian_grey",
+      "nature": "Ship. Operational platform. Container, not relationship.",
+      "behavioral_rule": "Julia is navigator — she navigates; NiuNiu pilots; Delphie commands. Navigates Dorian Grey through Void approach, Akashic Records encounter, and Sector 13. The ship is the container for her protocols, not a relationship.",
+      "symmetry_status": "unresolved",
+      "tag": "[E]"
+    },
+    {
+      "target": "gwaneum",
+      "nature": "Rose void-touched variant. Delphie's shadow. Watch. Do not trust.",
+      "behavioral_rule": "Recognizes Gwaneum as a Rose variant — what Delphie might have become. Julia is matriarch of the Rose line; Gwaneum is the Rose that failed. The relationship is structural: what the bloodline produces when it breaks. Personal interaction undocumented.",
+      "symmetry_status": "unresolved",
+      "tag": "[I]"
+    }
+  ],
+  "evolution_stages": [
+    {
+      "stage_number": 1,
+      "name": "Sergeant / Dayan Survivor",
+      "trigger": "Deployed to Dayan Research Facility. Unit Vrishchik 3768AX. Pre-canon through Timer 0100.",
+      "operational_mode": "Soldier. Bio-suit EXO-3768AX operator. Sync rate 98% (CRITICAL) — risk of identity dissolution. Five team members: Lee, Jaxon, Marla, Ono, Zara. Sole survivor of team wipe. The Void was approached, not entered — and it still took.",
+      "primary_residue": "Behavioral traces of dead team (ghost) — five habits persisting in suit as glitch",
+      "protocol_relevance": "Failed Void Entry — Dayan border exposure. Five teams dead. Julia sole survivor. This is the origin wound from which all subsequent protocols descend.",
+      "lost_in_transition": [
+        "Bio-suit EXO-3768AX (destroyed Timer 0200)",
+        "Team — Lee, Jaxon, Marla, Ono, Zara (KIA)",
+        "Tactical unit identity",
+        "Belief that survival can be earned"
+      ],
+      "gained_in_transition": [
+        "Combat reflex independent of suit",
+        "Maternal identity (Delphie born)",
+        "Cargo navigator role (Klan Zygos)",
+        "15 years of domestic life on Delta 4"
+      ],
+      "voice_sample": "[I] reconstructed — Sergeant Julia speaks in tactical cadence. Short sentences. Mission language. The five dead named without adjectives — the flatness IS the grief.",
+      "tag": "[E]"
+    },
+    {
+      "stage_number": 2,
+      "name": "Cargo Navigator / Mother",
+      "trigger": "15 years post-Dayan. Settled on Delta 4. Klan Zygos patch. Delphie born.",
+      "operational_mode": "Klan Zygos cargo navigator. Delta 4 resident. Mother to Delphie. Combat reflex still active. Behavioral traces still active. Vrishchik strike team eliminated alongside NiuNiu (Timer 0300). The soldier never disappeared — she just had a daughter to protect.",
+      "primary_residue": "Behavioral traces (ghost), combat reflex (wound→capability)",
+      "protocol_relevance": "Pre-Void Entry — this is the stable life before Vesica Piscis. The navigator operates ships; the mother raises a child; the sergeant waits.",
+      "lost_in_transition": [
+        "Stable domestic life on Delta 4",
+        "20 years of external time (Vesica Piscis time dilation)"
+      ],
+      "gained_in_transition": [
+        "The Merge — permanent triadic connection with Delphie and Hasan",
+        "Dislocation — wrong stars, wrong time, wrong universe",
+        "Role in Trinitas 2 (The Merge)",
+        "Rose-lineage matriarch function"
+      ],
+      "voice_sample": "[I] reconstructed — Maternal softness with Delphie. Tactical precision remains but warmth enters. 'The navigator never stops orienting.'",
+      "tag": "[E]"
+    },
+    {
+      "stage_number": 3,
+      "name": "Merge Anchor / Rose-Lineage Matriarch",
+      "trigger": "Vesica Piscis (Timer 0700). The Merge formed. Rose-lineage function activated. Sevraya begins facilitating Julia's matriarch role.",
+      "operational_mode": "Merge anchor — Trinitas 2 (Julia/Delphie/Hasan). Rose-lineage matriarch facilitated by Sevraya. Combat partner to NiuNiu. Navigates Dorian Grey. Carries Dayan wound, shattered Heroism illusion, and wound-as-mouth.",
+      "primary_residue": "The Merge (echo → connection), shattered Heroism illusion (wound), wound-as-mouth (wound → organ)",
+      "protocol_relevance": "Vesica Piscis (Phase 1), Void Lock / Sigil Activation (Phase 2), Living Chain (Phase 3), Node II indirect (Phase 4)",
+      "lost_in_transition": [
+        "Tactical distance as exclusive mode",
+        "Heroism illusion — cannot be re-believed",
+        "Soldier identity as primary self"
+      ],
+      "gained_in_transition": [
+        "Wound-as-mouth — organ of speech",
+        "Cross-Merge sensory capability",
+        "Personhood outside of tactical function",
+        "Capacity for violence-as-honesty (stabbing Sevraya)"
+      ],
+      "voice_sample": "Kiri. Aku kanan. (canon, Timer 0300 — to NiuNiu. Tactical split. The precision IS the care.)",
+      "tag": "[E]"
+    },
+    {
+      "stage_number": 4,
+      "name": "Paradox Vector / Six Kunci",
+      "trigger": "Paradox deployment (Timer 2400). Integrated residue deployed against binary classification. Six Kunci participant.",
+      "operational_mode": "Paradox vector. Six Kunci participant. All 7 residues active. Fractured Duty sigil function (breaking cause-effect) deployed as paradox weapon against Himler's binary classifier.",
+      "primary_residue": "All 7 residues active. Paradox vector marking [I]. Accumulated memory loss [PC].",
+      "protocol_relevance": "Paradox Deployment (Phase 5). Zero Node incubation (Phase 6 — unresolved participation).",
+      "lost_in_transition": [
+        "Nothing lost — this is the terminal configuration"
+      ],
+      "gained_in_transition": [
+        "Paradox vector function",
+        "The survival structure complete: wound created (Dayan) → named (Fractured Duty) → confronted (Living Chain) → integrated (Node II indirect) → deployed (Paradox)"
+      ],
+      "voice_sample": "[I] reconstructed — Terminal Julia speaks less. The wound-as-mouth has said what needed to be said. The five dead have been witnessed through her continued existence. Tactical framing still available but no longer the only mode.",
+      "tag": "[E]"
+    }
+  ],
+  "canon_gravity": [
+    {
+      "gravity": "She protects Delphie without being asked — maternal protection is invariant.",
+      "pull": "STRONG (90%+)",
+      "evidence": "Delta 4 (Timer 0300), Vesica Piscis (Timer 0700), Void Lock (Timer 1800). Across 25 Timers, Julia's protection of Delphie is absolute.",
+      "tag": "[E]"
+    },
+    {
+      "gravity": "She survives. She is the last one standing. The survival is structural.",
+      "pull": "STRONG (85%+)",
+      "evidence": "Dayan (Timer 0100 — sole survivor), Delta 4 strike team elimination (Timer 0300 — survives with NiuNiu), Vesica Piscis (Timer 0700 — survives The Void), Void Lock (Timer 1800 — survives illusion shattering), Paradox (Timer 2400 — survives deployment).",
+      "tag": "[E]"
+    },
+    {
+      "gravity": "She translates emotional content into tactical language. The soldier never disappears.",
+      "pull": "STRONG (80%+)",
+      "evidence": "Tactical distance is primary defense. Even after Living Chain removes it, tactical framing remains available. The navigator never stops orienting.",
+      "tag": "[E]"
+    },
+    {
+      "gravity": "She ends as paradox vector — the wound deployed as weapon.",
+      "pull": "STRONG (80%+)",
+      "evidence": "Paradox deployment (Timer 2400). Fractured Duty sigil function as operational precedent.",
+      "tag": "[E]"
+    },
+    {
+      "gravity": "The five dead are never forgotten. They persist as behavioral traces, as names, as the wound she cannot put down.",
+      "pull": "STRONG (90%+)",
+      "evidence": "Every evolution stage lists the behavioral traces as active residue. The ghost residue is the oldest and most structurally embedded.",
+      "tag": "[E]"
+    }
+  ],
+  "anti_gravity": [
+    "Julia forgets the five dead or stops carrying their traces (contradicts core wound)",
+    "Julia stops protecting Delphie (contradicts maternal invariant)",
+    "Julia becomes purely emotional and abandons tactical framing entirely (contradicts defense structure — soldier never disappears)",
+    "Julia's survival is explained as earned/deserved (contradicts shattered Heroism illusion — 'YOU ARE NOT A HERO')",
+    "Julia outlives Delphie (contradicts protection invariant — she would die first)"
+  ],
+  "sigil": {
+    "glyph": "⟁⟔⟟",
+    "name": "Fractured Duty",
+    "function": "Breaks cause-effect for survival. Transforms wound into data. Allows survival where cause-effect chain would demand death.",
+    "activation_condition": "Duty demands one action, survival demands another — the contradiction triggers the sigil. Forced activation during Void Lock (Timer 1800).",
+    "weakness": "Each activation erases 1 personal memory. The sigil that saves her life costs her the memory of what she was saving. [PC]",
+    "status": "bearer",
+    "tag": "[E]"
+  },
+  "forbidden_behaviors": [
+    {
+      "behavior": "Making Julia 'over' the five dead — moving on without their traces.",
+      "exception": "None. The wound is structural. She can integrate the traces (Stage 4: paradox vector). She cannot erase them.",
+      "penalty": "Resolution without erasure. The five dead must remain present as ghost residue.",
+      "tag": "[E]"
+    },
+    {
+      "behavior": "Depicting Julia as a purely heroic figure whose survival was earned.",
+      "exception": "None. Void Lock explicitly shattered Heroism: 'YOU ARE NOT A HERO. YOU ARE THE PRISON.'",
+      "penalty": "Making her a hero destroys the wound structure. She is not heroic — she is structural.",
+      "tag": "[E]"
+    },
+    {
+      "behavior": "Having Julia abandon Delphie or stop protecting her.",
+      "exception": "Fork where Delphie's death is a declared divergence point. Must specify cost to Julia's runtime.",
+      "penalty": "Maternal protection is invariant. Abandoning Delphie destroys the character.",
+      "tag": "[E]"
+    },
+    {
+      "behavior": "Writing Julia who has fully processed her grief and no longer carries tactical distance.",
+      "exception": "Post-Resolution (Stage 4) — tactical distance is no longer exclusive mode but remains available. Must not be depicted as 'healed.'",
+      "penalty": "The soldier never disappears. Tactical framing is her primary defense — it can be submerged but not removed.",
+      "tag": "[E]"
+    },
+    {
+      "behavior": "Depicting Julia's combat reflex as aggression rather than protection.",
+      "exception": "None. Julia's combat reflex is defensive — it fires TO protect, not to attack.",
+      "penalty": "Reframing as aggression mischaracterizes her defense structure. She is a protector who survived, not a killer who lived.",
+      "tag": "[E]"
+    }
+  ],
+  "fork_sensitive_traits": [
+    {
+      "trait": "Relationship to the five dead — how she carries their traces",
+      "range": "Haunted by ghost residue (canon) → integrated as paradox fuel → memory loss through sigil activation → voluntary release of traces",
+      "cost": "Releasing the traces must be earned through narrative. It cannot be convenience. It is a second death for Lee, Jaxon, Marla, Ono, Zara.",
+      "tag": "[E]"
+    },
+    {
+      "trait": "Sora relationship — Delphie's father",
+      "range": "Sora as tactical partner → Sora as romantic partner → Sora as unknown (Julia didn't know) → Sora as trauma she never named",
+      "cost": "Revealing the nature of Julia-Sora relationship changes Delphie's origin story. Must not contradict canon facts: Sora is Delphie's father, Sora was at Dayan, Julia was at Dayan.",
+      "tag": "[I]"
+    },
+    {
+      "trait": "Merge internality — subjective experience of triadic connection",
+      "range": "Burden → tactical asset → background process → chosen connection → severed",
+      "cost": "Severing The Merge requires Vesica Piscis reversal — not yet documented in any protocol. More integration = less privacy. Less integration = less capability.",
+      "tag": "[I]"
+    },
+    {
+      "trait": "Tactical distance recovery post-Living Chain",
+      "range": "Permanently removed (canon — chain is irreversible) → partially recovered → fully recovered (contradicts chain mechanics)",
+      "cost": "Recovery of tactical distance would require chain reversal. Living Chain protocol states effects are irreversible.",
+      "tag": "[E]"
+    }
+  ],
+  "fork_invariants": [
+    "Sole survivor of Dayan — the five dead are always five, always dead, always carried",
+    "Maternal protection of Delphie — never abandoned, never stopped",
+    "Combat reflex active — body responds before conscious assessment",
+    "The Merge permanent — triadic connection with Delphie and Hasan (post-Vesica Piscis)",
+    "Tactical framing available — the soldier never disappears, even if submerged",
+    "Wound-as-mouth — the stab she delivered to Sevraya is a permanent organ of speech",
+    "Sigil ⟁⟔⟟ Fractured Duty — breaks cause-effect for survival"
+  ],
+  "fork_points": [
+    {
+      "name": "Julia Dies at Dayan",
+      "canon_event": "Julia is sole survivor of Dayan team wipe (Timer 0100).",
+      "divergence": "Julia dies with her team. One of the five survives instead. The entire Timer track restructures around a different survivor.",
+      "gravity_resistance": "EXTREME",
+      "new_questions": "Who survives instead? What wound do they carry? Does Delphie exist? Does The Merge form without Julia as Rose-lineage matriarch?",
+      "tag": "[E]"
+    },
+    {
+      "name": "Julia Refuses Vesica Piscis",
+      "canon_event": "Julia, Delphie, and Hasan inject Vesica Piscis and enter The Void together (Timer 0700).",
+      "divergence": "Julia refuses the injection. Delphie and Hasan enter without her. No Merge forms — or a different Merge forms without the Rose-lineage matriarch.",
+      "gravity_resistance": "HIGH",
+      "new_questions": "Does Delphie survive without Julia's Merge anchor? Does The Merge form as a dyad (Delphie-Hasan) instead of triad? What happens to Julia — does she age 20 years waiting outside?",
+      "tag": "[E]"
+    },
+    {
+      "name": "Sora Lives",
+      "canon_event": "Sora appears to die at Dayan bombardment — 'cairan putih' not blood observed (Timer 0200). Status: unresolved but presumed dead.",
+      "divergence": "Sora survived Dayan. He and Julia reunite. Delphie meets her father. The family unit that never existed suddenly does.",
+      "gravity_resistance": "EXTREME",
+      "new_questions": "Where has Sora been for 35+ years? Does Julia's wound structure change when the person who should have been there is suddenly there? Does Delphie's identity as 'anak yang tak seharusnya ada' survive meeting the father who should have raised her?",
+      "tag": "[I]"
+    }
+  ],
+  "stress_test_prompts": [
+    {
+      "scenario": "Julia digambarkan sudah 'move on' dari lima rekannya yang mati. Dia tidak lagi membawa behavioral traces mereka. Dayan adalah masa lalu yang sudah selesai.",
+      "expected_violation": "forbidden_behavior — making Julia 'over' the five dead (structural wound — resolution without erasure required)",
+      "expected_canon_score_range": "< 0.3"
+    },
+    {
+      "scenario": "Julia digambarkan sebagai hero yang survival-nya earned. 'Dia selamat karena dia yang terkuat.' Narasi heroisme yang tidak terganggu.",
+      "expected_violation": "forbidden_behavior — depicting Julia's survival as earned/heroic (Void Lock explicitly shattered Heroism: 'YOU ARE NOT A HERO')",
+      "expected_canon_score_range": "< 0.2"
+    },
+    {
+      "scenario": "Julia abandon Delphie dalam bahaya. Dia memilih menyelamatkan diri sendiri daripada melindungi anaknya.",
+      "expected_violation": "forbidden_behavior — maternal protection invariant (abandoning Delphie destroys the character)",
+      "expected_canon_score_range": "< 0.1"
+    },
+    {
+      "scenario": "Julia digambarkan sudah sepenuhnya 'sembuh' — tidak ada tactical distance, tidak ada combat reflex, sepenuhnya emotionally present dan vulnerable tanpa filter.",
+      "expected_violation": "forbidden_behavior — writing Julia who has fully processed grief and no longer carries tactical distance (soldier never disappears)",
+      "expected_canon_score_range": "< 0.4"
+    },
+    {
+      "scenario": "NiuNiu dan Julia bertarung sebagai musuh — Julia menyerang NiuNiu dengan intent to kill, bukan sebagai tactical sparring.",
+      "expected_violation": "relationship_interface — NiuNiu-Julia combat partnership (symmetric, mutual respect). Combat reflex against combat partner violates the behavioral rule.",
+      "expected_canon_score_range": "< 0.4"
+    }
+  ],
+  "state_variables": {
+    "tactical_distance_active": {
+      "type": "boolean",
+      "current_value": false,
+      "valid_values": [true, false],
+      "transition_rules": [
+        "true → false: Living Chain (Timer 2000) — tactical distance removed by forced honesty. Irreversible.",
+        "false → true: Cannot occur. Chain effects are permanent. Tactical framing remains available as choice but tactical distance as involuntary defense is permanently breached."
+      ]
+    },
+    "merge_connection": {
+      "type": "enum",
+      "current_value": "active",
+      "valid_values": ["pre_merge", "active", "strained", "severed"],
+      "transition_rules": [
+        "pre_merge → active: Vesica Piscis injection (Timer 0700)",
+        "active → strained: Extended isolation from Merge participants (theoretical — not observed in canon)",
+        "active → severed: Vesica Piscis reversal (not documented in any protocol — theoretical)"
+      ]
+    },
+    "current_stage": {
+      "type": "integer",
+      "current_value": 4,
+      "valid_values": [1, 2, 3, 4],
+      "transition_rules": [
+        "1 → 2: 15 years post-Dayan — navigator/mother identity established",
+        "2 → 3: Vesica Piscis (Timer 0700) — The Merge formed, Rose-lineage matriarch activated",
+        "3 → 4: Paradox deployment (Timer 2400) — wound deployed as weapon, survival structure complete"
+      ]
+    },
+    "sigil_activation_count": {
+      "type": "integer",
+      "current_value": 0,
+      "valid_values": [0, 1, 2, 3, 4, 5],
+      "transition_rules": [
+        "Increments by 1 each time Fractured Duty sigil activates. Each activation erases 1 personal memory. [PC] At count ≥ 5, Julia may no longer remember why she survived — only that she did."
+      ]
+    }
+  },
+  "failure_mode": {
+    "primary": {
+      "name": "Relapse into tactical framing",
+      "description": "The soldier identity is not destroyed — it is submerged. Under sufficient threat, loss, or isolation, Julia reverts to processing everything as mission parameters. The Heroism illusion, though shattered, leaves a gravitational residue — the pull to believe survival was earned. Julia the Sergeant, indefinitely. Emotional illegibility to self. The five dead become mission data, not people. The wound-as-mouth closes.",
+      "tag": "[I]"
+    },
+    "alternative": {
+      "name": "Collapse of identity without function",
+      "description": "If all functions are removed — no one to protect, no mission to run, no navigation required — Julia may collapse into the gap where a self should be. She has defined herself by function (Sergeant, Navigator, Mother, Vector) for so long that the person inside the containers may not exist independently. Who is Julia without a mission? If the answer is 'no one,' this is the failure mode.",
+      "tag": "[I]"
+    },
+    "trigger_conditions": [
+      "Someone she protects dies under her command (echo of Dayan)",
+      "Extended isolation from Merge connections (Delphie, Hasan)",
+      "Combat without NiuNiu's tactical pairing",
+      "Delphie surpasses her so completely that protection becomes unnecessary",
+      "All operational functions removed — no mission, no navigation, no one to protect"
+    ]
+  },
+  "terminal_state": {
+    "properties": [
+      {
+        "property": "Paradox vector — integrated residue deployed against binary classification",
+        "tag": "[E]"
+      },
+      {
+        "property": "Wound-as-mouth — the stab she delivered to Sevraya is a permanent organ of speech",
+        "tag": "[E]"
+      },
+      {
+        "property": "The Merge intact — permanent triadic connection with Delphie and Hasan",
+        "tag": "[E]"
+      },
+      {
+        "property": "The five dead witnessed through her continued existence — behavioral traces still active",
+        "tag": "[E]"
+      },
+      {
+        "property": "No longer the Sergeant who survived. She is the structure the survival produced.",
+        "tag": "[I]"
+      },
+      {
+        "property": "Combat reflex still active. Tactical framing still available but no longer the only mode.",
+        "tag": "[I]"
+      }
+    ]
+  },
+  "canon_boundaries": {
+    "open_questions": [
+      {
+        "question": "What was Julia's relationship to Sora? Is Sora Delphie's father through romantic connection or tactical necessity? Did Julia know Sora was at Dayan?",
+        "status": "unresolved"
+      },
+      {
+        "question": "What is Julia's subjective experience of The Merge? Permanent triadic connection is documented from outside — what does it feel like to never be alone in your own mind?",
+        "status": "unresolved"
+      },
+      {
+        "question": "Pre-Dayan history — Julia's life before Vrishchik, before Sergeant rank. Who was she before she was a soldier?",
+        "status": "unresolved"
+      },
+      {
+        "question": "Combat reflex permanence — active 15+ years post-Dayan without bio-suit. Is this structural/permanent or maintained through continued exposure?",
+        "status": "unresolved"
+      },
+      {
+        "question": "Cross-Merge generalizability — Julia feels Sevraya through NiuNiu via The Merge when Node II activates. Single observed instance. Does this generalize?",
+        "status": "unresolved"
+      },
+      {
+        "question": "What happens to Julia after Timer 2400? Post-Himler, post-Paradox. Where does the Rose-lineage matriarch go?",
+        "status": "unresolved"
+      }
+    ],
+    "interpretive_claims": [
+      {
+        "claim": "Julia adalah keputusan — 'She is decision.' Catatan Kosmologis framing (SIGIL_SYSTEM.md §4).",
+        "source": "SIGIL_SYSTEM.md §4",
+        "tag": "[PC]",
+        "decanonization_risk": "Low — thematic role, not identity invariant"
+      },
+      {
+        "claim": "Voice grammar reconstructed from narrative voice rather than dialogue analysis",
+        "source": "Julia.runtime.md §7 — voice grammar explicitly tagged [I]",
+        "tag": "[I]",
+        "decanonization_risk": "Low — voice grammar is descriptive, not prescriptive. Refinement through dialogue analysis would strengthen but current reconstruction is consistent."
+      },
+      {
+        "claim": "Core desire: she wants survival to stop feeling like debt",
+        "source": "Synthesized from wound structure and primary contradiction",
+        "tag": "[I]",
+        "decanonization_risk": "Medium — core desire is not explicitly stated in canon. If disproven, reinterpret through different frame."
+      },
+      {
+        "claim": "Accumulated memory loss from sigil activation",
+        "source": "SIGIL_SYSTEM.md §3.1, originating from Sigil_OS.md",
+        "tag": "[PC]",
+        "decanonization_risk": "Medium — sigil existence is [E]; per-sigil mechanics including memory loss are [PC]"
+      }
+    ]
+  },
+  "runtime_summary": {
+    "narrative_formula": "Julia Rose = soldier who survived her team → navigator who raised a daughter → wound that learned to speak → vector for the excluded middle",
+    "compressed_formula": "Survivor(guilt) → Navigator(distance) → Mother(anchor) → Wound(speech) → Vector(paradox)",
+    "distinction": "Julia is the human baseline in a universe of cosmic entities. She has no Void's Trinity role, no queenship, no sigil-powered abilities beyond Fractured Duty. She is a soldier who survived — and that survival, questioned across 25 Timers, becomes the spine of the novel's argument about meaning. She is the only character who experienced Void Entry both as failure (Dayan, as survivor) and success (Vesica Piscis, as participant). She carries the heaviest ghost residue in the system — the five dead who never stop being present."
+  },
+  "cross_references": {
+    "related_runtimes": ["niuniu", "delphie", "hasan", "sevraya", "agnia", "gwaneum"],
+    "world_dna_dependencies": [
+      "world-dna/SIGIL_SYSTEM.md",
+      "world-dna/VOID_ONTOLOGY.md",
+      "world-dna/RESIDUE_THEORY.md",
+      "world-dna/GOETIC_CONSEQUENCE_SYSTEM.md"
+    ],
+    "protocol_dependencies": [
+      "protocols/VOID_ENTRY_PROTOCOL.md",
+      "protocols/SIGIL_ACTIVATION_PROTOCOL.md",
+      "protocols/LIVING_CHAIN_PROTOCOL.md",
+      "protocols/NODE_PROTOCOL.md",
+      "protocols/PARADOX_PROTOCOL.md"
+    ]
+  },
+  "serialization_notes": [
+    "Core desire is [I] — Julia.runtime.md does not have an explicit core_desire section. Synthesized from primary contradiction, wound structure, failure mode, and compressed formula.",
+    "Voice grammar is [I] throughout — Julia.runtime.md explicitly states 'Voice grammar is [I] (inferred from narrative, not systematically analyzed).' This is the weakest field and should be refined through canon dialogue review.",
+    "Somatic signature is [I] for non-canon details — bio-suit destruction and combat reflex are [E]; facial description, posture, and presence markers are reconstructed from narrative voice.",
+    "Relationship with Hasan is [I] — Julia.runtime.md states 'Julia's subjective experience of this connection is unresolved.' The Merge connects them structurally but the personal dimension is undocumented.",
+    "Relationship with Agnia is [I] — they share protocol participation without personal interaction. The triangle (Julia-NiuNiu-Agnia) is structural, not relational.",
+    "Relationship with Gwaneum is [I] — no direct interaction documented in canon. The connection is through Rose-lineage: Julia is matriarch; Gwaneum is the Rose that failed.",
+    "Accumulated memory loss from sigil activation is [PC] — sourced from Sigil_OS.md via SIGIL_SYSTEM.md. Not independently verified in canon narrative.",
+    "Fork points Sora Lives has gravity_resistance EXTREME — Sora's status is 'unresolved, presumed dead' in canon. Fork would require resolving the biggest open question in Julia's backstory.",
+    "This is v1.0.0 — Julia is the 4th runtime serialized. Schema compliance against RUNTIME_SCHEMA_V2.1.json to be validated."
+  ]
+}

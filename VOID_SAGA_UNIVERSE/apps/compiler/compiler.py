@@ -43,7 +43,7 @@ def generate_via_claude(llm_prompt):
     try:
         client = anthropic.Anthropic(api_key=api_key)
         response = client.messages.create(
-            model="claude-sonnet-4-6-20250514",
+            model="claude-haiku-4-5",
             max_tokens=2048,
             system=llm_prompt["system_prompt"],
             messages=[{"role": "user", "content": llm_prompt["user_prompt"]}],
@@ -417,7 +417,7 @@ def build_llm_prompt_blueprint(ctx, result):
 """
 
 
-def compile_scenario(scenario_path, live=False):
+def compile_scenario(scenario_path, live=False, debug=False):
     """Run the full compilation pipeline.
 
     1. Evaluate via constraint engine
@@ -530,16 +530,33 @@ def compile_scenario(scenario_path, live=False):
     if canon_verdict == "CANON_WARNING":
         generation_mode_display = "caution"
 
+    debug_info = None
+
     if live:
         raw_output, api_err = generate_via_claude(llm_prompt)
         if api_err:
             generation_error = api_err
             generation_mode_display = "api_error"
+            if debug:
+                debug_info = {
+                    "error_type": "api_error",
+                    "api_error": api_err,
+                    "has_api_key": bool(_get_api_key()),
+                }
         else:
             parsed, post_val, val_err = validate_generated_output(raw_output, scenario_path)
             if val_err:
                 generation_error = val_err
                 generation_mode_display = "validation_error"
+                if debug:
+                    debug_info = {
+                        "error_type": "validation_error",
+                        "validation_error": val_err,
+                        "raw_response": raw_output,
+                        "raw_response_len": len(raw_output),
+                        "parsed_json": parsed if parsed is not None else None,
+                        "post_validation": post_val if post_val is not None else None,
+                    }
             else:
                 generated_story = {
                     "raw_output": raw_output,
@@ -550,6 +567,13 @@ def compile_scenario(scenario_path, live=False):
                 }
                 post_validation = post_val
                 generation_mode_display = "live"
+                if debug:
+                    debug_info = {
+                        "error_type": None,
+                        "raw_response_len": len(raw_output),
+                        "parsed_valid": True,
+                        "post_validation": post_val if post_val is not None else None,
+                    }
     else:
         # Dry-run: produce stub
         generated_story = {
@@ -557,7 +581,7 @@ def compile_scenario(scenario_path, live=False):
             "mode": "dry_run",
         }
 
-    return {
+    result = {
         "status": "COMPLETED",
         "blocked": False,
         "generation_mode": generation_mode_display,
@@ -581,8 +605,13 @@ def compile_scenario(scenario_path, live=False):
         "engine_result": engine_result,
     }
 
+    if debug and debug_info:
+        result["_debug_info"] = debug_info
 
-def print_compile_result(result):
+    return result
+
+
+def print_compile_result(result, debug=False):
     """Pretty-print compilation result."""
     if result["status"] == "BLOCKED":
         print("🛑 GENERATION BLOCKED")
@@ -650,6 +679,85 @@ def print_compile_result(result):
     if result.get("generation_error"):
         print(f"   ❌ Generation error: {result['generation_error']}")
 
+    # ── Debug output ──────────────────────────────────────
+    if debug and result.get("_debug_info"):
+        di = result["_debug_info"]
+        mode = result.get("generation_mode", "?")
+        print()
+        print("   ┌─ DEBUG ───────────────────────────────────────────")
+
+        if mode == "validation_error":
+            print("   │ Mode: validation_error")
+            print(f"   │ Error: {di.get('validation_error', '?')}")
+
+            # Raw Claude response
+            raw = di.get("raw_response", "")
+            raw_len = di.get("raw_response_len", 0)
+            print(f"   │ Raw response length: {raw_len} chars")
+            if raw:
+                print(f"   │ Raw response (first 500 chars):")
+                for line in raw[:500].split("\n"):
+                    print(f"   │   {line}")
+                if raw_len > 500:
+                    print(f"   │   ... ({raw_len - 500} more chars)")
+                print(f"   │ Raw response (last 200 chars):")
+                for line in raw[-200:].split("\n"):
+                    if line.strip():
+                        print(f"   │   {line}")
+
+            # JSON parse result
+            parsed = di.get("parsed_json")
+            if parsed is not None:
+                print(f"   │ JSON parsed: YES")
+                keys = list(parsed.keys())
+                print(f"   │ Top-level keys present: {keys}")
+                # Check required fields from OUTPUT_SCHEMA
+                required = OUTPUT_SCHEMA.get("required", [])
+                missing = [k for k in required if k not in parsed]
+                present = [k for k in required if k in parsed]
+                print(f"   │ Required fields present: {present}")
+                if missing:
+                    print(f"   │ Required fields MISSING: {missing}")
+                    for m in missing:
+                        print(f"   │   → '{m}' not found in JSON response")
+                # Empty fields check
+                empty = [k for k in required if k in parsed and not parsed[k]]
+                if empty:
+                    print(f"   │ Empty required fields: {empty}")
+                    for e in empty:
+                        print(f"   │   → '{e}' is present but empty/null")
+            else:
+                print(f"   │ JSON parsed: NO (parse error or None returned)")
+
+            # Post-generation validation
+            pv = di.get("post_validation")
+            if pv is not None:
+                print(f"   │ Post-generation validation:")
+                print(f"   │   Engine status: {pv.get('status', '?')}")
+                print(f"   │   Final verdict: {pv.get('final_verdict', '?')}")
+                print(f"   │   Canon score: {pv.get('canon_score', '?')}")
+                print(f"   │   Runtime violations: {pv.get('runtime_violations', 0)}")
+                print(f"   │   Contract violations: {pv.get('contract_violations', 0)}")
+                print(f"   │   Warnings: {pv.get('warnings', 0)}")
+            else:
+                print(f"   │ Post-generation validation: NOT RUN")
+
+        elif mode == "api_error":
+            print("   │ Mode: api_error")
+            print(f"   │ Error: {di.get('api_error', '?')}")
+            print(f"   │ API key present: {di.get('has_api_key', False)}")
+            print(f"   │ Note: ANTHROPIC_API_KEY is read from environment only.")
+
+        elif mode == "live":
+            print("   │ Mode: live (generation succeeded)")
+            print(f"   │ Raw response length: {di.get('raw_response_len', 0)} chars")
+            print(f"   │ JSON parsed: {di.get('parsed_valid', False)}")
+            pv = di.get("post_validation")
+            if pv:
+                print(f"   │ Post-gen verdict: {pv.get('post_gen_verdict', '?')} (score: {pv.get('canon_score', 0)})")
+
+        print(f"   └──────────────────────────────────────────────────")
+
     # LLM prompt summary
     llm = result.get("llm_prompt", {})
     if llm:
@@ -667,22 +775,25 @@ def print_compile_result(result):
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
-        print("Usage: python compiler.py <scenario_path> [--json] [--dry-run] [--live]")
+        print("Usage: python compiler.py <scenario_path> [--json] [--dry-run] [--live] [--debug]")
         print("  scenario_path : Path to scenario JSON file")
         print("  --json        : Output raw JSON")
         print("  --dry-run     : Print full LLM prompt (default, no API call)")
         print("  --live        : Call Claude API (requires ANTHROPIC_API_KEY)")
+        print("  --debug       : Show detailed validation/error diagnostics")
         print()
         print("Example:")
         print("  python compiler.py ../engine/scenarios_v2/test_niuniu_sevraya_orbit.json --dry-run")
+        print("  python compiler.py ../engine/scenarios_v2/test_niuniu_sevraya_orbit.json --live --debug")
         sys.exit(1)
 
     scenario_path = sys.argv[1]
     output_json = "--json" in sys.argv
     dry_run = "--dry-run" in sys.argv
     live = "--live" in sys.argv
+    debug = "--debug" in sys.argv
 
-    result = compile_scenario(scenario_path, live=live)
+    result = compile_scenario(scenario_path, live=live, debug=debug)
 
     if output_json:
         clean = {k: v for k, v in result.items()
@@ -699,6 +810,6 @@ if __name__ == "__main__":
             print(f"Total chars: {llm.get('total_chars', 0)}")
             print(f"Output schema: {json.dumps(llm.get('output_schema', {}), indent=2, ensure_ascii=False)}")
     else:
-        print_compile_result(result)
+        print_compile_result(result, debug=debug)
         if result["status"] == "BLOCKED":
             sys.exit(1)

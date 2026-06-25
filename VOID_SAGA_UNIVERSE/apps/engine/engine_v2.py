@@ -22,6 +22,7 @@ from lib.constraints import (
     check_forbidden_behaviors,
     check_identity_invariants,
     check_anti_gravity,
+    check_evolution_stage_constraints,
 )
 from lib.contracts import load_all_contracts, evaluate_all_contracts
 from lib.scoring import aggregate_scores
@@ -106,6 +107,14 @@ def execute(scenario_path):
         # 5d: Check anti-gravity
         ag_violations = check_anti_gravity(p, ctx)
         for v in ag_violations:
+            if v["severity"] == "ERROR":
+                all_violations.append(v)
+            else:
+                all_warnings.append(v)
+
+        # 5e: Check evolution stage constraints (P0B)
+        stage_violations = check_evolution_stage_constraints(p, ctx)
+        for v in stage_violations:
             if v["severity"] == "ERROR":
                 all_violations.append(v)
             else:

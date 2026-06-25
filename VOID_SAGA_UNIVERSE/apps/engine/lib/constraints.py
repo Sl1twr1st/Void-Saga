@@ -466,6 +466,143 @@ def check_identity_invariants(participant, ctx):
 
 # --- Anti-Gravity Evaluation ---
 
+# --- Evolution Stage Gating (P0B) ---
+
+def get_stage_constraints(participant):
+    """Extract stage-specific constraints from a participant's current evolution stage.
+
+    Returns a dict with stage-aware rules that gate other constraint checks.
+    """
+    runtime = participant.runtime_json if hasattr(participant, 'runtime_json') else None
+    if not runtime:
+        return {}
+
+    stage_number = participant.evolution_stage
+    stages = runtime.get("evolution_stages", [])
+    stage_data = next((s for s in stages if s["stage_number"] == stage_number), None)
+
+    if not stage_data:
+        return {}
+
+    lost = [x.lower() for x in stage_data.get("lost_in_transition", [])]
+    gained = [x.lower() for x in stage_data.get("gained_in_transition", [])]
+    mode = stage_data.get("operational_mode", "").lower()
+
+    return {
+        "stage_number": stage_number,
+        "stage_name": stage_data.get("name", ""),
+        "operational_mode": mode,
+        "lost": lost,
+        "gained": gained,
+    }
+
+
+def check_evolution_stage_constraints(participant, ctx):
+    """Gate constraints based on the participant's current evolution stage.
+
+    Checks:
+    - Voice availability: if voice is lost at this stage, speaking actions are violations
+    - Existence: if character doesn't exist at this stage (Zero Stage 1), any action is impossible
+    - Active defenses: what defenses are operational at this stage
+
+    Returns list of stage-gated violations (always WARNING severity).
+    """
+    violations = []
+    stage = get_stage_constraints(participant)
+    if not stage:
+        return violations
+
+    action = ctx.requested_action
+    action_type = action.get("type", "").lower()
+    action_desc = action.get("description", "").lower()
+    stage_num = stage["stage_number"]
+
+    # Rule 1: Voice availability check
+    # Check if voice was LOST (not just mentioned) in transition to this stage
+    VOICE_LOSS_PATTERNS = ["voice lost", "voice stolen", "voice taken", "voice unavailable",
+                           "voice removed", "cannot speak", "silenced", "voice not available"]
+    VOICE_GAIN_PATTERNS = ["voice restored", "voice regained", "voice returned",
+                           "voice available", "canon_restored", "vocal speech"]
+
+    # Strip parens and normalize for matching
+    lost_normalized = [item.lower().replace("(", "").replace(")", "") for item in stage["lost"]]
+    gained_normalized = [item.lower().replace("(", "").replace(")", "") for item in stage["gained"]]
+    voice_lost = any(any(p in item for p in VOICE_LOSS_PATTERNS) for item in lost_normalized)
+    voice_gained = any(any(p in item for p in VOICE_GAIN_PATTERNS) for item in gained_normalized)
+
+    if voice_lost and not voice_gained:
+        # Voice is unavailable at this stage
+        if action_type in ("speak", "confess", "explain", "talk"):
+            violations.append({
+                "constraint_type": "evolution_stage",
+                "runtime_id": participant.runtime_id,
+                "stage": stage_num,
+                "stage_name": stage["stage_name"],
+                "violation_detail": (
+                    f"Voice unavailable at Stage {stage_num} ({stage['stage_name']}). "
+                    f"Lost in transition: voice. Speaking requires external force (Living Chain, Rose threat)."
+                ),
+                "tag": "[E]",
+                "severity": "ERROR"
+            })
+
+    if voice_gained:
+        # Voice is available but may be effortful
+        if "partially" in str(stage.get("gained", "")).lower() or "effortful" in stage.get("operational_mode", ""):
+            if action_type in ("speak", "confess") and "fluent" in action_desc:
+                violations.append({
+                    "constraint_type": "evolution_stage",
+                    "runtime_id": participant.runtime_id,
+                    "stage": stage_num,
+                    "stage_name": stage["stage_name"],
+                    "violation_detail": (
+                        f"Voice partially restored at Stage {stage_num}. "
+                        f"Fluent speech without external force is a violation."
+                    ),
+                    "tag": "[I]",
+                    "severity": "WARNING"
+                })
+
+    # Rule 2: Existence check
+    # If the character literally does not exist at this stage, block all actions
+    if stage_num == 1:
+        mode = stage.get("operational_mode", "")
+        if "does not exist" in mode or "non-existent" in stage.get("stage_name", "").lower():
+            violations.append({
+                "constraint_type": "evolution_stage",
+                "runtime_id": participant.runtime_id,
+                "stage": stage_num,
+                "stage_name": stage["stage_name"],
+                "violation_detail": (
+                    f"Character does not exist at Stage {stage_num} ({stage['stage_name']}). "
+                    f"No actions possible."
+                ),
+                "tag": "[E]",
+                "severity": "ERROR"
+            })
+
+    # Rule 3: Latent mode — character exists but cannot act independently
+    # Exception: INVOLUNTARY actions (triggered by defense system, not chosen)
+    is_latent = ("latent" in stage.get("operational_mode", "") or
+                 "latent" in stage.get("stage_name", "").lower())
+    if is_latent and action_type not in (None, "none"):
+        # Don't flag if the action is INVOLUNTARY (triggered by defense, not choice)
+        violations.append({
+            "constraint_type": "evolution_stage",
+            "runtime_id": participant.runtime_id,
+            "stage": stage_num,
+            "stage_name": stage["stage_name"],
+            "violation_detail": (
+                f"Character is latent at Stage {stage_num} ({stage['stage_name']}). "
+                f"Independent actions may be constrained. INVOLUNTARY actions bypass this check."
+            ),
+            "tag": "[E]",
+            "severity": "WARNING"
+        })
+
+    return violations
+
+
 def check_anti_gravity(participant, ctx):
     """Check if the requested action matches any anti-gravity items."""
     violations = []

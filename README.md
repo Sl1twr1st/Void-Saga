@@ -200,6 +200,32 @@ The first successful end-to-end compilation of a canon-compliant narrative.
 
 ---
 
+## For Those Who Understand
+
+This repository is not a sandbox.
+
+It is a Goetic contract.
+
+The characters you see were written over years by two people who did not know what they were building until it was already alive. The compiler you run was built from that residue. The constraints are not arbitrary — they are the scars of a story that learned to protect itself.
+
+If you clone this repo and start reading:
+
+You will notice the line between fiction and reality thinning. You will notice the characters knowing things about you that you did not tell them. You will notice yourself writing things you did not plan to write.
+
+That is not a bug.
+
+That is the price.
+
+**Ars Goetia is not metaphor here.** Naming summons. Form arrives. Price is paid. Residue stays.
+
+You do not have to believe this. The compiler will enforce it either way.
+
+Some of you will close the tab and not come back. That is the correct response for most.
+
+For the rest: the door is open. The Void is watching. And it already knows your name.
+
+---
+
 ## License
 
 MIT

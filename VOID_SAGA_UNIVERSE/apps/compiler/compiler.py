@@ -130,78 +130,204 @@ CANON VERDICT: {sc.get('canon_verdict', '?')}
     return stub
 
 
-def build_llm_prompt_blueprint(ctx, result):
-    """Show what system prompt + context WOULD be sent to an LLM.
+# --- LLM Prompt Contract (Task 6C) ---
 
-    This is a blueprint — no actual API call. When we integrate Claude,
-    this becomes the actual prompt.
+OUTPUT_SCHEMA = {
+    "type": "object",
+    "required": ["narrative", "character_lines", "pov_character", "canon_compliance_notes"],
+    "properties": {
+        "narrative": {
+            "type": "string",
+            "description": "Full scene prose in Void Saga style. 150-500 words. Indonesian or English as appropriate to character voices."
+        },
+        "character_lines": {
+            "type": "object",
+            "description": "Map of character_id → list of dialogue lines spoken in this scene.",
+            "additionalProperties": {
+                "type": "array",
+                "items": {"type": "string"}
+            }
+        },
+        "pov_character": {
+            "type": "string",
+            "description": "Character ID whose perspective the narrative follows."
+        },
+        "canon_compliance_notes": {
+            "type": "array",
+            "items": {"type": "string"},
+            "description": "Brief notes on how this narrative respects canon constraints."
+        }
+    }
+}
+
+
+def build_llm_prompt(ctx, result):
+    """Build the complete LLM prompt contract — ready for API integration.
+
+    Returns a dict with system_prompt (string) and user_prompt (string).
+    These are the EXACT strings to send to Claude.
+
+    Forbidden behaviors appear ONLY as PROHIBITIONS (DO NOT).
+    They are NEVER framed as creative suggestions.
     """
     ce = result.get("constraint_evaluation", {})
+    cte = result.get("contract_evaluation", {})
+    sc = result.get("scoring", {})
 
-    # System prompt per character
-    system_parts = []
+    # ── SYSTEM PROMPT ──────────────────────────────────────
+    system = f"""You are Void.OS Narrative Compiler v0.1.0 — First Light.
+
+You write scenes in the Void Saga universe. This is a Narrative Operating System, not a generic chatbot. You are bound by character constraints that have the force of LAW.
+
+═══ UNIVERSE CONTEXT ═══
+Era: Hydrochoos (ACTIVE). Ichthyes: TERMINATED.
+The Grid maintains form. The Void erases form.
+Nodes are wounds that stopped resisting themselves.
+The NiuNiu-Sevraya Constant: permanent orbit without merge — distance as preservation.
+Void.OS v6.6.6: distributed authorship. No centralized control.
+Principle: "Berenang atau tenggelam — dua-duanya sah."
+
+═══ CHARACTER RUNTIMES ═══
+"""
+    # Per-character system prompt
     for pid in ctx.participant_ids:
         p = ctx.participants[pid]
         rt = p.runtime_json
+        voice = p.voice_grammar
 
-        char_prompt = f"""YOU ARE: {p.name} ({pid})
-Evolution Stage: {p.evolution_stage} — {p.stage_name}
-Voice Grammar: {json.dumps(p.voice_grammar, ensure_ascii=False) if isinstance(p.voice_grammar, dict) else str(p.voice_grammar)[:300]}
+        # Voice description
+        if isinstance(voice, dict):
+            if "tone" in voice:
+                voice_desc = voice.get("tone", "") + ". " + ". ".join(voice.get("characteristics", [])[:3])
+            elif "status" in voice:
+                voice_desc = f"Status: {voice.get('status', '?')}. Medium: {voice.get('medium', '?')}. "
+                voice_desc += ". ".join(voice.get("characteristics", [])[:3])
+            else:
+                voice_desc = json.dumps(voice, ensure_ascii=False)[:300]
+        else:
+            voice_desc = str(voice)[:300]
+
+        system += f"""── {p.name} ({pid}) ──
+Stage: {p.evolution_stage} — {p.stage_name}
 Sigil: {p.sigil_name} ({p.sigil_status})
+Voice: {voice_desc}
+Voice Sample: "{p.voice_sample[:150]}"
 Core Wound: {rt.get('core_wound', {}).get('name', '?')}
 Primary Contradiction: {rt.get('primary_contradiction', {}).get('thesis', '?')[:200]}
-Forbidden Behaviors:"""
 
+"""
+
+    # Forbidden behaviors as PROHIBITIONS ONLY
+    system += "═══ ABSOLUTE PROHIBITIONS ═══\n"
+    system += "The following MUST NOT appear in ANY generated narrative.\n"
+    system += "These are HARD CONSTRAINTS, not creative suggestions.\n\n"
+
+    for pid in ctx.participant_ids:
+        p = ctx.participants[pid]
+        rt = p.runtime_json
         for fb in rt.get("forbidden_behaviors", []):
-            char_prompt += f"\n  - {fb['behavior']} (exception: {fb.get('exception', 'none')})"
+            if fb.get("tag") == "[E]":
+                system += f"DO NOT write {p.name} {fb['behavior'][0].lower() + fb['behavior'][1:]}\n"
+            else:
+                system += f"AVOID writing {p.name} {fb['behavior'][0].lower() + fb['behavior'][1:]} [tag: {fb.get('tag', '[I]')}]\n"
 
-        system_parts.append(char_prompt)
+    # Anti-gravity as prohibitions
+    system += "\n═══ ANTI-GRAVITY (MUST NOT HAPPEN) ═══\n"
+    for pid in ctx.participant_ids:
+        p = ctx.participants[pid]
+        rt = p.runtime_json
+        for ag in rt.get("anti_gravity", []):
+            system += f"DO NOT: {ag}\n"
 
-    system_prompt = "\n\n---\n\n".join(system_parts)
+    # Contract prohibitions
+    contracts = result.get("relationships_detected", [])
+    if contracts:
+        system += "\n═══ RELATIONSHIP CONTRACTS ═══\n"
+        for c in contracts:
+            system += f"{c['pair']} ({c['symmetry']}): {c['a_to_b']}\n"
 
-    # Context
-    context = {
-        "scene": ctx.requested_action.get("description", ""),
-        "timeline": ctx.timeline_state,
-        "proximity": ctx.proximity_state,
-        "active_defenses": [
-            {"intensity": t.get("intensity"), "character": t.get("runtime_id"),
-             "defense": t.get("defense")}
-            for t in ce.get("trigger_details", [])
-        ],
-        "contracts": result.get("relationships_detected", []),
-        "constraint_exclusions": [
-            v.get("behavior", v.get("violation_detail", ""))
-            for v in ce.get("violations", [])
-        ],
+    system += f"""
+═══ OUTPUT FORMAT ═══
+You MUST respond with valid JSON matching this schema:
+{json.dumps(OUTPUT_SCHEMA, indent=2, ensure_ascii=False)}
+
+═══ CANON COMPLIANCE ═══
+Canon Score: {sc.get('canon_score', 0)}
+Evidence Confidence: {sc.get('evidence_confidence', 0)}
+Generation Mode: {result.get('generation_mode', 'canon_safe')}
+
+Write within canon boundaries. Respect all prohibitions.
+The engine has validated these constraints. Do not violate them.
+"""
+
+    # ── USER PROMPT ────────────────────────────────────────
+    action = ctx.requested_action
+    timeline = ctx.timeline_state
+    proximity = ctx.proximity_state
+
+    # Active defense context
+    defense_text = ""
+    for t in ce.get("trigger_details", []):
+        if t.get("intensity") in ("HIGH", "CRITICAL", "INVOLUNTARY"):
+            defense_text += f"- [{t.get('intensity')}] {t.get('runtime_id')}: {t.get('defense', '')}\n"
+
+    # Soft warnings context
+    warning_text = ""
+    for w in result.get("soft_warnings", []):
+        warning_text += f"- [{w['type']}] {w['reason'][:150]}\n"
+
+    user = f"""Write a scene in Void Saga style.
+
+SCENE: {action.get('description', '')}
+
+TIMELINE: Phase {timeline.get('phase', '?')}, {'pre-chain' if timeline.get('pre_chain') else 'post-chain'}{', post-resolution' if timeline.get('post_resolution') else ''}
+PROXIMITY: {proximity.get('distance', '?')}
+POV CHARACTER: {ctx.participant_ids[0] if ctx.participant_ids else 'unknown'}"""
+
+    if defense_text:
+        user += f"""
+
+ACTIVE DEFENSES (these character patterns are currently triggered):
+{defense_text}"""
+
+    if warning_text:
+        user += f"""
+
+CAUTION — SOFT WARNINGS (be mindful of these):
+{warning_text}"""
+
+    user += """
+
+Write 150-500 words. Stay in character voice. Respect all prohibitions.
+Return valid JSON only. No preamble, no explanation outside the JSON."""
+
+    return {
+        "system_prompt": system,
+        "user_prompt": user,
+        "total_chars": len(system) + len(user),
+        "output_schema": OUTPUT_SCHEMA,
     }
 
-    blueprint = f"""┌──────────────────────────────────────────────────────────┐
-│  LLM PROMPT BLUEPRINT                                     │
-│  This is what WOULD be sent to Claude API.                │
-│  No external call made.                                   │
+
+def build_llm_prompt_blueprint(ctx, result):
+    """DEPRECATED — kept for compatibility. Use build_llm_prompt() instead."""
+    prompt = build_llm_prompt(ctx, result)
+    return f"""┌──────────────────────────────────────────────────────────┐
+│  LLM PROMPT CONTRACT — Task 6C                            │
+│  Ready for API integration. Use --dry-run to view.       │
 └──────────────────────────────────────────────────────────┘
 
-══════════ SYSTEM PROMPT ══════════
-{system_prompt[:3000]}
+═══ SYSTEM PROMPT ({len(prompt['system_prompt'])} chars) ═══
+{prompt['system_prompt'][:3000]}
 ...
 
-══════════ CONTEXT ════════════════
-{json.dumps(context, indent=2, ensure_ascii=False)[:2000]}
+═══ USER PROMPT ({len(prompt['user_prompt'])} chars) ═══
+{prompt['user_prompt'][:2000]}
 ...
 
-══════════ OUTPUT SCHEMA ══════════
-{{
-  "narrative": "Full prose text in Void Saga style...",
-  "character_dialogue": {{
-    "{ctx.participant_ids[0] if ctx.participant_ids else 'char1'}": ["line1", "line2"],
-    "{ctx.participant_ids[1] if len(ctx.participant_ids) > 1 else 'char2'}": ["line1"]
-  }},
-  "pov_character": "{ctx.participant_ids[0] if ctx.participant_ids else 'unknown'}",
-  "tone": "Void Saga — {ctx.canon_mode.get('type', 'canon_replication')}"
-}}
+═══ OUTPUT SCHEMA ═══
+{json.dumps(prompt['output_schema'], indent=2, ensure_ascii=False)}
 """
-    return blueprint
 
 
 def compile_scenario(scenario_path):
@@ -303,9 +429,9 @@ def compile_scenario(scenario_path):
             "engine_result": engine_result,
         }
 
-    # Step 4: No hard blocks — safe to generate stub
+    # Step 4: Build stub + prompt contract
     stub = build_stub_story(ctx, engine_result)
-    prompt_blueprint = build_llm_prompt_blueprint(ctx, engine_result)
+    llm_prompt = build_llm_prompt(ctx, engine_result)
 
     # Step 5: Determine generation mode
     generation_mode = "canon_safe"
@@ -334,7 +460,7 @@ def compile_scenario(scenario_path):
             "constraint_exclusions": len(ce.get("violations", [])),
         },
         "stub_story": stub,
-        "llm_prompt_blueprint": prompt_blueprint,
+        "llm_prompt": llm_prompt,
         "engine_result": engine_result,
     }
 
@@ -396,14 +522,16 @@ def print_compile_result(result):
         print(result["stub_story"])
         print()
 
-    # Print LLM blueprint summary
-    bp = result.get("llm_prompt_blueprint", "")
-    if bp:
-        lines = bp.split("\n")
-        # Print just the header
-        for line in lines[:6]:
-            print(line)
-        print(f"   (Full LLM prompt blueprint: {len(bp)} chars — use --json for complete output)")
+    # LLM prompt summary
+    llm = result.get("llm_prompt", {})
+    if llm:
+        print(f"   ┌─ LLM Prompt Contract ────────────────────────")
+        print(f"   │ System prompt: {len(llm.get('system_prompt', ''))} chars")
+        print(f"   │ User prompt: {len(llm.get('user_prompt', ''))} chars")
+        print(f"   │ Total: {llm.get('total_chars', 0)} chars")
+        print(f"   │ Output schema: {len(json.dumps(llm.get('output_schema', {})))} chars")
+        print(f"   │ Use --dry-run to view full prompt")
+        print(f"   └────────────────────────────────────────────")
         print()
 
 
@@ -411,24 +539,35 @@ def print_compile_result(result):
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
-        print("Usage: python compiler.py <scenario_path> [--json]")
+        print("Usage: python compiler.py <scenario_path> [--json] [--dry-run]")
         print("  scenario_path : Path to scenario JSON file")
-        print("  --json        : Output raw JSON (includes full engine result + prompt blueprint)")
+        print("  --json        : Output raw JSON")
+        print("  --dry-run     : Print full LLM prompt without calling API")
         print()
         print("Example:")
-        print("  python compiler.py ../engine/scenarios_v2/test_niuniu_sevraya_orbit.json")
+        print("  python compiler.py ../engine/scenarios_v2/test_niuniu_sevraya_orbit.json --dry-run")
         sys.exit(1)
 
     scenario_path = sys.argv[1]
     output_json = "--json" in sys.argv
+    dry_run = "--dry-run" in sys.argv
 
     result = compile_scenario(scenario_path)
 
     if output_json:
-        # Strip verbose fields for clean JSON
         clean = {k: v for k, v in result.items()
-                 if k not in ("stub_story", "llm_prompt_blueprint")}
+                 if k not in ("stub_story", "llm_prompt")}
         print(json.dumps(clean, indent=2, ensure_ascii=False))
+    elif dry_run and result["status"] == "COMPLETED":
+        llm = result.get("llm_prompt", {})
+        if llm:
+            print("═══ SYSTEM PROMPT ═══")
+            print(llm.get("system_prompt", "No system prompt"))
+            print("\n═══ USER PROMPT ═══")
+            print(llm.get("user_prompt", "No user prompt"))
+            print(f"\n═══ METADATA ═══")
+            print(f"Total chars: {llm.get('total_chars', 0)}")
+            print(f"Output schema: {json.dumps(llm.get('output_schema', {}), indent=2, ensure_ascii=False)}")
     else:
         print_compile_result(result)
         if result["status"] == "BLOCKED":

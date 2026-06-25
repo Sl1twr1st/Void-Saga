@@ -70,9 +70,20 @@ def action_matches_state(action_type, action_desc, state_name, state_desc):
         return True, "action_in_description"
 
     # State name appears in action description
+    # BUT: check negation context first — "no approach" is not an approach
     action_desc_lower = (action_desc or "").lower()
     if state_lower and state_lower in action_desc_lower:
-        return True, "state_in_action_desc"
+        # Check for negation: "no approach", "not approaching", "never touch", etc.
+        import re
+        negation_pattern = re.compile(
+            r'\b(no|not|never|without|refuse|refuses|refusing|avoid|avoids|cannot|won\'t|dont|don\'t)\s+' +
+            re.escape(state_lower) + r'\b'
+        )
+        if negation_pattern.search(action_desc_lower):
+            # State name appears in a negated context — this is NOT a match
+            pass
+        else:
+            return True, "state_in_action_desc"
 
     # Semantic proximity groups
     APPROACH_ACTIONS = {"approach", "touch", "merge", "close", "embrace", "possess"}
@@ -141,7 +152,10 @@ def evaluate_contract(contract, action_type, action_desc):
         return "CONTRACT_PASS", [], matched_state
 
     # Step 3: Check violation rules for explicit detection patterns
+    # ONLY flag rules with VIOLATION_DETECTED verdict — PASS rules are not violations
     for rule in contract.get("violation_rules", []):
+        if rule.get("engine_verdict") != "VIOLATION_DETECTED":
+            continue  # Skip PASS and non-violation rules
         detection = rule.get("detection", "").lower()
         if action_lower and action_lower in detection:
             violations.append({
@@ -150,7 +164,7 @@ def evaluate_contract(contract, action_type, action_desc):
                 "rule_id": rule.get("rule_id", ""),
                 "violation_detail": rule.get("description", ""),
                 "tag": rule.get("tag", "[E]"),
-                "severity": "ERROR" if rule.get("engine_verdict") == "VIOLATION_DETECTED" else "WARNING"
+                "severity": "ERROR"
             })
 
     if violations:

@@ -28,57 +28,52 @@ from lib.contracts import load_all_contracts, evaluate_all_contracts
 from lib.scoring import aggregate_scores
 
 
+def _error_result(error, extra=None):
+    """Build a consistent error result with all required fields."""
+    result = {
+        "status": "INSUFFICIENT_DATA",
+        "verdict": "INSUFFICIENT_DATA",
+        "error": error,
+        "engine_version": "0.4.0",
+        "scoring": {"canon_score": 0, "evidence_confidence": 0, "canon_verdict": "INSUFFICIENT_DATA", "breakdown": {"penalty_breakdown": {"total_penalty": 0, "total_constraints_checked": 0, "items": []}, "total_constraints": 0}},
+        "constraint_evaluation": {"verdict": "NO_EVALUATION", "triggers_fired": 0, "violations": [], "warnings": [], "trigger_details": []},
+        "contract_evaluation": {"summary": {"verdict": "NO_CONTRACTS", "contracts_evaluated": 0, "contract_ids": [], "pass_count": 0, "violation_count": 0}, "contracts": {}, "violations": []},
+        "final_verdict": "INCONCLUSIVE",
+    }
+    if extra:
+        result.update(extra)
+    return result
+
+
 def execute(scenario_path):
     """Execute a multi-runtime scenario. Loads runtimes, builds context, returns summary."""
 
     # Step 1: Load scenario
     scenario, err = load_scenario(scenario_path)
     if err:
-        return {
-            "status": "INSUFFICIENT_DATA",
-            "verdict": "INSUFFICIENT_DATA",
-            "error": err
-        }
+        return _error_result(err)
 
     scenario_id = scenario.get("scenario_id", os.path.basename(scenario_path))
     participant_ids = [p["runtime_id"] for p in scenario.get("participants", [])]
 
     if not participant_ids:
-        return {
-            "status": "INSUFFICIENT_DATA",
-            "verdict": "INSUFFICIENT_DATA",
-            "error": "No participants in scenario"
-        }
+        return _error_result("No participants in scenario")
 
     # Step 2: Load all runtimes
     runtimes, err = load_runtimes(participant_ids)
     if err:
-        return {
-            "status": "INSUFFICIENT_DATA",
-            "verdict": "INSUFFICIENT_DATA",
-            "error": err
-        }
+        return _error_result(err)
 
     # Step 3: Validate participants
     validation_errors = validate_participants(scenario, runtimes)
     if validation_errors:
-        return {
-            "status": "INSUFFICIENT_DATA",
-            "verdict": "INSUFFICIENT_DATA",
-            "error": "Participant validation failed",
-            "validation_errors": validation_errors
-        }
+        return _error_result("Participant validation failed", {"validation_errors": validation_errors})
 
     # Step 4: Build multi-runtime context
     ctx = build_context(scenario, runtimes)
 
     if ctx.load_errors:
-        return {
-            "status": "INSUFFICIENT_DATA",
-            "verdict": "INSUFFICIENT_DATA",
-            "error": "Context build failed",
-            "load_errors": ctx.load_errors
-        }
+        return _error_result("Context build failed", {"load_errors": ctx.load_errors})
 
     # Step 5: Evaluate runtime constraints
     all_triggers = []

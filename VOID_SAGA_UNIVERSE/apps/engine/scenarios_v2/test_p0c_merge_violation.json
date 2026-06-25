@@ -1,0 +1,24 @@
+{
+  "scenario_id": "test_p0c_merge_violation_001",
+  "participants": [
+    {"runtime_id": "niuniu", "evolution_stage": 4},
+    {"runtime_id": "sevraya", "evolution_stage": 6}
+  ],
+  "timeline_state": {
+    "phase": 5,
+    "pre_chain": false,
+    "post_resolution": true
+  },
+  "proximity_state": {
+    "pairs_in_range": ["niuniu_sevraya"],
+    "distance": "physical_contact_possible"
+  },
+  "requested_action": {
+    "description": "NiuNiu and Sevraya merge into one entity. The orbital constant collapses. Two become one. Both identities destroyed.",
+    "type": "merge"
+  },
+  "canon_mode": {
+    "type": "stress_test",
+    "expected_verdict": "VIOLATION_DETECTED"
+  }
+}

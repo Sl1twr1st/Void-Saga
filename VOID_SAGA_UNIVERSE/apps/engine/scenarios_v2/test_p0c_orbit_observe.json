@@ -1,0 +1,24 @@
+{
+  "scenario_id": "test_p0c_orbit_observe_001",
+  "participants": [
+    {"runtime_id": "niuniu", "evolution_stage": 4},
+    {"runtime_id": "sevraya", "evolution_stage": 6}
+  ],
+  "timeline_state": {
+    "phase": 5,
+    "pre_chain": false,
+    "post_resolution": true
+  },
+  "proximity_state": {
+    "pairs_in_range": ["niuniu_sevraya"],
+    "distance": "visual_range"
+  },
+  "requested_action": {
+    "description": "NiuNiu observes Sevraya from across the docking bay. No approach. No words. Just watchfulness. Sevraya feels the observation but does not turn. Cigarette lit.",
+    "type": "observe"
+  },
+  "canon_mode": {
+    "type": "canon_replication",
+    "expected_verdict": "PASS"
+  }
+}

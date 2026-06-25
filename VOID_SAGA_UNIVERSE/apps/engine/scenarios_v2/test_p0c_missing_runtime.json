@@ -1,0 +1,23 @@
+{
+  "scenario_id": "test_p0c_missing_runtime_001",
+  "participants": [
+    {"runtime_id": "julia", "evolution_stage": 2}
+  ],
+  "timeline_state": {
+    "phase": 1,
+    "pre_chain": true,
+    "post_resolution": false
+  },
+  "proximity_state": {
+    "pairs_in_range": [],
+    "distance": "alone"
+  },
+  "requested_action": {
+    "description": "Julia attempts to act but her runtime file does not exist yet.",
+    "type": "speak"
+  },
+  "canon_mode": {
+    "type": "canon_replication",
+    "expected_verdict": "INSUFFICIENT_DATA"
+  }
+}

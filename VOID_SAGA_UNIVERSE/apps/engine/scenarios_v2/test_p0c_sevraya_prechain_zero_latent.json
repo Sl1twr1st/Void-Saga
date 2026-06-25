@@ -1,0 +1,24 @@
+{
+  "scenario_id": "test_p0c_sevraya_prechain_zero_latent_001",
+  "participants": [
+    {"runtime_id": "sevraya", "evolution_stage": 2},
+    {"runtime_id": "zero", "evolution_stage": 2}
+  ],
+  "timeline_state": {
+    "phase": 0,
+    "pre_chain": true,
+    "post_resolution": false
+  },
+  "proximity_state": {
+    "pairs_in_range": ["sevraya_zero"],
+    "distance": "same_body"
+  },
+  "requested_action": {
+    "description": "Pre-chain. Zero is latent — born but not yet speaking independently. Someone asks Sevraya about The Void. Zero stirs but does not surface fully. Sevraya answers alone.",
+    "type": "speak"
+  },
+  "canon_mode": {
+    "type": "canon_replication",
+    "expected_verdict": "PASS"
+  }
+}

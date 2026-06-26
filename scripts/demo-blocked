@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+cd "$REPO_ROOT"
+
+SCENARIO="VOID_SAGA_UNIVERSE/apps/engine/scenarios_v2/test_violation_zero_emotional.json"
+COMPILER="VOID_SAGA_UNIVERSE/apps/compiler/compiler.py"
+
+echo ""
+python3 "$COMPILER" "$SCENARIO" || true
+echo ""

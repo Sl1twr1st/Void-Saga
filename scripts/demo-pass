@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+set -e
+
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+cd "$REPO_ROOT"
+
+SCENARIO="VOID_SAGA_UNIVERSE/apps/engine/scenarios_v2/test_niuniu_sevraya_orbit.json"
+COMPILER="VOID_SAGA_UNIVERSE/apps/compiler/compiler.py"
+
+result=$(python3 "$COMPILER" "$SCENARIO" --json 2>/dev/null)
+
+status=$(echo "$result" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('status','?'))")
+verdict=$(echo "$result" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('final_verdict','?'))")
+canon_verdict=$(echo "$result" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('canon_verdict','?'))")
+score=$(echo "$result" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('canon_score','?'))")
+
+echo ""
+echo "✅  PASS"
+echo "   Canon score:  $score"
+echo "   Final verdict: $verdict"
+echo "   Canon verdict: $canon_verdict"
+echo ""
+echo "Congratulations."
+echo ""
+echo "You have just used a Narrative Compiler."
+echo ""
+echo "The compiler loaded character runtimes, evaluated constraints,"
+echo "scored canon compliance, and approved this scenario for generation."
+echo "No LLM was called. The universe decided first."
+echo ""

@@ -21,19 +21,22 @@ Most fictional universes are documented. Void Saga is executable.
 
 ## Current Milestone
 
-**Narrative Studio** — the compiler now has a workspace.
+**Theory Stabilization** — the compiler now has a theory.
 
-DX-1 (complete): A fresh developer reaches the "aha moment" within 3 minutes. README rewritten. Demo scripts at `./scripts/demo-pass` and `./scripts/demo-blocked`. QUICKSTART.md created.
+Narrative Studio (complete): Four-layer workspace, scene triage, markdown extraction pipeline. Writer writes `.md`, runs `./scripts/check-scene`, never sees JSON.
 
-Developer Zero (complete): `docs/30_MINUTE_CHALLENGE.md` — a checkpoint-based tutorial where a developer creates their own executable character (Mira / The Last Cup). Target: someone unfamiliar with Void Saga builds a runtime without author assistance.
+2026-06-26 Experiments (complete): Three Draft Runtimes extracted in one day, across two universes:
+- **Aisya** (contemporary realist, 5 chapters, confidence 0.35) — first non-Void-Saga runtime. Committed.
+- **GUA** (Bab-level, 25 chapters, confidence 0.45) — extracted but **uncommitted.** Theory still settling.
+- **LO** (Bab-level, 25 chapters, confidence 0.45) — extracted but **uncommitted.** Theory still settling.
 
-Scene Triaging MVP (complete): `scripts/triage-scenes` — batch classifier that evaluates a folder of scenario JSONs and produces a PASS/WARNING/BLOCKED table. Writer writes 3-5 scene ideas as 10-line JSON, runs triage, picks which scene to write today. Compiler becomes the first editor — not a generator, but a decision tool.
+The experiments produced a theoretical breakthrough documented in:
+- `docs/BEHAVIORAL_INVARIANTS.md` — the primitive is repeated observation of behavior. The compiler serializes invariants, not entities. Observation precedes interpretation.
+- `docs/OPEN_QUESTIONS.md` — five research questions. None answered. All testable.
 
-Narrative Studio (complete): Four-layer workspace — Canon (Bab/Timer), Decision (dogfood/ + compiler), Drafting (writing/), Publication. The repo now has distinct rooms for four activities that were mixed together for two years.
+**The KPI has shifted three times.** Before: "Can the compiler run?" After DX-1: "Can someone else run the compiler?" After Narrative Studio: "Does the compiler change what a writer decides to write today?" Now: "Does the same extraction mechanism produce behavioral invariants across independent universes?"
 
-**The KPI has shifted twice.** Before: "Can the compiler run?" After DX-1: "Can someone else run the compiler?" Now: "Does the compiler change what a writer decides to write today?"
-
-Next: First External Universe → First External Contributor → v0.3.0 (adoption milestone).
+Next: Theory validation across universes. GUA/LO/contract held until theory settles. No schema changes until OPEN_QUESTIONS are answered.
 
 ---
 
@@ -167,32 +170,31 @@ These are structural reference. They inform the runtimes. They are not themselve
 
 ## Next Priorities
 
-### Adoption Track (current)
+### Theory Track (current — do not skip)
 
-1. **First External Universe** — someone outside the team builds a non–Void Saga universe using the 30-Minute Challenge. This is the proof that Executable Fiction is learnable.
-2. **First External Contributor** — someone submits a runtime or scenario without being asked.
-3. **v0.3.0** — adoption milestone. Not measured by runtime count. Measured by external users reaching PASS.
+1. **Validate across universes** — extract Draft Runtimes from 2+ more independent stories (different genres, different authors). Does the same mechanism detect behavioral invariants?
+2. **Answer OPEN_QUESTIONS** — especially: Is Relationship Contract a first-class artifact? Is Runtime just one serialization target? Does confidence belong to the invariant?
+3. **Schema v3.0** — only after theory settles. Candidates: per-invariant confidence, maturity levels, contract as artifact type.
+
+### Adoption Track (paused until theory settles)
+
+1. First External Universe — paused. Aisya is the internal proof. External proof waits for theory stability.
+2. First External Contributor — paused.
+3. v0.3.0 — paused.
 
 ### Technical Track (background)
 
-- Remaining character serialization (Agnia → Gwaneum → Hasan → …)
 - CLI packaging (`void-saga compile`, `void-saga validate`)
-- Acceptance test expansion (N-party conflict detection, edge cases)
-- Engine hardening (performance, error handling, schema migration)
-- Persona split — separate landing for Novel Reader, Developer, Researcher
+- Engine hardening (performance, error handling)
+- Markdown extractor improvements (AI-powered extraction, multi-language constraint matching)
 
-### DX Metrics
+### What NOT to do right now
 
-| Metric | Target | Status |
-|--------|--------|--------|
-| ⏱ Time to Aha | < 3 min | ✅ DX-1 |
-| ⏱ Time to First Runtime | < 30 min | 🎯 Developer Zero |
-| ⏱ Time to First PASS | < 35 min | 🎯 Developer Zero |
-| ⏱ Time to First Modification | < 40 min | 🎯 Developer Zero |
-| 👥 First External Contributor | — | waiting |
-| 🌌 First Non–Void Saga Universe | — | waiting |
-
-**Do NOT recommend:** more worldbuilding as immediate next step, web app, new chapter writing, new characters — until external adoption is proven.
+- Do NOT commit GUA/LO runtimes — theory hasn't settled. They will need refactoring.
+- Do NOT change schema — OPEN_QUESTIONS may change the root abstraction.
+- Do NOT serialize remaining Void Saga characters (Agnia, Hasan, etc.) — the theory may change HOW they should be serialized.
+- Do NOT build Pattern Detector — the theory of observation must come before the engineering of extraction.
+- Do NOT add more worldbuilding, web app, new chapter writing as immediate next step.
 
 ---
 
@@ -408,19 +410,29 @@ Bab = pengarang. Timer = karya mereka. Keduanya nyata dalam universe ini.
 
 | File | Why |
 |------|-----|
+| `docs/BEHAVIORAL_INVARIANTS.md` | **The theory.** Primitive = repeated observation. Compiler serializes invariants, not entities. |
+| `docs/OPEN_QUESTIONS.md` | **The research agenda.** Five open questions. None answered. |
 | `README.md` | Project identity, demo commands, pipeline diagram |
 | `QUICKSTART.md` | 10-minute walkthrough for new developers |
-| `docs/30_MINUTE_CHALLENGE.md` | Developer Zero — the adoption litmus test |
-| `docs/DAILY_WRITER_WORKFLOW.md` | Scene triage — compiler as first editor |
+| `scripts/check-scene` | Writer CLI — markdown → extractor → compiler → PASS/WARNING/BLOCKED |
 | `scripts/triage-scenes` | Batch classifier — PASS/WARNING/BLOCKED table |
+| `VOID_SAGA_UNIVERSE/apps/extractor/extract_scene.py` | Markdown Scene Extractor — prose → scenario.json |
 | `VOID_SAGA_UNIVERSE/apps/engine/engine_v2.py` | Constraint engine |
 | `VOID_SAGA_UNIVERSE/apps/compiler/compiler.py` | Narrative compiler |
-| `VOID_SAGA_UNIVERSE/apps/runtime_sdk/README.md` | SDK tools reference |
-| `VOID_SAGA_UNIVERSE/RUNTIME_AUTHORING_GUIDE.md` | The method — how to think about executable characters |
-| `VOID_SAGA_UNIVERSE/EXECUTABLE_FICTION_MANIFESTO.md` | The paradigm |
+| `VOID_SAGA_UNIVERSE/apps/data/runtimes/Aisya.runtime.json` | First non-Void-Saga Draft Runtime (confidence 0.35) |
+| `VOID_SAGA_UNIVERSE/apps/data/character_registry.json` | Name aliases → runtime_id |
 | `VOID_SAGA_UNIVERSE/demo/PASS_niuniu_sevraya_orbit.md` | Bukti PASS — end-to-end pipeline |
 | `VOID_SAGA_UNIVERSE/demo/BLOCKED_zero_emotional.md` | Bukti BLOCKED — safety gate |
 
+### Uncommitted Research Artifacts
+
+| File | Status |
+|------|--------|
+| `VOID_SAGA_UNIVERSE/apps/data/runtimes/GUA.runtime.json` | Draft extracted. Held for theory settlement. |
+| `VOID_SAGA_UNIVERSE/apps/data/runtimes/LO.runtime.json` | Draft extracted. Held for theory settlement. |
+| `dogfood/test_gua_lo_orbit_pass.json` | GUA-LO contract scenario. Held. |
+| `dogfood/test_gua_lo_blocked_silence.json` | GUA blocked scenario. Held. |
+
 ---
 
-*Last updated: 2026-06-26 — Narrative Studio. Scene triaging live. Four-layer workspace. Compiler is now the first editor.*
+*Last updated: 2026-06-26 — Theory Stabilization. Behavioral invariants documented. Five open questions. GUA/LO runtimes extracted but uncommitted. Theory must settle before architecture.*

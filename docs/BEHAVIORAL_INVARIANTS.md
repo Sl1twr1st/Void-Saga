@@ -1,27 +1,22 @@
 # Behavioral Invariants: The Primitive of Executable Fiction
 
-> Executable Fiction is not a theory about characters. It is a theory about emergence — how repeated observation of behavior crystallizes into invariants, and how those invariants can be serialized, tested, and enforced at any scale.
+> Executable Fiction is not primarily a theory about characters. It is a theory about behavioral emergence across multiple narrative scales — how repeated observation of behavior crystallizes into invariants, and how those invariants can be serialized, tested, and enforced regardless of what entity produced them.
 
 ---
 
 ## 1. The Core Claim
 
-Executable Fiction rests on one primitive: **repeated observation of behavior.**
+Executable Fiction rests on one primitive:
 
-From this primitive, everything else emerges:
+> A behavioral pattern that is observed repeatedly becomes a candidate invariant.
 
-- A character runtime is repeated observation of one entity.
-- A relationship contract is repeated observation of one pair.
-- A world protocol is repeated observation across many pairs.
-- A narrative law is repeated observation across the entire system.
+From this, two operational principles follow:
 
-The invariant is the product — what crystallizes when a pattern has been observed enough times to be stated as law.
+> The compiler does not serialize entities. The compiler serializes invariants.
 
-The compiler's job is not rule enforcement. It is pattern recognition across accumulated observations. It does not care whether the thing being observed is a character, a pair, a group, or an entire world. It only asks:
+> An invariant is valid not because an author declared it, but because it has been observed enough times at a given narrative scale to cross a confidence threshold.
 
-> "Has this pattern been observed enough times to be called an invariant?"
-
-If yes: the invariant can be serialized and tested against new scenes. If no: it remains an observation, accumulating evidence until it either crystallizes or dissolves.
+A character runtime, a relationship contract, a world protocol, and a narrative law are not different kinds of things. They are the same kind of thing — a curated collection of invariants — observed at different scales.
 
 A behavioral invariant is a statement of the form:
 
@@ -61,61 +56,61 @@ This means:
 
 ---
 
-## 2.1 Emergence Across Scales
+## 2.1 Possible Serialization Targets
 
-Repeated observation operates at every scale. The mechanism is invariant. Only the unit of observation changes.
+Repeated observation may crystallize into invariants at different scales. These scales are not a mandatory hierarchy — a story does not need to reach Narrative Law to be executable. Each scale is simply a different unit of observation.
 
 ```
-Scale 1 — Character
-        Observation of one entity across many scenes
-                │
-                ▼
-        Behavioral Invariant
-                │
-                ▼
-        Character Runtime
+Individual
+Repeated behavior of one character
+        │
+        ▼
+Character Runtime
 
-        Example: Aisya always deflects with humor before being honest.
-                 Observed in 5 chapters. Confidence: 0.35.
+Example: Aisya always deflects with humor before being honest.
+         Observed in 5 chapters. Confidence: 0.35.
 
-Scale 2 — Interaction
-        Observation of one pair across many encounters
-                │
-                ▼
-        Interaction Invariant
-                │
-                ▼
-        Relationship Contract
+Interaction
+Repeated behavior between two characters
+        │
+        ▼
+Relationship Contract
 
-        Example: LO always deploys structure when GUA's node fails.
-                 Observed in 25 chapters. Confidence: 0.90.
+Example: LO always deploys structure when GUA's node fails.
+         Observed in 25 chapters. Confidence: 0.90.
 
-Scale 3 — Many Interactions
-        Observation of many pairs across the narrative system
-                │
-                ▼
-        Systemic Invariant
-                │
-                ▼
-        World Protocol
+Community
+Repeated behavior within a defined group
+        │
+        ▼
+Social Protocol
 
-        Example: Living Chain — any six characters bound by chain
-                 experience forced honesty, defense collapse, shared cost.
+Example: [TODO — no example yet extracted at this scale]
 
-Scale 4 — Many Protocols
-        Observation of accumulated world protocols
-                │
-                ▼
-        Universal Invariant
-                │
-                ▼
-        Narrative Law
+World
+Repeated behavior across many characters and pairs
+        │
+        ▼
+World Protocol
 
-        Example: Every invocation carries cost. Every cost produces residue.
-                 Applies across all characters, all interactions, all protocols.
+Example: Living Chain — any six characters bound by chain
+         experience forced honesty, defense collapse, shared cost.
+
+Cross-world
+Repeated behavior across multiple narrative systems
+        │
+        ▼
+Narrative Law
+
+Example: Every invocation carries cost. Every cost produces residue.
+         Applies across all characters, all interactions, all protocols.
+         This may hold for any universe built on invocation mechanics,
+         not just Void Saga.
 ```
 
-The same mechanism — observation, repetition, crystallization — produces all four serialization formats. A character runtime and a narrative law are not different KINDS of thing. They are the SAME kind of thing at DIFFERENT SCALES.
+Progression between scales is not about one being "higher" than another. It is about the **scope of observation widening.** An invariant observed across two people is broader than one observed in one person. An invariant observed across an entire world is broader than one observed in a community. But the mechanism — observation, repetition, crystallization — does not change.
+
+A character runtime and a narrative law are not different KINDS of thing. They are the SAME kind of thing — invariants — observed at different scopes.
 
 This is why the Mr. Bean Test works and the GUA-LO Orbit works and the Living Chain works. The compiler does not need to know what it is looking at. It only needs to detect: does this repeat?
 
@@ -147,7 +142,30 @@ This is why Draft → Beta → Locked maturity levels are not about how many fie
 
 ---
 
-## 2.3 Executable Fiction as a Theory of Emergence
+## 2.3 Observation Precedes Interpretation
+
+Observations and interpretations are not the same thing:
+
+```
+Observation:
+  GUA relocated to a different city after every major emotional crisis.
+  This happened five times across 25 chapters.
+
+Interpretation:
+  GUA is afraid of intimacy.
+```
+
+The compiler works at the level of observation.
+
+Interpretation may exist — as documentation, as authorial framing, as the human-readable layer of a runtime. But interpretation is always **derived from observation,** never the other way around. Invariants are extracted from repeated observations, not from psychological labels.
+
+This principle exists to prevent Executable Fiction from becoming a personality typing system. MBTI assigns a category ("INTJ") and derives expected behaviors from the category. Executable Fiction observes behaviors and derives invariants from the behaviors themselves. The label comes after, if at all. The invariant comes from the data.
+
+A runtime that says "GUA is avoidant" is an interpretation. A runtime that says "GUA relocated geographically after 5/5 observed emotional crises" is an invariant. Both may be true. Only one is executable.
+
+---
+
+## 2.4 Executable Fiction as a Theory of Emergence
 
 If the primitive is repeated observation, then Executable Fiction is not a theory about characters.
 
@@ -360,6 +378,34 @@ If this theory is correct, then the following are not separate design decisions 
 - **Cross-universe compilation** is a consequence of the primitive being behavioral, not psychological or genre-specific. The same detection machinery works on Void Saga, Band 8, and Mr. Bean — because it is looking for the same thing: stable patterns of behavior.
 
 - **PRICE REQUIRED** is a consequence of the compiler locking expectation, not behavior. A law that has never been broken carries immense weight when it finally is. The compiler must measure that weight, not prevent its use.
+
+---
+
+---
+
+## Consequence
+
+Because invariants are independent of narrative scale, Executable Fiction is domain-agnostic.
+
+The same extraction process may serialize:
+
+- a person's recurring behavior,
+- a relationship pattern,
+- a social ritual,
+- a world's governing protocol,
+- or a universal narrative law.
+
+Only the scale changes. The primitive does not.
+
+We began believing we were building a character compiler. What emerged instead is that a character is merely one of the first places an invariant becomes visible. The thing actually being compiled is the invariant itself. A character runtime, a relationship contract, a world protocol, and a narrative law are different serialization formats for the same underlying primitive observed at different scopes.
+
+This is the central finding of the GUA-LO-Aisya experiments conducted on 2026-06-26:
+
+> Executable Fiction was never about encoding characters.
+> It was always about encoding invariants.
+> Characters are simply the most common place invariants first appear.
+
+The theory now stands as: **behavioral invariants extracted through repeated observation, serializable at any narrative scale, testable against new scenes through compilation.**
 
 ---
 

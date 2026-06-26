@@ -31,9 +31,9 @@ Idea → Scenario JSON → Compiler → Decision → Writing
 
 ### Step 1 — Morning: Write Scene Ideas
 
-Create 3–5 scenario JSON files in `drafts/scenarios/`.
+Create 3–5 scenario JSON files in `dogfood/`.
 
-Each file is one scene idea:
+Each file is one scene idea. Give it a name you'll recognize in three months:
 
 ```json
 {
@@ -67,7 +67,7 @@ This took 2 minutes to write. Compare to 2 hours of prose.
 ### Step 2 — Triage
 
 ```bash
-./scripts/triage-scenes drafts/scenarios
+./scripts/triage-scenes dogfood
 ```
 
 You get:
@@ -103,7 +103,7 @@ you are executing.
 
 ### Step 5 — Archive
 
-Move BLOCKED scenes to a `drafts/scenarios/future/` folder.
+Move BLOCKED scenes to a `dogfood/future/` folder.
 They are your outline. Each BLOCKED scene tells you:
 
 > "This cannot happen yet. Here is what must happen first."
@@ -145,7 +145,7 @@ Some BLOCKED scenes are not "not yet." They are "not in THIS timeline."
 If you have a scene that should exist but cannot under current canon,
 create a fork:
 
-1. Copy the BLOCKED scenario to `drafts/scenarios/forks/`.
+1. Copy the BLOCKED scenario to `dogfood/forks/`.
 2. Write a short `fork.md` explaining what changed in this timeline.
 3. The fork's premise is: "What if this one constraint were different?"
 
@@ -160,27 +160,27 @@ is alive enough to generate alternate possibilities.
 
 ```bash
 # 1. Write 3 scene ideas
-vim drafts/scenarios/scene_morning.json
-vim drafts/scenarios/scene_conflict.json
-vim drafts/scenarios/scene_reunion.json
+vim dogfood/niuniu_mengamati.json
+vim dogfood/sevraya_zero_berbicara.json
+vim dogfood/julia_kembali_ke_dayan.json
 
 # 2. Triage
-./scripts/triage-scenes drafts/scenarios
+./scripts/triage-scenes dogfood
 ```
 
 **Output:**
 
 ```
-🟢 scene_morning   — PASS, ready to write
-🟡 scene_conflict  — WARNING, pre-chain timeline may not match stage
-🔴 scene_reunion   — BLOCKED, NiuNiu cannot speak fluently
+🟢 niuniu_mengamati          — PASS, ready to write
+🟡 sevraya_zero_berbicara    — WARNING, pre-chain timeline may not match stage
+🔴 julia_kembali_ke_dayan    — BLOCKED, forbidden behavior triggered
 ```
 
 **Decision (2 min):**
 
-- `scene_morning`: Write today. 30 minutes.
-- `scene_conflict`: Adjust timeline to post-chain. Retriage. Takes 5 minutes.
-- `scene_reunion`: Save to `future/`. This scene belongs after the Living Chain arc.
+- `niuniu_mengamati`: Write today. 30 minutes.
+- `sevraya_zero_berbicara`: Adjust timeline to post-chain. Retriage. Takes 5 minutes.
+- `julia_kembali_ke_dayan`: Save to `future/`. This scene belongs after a transition arc.
 
 **Writing (30 min):**
 
@@ -192,13 +192,57 @@ Open editor. Write `scene_morning`. No canon anxiety. Compiler already checked i
 
 ---
 
+## From Draft to Novel
+
+Writing is not temporary. Drafts are history.
+
+When a scene is final and moves into a Bab or Timer:
+
+1. Save the draft to `writing/archive/`.
+2. In the Bab/Timer file, add as the first line:
+
+```
+<!-- Derived from: writing/day-01/niuniu_menunggu.md -->
+```
+
+Months later, you will want to see: "What did the first draft of this scene look like?"
+
+That data is expensive. Keep it.
+
+---
+
+## The Four Layers
+
+```
+Canon      (Bab / Timer)         ← what is already true
+    ↑
+Decision   (dogfood + compiler)  ← what is ready to write today
+    ↑
+Drafting   (writing/)            ← writing
+    ↑
+Publication (Bab / Timer baru)   ← derived from writing/
+```
+
+The compiler is not a generator. It is your first editor.
+The human editor arrives after the compiler has finished its work.
+
+Every morning the question is no longer:
+
+> "What do I want to write today?"
+
+It is:
+
+> "Of the ideas I have, which ones are ready to be born?"
+
+---
+
 ## Setup
 
 1. Ensure you have Python 3.8+.
 2. Clone the Void Saga repository.
 3. Run `./scripts/demo-pass` once to verify the compiler works.
-4. Create your first scenario in `drafts/scenarios/`.
-5. Run `./scripts/triage-scenes drafts/scenarios`.
+4. Create your first scenario in `dogfood/`.
+5. Run `./scripts/triage-scenes dogfood`.
 
 No API key required for triage. The compiler runs in dry-run mode by default.
 

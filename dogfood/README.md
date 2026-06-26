@@ -6,9 +6,10 @@ Taruh scenario JSON di sini. Jalankan triage. Ambil keputusan.
 
 ```bash
 # 1. Tulis 3-5 ide scene sebagai .json
-vim dogfood/scene_pagi.json
-vim dogfood/scene_konflik.json
-vim dogfood/scene_penutup.json
+#    Nama file deskriptif, bukan scene_01:
+vim dogfood/niuniu_mengamati.json
+vim dogfood/sevraya_zero_berbicara.json
+vim dogfood/julia_kembali_ke_dayan.json
 
 # 2. Triage
 ./scripts/triage-scenes dogfood
@@ -32,3 +33,17 @@ Copy dari `drafts/scenarios/pass_example.json`, ganti:
 - `requested_action.type` (pakai `speak` untuk aman)
 
 Referensi lengkap: `drafts/scenarios/README.md`
+
+## Empat Layer
+
+```
+Canon      (Bab / Timer)         ← apa yang sudah benar
+    ↑
+Decision   (dogfood + compiler)  ← apa yang layak ditulis hari ini
+    ↑
+Drafting   (writing/)            ← menulis
+    ↑
+Publication (Bab / Timer baru)   ← derived from writing/
+```
+
+Compiler adalah editor pertama. Editor manusia datang setelahnya.

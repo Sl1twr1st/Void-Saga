@@ -1,11 +1,10 @@
 # Executable Fiction v2 — Behavioral Invariants
 
-> v1: "A character is executable if they have a runtime."
-> v2: "A character is executable if they exhibit stable behavioral invariants that a system can learn, model, and test for consistency."
+> **NOTE (2026-06-26):** This document has been superseded by [`BEHAVIORAL_INVARIANTS.md`](./BEHAVIORAL_INVARIANTS.md), which separates the theory (what makes a character executable) from the engineering (how invariants are extracted and compiled). This document is preserved for provenance — it captured the initial insight. The canonical theoretical statement is now in `BEHAVIORAL_INVARIANTS.md`.
 
 ---
 
-## The Reframing
+## The Reframing (Preserved from Original)
 
 On 2026-06-26, while creating the Aisya Draft Runtime — the first runtime for a non-Void-Saga, contemporary realist universe — a critical error in framing was identified.
 

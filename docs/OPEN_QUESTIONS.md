@@ -72,6 +72,13 @@ Test: modify the Aisya runtime to include per-invariant confidence. Run the comp
 
 ---
 
+## Related
+
+- `docs/OBSERVE_PIPELINE.md` — the research instrument designed to test these questions empirically.
+- `docs/BEHAVIORAL_INVARIANTS.md` — the theoretical foundation.
+
+---
+
 ## Status
 
 These five questions define the next research phase. They emerged from a single day of experimentation (GUA, LO, Aisya) but their answers will determine the architecture of Executable Fiction v2.

@@ -70,4 +70,72 @@ Key finding: the compiler enforced constraints correctly despite the character h
 
 ---
 
-*Experiment conducted 2026-06-26. Method: manual Observe → Propose → Review → Serialize.*
+*Phase A conducted 2026-06-26. Method: manual Observe → Propose → Review → Serialize.*
+
+---
+
+## Phase B — Noise Robustness Spot-Check (2026-06-26)
+
+### Question
+
+Do previously observed Aisya candidate invariants remain detectable when new chapters are written organically, without compiler-aware structuring, under normal drafting noise?
+
+### Hypothesis (Noise Robustness)
+
+Behavioral invariants should remain detectable despite normal drafting noise — fragmented narrative, non-linear scenes, and prose written without Executable Fiction intent.
+
+### Dataset
+
+| Field | Value |
+|-------|-------|
+| **Source** | `writing/day-02/` |
+| **Chapters** | 6 Night, 7 Force Majeure Emosional, 8 Sprinkler, Iblis, dan Pintu yang Dikunci, 9 Emotionally Bruises, 10 Cute Gitaris |
+| **Word count** | ~85 KB across 5 files |
+| **Method** | Organic / chaotic / throw-up writing |
+| **Author intent** | Written as pure prose. No runtime planning. No scene triage. |
+| **Date** | 2026-06-26 |
+
+### Method
+
+Lightweight spot-check — read all 5 chapters, matched observed behavior against 5 candidate invariants from Phase A. No re-extraction. No new invariant formulation. Conservative: evidence counted only when behavior was directly observable in text.
+
+### Result
+
+| # | Invariant | Phase B Evidence | Status |
+|---|-----------|-----------------|--------|
+| 1 | Deflects with humor/intellect before emotional honesty | Multiple observations across ch 6, 8, 9 | Supporting evidence added |
+| 2 | Refuses before accepting ("nggak… iya" pattern) | Multiple observations across ch 8, 9 | Supporting evidence added |
+| 3 | Cannot speak emotional vocabulary directly in dialogue | Strongest additional evidence; present in nearly every chapter | Supporting evidence added |
+| 4 | Body overrides defense behind drum kit | No drum-kit context appears in ch 6–10 | Untestable |
+| 5 | Overthinks major decisions | Multiple observations; qualitatively stronger | Supporting evidence added |
+
+**Detection rate:** 4/5 candidate invariants received additional supporting evidence. 1/5 was untestable due to missing context.
+
+### Key findings
+
+1. **Chaos did not destroy the signal.** Despite being written organically, non-linearly, and without compiler-aware structuring, the same behavioral signals remained detectable. This adds supporting evidence to the Noise Robustness Hypothesis.
+
+2. **This does not prove the runtime is final.** Additional evidence strengthens existing candidate invariants; it does not validate the serialized runtime. Full re-extraction with the updated dataset is a separate experiment.
+
+3. **Invariants may evolve in manifestation while retaining the same underlying pattern.** Aisya's overthinking (Invariant 5) was previously observed as internal/personal deliberation ("Should I take the PhD?"). In Phase B, it manifests as systems-level social simulation — modeling the probable behavior of 5 other characters as input to her own decision:
+
+   > "Kalau gua bilang nggak, Ratna akan cari sendiri. Ika akan pura-pura ini prosedur. Priska akan menemukan cara membuatnya jadi tontonan. Maya akan bilang semua orang harus jujur... Candice akan bikin folder index. Jadi lebih baik gua ada di ruangan."
+
+   The pattern (overthinking-as-decision-mechanism) persists; the expression (internal → multi-agent simulation) deepens. This raises a question for future theory: *does an invariant describe a fixed behavior, or the shape of a behavioral trajectory?*
+
+### Metrics for future Phase C runs
+
+| Metric | Definition | Phase A | Phase B |
+|--------|-----------|---------|---------|
+| **Detection Rate** | Candidate invariants with new evidence / total checked | — | 4/5 |
+| **New Evidence Count** | Chapters producing at least one observation | 5/5 | 5/5 |
+| **Noise Robustness** | Detection rate under unstructured prose | — | 4/5 (1 untestable) |
+| **Candidate Discovery** | New invariants not in previous phase | — | Not assessed |
+| **Untestable Context Count** | Invariants with zero opportunity for observation | — | 1/5 |
+
+### Limitations
+
+- Spot-check only. No re-extraction performed. New invariants may exist that were not captured.
+- 1 untestable invariant does not imply disconfirmation — only missing context.
+- 5 additional chapters increase total dataset to 10 (~87.5 KB). Still a small sample.
+- No inter-rater verification. Single reader (Claude session).

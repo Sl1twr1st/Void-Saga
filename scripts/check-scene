@@ -1,0 +1,406 @@
+#!/usr/bin/env bash
+# check-scene — Validate a markdown scene against Void Saga canon constraints
+#
+# Usage:
+#   ./scripts/check-scene <path-to-scene.md>
+#   ./scripts/check-scene <path-to-scene.md> --structural
+#
+# The Scene Extractor reads prose, maps characters to runtimes,
+# generates a scenario JSON, and runs the compiler.
+#
+# Output: PASS / WARNING / BLOCKED  or  UNKNOWN CHARACTERS structural analysis
+
+set -e
+
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+cd "$REPO_ROOT"
+
+COMPILER="VOID_SAGA_UNIVERSE/apps/compiler/compiler.py"
+TEMP_DIR="${TMPDIR:-/tmp}"
+STRUCTURAL_MODE=false
+
+# ── Parse arguments ──────────────────────────────────────────
+
+if [ $# -lt 1 ]; then
+    echo "Usage: ./scripts/check-scene <path-to-scene.md> [--structural]"
+    echo ""
+    echo "  path-to-scene.md  A markdown prose file in writing/ or anywhere."
+    echo ""
+    echo "Options:"
+    echo "  --structural      Skip compiler. Show narrative analysis only."
+    echo ""
+    echo "Examples:"
+    echo "  ./scripts/check-scene writing/day-01/1\\ Arrival\\ LAX.md"
+    echo "  ./scripts/check-scene my-scene.md --structural"
+    exit 1
+fi
+
+# Handle --help as first arg
+if [ "$1" = "--help" ] || [ "$1" = "-h" ]; then
+    echo "Usage: ./scripts/check-scene <path-to-scene.md> [--structural]"
+    echo ""
+    echo "  path-to-scene.md  A markdown prose file in writing/ or anywhere."
+    echo ""
+    echo "Options:"
+    echo "  --structural      Skip compiler. Show narrative analysis only."
+    echo ""
+    echo "Examples:"
+    echo "  ./scripts/check-scene writing/day-01/1\\ Arrival\\ LAX.md"
+    echo "  ./scripts/check-scene my-scene.md --structural"
+    echo ""
+    echo "Output:"
+    echo "  PASS    — Canon-compliant. Ready to write."
+    echo "  WARNING — Borderline. Review timeline, proximity, or evolution stage."
+    echo "  BLOCKED — Hard constraint violated. Write a transition scene first."
+    echo ""
+    echo "Unknown characters get a structural analysis instead of compiler output."
+    echo ""
+    echo "For YAML frontmatter format, see VOID_SAGA_UNIVERSE/apps/data/character_registry.json"
+    exit 0
+fi
+
+MD_PATH="$1"
+shift
+
+for arg in "$@"; do
+    case "$arg" in
+        --structural)
+            STRUCTURAL_MODE=true
+            ;;
+        *)
+            echo "Unknown option: $arg"
+            exit 1
+            ;;
+    esac
+done
+
+# ── Resolve path ─────────────────────────────────────────────
+
+if [ ! -f "$MD_PATH" ]; then
+    echo "❌ File not found: $MD_PATH"
+    exit 1
+fi
+
+ABSOLUTE_MD="$(cd "$(dirname "$MD_PATH")" && pwd)/$(basename "$MD_PATH")"
+FILENAME=$(basename "$MD_PATH")
+
+# ── Step 1: Extract ──────────────────────────────────────────
+
+EXTRACTOR_SCRIPT="VOID_SAGA_UNIVERSE/apps/extractor/extract_scene.py"
+EXTRACTION_JSON=$(python3 "$EXTRACTOR_SCRIPT" "$ABSOLUTE_MD" --json 2>/dev/null) || {
+    echo "❌ Extraction failed for: $FILENAME"
+    echo "   Check that the file is readable markdown."
+    exit 1
+}
+
+if [ -z "$EXTRACTION_JSON" ]; then
+    echo "❌ Extractor returned no output."
+    exit 1
+fi
+
+# ── Parse extraction report ──────────────────────────────────
+
+HAS_MATCHED=$(echo "$EXTRACTION_JSON" | python3 -c "
+import sys,json
+d=json.load(sys.stdin)
+print(str(d['report']['has_matched_characters']).lower())
+" 2>/dev/null) || HAS_MATCHED="false"
+
+EXTRACTION_METHOD=$(echo "$EXTRACTION_JSON" | python3 -c "
+import sys,json
+d=json.load(sys.stdin)
+print(d['report']['extraction_method'])
+" 2>/dev/null) || EXTRACTION_METHOD="unknown"
+
+WORD_COUNT=$(echo "$EXTRACTION_JSON" | python3 -c "
+import sys,json
+d=json.load(sys.stdin)
+print(d['report']['word_count'])
+" 2>/dev/null) || WORD_COUNT=0
+
+POV=$(echo "$EXTRACTION_JSON" | python3 -c "
+import sys,json
+d=json.load(sys.stdin)
+print(d['report']['pov_character'] or 'unknown')
+" 2>/dev/null) || POV="unknown"
+
+# ── UNKNOWN CHARACTERS path ──────────────────────────────────
+
+if [ "$HAS_MATCHED" != "true" ] || [ "$STRUCTURAL_MODE" = true ]; then
+    # Read all the report fields we need
+    CHARS_DETECTED=$(echo "$EXTRACTION_JSON" | python3 -c "
+import sys,json
+d=json.load(sys.stdin)
+chars = d['report']['characters_detected']
+print(', '.join(chars) if chars else 'none')
+" 2>/dev/null)
+
+    DIALOGUE_LINES=$(echo "$EXTRACTION_JSON" | python3 -c "
+import sys,json
+d=json.load(sys.stdin)
+print(d['report']['dialogue_lines'])
+" 2>/dev/null)
+
+    SETTING=$(echo "$EXTRACTION_JSON" | python3 -c "
+import sys,json
+d=json.load(sys.stdin)
+s = d['report']['setting']
+print(f\"{s.get('setting','?')}, {s.get('time_of_day','?')}\")
+" 2>/dev/null)
+
+    PRIMARY_ACTION=$(echo "$EXTRACTION_JSON" | python3 -c "
+import sys,json
+d=json.load(sys.stdin)
+print(d['report']['setting'].get('primary_action','?'))
+" 2>/dev/null)
+
+    UNMATCHED_NAMES=$(echo "$EXTRACTION_JSON" | python3 -c "
+import sys,json
+d=json.load(sys.stdin)
+unmatched = d['report']['unmatched_names']
+known = d['report']['known_no_runtime']
+names = [u['name'] for u in unmatched]
+names += [k['display_name'] for k in known]
+print(', '.join(names) if names else '')
+" 2>/dev/null)
+
+    KNOWN_NO_RT=$(echo "$EXTRACTION_JSON" | python3 -c "
+import sys,json
+d=json.load(sys.stdin)
+items = d['report']['known_no_runtime']
+if items:
+    for i in items:
+        print(f\"  ⚠ {i['display_name']} — known character, no runtime yet\")
+" 2>/dev/null)
+
+    # ── Output: UNKNOWN CHARACTERS ──────────────────────────────
+
+    echo ""
+    echo "╔══════════════════════════════════════════════════════════════╗"
+    echo "║  SCENE CHECK  —  $FILENAME"
+    echo "╚══════════════════════════════════════════════════════════════╝"
+    echo ""
+
+    if [ "$STRUCTURAL_MODE" = true ]; then
+        echo "📋  STRUCTURAL ANALYSIS  (--structural — compiler skipped)"
+    else
+        echo "⚠️   UNKNOWN CHARACTERS"
+        if [ -n "$UNMATCHED_NAMES" ]; then
+            echo ""
+            echo "No runtimes found for: $UNMATCHED_NAMES"
+            echo ""
+            echo "These characters are not registered in the Void Saga runtime system."
+        fi
+    fi
+
+    if [ -n "$KNOWN_NO_RT" ]; then
+        echo ""
+        echo "Known characters without runtimes:"
+        echo "$KNOWN_NO_RT"
+        echo ""
+        echo "To make these characters executable:"
+        echo "  → Run the Runtime SDK to create .runtime.json files"
+        echo "  → python3 VOID_SAGA_UNIVERSE/apps/runtime_sdk/create_runtime.py"
+    fi
+
+    if [ "$STRUCTURAL_MODE" != true ] && [ -n "$UNMATCHED_NAMES" ]; then
+        echo ""
+        echo "To check this scene against canon constraints:"
+        echo "  1. Create runtimes for each character using the Runtime SDK"
+        echo "  2. Or add YAML frontmatter to map them to existing runtimes"
+        echo "  3. Or run with --structural for narrative analysis only"
+    fi
+
+    echo ""
+    echo "──────────────────────────────────────────────────────────────"
+    echo "  Scene:       $FILENAME"
+    echo "  Word count:  $WORD_COUNT"
+    echo "  POV:         $POV ($EXTRACTION_METHOD)"
+    echo "  Characters:  $CHARS_DETECTED"
+    echo "  Dialogue:    ~$DIALOGUE_LINES lines"
+    echo "  Setting:     $SETTING"
+    echo "  Action:      $PRIMARY_ACTION"
+    echo "──────────────────────────────────────────────────────────────"
+    echo ""
+
+    if [ "$STRUCTURAL_MODE" != true ]; then
+        echo "💡  Want to write in the Void Saga universe?"
+        echo "    Add YAML frontmatter to declare runtimes:"
+        echo ""
+        echo "    ---"
+        echo "    characters: [niuniu, sevraya]"
+        echo "    phase: 5"
+        echo "    ---"
+        echo ""
+        echo "    See VOID_SAGA_UNIVERSE/apps/data/character_registry.json"
+        echo "    for all known character names."
+        echo ""
+    fi
+
+    exit 0
+fi
+
+# ── MATCHED PATH: Run compiler ───────────────────────────────
+
+# Write temp scenario JSON
+TEMP_SCENARIO="$TEMP_DIR/voidsaga_check_scene_$$.json"
+echo "$EXTRACTION_JSON" | python3 -c "
+import sys,json
+d=json.load(sys.stdin)
+print(json.dumps(d['scenario'], indent=2, ensure_ascii=False))
+" > "$TEMP_SCENARIO" 2>/dev/null || {
+    echo "❌ Failed to generate scenario JSON."
+    exit 1
+}
+
+# Run compiler
+COMPILER_RESULT=$(python3 "$COMPILER" "$TEMP_SCENARIO" --json 2>/dev/null) || true
+rm -f "$TEMP_SCENARIO"
+
+if [ -z "$COMPILER_RESULT" ]; then
+    echo "❌ Compiler returned no output."
+    exit 1
+fi
+
+# ── Parse compiler result ────────────────────────────────────
+
+BLOCKED=$(echo "$COMPILER_RESULT" | python3 -c "
+import sys,json
+d=json.load(sys.stdin)
+print(str(d.get('blocked', False)).lower())
+" 2>/dev/null) || BLOCKED="false"
+
+VERDICT=$(echo "$COMPILER_RESULT" | python3 -c "
+import sys,json
+d=json.load(sys.stdin)
+print(d.get('final_verdict','?'))
+" 2>/dev/null) || VERDICT="?"
+
+CANON_SCORE=$(echo "$COMPILER_RESULT" | python3 -c "
+import sys,json
+d=json.load(sys.stdin)
+print(d.get('canon_score','?'))
+" 2>/dev/null) || CANON_SCORE="?"
+
+EVIDENCE=$(echo "$COMPILER_RESULT" | python3 -c "
+import sys,json
+d=json.load(sys.stdin)
+print(d.get('evidence_confidence', 0.0))
+" 2>/dev/null) || EVIDENCE="0.0"
+
+HARD_BLOCKS_COUNT=$(echo "$COMPILER_RESULT" | python3 -c "
+import sys,json
+d=json.load(sys.stdin)
+print(len(d.get('hard_blocks',[])))
+" 2>/dev/null) || HARD_BLOCKS_COUNT=0
+
+WARNINGS_COUNT=$(echo "$COMPILER_RESULT" | python3 -c "
+import sys,json
+d=json.load(sys.stdin)
+w=d.get('warnings',[])
+s=d.get('soft_warnings',[])
+print(len(w)+len(s))
+" 2>/dev/null) || WARNINGS_COUNT=0
+
+# Matched runtime info
+MATCHED_INFO=$(echo "$EXTRACTION_JSON" | python3 -c "
+import sys,json
+d=json.load(sys.stdin)
+matched = d['report']['matched_runtimes']
+for rid, info in matched.items():
+    print(f\"  ✓ {info['name']} → {rid} (stage {info['default_stage']})\")
+" 2>/dev/null)
+
+# ── Output ───────────────────────────────────────────────────
+
+echo ""
+echo "╔══════════════════════════════════════════════════════════════╗"
+echo "║  SCENE CHECK  —  $FILENAME"
+echo "╚══════════════════════════════════════════════════════════════╝"
+echo ""
+
+if [ "$BLOCKED" = "true" ]; then
+    echo "🔴  BLOCKED"
+    echo ""
+    BLOCK_REASON=$(echo "$COMPILER_RESULT" | python3 -c "
+import sys,json
+d=json.load(sys.stdin)
+hbs = d.get('hard_blocks',[])
+if hbs:
+    r = hbs[0].get('reason','')
+    print(r[:200])
+" 2>/dev/null) || true
+    echo "Reason"
+    echo "$BLOCK_REASON"
+    echo ""
+
+    # Suggested fix
+    echo "Suggested:"
+    if echo "$BLOCK_REASON" | grep -q "forbidden_behavior"; then
+        echo "This action violates a hard character constraint."
+        echo "Check the character's forbidden_behaviors in their runtime JSON."
+    elif echo "$BLOCK_REASON" | grep -q "contract"; then
+        echo "This action violates a relationship contract."
+        echo "Check the relationship_interfaces between these characters."
+    elif echo "$BLOCK_REASON" | grep -q "anti_gravity"; then
+        echo "This action is listed as anti-gravity — it must not happen in canon."
+    elif echo "$BLOCK_REASON" | grep -q "evolution_stage"; then
+        echo "The character has not reached the evolution stage required."
+        echo "Write a transition scene to advance them first."
+    else
+        echo "Review the constraint violations above."
+        echo "Write a transition scene first, or create a fork."
+    fi
+
+elif [ "$WARNINGS_COUNT" -gt 0 ] 2>/dev/null; then
+    echo "🟡  WARNING"
+    echo "Canon $CANON_SCORE"
+    echo ""
+    echo "Participants"
+    echo "$MATCHED_INFO"
+    echo ""
+
+    WARNINGS=$(echo "$COMPILER_RESULT" | python3 -c "
+import sys,json
+d=json.load(sys.stdin)
+w=d.get('warnings',[])
+s=d.get('soft_warnings',[])
+for x in w[:5]:
+    print(f\"  ⚠ {x.get('violation_detail', x.get('invariant','?'))[:120]}\")
+for x in s[:5]:
+    print(f\"  ⚠ {x['reason'][:120]}\")
+" 2>/dev/null) || true
+
+    if [ -n "$WARNINGS" ]; then
+        echo "Warnings"
+        echo "$WARNINGS"
+    fi
+    echo ""
+    echo "Forbidden behavior"
+    echo "None"
+    echo ""
+    echo "Review before writing."
+
+else
+    echo "🟢  PASS"
+    echo "Canon $CANON_SCORE"
+    echo ""
+    echo "Participants"
+    echo "$MATCHED_INFO"
+    echo ""
+    echo "Warnings"
+    echo "None"
+    echo ""
+    echo "Forbidden behavior"
+    echo "None"
+    echo ""
+    echo "Ready to write."
+fi
+
+echo ""
+echo "──────────────────────────────────────────────────────────────"
+echo "  Scene:       $FILENAME  │  Words: $WORD_COUNT  │  Evidence: $EVIDENCE"
+echo "  Method:      $EXTRACTION_METHOD"
+echo "──────────────────────────────────────────────────────────────"
+echo ""

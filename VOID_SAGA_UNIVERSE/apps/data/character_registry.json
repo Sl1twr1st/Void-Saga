@@ -1,0 +1,111 @@
+{
+  "registry_version": "1.0.0",
+  "description": "Character name aliases → runtime_id. Single source of truth for the Scene Extractor. has_runtime: false means the character is known to the universe but not yet serialized to .runtime.json.",
+  "entries": {
+    "niuniu": {
+      "runtime_id": "niuniu",
+      "aliases": ["NiuNiu", "Niuma", "Niuma Nakamoto"],
+      "display_name": "NiuNiu Nakamoto",
+      "has_runtime": true,
+      "default_stage": 4
+    },
+    "sevraya": {
+      "runtime_id": "sevraya",
+      "aliases": ["Sevraya", "Sevraya Rose"],
+      "display_name": "Sevraya Rose",
+      "has_runtime": true,
+      "default_stage": 6
+    },
+    "zero": {
+      "runtime_id": "zero",
+      "aliases": ["Zero"],
+      "display_name": "Zero",
+      "has_runtime": true,
+      "default_stage": 6
+    },
+    "julia": {
+      "runtime_id": "julia",
+      "aliases": ["Julia", "Julia Rose"],
+      "display_name": "Julia Rose",
+      "has_runtime": true,
+      "default_stage": 4
+    },
+    "delphie": {
+      "runtime_id": "delphie",
+      "aliases": ["Delphie"],
+      "display_name": "Delphie",
+      "has_runtime": true,
+      "default_stage": 5
+    },
+    "agnia": {
+      "runtime_id": null,
+      "aliases": ["Agnia", "Agnia Nakamoto"],
+      "display_name": "Agnia Nakamoto",
+      "has_runtime": false,
+      "default_stage": null
+    },
+    "hasan": {
+      "runtime_id": null,
+      "aliases": ["Hasan", "Hasan Al Hul"],
+      "display_name": "Hasan Al Hul",
+      "has_runtime": false,
+      "default_stage": null
+    },
+    "gwaneum": {
+      "runtime_id": null,
+      "aliases": ["Gwaneum"],
+      "display_name": "Gwaneum",
+      "has_runtime": false,
+      "default_stage": null
+    },
+    "sora": {
+      "runtime_id": null,
+      "aliases": ["Sora", "Sora Elen"],
+      "display_name": "Sora Elen",
+      "has_runtime": false,
+      "default_stage": null
+    },
+    "dorian": {
+      "runtime_id": null,
+      "aliases": ["Dorian Grey", "Dorian"],
+      "display_name": "Dorian Grey",
+      "has_runtime": false,
+      "default_stage": null
+    },
+    "pippa": {
+      "runtime_id": null,
+      "aliases": ["Pippa", "Kapten Pippa"],
+      "display_name": "Kapten Pippa",
+      "has_runtime": false,
+      "default_stage": null
+    },
+    "himler": {
+      "runtime_id": null,
+      "aliases": ["Himler"],
+      "display_name": "Himler",
+      "has_runtime": false,
+      "default_stage": null
+    },
+    "kira": {
+      "runtime_id": null,
+      "aliases": ["Kira"],
+      "display_name": "Kira",
+      "has_runtime": false,
+      "default_stage": null
+    },
+    "eros": {
+      "runtime_id": null,
+      "aliases": ["Eros"],
+      "display_name": "Eros",
+      "has_runtime": false,
+      "default_stage": null
+    },
+    "ophiuchus": {
+      "runtime_id": null,
+      "aliases": ["Ophiuchus"],
+      "display_name": "Ophiuchus",
+      "has_runtime": false,
+      "default_stage": null
+    }
+  }
+}

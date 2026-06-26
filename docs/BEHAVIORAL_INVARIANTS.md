@@ -427,7 +427,8 @@ A separate document — the Invariant Extraction and Compilation Architecture �
 
 ## Related
 
-- `docs/THEORY_EXECUTABLE_FICTION_V2.md` — earlier draft of this document (superseded, preserved for provenance)
+- `docs/OBSERVE_PIPELINE.md` — the research methodology for testing these claims
+- `experiments/INDEX.md` — experiment log; EXP-001 (Aisya) and EXP-002 (GUA-LO) documented
 - `VOID_SAGA_UNIVERSE/EXECUTABLE_FICTION_MANIFESTO.md` — the v1 paradigm statement
 - `VOID_SAGA_UNIVERSE/apps/data/runtimes/Aisya.runtime.json` — first non-Void-Saga runtime
 - `VOID_SAGA_UNIVERSE/apps/data/runtimes/NiuNiu.runtime.json` — first Void Saga runtime (v2.1.0)

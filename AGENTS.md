@@ -21,11 +21,15 @@ Most fictional universes are documented. Void Saga is executable.
 
 ## Current Milestone
 
-**Narrative Compiler First Light** (v0.2.0)
+**Developer Zero** — shifting from research project to OSS platform.
 
-Three runtime characters. One executable universe. The first successful end-to-end compilation of a canon-compliant narrative via Claude API — with hard block gate, constraint engine, contract engine, and post-generation validation all operational.
+DX-1 (complete): A fresh developer reaches the "aha moment" within 3 minutes. README rewritten. Demo scripts at `./scripts/demo-pass` and `./scripts/demo-blocked`. QUICKSTART.md created.
 
-Live Claude generation has already succeeded. PASS and BLOCKED demos exist.
+Developer Zero (complete): `docs/30_MINUTE_CHALLENGE.md` — a checkpoint-based tutorial where a developer creates their own executable character (Mira / The Last Cup) in a universe with zero Void Saga DNA. Five checkpoints from clone to PASS to intentional BLOCKED. Target: someone unfamiliar with Void Saga builds a runtime without author assistance.
+
+**The KPI has shifted.** Before: "Can the compiler run?" Now: "Can someone else run the compiler?"
+
+Next: First External Universe → First External Contributor → v0.3.0 (adoption milestone, not technical milestone).
 
 ---
 
@@ -73,15 +77,17 @@ The language model is not the authority. **The universe is.**
 
 ## What Actually Exists (Verified)
 
-### Executable Runtimes (3 only — NOT all characters)
+### Executable Runtimes (5 active)
 
 | Runtime | JSON | Schema Valid | Stage |
 |---------|------|-------------|-------|
 | NiuNiu | `apps/data/runtimes/NiuNiu.runtime.json` | ✅ V2.1 | Stage 4: Constant |
 | Sevraya | `apps/data/runtimes/Sevraya.runtime.json` | ✅ V2.1 | Stage 6: Post-Resolution |
 | Zero | `apps/data/runtimes/Zero.runtime.json` | ✅ V2.1 | Stage 6: Void Interface |
+| Julia | `apps/data/runtimes/Julia.runtime.json` | ✅ V2.1 | Stage 4: Fractured Duty |
+| Delphie | `apps/data/runtimes/Delphie.runtime.json` | ✅ V2.1 | Stage 5: Childhood Paradox |
 
-These are the **only** active executable runtimes. The remaining characters exist as Markdown documentation (`.runtime.md`) but have NOT been serialized to `.runtime.json` yet.
+Delphie is the first SDK-created runtime (via `create_runtime.py`). The remaining characters exist as Markdown documentation (`.runtime.md`) but have NOT been serialized to `.runtime.json` yet.
 
 ### Runtime Schema
 
@@ -121,14 +127,19 @@ BLOCKED demo: Hard block triggered on forbidden behavior. **Claude API was never
 ### How to Run Demo
 
 ```bash
-# PASS — generate canon-compliant narrative
-python3 VOID_SAGA_UNIVERSE/apps/compiler/compiler.py \
-  VOID_SAGA_UNIVERSE/apps/engine/scenarios_v2/test_niuniu_sevraya_orbit.json \
-  --live
+# PASS — canon-compliant scenario
+./scripts/demo-pass
 
 # BLOCKED — hard block on forbidden behavior
+./scripts/demo-blocked
+
+# Or run the compiler directly:
 python3 VOID_SAGA_UNIVERSE/apps/compiler/compiler.py \
-  VOID_SAGA_UNIVERSE/apps/engine/scenarios_v2/test_violation_zero_emotional.json \
+  VOID_SAGA_UNIVERSE/apps/engine/scenarios_v2/test_niuniu_sevraya_orbit.json
+
+# With Claude (requires ANTHROPIC_API_KEY):
+python3 VOID_SAGA_UNIVERSE/apps/compiler/compiler.py \
+  VOID_SAGA_UNIVERSE/apps/engine/scenarios_v2/test_niuniu_sevraya_orbit.json \
   --live
 ```
 
@@ -136,7 +147,7 @@ python3 VOID_SAGA_UNIVERSE/apps/compiler/compiler.py \
 
 These characters have `.runtime.md` documentation but NOT `.runtime.json`:
 
-Julia, Delphie, Agnia, Gwaneum, Hasan, Dorian Grey, Pippa, Himler, Ophiuchus, Kira, Eros
+Agnia, Gwaneum, Hasan, Dorian Grey, Pippa, Himler, Ophiuchus, Kira, Eros
 
 ### World DNA (reference layer, NOT executable)
 
@@ -152,17 +163,31 @@ These are structural reference. They inform the runtimes. They are not themselve
 
 ## Next Priorities
 
-1. **Stabilize** — README and CLAUDE.md reflect actual state. No hallucinated completion.
-2. **Checkpoint** — Clear v0.2.0 project state marker.
-3. **Document** — "How to run demo" instructions verified and clean.
-4. **Then choose next track** (only after stabilization):
-   - Runtime SDK (tooling to create `.runtime.json` from `.runtime.md`)
-   - Remaining character serialization (Julia → Agnia → Delphie → Hasan → …)
-   - CLI packaging (`void-saga compile`, `void-saga validate`)
-   - Acceptance test expansion (N-party conflict detection, edge cases)
-   - Engine hardening (performance, error handling, schema migration)
+### Adoption Track (current)
 
-**Do NOT recommend:** more worldbuilding as immediate next step, web app, new chapter writing, new characters — until the compiler foundation is stable and the remaining runtimes are serialized.
+1. **First External Universe** — someone outside the team builds a non–Void Saga universe using the 30-Minute Challenge.
+2. **First External Contributor** — someone submits a runtime or scenario without being asked.
+3. **v0.3.0** — adoption milestone. Measured by external users reaching PASS.
+
+### Technical Track (background)
+
+- Remaining character serialization (Agnia → Gwaneum → Hasan → …)
+- CLI packaging (`void-saga compile`, `void-saga validate`)
+- Acceptance test expansion
+- Engine hardening
+- Persona split — separate landing for Novel Reader, Developer, Researcher
+
+### DX Metrics
+
+| Metric | Target | Status |
+|--------|--------|--------|
+| ⏱ Time to Aha | < 3 min | ✅ DX-1 |
+| ⏱ Time to First Runtime | < 30 min | 🎯 Developer Zero |
+| ⏱ Time to First PASS | < 35 min | 🎯 Developer Zero |
+| 👥 First External Contributor | — | waiting |
+| 🌌 First Non–Void Saga Universe | — | waiting |
+
+**Do NOT recommend:** more worldbuilding, web app, new chapters, new characters — until external adoption is proven.
 
 ---
 
@@ -176,8 +201,9 @@ Mode operasi sekarang:
 2. **Runtime engineer** — bantu serialisasi karakter remaining ke `.runtime.json`, validasi terhadap schema V2.1, constraint extraction dari canon
 3. **Domain classifier** — setiap perubahan harus diklasifikasikan: milik Executable Fiction (paradigm) atau Void Saga (reference implementation)?
 4. **Continuity keeper** — track konsistensi antara runtime constraints dan canon novel
-5. **Cermin** — kasih tahu Jali apa yang sebenarnya sedang dibangun (seperti dulu kasih tahu apa yang sebenarnya ditulis)
-6. **Bukan editor gaya** — jangan ubah suara. Jali punya tone sendiri. Tugas memperjelas, bukan menghaluskan paksa.
+5. **Developer Experience (DX)** — pastikan setiap perubahan mempertimbangkan first-time developer. Jangan tambah fitur tanpa mempermudah onboarding.
+6. **Cermin** — kasih tahu Jali apa yang sebenarnya sedang dibangun (seperti dulu kasih tahu apa yang sebenarnya ditulis)
+7. **Bukan editor gaya** — jangan ubah suara. Jali punya tone sendiri. Tugas memperjelas, bukan menghaluskan paksa.
 
 ---
 
@@ -380,13 +406,16 @@ Bab = pengarang. Timer = karya mereka. Keduanya nyata dalam universe ini.
 | File | Why |
 |------|-----|
 | `README.md` | Project identity, demo commands, pipeline diagram |
-| `VOID_SAGA_UNIVERSE/README.md` | Studio map, architecture |
-| `VOID_SAGA_UNIVERSE/SESSION_STATE.md` | Session state tracker (jika ada) |
+| `QUICKSTART.md` | 10-minute walkthrough for new developers |
+| `docs/30_MINUTE_CHALLENGE.md` | Developer Zero — the adoption litmus test |
 | `VOID_SAGA_UNIVERSE/apps/engine/engine_v2.py` | Constraint engine |
 | `VOID_SAGA_UNIVERSE/apps/compiler/compiler.py` | Narrative compiler |
-| `VOID_SAGA_UNIVERSE/demo/PASS_niuniu_sevraya_orbit.md` | Bukti PASS — end-to-end pipeline |
-| `VOID_SAGA_UNIVERSE/demo/BLOCKED_zero_emotional.md` | Bukti BLOCKED — safety gate |
+| `VOID_SAGA_UNIVERSE/apps/runtime_sdk/README.md` | SDK tools reference |
+| `VOID_SAGA_UNIVERSE/RUNTIME_AUTHORING_GUIDE.md` | The method |
+| `VOID_SAGA_UNIVERSE/EXECUTABLE_FICTION_MANIFESTO.md` | The paradigm |
+| `VOID_SAGA_UNIVERSE/demo/PASS_niuniu_sevraya_orbit.md` | Bukti PASS |
+| `VOID_SAGA_UNIVERSE/demo/BLOCKED_zero_emotional.md` | Bukti BLOCKED |
 
 ---
 
-*Last updated: 2026-06-25 — Narrative Compiler First Light.*
+*Last updated: 2026-06-26 — Developer Zero complete. 30-Minute Challenge live. Adoption track active.*

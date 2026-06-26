@@ -21,15 +21,19 @@ Most fictional universes are documented. Void Saga is executable.
 
 ## Current Milestone
 
-**Developer Zero** — shifting from research project to OSS platform.
+**Narrative Studio** — the compiler now has a workspace.
 
 DX-1 (complete): A fresh developer reaches the "aha moment" within 3 minutes. README rewritten. Demo scripts at `./scripts/demo-pass` and `./scripts/demo-blocked`. QUICKSTART.md created.
 
-Developer Zero (complete): `docs/30_MINUTE_CHALLENGE.md` — a checkpoint-based tutorial where a developer creates their own executable character (Mira / The Last Cup) in a universe with zero Void Saga DNA. Five checkpoints from clone to PASS to intentional BLOCKED. Target: someone unfamiliar with Void Saga builds a runtime without author assistance.
+Developer Zero (complete): `docs/30_MINUTE_CHALLENGE.md` — a checkpoint-based tutorial where a developer creates their own executable character (Mira / The Last Cup). Target: someone unfamiliar with Void Saga builds a runtime without author assistance.
 
-**The KPI has shifted.** Before: "Can the compiler run?" Now: "Can someone else run the compiler?"
+Scene Triaging MVP (complete): `scripts/triage-scenes` — batch classifier that evaluates a folder of scenario JSONs and produces a PASS/WARNING/BLOCKED table. Writer writes 3-5 scene ideas as 10-line JSON, runs triage, picks which scene to write today. Compiler becomes the first editor — not a generator, but a decision tool.
 
-Next: First External Universe → First External Contributor → v0.3.0 (adoption milestone, not technical milestone).
+Narrative Studio (complete): Four-layer workspace — Canon (Bab/Timer), Decision (dogfood/ + compiler), Drafting (writing/), Publication. The repo now has distinct rooms for four activities that were mixed together for two years.
+
+**The KPI has shifted twice.** Before: "Can the compiler run?" After DX-1: "Can someone else run the compiler?" Now: "Does the compiler change what a writer decides to write today?"
+
+Next: First External Universe → First External Contributor → v0.3.0 (adoption milestone).
 
 ---
 
@@ -407,6 +411,8 @@ Bab = pengarang. Timer = karya mereka. Keduanya nyata dalam universe ini.
 | `README.md` | Project identity, demo commands, pipeline diagram |
 | `QUICKSTART.md` | 10-minute walkthrough for new developers |
 | `docs/30_MINUTE_CHALLENGE.md` | Developer Zero — the adoption litmus test |
+| `docs/DAILY_WRITER_WORKFLOW.md` | Scene triage — compiler as first editor |
+| `scripts/triage-scenes` | Batch classifier — PASS/WARNING/BLOCKED table |
 | `VOID_SAGA_UNIVERSE/apps/engine/engine_v2.py` | Constraint engine |
 | `VOID_SAGA_UNIVERSE/apps/compiler/compiler.py` | Narrative compiler |
 | `VOID_SAGA_UNIVERSE/apps/runtime_sdk/README.md` | SDK tools reference |
@@ -417,4 +423,4 @@ Bab = pengarang. Timer = karya mereka. Keduanya nyata dalam universe ini.
 
 ---
 
-*Last updated: 2026-06-26 — Developer Zero complete. 30-Minute Challenge live. Adoption track active.*
+*Last updated: 2026-06-26 — Narrative Studio. Scene triaging live. Four-layer workspace. Compiler is now the first editor.*

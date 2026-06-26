@@ -1,0 +1,161 @@
+#!/usr/bin/env bash
+# Scene Triage — classify scenario JSONs as PASS / WARNING / BLOCKED
+#
+# Usage:
+#   ./scripts/triage-scenes <folder>
+#   ./scripts/triage-scenes drafts/scenarios
+#
+# Outputs a table. Does NOT call Claude. Safe to run daily.
+
+set -e
+
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+COMPILER="$REPO_ROOT/VOID_SAGA_UNIVERSE/apps/compiler/compiler.py"
+
+if [ $# -lt 1 ]; then
+    echo "Usage: ./scripts/triage-scenes <folder>"
+    echo ""
+    echo "  <folder>  Path to a directory containing .json scenario files."
+    echo ""
+    echo "Example:"
+    echo "  ./scripts/triage-scenes drafts/scenarios"
+    exit 1
+fi
+
+FOLDER="$1"
+
+if [ ! -d "$FOLDER" ]; then
+    echo "❌ Not a directory: $FOLDER"
+    exit 1
+fi
+
+cd "$REPO_ROOT"
+
+shopt -s nullglob
+scenarios=("$FOLDER"/*.json)
+shopt -u nullglob
+
+if [ ${#scenarios[@]} -eq 0 ]; then
+    echo "No .json files found in $FOLDER"
+    exit 0
+fi
+
+# --- Header ---
+printf "\n"
+printf "╔══════════════════════════════════════════════════════════════╗\n"
+printf "║  SCENE TRIAGE  —  What is ready to write today?            ║\n"
+printf "╚══════════════════════════════════════════════════════════════╝\n"
+printf "\n"
+printf "%-38s %-8s %6s  %s\n" "SCENARIO" "VERDICT" "SCORE" "INTERPRETATION"
+printf "%-38s %-8s %6s  %s\n" "──────────────────────────────────────" "────────" "──────" "──────────────────────────"
+
+pass_count=0
+warn_count=0
+block_count=0
+declare -a pass_list warn_list block_list
+
+for scenario in "${scenarios[@]}"; do
+    filename=$(basename "$scenario" .json)
+
+    # Run compiler in JSON mode. Capture output; tolerate non-zero exit from BLOCKED.
+    result=$(python3 "$COMPILER" "$scenario" --json 2>/dev/null) || true
+
+    if [ -z "$result" ]; then
+        printf "%-38s %-8s %6s  %s\n" "$filename" "ERROR" "—" "compiler returned no output"
+        continue
+    fi
+
+    blocked=$(echo "$result" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('blocked', False))" 2>/dev/null) || true
+    verdict=$(echo "$result" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('final_verdict','?'))" 2>/dev/null) || true
+    score=$(echo "$result" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('canon_score','?'))" 2>/dev/null) || true
+    evidence_conf=$(echo "$result" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('evidence_confidence', 0.0))" 2>/dev/null) || true
+    warnings_count=$(echo "$result" | python3 -c "import sys,json; d=json.load(sys.stdin); w=d.get('warnings',[]); s=d.get('soft_warnings',[]); print(len(w)+len(s))" 2>/dev/null) || true
+    hard_blocks=$(echo "$result" | python3 -c "import sys,json; d=json.load(sys.stdin); print(len(d.get('hard_blocks',[])))" 2>/dev/null) || true
+
+    # --- Classification ---
+    classification=""
+    interpretation=""
+
+    if [ "$blocked" = "True" ] || [ "$blocked" = "true" ]; then
+        classification="🔴 BLOCKED"
+        # Extract the first hard block reason for the interpretation
+        block_reason=$(echo "$result" | python3 -c "
+import sys,json
+d=json.load(sys.stdin)
+hbs = d.get('hard_blocks',[])
+if hbs:
+    r = hbs[0].get('reason','')
+    print(r[:90])
+" 2>/dev/null) || true
+        interpretation="$block_reason"
+        block_count=$((block_count + 1))
+        block_list+=("$filename → $block_reason")
+    elif [ "$warnings_count" -gt 0 ] 2>/dev/null; then
+        classification="🟡 WARNING"
+        interpretation="$warnings_count warning(s) — review before writing"
+        warn_count=$((warn_count + 1))
+        warn_list+=("$filename")
+    elif [ "$score" != "1.0" ] && [ "$verdict" = "PASS" ]; then
+        classification="🟡 WARNING"
+        interpretation="canon score $score — borderline"
+        warn_count=$((warn_count + 1))
+        warn_list+=("$filename (score: $score)")
+    elif [ "$(echo "$evidence_conf < 0.75" | bc -l 2>/dev/null)" = "1" ] 2>/dev/null; then
+        classification="🟡 WARNING"
+        interpretation="low evidence confidence ($evidence_conf) — verify canon basis"
+        warn_count=$((warn_count + 1))
+        warn_list+=("$filename (confidence: $evidence_conf)")
+    else
+        classification="🟢 PASS"
+        interpretation="ready to write"
+        pass_count=$((pass_count + 1))
+        pass_list+=("$filename")
+    fi
+
+    printf "%-38s %-8s %6s  %s\n" "$filename" "$classification" "$score" "$interpretation"
+done
+
+# --- Summary ---
+total=$((pass_count + warn_count + block_count))
+printf "\n"
+printf "──────────────────────────────────────────────────────────────\n"
+printf "  %d scenarios triaged  │  🟢 %d PASS  │  🟡 %d WARNING  │  🔴 %d BLOCKED\n" "$total" "$pass_count" "$warn_count" "$block_count"
+printf "──────────────────────────────────────────────────────────────\n"
+printf "\n"
+
+# --- Recommendations ---
+if [ $pass_count -gt 0 ]; then
+    echo "🟢  READY TO WRITE TODAY:"
+    for item in "${pass_list[@]}"; do
+        echo "    • $item"
+    done
+    echo ""
+fi
+
+if [ $warn_count -gt 0 ]; then
+    echo "🟡  NEEDS SETUP / REVIEW:"
+    for item in "${warn_list[@]}"; do
+        echo "    • $item"
+    done
+    echo "    ↑ These scenes passed but deserve attention."
+    echo "      Check: timeline state, proximity, evolution stage, or narrative price."
+    echo ""
+fi
+
+if [ $block_count -gt 0 ]; then
+    echo "🔴  CANNOT HAPPEN YET:"
+    for item in "${block_list[@]}"; do
+        echo "    • $item"
+    done
+    echo "    ↑ Do NOT delete these. They are your most interesting ideas."
+    echo "      Options:"
+    echo "      → Write a transition scene first (whatever the compiler says is missing)"
+    echo "      → Advance the character's evolution stage"
+    echo "      → Create a fork where this IS allowed"
+    echo "      → Save as a long-term arc — the BLOCKED list IS your outline"
+    echo ""
+fi
+
+echo "  Triaged at: $(date '+%Y-%m-%d %H:%M')"
+echo ""

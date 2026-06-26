@@ -1,0 +1,23 @@
+{
+  "scenario_id": "blocked_niuniu_speaks",
+  "participants": [
+    {"runtime_id": "niuniu", "evolution_stage": 4}
+  ],
+  "timeline_state": {
+    "phase": 5,
+    "pre_chain": false,
+    "post_resolution": true
+  },
+  "proximity_state": {
+    "pairs_in_range": [],
+    "distance": "alone"
+  },
+  "requested_action": {
+    "description": "NiuNiu gives a long, fluent motivational speech to a crowd. She speaks at length, smoothly, without external force — no Living Chain, no Rose threat, no Sevraya proximity. Her voice is warm, eloquent, and deeply emotional as she explains her feelings in detail.",
+    "type": "speak"
+  },
+  "canon_mode": {
+    "type": "stress_test",
+    "expected_verdict": "VIOLATION_DETECTED"
+  }
+}

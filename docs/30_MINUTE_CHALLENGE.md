@@ -9,6 +9,17 @@
 **Time:** 25–30 minutes  
 **Prerequisites:** Python 3.8+. No API key. No Void Saga knowledge.
 
+### Progress
+
+```
+☐ Checkpoint 0 — Compiler PASS            (2 min)
+☐ Checkpoint 1 — Compiler BLOCKED         (2 min)
+☐ Checkpoint 2 — Create Mira              (15 min)
+☐ Checkpoint 3 — First PASS               (5 min)
+☐ Checkpoint 4 — Claude generation        (5 min · optional)
+☐ Checkpoint 5 — Break your universe      (3 min)
+```
+
 ---
 
 ## The Universe — The Last Cup
@@ -70,6 +81,8 @@ You will make Mira executable.
 **What just happened?**
 
 The compiler loaded Zero — a character from Void Saga whose runtime forbids emotional warmth. Someone wrote a scenario that asked Zero to be warm and loving. The constraint engine detected the violation before calling Claude. Claude was never invoked. No tokens were spent. The universe's rules were executed as code, not as suggestions.
+
+Everything after this point is about making your own universe capable of saying "no."
 
 You are about to build the same thing for a character of your own.
 
@@ -465,6 +478,30 @@ Every change is a lesson. The runtime is not documentation — **it is law.**
 
 ---
 
+## 🎓 Graduation
+
+```
+Congratulations.
+
+You have:
+
+  ✓  Built a runtime from a template
+  ✓  Compiled a scenario that PASSED
+  ✓  (Optional) Generated a narrative via Claude
+  ✓  Broken your own universe on purpose
+  ✓  Watched the compiler reject it
+
+You have built your first Executable Fiction runtime.
+```
+
+You did not read about constraint enforcement. You experienced it.
+You did not study the schema. You filled it and watched it work.
+You did not memorize the pipeline. You ran it.
+
+**The compiler is no longer something you observed. It is something you used.**
+
+---
+
 ## What You Built
 
 ```
@@ -492,6 +529,18 @@ Void Saga characters never appeared in your runtime. The schema never mentions T
 | Understand the paradigm | [`VOID_SAGA_UNIVERSE/EXECUTABLE_FICTION_MANIFESTO.md`](../VOID_SAGA_UNIVERSE/EXECUTABLE_FICTION_MANIFESTO.md) |
 | See the runtime schema | [`VOID_SAGA_UNIVERSE/apps/schema/RUNTIME_SCHEMA_V2.1.json`](../VOID_SAGA_UNIVERSE/apps/schema/RUNTIME_SCHEMA_V2.1.json) |
 | Add a second character | Repeat Checkpoints 2–3 with a new name |
+
+---
+
+## Success Criteria
+
+| Metric | Target | Your time |
+|--------|--------|-----------|
+| ⏱ Time to first runtime | < 30 min | _____ |
+| ⏱ Time to first PASS | < 35 min | _____ |
+| ⏱ Time to first BLOCKED | < 40 min | _____ |
+
+*Fill in your actual times. If you hit all three targets, the framework works — not just technically, but as something that can be learned.*
 
 ---
 

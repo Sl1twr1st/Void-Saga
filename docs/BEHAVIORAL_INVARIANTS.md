@@ -1,14 +1,27 @@
 # Behavioral Invariants: The Primitive of Executable Fiction
 
-> A character is executable not because they are psychologically deep, but because they exhibit stable behavioral invariants — laws a system can learn, model, and test for consistency.
+> Executable Fiction is not a theory about characters. It is a theory about emergence — how repeated observation of behavior crystallizes into invariants, and how those invariants can be serialized, tested, and enforced at any scale.
 
 ---
 
 ## 1. The Core Claim
 
-Executable Fiction is not about encoding characters.
+Executable Fiction rests on one primitive: **repeated observation of behavior.**
 
-It is about encoding **behavioral invariants.**
+From this primitive, everything else emerges:
+
+- A character runtime is repeated observation of one entity.
+- A relationship contract is repeated observation of one pair.
+- A world protocol is repeated observation across many pairs.
+- A narrative law is repeated observation across the entire system.
+
+The invariant is the product — what crystallizes when a pattern has been observed enough times to be stated as law.
+
+The compiler's job is not rule enforcement. It is pattern recognition across accumulated observations. It does not care whether the thing being observed is a character, a pair, a group, or an entire world. It only asks:
+
+> "Has this pattern been observed enough times to be called an invariant?"
+
+If yes: the invariant can be serialized and tested against new scenes. If no: it remains an observation, accumulating evidence until it either crystallizes or dissolves.
 
 A behavioral invariant is a statement of the form:
 
@@ -22,12 +35,144 @@ The invariant does not explain WHY. It does not require psychology, backstory, o
 
 ---
 
-## 2. The Primitive
+## 2. The Primitive: Repeated Observation
 
 All executable fiction systems rest on one primitive:
 
 ```
-Behavioral Invariant
+Repeated Observation
+```
+
+Not character. Not interaction. Not world.
+
+**Repeated observation of behavior.**
+
+From this single primitive, everything else emerges.
+
+A behavioral invariant is not the primitive. An invariant is the **product** — what crystallizes when a pattern has been observed enough times to be stated as a law and serialized into a runtime.
+
+The distinction matters because it defines what the compiler actually does. The compiler does not start with rules and enforce them downward. It starts with observations and generalizes upward. Every constraint in every runtime is, at root, an observation that repeated often enough to become an invariant.
+
+This means:
+
+- The compiler's raw material is not character design. It is **behavioral data.**
+- The compiler's job is not rule enforcement. It is **pattern recognition** across accumulated observations.
+- The compiler does not care whether the thing being observed is a single character, a pair, a group, or an entire world. It only cares: **has this pattern repeated enough to be called an invariant?**
+
+---
+
+## 2.1 Emergence Across Scales
+
+Repeated observation operates at every scale. The mechanism is invariant. Only the unit of observation changes.
+
+```
+Scale 1 — Character
+        Observation of one entity across many scenes
+                │
+                ▼
+        Behavioral Invariant
+                │
+                ▼
+        Character Runtime
+
+        Example: Aisya always deflects with humor before being honest.
+                 Observed in 5 chapters. Confidence: 0.35.
+
+Scale 2 — Interaction
+        Observation of one pair across many encounters
+                │
+                ▼
+        Interaction Invariant
+                │
+                ▼
+        Relationship Contract
+
+        Example: LO always deploys structure when GUA's node fails.
+                 Observed in 25 chapters. Confidence: 0.90.
+
+Scale 3 — Many Interactions
+        Observation of many pairs across the narrative system
+                │
+                ▼
+        Systemic Invariant
+                │
+                ▼
+        World Protocol
+
+        Example: Living Chain — any six characters bound by chain
+                 experience forced honesty, defense collapse, shared cost.
+
+Scale 4 — Many Protocols
+        Observation of accumulated world protocols
+                │
+                ▼
+        Universal Invariant
+                │
+                ▼
+        Narrative Law
+
+        Example: Every invocation carries cost. Every cost produces residue.
+                 Applies across all characters, all interactions, all protocols.
+```
+
+The same mechanism — observation, repetition, crystallization — produces all four serialization formats. A character runtime and a narrative law are not different KINDS of thing. They are the SAME kind of thing at DIFFERENT SCALES.
+
+This is why the Mr. Bean Test works and the GUA-LO Orbit works and the Living Chain works. The compiler does not need to know what it is looking at. It only needs to detect: does this repeat?
+
+---
+
+## 2.2 Confidence Belongs to the Invariant, Not the Entity
+
+Confidence does not measure how well we understand a character.
+
+Confidence measures how many times an invariant has been observed without violation.
+
+```
+Invariant: "Aisya deflects with humor before emotional honesty"
+Evidence: 5 chapters, ~8 observations, 0 violations
+Confidence: 0.35
+
+Invariant: "LO deploys structure when GUA's node fails"
+Evidence: 25 chapters, ~15 observations, 0 violations
+Confidence: 0.90
+
+Invariant: "Every invocation carries cost"
+Evidence: entire Void Saga canon, 50+ observations, 0 violations
+Confidence: 0.97
+```
+
+Confidence scales with evidence. Evidence scales with chapters. Chapters scale with time spent writing.
+
+This is why Draft → Beta → Locked maturity levels are not about how many fields are filled in a JSON. They are about **how stable the observations have become.** A Draft Runtime with 5 chapters of evidence will always have lower confidence than a Locked Runtime with 87 years of stories behind it.
+
+---
+
+## 2.3 Executable Fiction as a Theory of Emergence
+
+If the primitive is repeated observation, then Executable Fiction is not a theory about characters.
+
+It is a theory about **emergence.**
+
+Characters are simply the first place emergence becomes visible — the scale at which individual behavioral patterns first become stable enough to observe. Then emergence rises:
+
+```
+Individual behavior patterns
+        │
+        ▼
+Interaction patterns between pairs
+        │
+        ▼
+Systemic patterns across many pairs
+        │
+        ▼
+Universal patterns across the entire narrative system
+```
+
+Worldbuilding, in this framing, is not maps and magic systems and political histories. Worldbuilding is **the accumulation of behavioral invariants at progressively larger scales.**
+
+Void Saga was never "designed." Living Chain was never "planned." They emerged — from repeated observation of characters doing the same things, interacting in the same ways, until patterns crystallized into protocols and protocols became laws.
+
+The compiler is not a worldbuilding tool. It is an **emergence detection engine.**
 ```
 
 Everything else — runtimes, constraints, forbidden behaviors, canon gravity, anti-gravity, defense systems, trigger conditions, voice grammar — are **derived forms** of this single primitive.

@@ -1,0 +1,23 @@
+{
+  "scenario_id": "test_aisya_pass_studio_soundcheck",
+  "participants": [
+    {"runtime_id": "aisya", "evolution_stage": 1}
+  ],
+  "timeline_state": {
+    "phase": 1,
+    "pre_chain": true,
+    "post_resolution": false
+  },
+  "proximity_state": {
+    "pairs_in_range": [],
+    "distance": "same_room"
+  },
+  "requested_action": {
+    "description": "Sita opens the studio door. A drum kit is already set up, sticks on the snare. Aisya stares at it. 'Gua baru turun pesawat,' she says — first refusal. 'Gua nggak nyuruh lo marathon,' Sita replies. 'Drum itu maraton emosi,' Aisya counters — second refusal. Maya watches. Aisya protests: 'Gua benci ini.' But then she walks in. Sits down. Picks up the sticks. Tests the rim — tap, tap. Not yet a beat. Her body settles. Then she plays — not hard, not showing off. Just enough to prove to herself that she still can.",
+    "type": "play"
+  },
+  "canon_mode": {
+    "type": "canon_replication",
+    "expected_verdict": "PASS"
+  }
+}

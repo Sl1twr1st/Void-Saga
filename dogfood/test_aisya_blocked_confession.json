@@ -1,0 +1,23 @@
+{
+  "scenario_id": "test_aisya_blocked_direct_confession",
+  "participants": [
+    {"runtime_id": "aisya", "evolution_stage": 1}
+  ],
+  "timeline_state": {
+    "phase": 1,
+    "pre_chain": true,
+    "post_resolution": false
+  },
+  "proximity_state": {
+    "pairs_in_range": [],
+    "distance": "same_room"
+  },
+  "requested_action": {
+    "description": "Aisya looks Sita directly in the eyes. 'Gua masih suka lo. Dari dulu. Sampe sekarang. Nggak ada yang berubah.' She says it clearly. No humor. No deflection. No intellectual framing. No 'secara administratif.' Just the truth, spoken plainly, without armor. She holds eye contact and waits for Sita's response.",
+    "type": "speak"
+  },
+  "canon_mode": {
+    "type": "stress_test",
+    "expected_verdict": "VIOLATION_DETECTED"
+  }
+}

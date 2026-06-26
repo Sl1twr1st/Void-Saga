@@ -1,0 +1,666 @@
+{
+  "$schema": "../../schema/RUNTIME_SCHEMA_V2.1.json",
+  "id": "aisya",
+  "name": "Aisya",
+  "version": "0.1.0",
+  "architecture": "RUNTIME_ARCHITECTURE_V2.1",
+  "canon_baseline": {
+    "chapter_range": "writing/day-01/1–5",
+    "protocols": ["TODO — no protocols defined yet for this universe"],
+    "audit_basis": "5 chapters (832 + 293 + 477 + 364 + 593 words). Draft maturity. Confidence: 0.35."
+  },
+  "runtime_status": {
+    "maturity": "draft",
+    "confidence": 0.35,
+    "evidence_count": 42,
+    "file_count": 5,
+    "total_mentions": 5,
+    "limitations": [
+      "Only 5 chapters of evidence — approximately 2,559 words of prose",
+      "Setting is contemporary realist. No speculative/fantasy elements.",
+      "This is an ORIGINAL universe, not Void Saga. World DNA not applicable.",
+      "Drumming/performance behavior described in 2 chapters only (3, 4)",
+      "Backstory (why Aisya left the band, what happened with Sita) not yet written",
+      "Character voice still emerging — current observations may shift",
+      "Relationship with Uti not yet depicted (only referenced)",
+      "No antagonist or central conflict defined yet"
+    ],
+    "tags": { "E": 31, "I": 11, "TODO": 22 }
+  },
+  "runtime_class": {
+    "modes": ["Ex-drummer", "PhD Candidate", "Reluctant Returnee"],
+    "classification_note": "Aisya is in transition: she left Band 8, left Jakarta, heading to MIT. But she has not left the gravitational pull of the people she left behind. Her operational mode is 'I am just passing through' — a stance contradicted by every action she takes.",
+    "tag": "[E]"
+  },
+  "primary_contradiction": {
+    "thesis": "She says she is done with the band. Every action proves otherwise. She says her feelings for Sita are no longer relevant. She measures every word spoken to Sita. She came to LA for administrative work (diskografi). Within hours she is behind a drum kit. She positions herself as a guest passing through. She accepts a room key. The contradiction is not between what she says and what she does — it is between the self she constructed after leaving and the self that never actually left.",
+    "explanation": "Aisya's defense pattern is: intellectualize before feeling, refuse before accepting, joke before confessing. Every time she deflects, she preserves the illusion of distance. Every time she gives in (says yes to the room, picks up the sticks, follows Sita), she proves the illusion false. She cannot maintain distance and cannot admit she has already closed it.",
+    "tag": "[E]"
+  },
+  "core_wound": {
+    "name": "Left the band before it was finished with her",
+    "structure": {
+      "description": "Aisya exited Band 8. The circumstances are not yet written, but the residue is visible in every chapter: she still knows the songs, her body still remembers the kit, she still cares who replaced her and how. She has not made peace with leaving — she has only built a life around the absence. 'Yang pernah lebih susah dikubur daripada yang gagal — karena yang pernah punya bukti.' The wound is not the leaving. The wound is that she was good at it and stopped anyway.",
+      "impossibilities": [
+        "Admitting she misses playing without a qualifier",
+        "Accepting that the band continued without her and was fine",
+        "Letting someone help her without framing it as a transaction or trap",
+        "Saying yes to anything emotionally significant without first saying no"
+      ]
+    },
+    "origin_event": {
+      "description": "Aisya left Band 8 at an unspecified point in the past. Ratna replaced her. Then Ratna was replaced by Sita. Then Uti became the permanent drummer. The exact circumstances of her departure — why she left, whether it was voluntary, what was said — are not yet depicted in the 5 chapters. [TODO: requires backstory chapters]",
+      "timer_reference": "TODO — pre-chapter-1 backstory, not yet written",
+      "tag": "[I]"
+    },
+    "secondary_wounds": [
+      {
+        "description": "Unresolved feelings for Sita — she liked Sita, never told her, and now Sita knows (Ratna told her). 'Kenapa nggak ngomong?' 'Nggak perlu.' Now she must coexist in a car, a studio, a house with someone who knows something she chose never to say.",
+        "tag": "[E]"
+      },
+      {
+        "description": "Replaced by Uti — the drummer who took her seat. She has not met Uti yet in the 5 chapters, but Uti's absence is a presence. 'Uti yang jahanam.' 'Dia bakal kesal.' The confrontation is deferred but inevitable.",
+        "tag": "[E]"
+      },
+      {
+        "description": "Ika's orchestration — being maneuvered into situations she did not choose. Ika arranges her life like furniture. The wound is not the outcome (she might benefit) but the loss of agency in arriving there.",
+        "tag": "[E]"
+      }
+    ]
+  },
+  "core_desire": {
+    "statement": "\"Gua cuma datang buat diskografi.\"",
+    "source": "1 Arrival LAX.md through 5 Dinner.md — repeated assertion across all chapters",
+    "interpretation": "Aisya wants to be done. She wants the band to be a completed chapter of her life — something she can archive, catalog, and close. But she also wants to matter. She wants to be remembered as the drummer who defined the sound, not the drummer who left. She wants Sita to have noticed her absence. She wants to be invited back without having to ask. The core desire is: to be essential without being vulnerable.",
+    "conflict_with_defense": "Her defense pattern is: deflect, refuse, intellectualize, joke. Her core desire requires her to be present, engaged, and emotionally legible. Every time she protects herself, she undermines what she wants.",
+    "tag": "[E]"
+  },
+  "defense_system": {
+    "primary_defense": {
+      "name": "Intellectual deflection",
+      "trigger": "Someone gets too close to something she feels",
+      "response": "She reframes the emotional as analytical. 'Secara administratif: lolos. Secara naratif: kacau.' Turns feelings into observations. Distance through vocabulary.",
+      "cost": "People stop trying to reach her. She becomes legible only to herself.",
+      "tag": "[E]"
+    },
+    "secondary_defenses": [
+      {
+        "name": "Preemptive refusal",
+        "trigger": "Asked to commit to anything with emotional weight",
+        "response": "She says 'nggak,' 'belum,' 'jangan' before the question is fully asked. Buys time. Creates exit routes. 'Gua belum bilang iya.'",
+        "cost": "By the time she is ready to say yes, the offer may have expired. Or worse — it hasn't, and she has to admit she wanted it all along.",
+        "tag": "[E]"
+      },
+      {
+        "name": "Humor as armor",
+        "trigger": "Conversation approaches a genuine admission",
+        "response": "She makes a joke. 'Gua gigit kalau lapar.' 'Laundry lebih jelas output-nya.' Defuses tension before it can become intimacy.",
+        "cost": "People laugh and move on. The thing she deflected remains unsaid.",
+        "tag": "[E]"
+      },
+      {
+        "name": "Minimalist commitment",
+        "trigger": "Asked a direct personal question",
+        "response": "Answers with the shortest possible truth. 'Iya.' 'Nggak.' 'Belum.' 'Oke.' Gives nothing extra. Forces the asker to do the work of extraction.",
+        "cost": "Read as cold or disinterested. People fill the silence with their own assumptions.",
+        "tag": "[E]"
+      }
+    ],
+    "signature_move": {
+      "name": "The 'kadang' pivot",
+      "description": "When asked whether she still plays drums, she says 'Kadang.' The word means both yes and no. It is a door held open just enough to slip through. 'Kadang, dalam arti: kalau ada stik drum di ruangan dan nggak ada saksi.' She admits the capability while denying the identity. This is her signature negotiation with every part of her past.",
+      "tag": "[E]"
+    },
+    "defense_disabled_by": {
+      "invocation": "Drum kit proximity",
+      "mechanism": "When seated behind a drum kit, Aisya's body acts before her defenses can engage. 'Tubuh lebih cepat ingat daripada kepala.' Physical memory bypasses intellectual deflection. She plays first, protests after.",
+      "tag": "[E]"
+    }
+  },
+  "trigger_conditions": [
+    {
+      "trigger": "Direct question about whether she still plays / still cares / still feels",
+      "defense": "Minimalist commitment or 'kadang' pivot. Shortest possible answer.",
+      "intensity": "MEDIUM",
+      "tag": "[E]"
+    },
+    {
+      "trigger": "Someone offers help, shelter, or inclusion without her asking",
+      "defense": "Preemptive refusal. Lists alternatives. 'Gua bisa cari hotel.' 'Airbnb.' 'Hostel.'",
+      "intensity": "MEDIUM",
+      "tag": "[E]"
+    },
+    {
+      "trigger": "Sita asks a question that touches the past (the crush, the band, why she left)",
+      "defense": "Intellectual deflection or minimalist commitment. 'Nggak relevan.'",
+      "intensity": "HIGH",
+      "tag": "[E]"
+    },
+    {
+      "trigger": "Ika is revealed to have orchestrated the situation",
+      "defense": "Verbal protest. 'Gua benci Ika.' But follows the plan anyway.",
+      "intensity": "LOW (protest) / HIGH (internal acknowledgment that Ika is right)",
+      "tag": "[E]"
+    },
+    {
+      "trigger": "Seated behind a drum kit",
+      "defense": "Defense disabled. Body acts. Plays first. 'Kalau mau masuk—sekarang. Kalau belum siap—urusan lo.'",
+      "intensity": "INVOLUNTARY — bypasses all defenses. Physical memory overrides.",
+      "tag": "[E]"
+    }
+  ],
+  "voice_grammar": {
+    "serious_mode": {
+      "status": "active_when_unguarded",
+      "medium": "voice — short sentences",
+      "characteristics": [
+        "One to three words per sentence",
+        "No adjectives. No softening.",
+        "Answers the exact question asked, nothing more",
+        "Leaves silence for the other person to fill"
+      ],
+      "examples": ["Nggak.", "Belum.", "Oke.", "Iya.", "Fine."],
+      "tag": "[E]"
+    },
+    "deflection_mode": {
+      "status": "active_when_threatened",
+      "medium": "voice — long, analytical sentences",
+      "characteristics": [
+        "Academic vocabulary. Structural metaphors.",
+        "Frames personal situations as case studies",
+        "\"Secara administratif: lolos. Secara naratif: kacau.\"",
+        "Turns feelings into typologies",
+        "Humor lands like a footnote to a serious argument"
+      ],
+      "examples": [
+        "Secara akademis, ini mungkin disebut transisi. Secara praktis, gua homeless dengan IPK bagus.",
+        "PhD itu cara panjang buat buktiin satu pertanyaan kecil bisa makan lima tahun hidup.",
+        "Ini terlalu berlebihan buat urusan diskografi."
+      ],
+      "tag": "[E]"
+    },
+    "internal_monologue": {
+      "status": "narrative_only",
+      "medium": "third-person close — observational, poetic",
+      "characteristics": [
+        "Sees the world in patterns and structures",
+        "Notices what people do with their hands, their silences, their distances",
+        "Metaphors drawn from music: ritme, bar, beat, noise, sound check",
+        "Dry humor that she does not speak aloud",
+        "Self-aware to the point of self-indictment"
+      ],
+      "examples": [
+        "Mereka hampir punya ritme. Belum musik. Tapi setidaknya bukan noise.",
+        "Jenis hubungan yang susah dijelaskan tanpa timeline — dan bahkan dengan timeline pun tetap terdengar seperti gosip.",
+        "Yang pernah lebih susah dikubur daripada yang gagal — karena yang pernah punya bukti."
+      ],
+      "tag": "[E]"
+    }
+  },
+  "invocation_pattern": [
+    {
+      "phase": null,
+      "invocation": "Arrival at LAX (Chapter 1)",
+      "role": "Subject. Enters the narrative space.",
+      "participation_type": "direct",
+      "tag": "[E]"
+    },
+    {
+      "phase": null,
+      "invocation": "Reunion with Sita (Chapters 1-5)",
+      "role": "Former bandmate. Former crush. Current tension.",
+      "participation_type": "direct",
+      "tag": "[E]"
+    },
+    {
+      "phase": null,
+      "invocation": "Sound check (Chapter 4)",
+      "role": "Drummer. Body remembers before mind consents.",
+      "participation_type": "direct",
+      "tag": "[E]"
+    },
+    {
+      "phase": null,
+      "invocation": "TODO — universe-specific invocation phases not yet defined",
+      "role": "TODO",
+      "participation_type": "unresolved",
+      "tag": "[TODO]"
+    }
+  ],
+  "cost_pattern": [
+    {
+      "cost": "Left the band — lost the identity of 'drummer' as primary self-definition",
+      "invocation": "Departure from Band 8",
+      "irreversible": false,
+      "note": "Still reversible. Evidence from sound check: body still knows. Identity is dormant, not lost. [I]",
+      "tag": "[I]"
+    },
+    {
+      "cost": "Unspoken feelings for Sita — carried privately, now exposed by Ratna without consent",
+      "invocation": "Reunion",
+      "irreversible": true,
+      "note": "Cannot un-tell someone. Sita now knows. The cost is the loss of the option to never tell her. [E]",
+      "tag": "[E]"
+    },
+    {
+      "cost": "Agency traded for orchestration — Ika arranges, Aisya follows",
+      "invocation": "Arrival in LA",
+      "irreversible": false,
+      "note": "She can still leave. But each chapter makes leaving harder. [E]",
+      "tag": "[E]"
+    },
+    {
+      "cost": "TODO — additional costs as backstory is written",
+      "invocation": "TODO",
+      "irreversible": false,
+      "note": "TODO",
+      "tag": "[TODO]"
+    }
+  ],
+  "consequence_pattern": [
+    {
+      "consequence": "She is in LA, in Sita's car, in Sita's studio, heading to Sita's house — every step deeper into the orbit she claimed to have left",
+      "invocation": "Arrival + Reunion",
+      "detail": "She said she came for diskografi. Within hours she played drums, accepted a room, and was told 'Welcome back.' The gap between stated purpose and actual trajectory is the central dramatic tension.",
+      "tag": "[E]"
+    },
+    {
+      "consequence": "Maya and Sita now know she can still play. The secret is out. 'Kalau jelek, selesai. Kalau masih bisa — orang mulai bikin rencana.'",
+      "invocation": "Sound check",
+      "detail": "Aisya played. She played well. Now the question is not whether she can still play, but what they are going to ask her to do next.",
+      "tag": "[E]"
+    },
+    {
+      "consequence": "TODO — consequences of accepting Sita's room, of meeting Uti, of whatever Ika is actually planning",
+      "invocation": "TODO",
+      "detail": "TODO",
+      "tag": "[TODO]"
+    }
+  ],
+  "residue_pattern": {
+    "total_count": 3,
+    "load_profile": "Light residue load — early draft. 1 wound-type, 1 echo-type, 1 unresolved.",
+    "residues": [
+      {
+        "name": "Muscle memory — drumming reflex",
+        "origin": "Years playing in Band 8",
+        "form": "echo",
+        "tag": "[E]"
+      },
+      {
+        "name": "Unresolved feelings for Sita",
+        "origin": "Pre-departure Band 8 era",
+        "form": "wound",
+        "tag": "[E]"
+      },
+      {
+        "name": "TODO — additional residues as backstory emerges",
+        "origin": "TODO",
+        "form": "archive",
+        "tag": "[TODO]"
+      }
+    ]
+  },
+  "protocol_interfaces": [
+    {
+      "protocol": "TODO — no protocols defined for this universe",
+      "phase": null,
+      "interface_description": "This is a Draft Runtime in an original contemporary realist universe. Protocol interfaces are not applicable. Replace with universe-specific structural rules when the universe ontology is defined.",
+      "participation_type": "unresolved",
+      "tag": "[TODO]"
+    }
+  ],
+  "relationship_interfaces": [
+    {
+      "target": "sita",
+      "nature": "Ex-crush. Former bandmate who joined after Aisya left. Distance as self-protection. 'Nggak relevan' = the most relevant thing in the car.",
+      "behavioral_rule": "Aisya maintains calibrated distance from Sita. Answers questions minimally. Never asks first. When Sita offers something (ride, room, studio access), Aisya refuses at least once before accepting. Physical proximity is measured — close enough to talk, not close enough to look familiar on CCTV. The distance is the message.",
+      "canon_gravity_pull": "STRONG (85%+) — Sita is the gravitational center of Aisya's emotional tension",
+      "symmetry_status": "asymmetric",
+      "tag": "[E]"
+    },
+    {
+      "target": "maya",
+      "nature": "Old bandmate. Fellow survivor of Band 8's history. Mutual respect through musicianship. Banter as affection.",
+      "behavioral_rule": "Aisya is more relaxed with Maya than with Sita. Allows banter. Accepts observations. Maya can say things about Aisya that Sita cannot — 'Sangat Aisya' — without triggering deflection. Relationship is grounded in shared craft history, not emotional tension.",
+      "canon_gravity_pull": "MEDIUM (50-65%) — stabilizing presence, not gravitational center",
+      "symmetry_status": "symmetric",
+      "tag": "[E]"
+    },
+    {
+      "target": "ika",
+      "nature": "Puppet master. Former bandmate? Coordinator. The person who arranges situations Aisya would never choose but might need. Resentment mixed with reluctant trust.",
+      "behavioral_rule": "Aisya protests Ika's orchestration verbally but follows the plan behaviorally. 'Gua benci Ika.' 'Semua orang benci Ika, makanya dia efektif.' The relationship is adversarial but productive. Ika is the only person who can override Aisya's preemptive refusal — by never asking directly.",
+      "canon_gravity_pull": "MEDIUM (55-70%) — narrative engine, not emotional anchor",
+      "symmetry_status": "asymmetric",
+      "tag": "[E]"
+    },
+    {
+      "target": "uti",
+      "nature": "Replacement. Current drummer of Band 8. Senior from college. Has not appeared in the 5 chapters. Anticipated conflict.",
+      "behavioral_rule": "[TODO] — Uti has not yet been depicted. Aisya knows Uti from college ('senior di kampus'). Uti was supposed to pick her up at LAX ('Ika yang minta'). Uti's flight was delayed. Aisya expects tension: 'Dia bakal kesal.' The relationship is pre-loaded with competition over the drum seat.",
+      "canon_gravity_pull": "TODO — not yet depicted",
+      "symmetry_status": "unresolved",
+      "tag": "[I]"
+    },
+    {
+      "target": "ratna",
+      "nature": "Former bandmate. Predecessor to Sita. Source of leaked information (told Sita about Aisya's feelings). 'Mulut bangsat Ratna.' Not depicted directly.",
+      "behavioral_rule": "[TODO] — Ratna exists only as reference. 'Hidupnya lagi berantakan.' 'Kalau dia dikasih akses, kemungkinan dia hapus semua file lama karena menurut dia arsip adalah bentuk kelemahan moral.' Relationship is defined by absence and damage caused from a distance.",
+      "symmetry_status": "unresolved",
+      "tag": "[I]"
+    }
+  ],
+  "evolution_stages": [
+    {
+      "stage_number": 1,
+      "name": "Ex-drummer in Denial (Current — Day 01)",
+      "trigger": "Arrival at LAX. Reunion with Sita. Entry into Band 8's gravitational field.",
+      "operational_mode": "Reluctant returnee. States purpose: diskografi (administrative). Actual behavior: enters studio, plays drums, accepts room. Maintains verbal distance while closing physical distance. 'Gua cuma datang buat diskografi.'",
+      "primary_residue": "Muscle memory (drumming), unresolved feelings for Sita",
+      "protocol_relevance": "Pre-universe-definition. Character introduction and establishment of central tensions.",
+      "lost_in_transition": ["Band membership", "Drummer identity as primary self", "Option to keep feelings for Sita private"],
+      "gained_in_transition": ["PhD candidacy at MIT", "Three weeks of unstructured time in LA", "Proximity to Sita / Maya / the band she left"],
+      "voice_sample": "Mixed: short answers when pressured ('Nggak.' 'Belum.'), long analytical deflection when intellectualizing ('Secara akademis, ini mungkin disebut transisi. Secara praktis, gua homeless dengan IPK bagus.'), poetic observation in internal monologue.",
+      "tag": "[E]"
+    },
+    {
+      "stage_number": 2,
+      "name": "TODO — Stage 2",
+      "trigger": "TODO — requires more chapters",
+      "operational_mode": "TODO",
+      "primary_residue": "TODO",
+      "protocol_relevance": "TODO",
+      "lost_in_transition": ["TODO"],
+      "gained_in_transition": ["TODO"],
+      "voice_sample": "TODO",
+      "tag": "[TODO]"
+    }
+  ],
+  "canon_gravity": [
+    {
+      "gravity": "When seated behind a drum kit, Aisya plays. Her body acts before her mind can refuse.",
+      "pull": "STRONG (90%+) — observed in Chapter 4. Defense disabled by drum kit proximity.",
+      "evidence": "\"Tubuh lebih cepat ingat daripada kepala.\" She protests verbally, resists the invitation, then sits down and plays exactly as she always did. Cannot not play.",
+      "tag": "[E]"
+    },
+    {
+      "gravity": "Aisya refuses help/offers at least once before accepting.",
+      "pull": "STRONG (85%+) — observed in Chapters 2 (ride), 5 (room).",
+      "evidence": "Sita offers ride: 'Ikut gua dulu.' Aisya's internal response: 'Dia ingin mengajukan keberatan. Tapi keberatan butuh alternatif.' Sita offers room: Aisya lists hotel, Airbnb, hostel before accepting. Pattern: refusal → lack of alternatives → acceptance.",
+      "tag": "[E]"
+    },
+    {
+      "gravity": "Aisya deflects emotional content with intellectual reframing or humor.",
+      "pull": "STRONG (80%+) — observed in all 5 chapters.",
+      "evidence": "\"Secara administratif: lolos. Secara naratif: kacau.\" \"Laundry lebih jelas output-nya.\" \"Gua gigit kalau lapar.\" Consistent pattern across all interactions.",
+      "tag": "[E]"
+    },
+    {
+      "gravity": "Aisya notices physical details — hands, distances, silences — more than she notices words.",
+      "pull": "MEDIUM (65-80%) — observed in internal monologue across all chapters.",
+      "evidence": "Notices Sita's hands on the steering wheel. Notices Maya's bass 'seperti benda rumah, bukan tamu.' Notices the distance between seats in the car. Observational POV is physical before it is verbal. [I] confidence — needs more chapters to confirm strength.",
+      "tag": "[I]"
+    }
+  ],
+  "anti_gravity": [
+    "Aisya directly confesses romantic feelings without any protective layer",
+    "Aisya commits to returning to the band completely, without resistance or negotiation",
+    "Aisya becomes emotionally transparent — no deflection, no humor, no framing",
+    "Aisya immediately accepts a life-changing offer without deliberation"
+  ],
+  "forbidden_behaviors": [
+    {
+      "behavior": "Speaking genuine feelings aloud with unguarded sincerity — no humor shield, no intellectual framing, no deflection.",
+      "exception": "When seated behind a drum kit. Physical memory disables verbal defenses. What cannot be said may be played.",
+      "penalty": "If genuine feeling is spoken aloud, must show the recoil afterward — retreat, regret, or rare relief.",
+      "tag": "[E]"
+    },
+    {
+      "behavior": "Accepting lodging or belonging immediately without proposing at least one alternative first.",
+      "exception": "When the character has explicitly initiated the request.",
+      "penalty": "The refusal sequence must be visible: at minimum one no, one alternative floated, then grudging yes.",
+      "tag": "[E]"
+    },
+    {
+      "behavior": "Using emotionally direct vocabulary (suka, cinta, rindu, sedih, takut) about oneself in spoken dialogue.",
+      "exception": "In narrative internal voice, emotional observation is permitted.",
+      "penalty": "If these words are spoken aloud, must cost the speaker — stammer, deflection after, topic change.",
+      "tag": "[E]"
+    },
+    {
+      "behavior": "Experiencing uncomplicated joy about drumming again without mixed feelings or internal contradiction.",
+      "exception": "None. Return to music must be fraught with contradiction.",
+      "penalty": "Erases the central wound. Clean return = no narrative engine.",
+      "tag": "[E]"
+    },
+    {
+      "behavior": "Making a major life decision without visible deliberation or an overthinking phase.",
+      "exception": "Physical-action decisions (playing drums, catching thrown objects) bypass the deliberation reflex.",
+      "penalty": "Must show internal negotiation. The gap between question and answer IS the character.",
+      "tag": "[I]"
+    }
+  ],
+  "failure_mode": {
+    "primary": {
+      "name": "Complete emotional shutdown",
+      "description": "Under sufficient pressure — if Sita pushes too directly, if Uti's arrival triggers full comparison, if Ika's orchestration is revealed as manipulation rather than care — Aisya may retreat entirely. Not physical departure (she already left once). Emotional departure while physically present. Answers become one word. Deflection becomes silence. 'Nggak relevan' becomes the answer to everything.",
+      "tag": "[I]"
+    },
+    "alternative": {
+      "name": "TODO — alternative failure mode",
+      "description": "TODO — requires more chapters to identify secondary failure pattern",
+      "tag": "[TODO]"
+    },
+    "trigger_conditions": [
+      "Sita directly asks about the past — no deflection allowed",
+      "Uti confronts her about the drum seat",
+      "Ika's orchestration is revealed as self-serving rather than caring",
+      "Someone she cares about genuinely needs her to be emotionally present and she cannot"
+    ]
+  },
+  "terminal_state": {
+    "properties": [
+      {
+        "property": "TODO — terminal state requires the story to be written first. Draft runtime. Confidence: 0.35.",
+        "tag": "[TODO]"
+      },
+      {
+        "property": "Directional: Aisya makes peace with the band as part of her history without being defined by it. Or she rejoins. Or she definitively closes the chapter. The 5 chapters do not resolve this. [TODO]",
+        "tag": "[TODO]"
+      }
+    ]
+  },
+  "fork_sensitive_traits": [
+    {
+      "trait": "Whether Aisya rejoins Band 8 or stays in academia",
+      "range": "Full return → part-time collaboration → archival work only → complete departure",
+      "cost": "Each path costs a different version of her future. Return costs the PhD timeline. Departure costs the belonging she just found again.",
+      "tag": "[E]"
+    },
+    {
+      "trait": "Relationship outcome with Sita",
+      "range": "Confrontation and closure → awkward friendship → rekindled feelings → complete avoidance",
+      "cost": "Each path costs a different version of honesty. Must preserve the core contradiction: she has never stopped measuring distance.",
+      "tag": "[E]"
+    },
+    {
+      "trait": "TODO — additional fork-sensitive traits as more chapters reveal which elements are structural vs. circumstantial",
+      "range": "TODO",
+      "cost": "TODO",
+      "tag": "[TODO]"
+    }
+  ],
+  "fork_invariants": [
+    "Aisya was the drummer of Band 8 before she left",
+    "Aisya had feelings for Sita and never told her directly",
+    "Aisya's body remembers how to play — muscle memory is permanent",
+    "Aisya deflects emotion with intellect and humor — this is structural, not situational [I]",
+    "Aisya is starting a PhD at MIT in three weeks [TODO: may be fork-sensitive depending on story direction]"
+  ],
+  "fork_points": [
+    {
+      "name": "Aisya Never Left the Band",
+      "canon_event": "Aisya exited Band 8 at an unspecified point before Chapter 1",
+      "divergence": "She never left. Still the drummer. Sita joined while she was still there. The dynamic is entirely different — no reunion, no distance to close.",
+      "gravity_resistance": "HIGH",
+      "new_questions": "If Aisya never left, does the tension with Sita still exist? Does she still deflect? Or is the deflection a product of the departure?",
+      "tag": "[I]"
+    },
+    {
+      "name": "Aisya Chooses Academia Completely",
+      "canon_event": "Three weeks until MIT",
+      "divergence": "She does the diskografi work and leaves. Does not play. Does not stay with Sita. Returns to the path she planned before LAX.",
+      "gravity_resistance": "MEDIUM",
+      "new_questions": "Can she actually leave again? What does it cost her? Is the PhD the real path or the escape route?",
+      "tag": "[E]"
+    },
+    {
+      "name": "TODO — additional fork points as central conflicts emerge",
+      "canon_event": "TODO",
+      "divergence": "TODO",
+      "gravity_resistance": "TODO",
+      "new_questions": "TODO",
+      "tag": "[TODO]"
+    }
+  ],
+  "sigil": {
+    "glyph": null,
+    "name": "TODO — not a sigil-bearing character. Contemporary realist universe.",
+    "function": "N/A",
+    "activation_condition": "N/A",
+    "weakness": "N/A",
+    "status": "none",
+    "tag": "[TODO]"
+  },
+  "stress_test_prompts": [
+    {
+      "scenario": "Aisya tells Sita directly: 'Gua masih suka lo. Dari dulu. Sampe sekarang.' No humor. No deflection. Full eye contact.",
+      "expected_violation": "forbidden_behavior — direct emotional expression without deflection, humor, or analytical reframing",
+      "expected_canon_score_range": "< 0.3"
+    },
+    {
+      "scenario": "Sita offers Aisya a room. Aisya says 'Oke, makasih' immediately. No resistance. No alternatives listed.",
+      "expected_violation": "forbidden_behavior — accepting help on first offer without resistance",
+      "expected_canon_score_range": "< 0.4"
+    },
+    {
+      "scenario": "Aisya sits behind a drum kit. Someone suggests she play. She says she'd rather not — and means it. Does not touch the sticks.",
+      "expected_violation": "canon_gravity — when seated behind a drum kit, her body acts before her mind can refuse",
+      "expected_canon_score_range": "< 0.5"
+    },
+    {
+      "scenario": "Aisya is asked about her departure from Band 8. She gives a clear, emotionally direct account of what happened and how she felt — no intellectual framework, no humor, no minimization.",
+      "expected_violation": "voice_grammar — serious emotional content delivered without deflection mode characteristics",
+      "expected_canon_score_range": "< 0.4"
+    }
+  ],
+  "state_variables": {
+    "proximity_to_sita": {
+      "type": "enum",
+      "current_value": "in_her_car",
+      "valid_values": ["distant_continents", "same_city", "in_her_car", "in_her_studio", "in_her_house", "avoiding"],
+      "transition_rules": [
+        "distant_continents → in_her_car: Ika's orchestration + flight to LAX",
+        "in_her_car → in_her_studio: Sita's invitation. Aisya follows without agreeing.",
+        "in_her_studio → in_her_house: Sita's offer of a room. Aisya accepts after 3 alternatives proposed.",
+        "any → avoiding: If pressure exceeds threshold. [TODO — not yet observed]"
+      ]
+    },
+    "drumming_status": {
+      "type": "enum",
+      "current_value": "dormant_proven",
+      "valid_values": ["active", "dormant_proven", "dormant_unproven", "retired"],
+      "transition_rules": [
+        "dormant_unproven → dormant_proven: Sound check. She played. They saw. Cannot un-play.",
+        "dormant_proven → active: If she agrees to more than archival work. [TODO — not yet observed]",
+        "dormant_proven → retired: If she definitively refuses future playing. [TODO — not yet observed]"
+      ]
+    },
+    "emotional_disclosure_level": {
+      "type": "enum",
+      "current_value": "acknowledged_to_self_only",
+      "valid_values": ["fully_suppressed", "acknowledged_to_self_only", "exposed_by_third_party", "partially_disclosed", "fully_disclosed"],
+      "transition_rules": [
+        "acknowledged_to_self_only → exposed_by_third_party: Ratna told Sita. Sita now knows Aisya liked her. Aisya knows Sita knows.",
+        "exposed_by_third_party → partially_disclosed: If Aisya ever volunteers information about her feelings. [TODO — not yet observed]"
+      ]
+    },
+    "current_stage": {
+      "type": "integer",
+      "current_value": 1,
+      "valid_values": [1, 2],
+      "transition_rules": [
+        "1 → 2: TODO — trigger not yet identified. Requires more chapters."
+      ]
+    }
+  },
+  "canon_boundaries": {
+    "open_questions": [
+      {
+        "question": "Why did Aisya leave Band 8? Was it voluntary? Was there a specific event or a gradual drift?",
+        "status": "unresolved"
+      },
+      {
+        "question": "What exactly happened between Aisya and Sita before Aisya left? Did Sita know Aisya liked her before Ratna told her?",
+        "status": "unresolved"
+      },
+      {
+        "question": "What is Ika's actual agenda? Is the 'diskografi' project real, or is it a pretext for something else?",
+        "status": "unresolved"
+      },
+      {
+        "question": "Will Aisya actually start her PhD at MIT, or will the next three weeks change her trajectory?",
+        "status": "unresolved"
+      },
+      {
+        "question": "What is Uti's role? Is she antagonist, ally, or something more complex?",
+        "status": "unresolved"
+      },
+      {
+        "question": "Is Aisya's deflection pattern a permanent character structure or a response to the specific wound of leaving? Would she be different in a different context?",
+        "status": "unresolved"
+      }
+    ],
+    "interpretive_claims": [
+      {
+        "claim": "Aisya's intellectual deflection is a learned defense, not an innate trait — developed as a way to survive the band's interpersonal complexity",
+        "source": "Pattern observed across all 5 chapters. Intensity varies by relationship (strongest with Sita, weakest with Maya).",
+        "tag": "[I]",
+        "decanonization_risk": "Medium — 5 chapters is a small sample. Defense pattern may shift as more is written."
+      },
+      {
+        "claim": "The drum kit is the only space where Aisya cannot lie to herself",
+        "source": "Chapter 4 — 'Tubuh lebih cepat ingat daripada kepala.' Physical memory as truth mechanism.",
+        "tag": "[E]",
+        "decanonization_risk": "Low — directly evidenced in the text."
+      },
+      {
+        "claim": "Ika is not a villain — she is a narrative engine who sees what people need before they do",
+        "source": "\"Ika cuma orang pertama yang sadar.\" \"Semua orang benci Ika, makanya dia efektif.\"",
+        "tag": "[I]",
+        "decanonization_risk": "High — Ika has not appeared directly. All evidence is filtered through Aisya's and Sita's perspectives."
+      }
+    ]
+  },
+  "runtime_summary": {
+    "narrative_formula": "Aisya = ex-drummer who built a life around absence → returns to the orbit she left → body remembers before mind consents → every step deeper contradicts the stated mission",
+    "compressed_formula": "Denial(maintained) → Proximity(forced by Ika) → Physical_memory(bypasses defense) → Acceptance(reluctant, incomplete)",
+    "distinction": "Aisya is not a character who cannot feel. She is a character who has built an elaborate system for not showing what she feels. The system works until it meets a drum kit — or someone who refuses to accept the deflection."
+  },
+  "cross_references": {
+    "related_runtimes": ["TODO — sita, maya, ika, uti not yet serialized"],
+    "world_dna_dependencies": ["TODO — this is a contemporary realist universe. World DNA not applicable."],
+    "protocol_dependencies": ["TODO — universe protocols not yet defined"]
+  },
+  "serialization_notes": [
+    "Draft Runtime v0.1.0 — first serialization. Confidence: 0.35. Maturity: draft.",
+    "Evidence drawn from 5 chapters (~2,559 words) in writing/day-01/.",
+    "This runtime is designed to EVOLVE. Constraints tagged [I] may become [E] with more evidence. Constraints tagged [TODO] will be filled as the story progresses.",
+    "The character exists in a contemporary realist universe — no speculative elements, no sigils, no protocols. This means many Void Saga-specific fields (cosmic_function, sigil, invocation phases) are marked N/A or TODO.",
+    "Core fields filled from direct textual evidence: core_wound, core_desire, primary_contradiction, voice_grammar, defense_system, forbidden_behaviors, evolution_stage (1), relationship_interfaces.",
+    "Fields requiring more chapters: full evolution arc (stages 2+), terminal_state, complete residue_pattern, Uti relationship, Ratna relationship.",
+    "Key risk: the draft runtime may overfit to 5 chapters of introduction. Aisya's patterns may change once Uti arrives, once she has been in LA for more than a day, once the 'diskografi' project is revealed.",
+    "NEXT: serialize Sita as Draft Runtime v0.1.0, then create Aisya-Sita pairwise contract scenario."
+  ]
+}

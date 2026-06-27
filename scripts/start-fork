@@ -1,0 +1,87 @@
+#!/usr/bin/env bash
+# start-fork — walk a second writer from Bab 00 to a draft Fork Record.
+# Dumb on purpose: linear prompts, no branching, no AI, no JSON editing by the writer.
+# The writer produces prose answers. Translating those into a fork record is still MANUAL
+# (Jali/Claude) — that manual seam IS the Fase 2 gate, and it is meant to be visible here.
+set -euo pipefail
+
+ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+cd "$ROOT"
+
+INPUT="mvp/input/bab-00.md"
+QUESTIONS="mvp/interviews/bab-00-fork-questions.md"
+TEMPLATE="mvp/templates/fork-record.template.json"
+
+for f in "$INPUT" "$QUESTIONS" "$TEMPLATE"; do
+  [ -f "$f" ] || { echo "ERROR: missing $f"; exit 1; }
+done
+
+echo
+echo "════════════════════════════════════════════════════════"
+echo "  start-fork — fork Bab 00 of the Void Saga universe"
+echo "════════════════════════════════════════════════════════"
+echo
+echo "You will read one chapter, answer a few questions in your own"
+echo "words, and end with a draft fork. You never touch JSON."
+echo
+
+printf "Your name (for the run folder): "
+read -r NAME || NAME=""
+SLUG="$(echo "$NAME" | tr '[:upper:]' '[:lower:]' | tr -cs 'a-z0-9' '-' | sed 's/^-//; s/-$//')"
+[ -z "$SLUG" ] && SLUG="anon"
+RUN="mvp/runs/$SLUG"
+mkdir -p "$RUN"
+ANSWERS="$RUN/answers.md"
+
+echo
+echo "STEP 1 — Read the genesis chapter first:"
+echo "    $INPUT"
+echo
+printf "Press Enter when you have read it... "
+read -r _ || true
+
+{
+  echo "# Fork answers — $NAME"
+  echo "# date: $(date '+%Y-%m-%d %H:%M')"
+  echo "# fork target: Bab 00 (Void Saga genesis)"
+  echo
+} > "$ANSWERS"
+
+echo
+echo "STEP 2 — Answer in your own words. Type your answer and press Enter."
+echo
+
+n=0
+while IFS= read -r line <&3; do
+  case "$line" in
+    [0-9]*". "*)
+      n=$((n+1))
+      q="${line#*. }"
+      echo
+      echo "Q$n. $q"
+      printf "> "
+      read -r ans || ans=""
+      {
+        echo "## Q$n. $q"
+        echo "${ans:-(no answer)}"
+        echo
+      } >> "$ANSWERS"
+      ;;
+  esac
+done 3< "$QUESTIONS"
+
+cp "$TEMPLATE" "$RUN/fork-record.json"
+
+echo
+echo "════════════════════════════════════════════════════════"
+echo "  Saved your answers:   $ANSWERS"
+echo "  Draft fork record:    $RUN/fork-record.json  (stub)"
+echo "════════════════════════════════════════════════════════"
+echo
+echo "STEP 3 — TRANSLATE (still manual — this IS the Fase 2 gate)."
+echo "  Jali or Claude turns $ANSWERS into a real fork record"
+echo "  by filling $RUN/fork-record.json. This part is not automated yet."
+echo
+echo "STEP 4 — Once the fork record is filled, check it against the laws:"
+echo "    ./scripts/check-fork $RUN/fork-record.json"
+echo

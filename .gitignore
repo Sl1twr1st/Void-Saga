@@ -17,3 +17,7 @@ secrets.*
 *.p12
 *.pfx
 settings.local.json
+
+# fork run outputs (writer data, not canon)
+mvp/runs/*
+!mvp/runs/.gitkeep

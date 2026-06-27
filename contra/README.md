@@ -21,3 +21,4 @@ The project has a strong internal logic and a self-reinforcing vocabulary ("rese
 ## Index
 
 - `2026-06-27-contra-week-one.md` — PM-lens teardown of the first build week. Verdict: theory is eating the product; "research program" framing is a structured place to avoid finishing the novel and shipping the tool.
+- `2026-06-27-question-engine-relapse.md` — PM review of the Bab 00 Fork MVP meta-layer. Verdict: the dogfooding discovery is real, but a one-session finding triggered a second engine + governance for an org of one. Everything bottlenecks on the Fase 2 extraction gate. Keep the discovery, kill the institution.

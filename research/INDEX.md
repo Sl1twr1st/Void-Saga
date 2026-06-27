@@ -18,6 +18,9 @@
 | 2026-06-27 | **Executable Fiction Research Program** — repo identity shift | Audit: structure now reflects research program, not software project | ❌ Superseded same day by invariant-engine reclassification |
 | 2026-06-27 | **invariant-engine reclassification** — project identity = invariant-engine; Void Saga = first dataset | `contra/` teardown + parent-folder discussion. Research claims downgraded until extractor + 2nd author + validation exist | ✅ Governs identity. `research/2026-06-27-invariant-engine-reclassification.md`; roadmap in `CLAUDE.md` Current Milestone |
 | 2026-06-27 | **ID/EN precision gap = monolingual matcher**, not language quality | Jali: engine less precise on Indonesian prose. Diagnosis from `constraints.py` — English-syntax parser + token overlap, no stemming; invariants authored in English → cross-language penalty | ⏳ Parked for Fase 2. `research/2026-06-27-language-matching-bridge.md`. Bridge = Sastrawi (cheap) → multilingual embeddings (real, = contra #1). EXP-003 candidate. |
+| 2026-06-27 | **Bab 00 Fork MVP** — genesis node forkability demonstrated via rule-based prototype | One-month focus: "Bab 00 bisa bercabang tanpa kehilangan hukum." Built `mvp/`: genesis node, 3 fork points, 7 laws, 4 fork examples, CLI checker (PASS / PRICE_REQUIRED / BLOCKED / VALID_FORK). All rule-based; verdicts declared by fork author, not auto-extracted. | ✅ Shipped as working prototype. `research/2026-06-27-bab00-fork-mvp.md` |
+| 2026-06-27 | **v0.2 Language Bridge** — Indonesian surface + English internal bridge for fork checker | Existing forks English-dominant; novel + users are Indonesian. Added `title_id`, `premise_id`, `change_id`, `immediate_effect_id` (user-facing) + `internal_summary_en` (checker bridge). Checker is NOT multilingual — bridge is declarative, temporary. | ✅ Implemented. `research/2026-06-27-bab00-fork-mvp.md` (same log). |
+| 2026-06-27 | **Milestone language audit** — overclaiming removed from CLAUDE.md | Per `contra/` discipline: "proven forkable" → "working rule-based prototype demonstrates"; "Proves Bab 00 is forkable" → "Working demonstration". Added explicit scope note: Bab 00 only, verdicts declared by author. | ✅ Applied to CLAUDE.md Current Milestone. |
 
 ## Legend
 
@@ -35,4 +38,4 @@
 
 ---
 
-*Updated 2026-06-27. The timeline is cumulative — new entries are appended, never removed. Rejected decisions stay in the timeline with ❌ status. Provenance is preserved.*
+*Updated 2026-06-27 (end of day). 12 entries. The timeline is cumulative — new entries are appended, never removed. Rejected decisions stay in the timeline with ❌ status. Provenance is preserved.*

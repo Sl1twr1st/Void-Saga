@@ -1,0 +1,35 @@
+{
+  "_fill_instructions": "Filled during the TRANSLATE step (Jali/Claude) from runs/<name>/answers.md. The writer never edits this file. This is the manual seam = the Fase 2 gate. Replace every <FILL: ...> value.",
+  "fork_id": "<FILL: e.g. fork-<name>-01>",
+  "parent_node": "bab00",
+  "fork_point": "<FILL: fp-001 | fp-002 | fp-003>",
+  "title": "<FILL: short English title>",
+  "title_id": "<FILL: judul pendek Bahasa Indonesia>",
+  "premise_id": "<FILL: premis singkat (ID) — apa fork ini>",
+  "change_id": "<FILL: perubahan persis (ID) — apa yang beda dari kanon>",
+  "immediate_effect_id": "<FILL: efek langsung (ID)>",
+  "internal_summary_en": "<FILL: English summary used by the checker for evaluation>",
+  "participants": ["GUA", "LO"],
+  "touched_laws": ["<FILL: law-001..law-007 that this fork touches>"],
+  "violations": [
+    {
+      "_hint": "One entry PER law actually broken. Remove this block if no law is violated.",
+      "law_id": "<FILL: law-00X>",
+      "severity": "<FILL: low | medium | high | critical>",
+      "description": "<FILL: how the fork breaks this law>"
+    }
+  ],
+  "lineage": {
+    "forked_from": "bab00",
+    "forked_at": "<FILL: e.g. 00:03 — Bug Janggal>",
+    "canon_moment": "<FILL: the canon line this diverges from>",
+    "divergence": "<FILL: what the writer changed>",
+    "downstream_effects": [
+      "<FILL: what survives / what breaks downstream>"
+    ]
+  },
+  "price": null,
+  "verdict": "<FILL or leave empty: PASS | VALID_FORK | PRICE_REQUIRED | BLOCKED — let check-fork decide>",
+  "reason": "",
+  "status": "draft"
+}

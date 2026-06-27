@@ -15,7 +15,9 @@
 | 2026-06-27 | **Noise Robustness Hypothesis** — invariants survive drafting chaos | EXP-001 Phase B — 4/5 invariants received additional supporting evidence from chaotic prose | ⏳ Documented in `experiments/EXP-001-aisya/README.md` Phase B. Not yet in theory docs. |
 | 2026-06-27 | **Signal Stability** — paired metric to Noise Robustness | Discussion — "does the same signal appear in independently written datasets?" | ⏳ Documented in `experiments/EXP-001-aisya/README.md` Phase C. Not yet tested. |
 | 2026-06-27 | **Invariant Stability Index (ISI)** — 6-metric per-invariant measurement framework | Discussion — confidence alone is insufficient | ⏳ Planned for Phase C. No implementation. |
-| 2026-06-27 | **Executable Fiction Research Program** — repo identity shift | Audit: structure now reflects research program, not software project | ✅ This framing now governs all documentation |
+| 2026-06-27 | **Executable Fiction Research Program** — repo identity shift | Audit: structure now reflects research program, not software project | ❌ Superseded same day by invariant-engine reclassification |
+| 2026-06-27 | **invariant-engine reclassification** — project identity = invariant-engine; Void Saga = first dataset | `contra/` teardown + parent-folder discussion. Research claims downgraded until extractor + 2nd author + validation exist | ✅ Governs identity. `research/2026-06-27-invariant-engine-reclassification.md`; roadmap in `CLAUDE.md` Current Milestone |
+| 2026-06-27 | **ID/EN precision gap = monolingual matcher**, not language quality | Jali: engine less precise on Indonesian prose. Diagnosis from `constraints.py` — English-syntax parser + token overlap, no stemming; invariants authored in English → cross-language penalty | ⏳ Parked for Fase 2. `research/2026-06-27-language-matching-bridge.md`. Bridge = Sastrawi (cheap) → multilingual embeddings (real, = contra #1). EXP-003 candidate. |
 
 ## Legend
 

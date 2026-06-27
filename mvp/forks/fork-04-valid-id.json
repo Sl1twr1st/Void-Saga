@@ -1,0 +1,34 @@
+{
+  "fork_id": "fork-04-valid-id",
+  "parent_node": "bab00",
+  "fork_point": "fp-001",
+  "title": "Written First Contact — The Printer Note",
+  "title_id": "Catatan di Printer — Komunikasi Pertama Lewat Tulisan",
+  "premise": "Instead of LO approaching GUA's desk and speaking first, GUA prints a note about the timestamp bug and leaves it at the shared printer. LO finds it. Their first communication is written, not spoken. The medium of writing is present from the very beginning — foreshadowing genesis.txt in a different register.",
+  "premise_id": "Alih-alih LO mendekati meja GUA dan bicara duluan, GUA menulis catatan tentang bug timestamp dan meninggalkannya di printer bersama. LO yang menemukannya. Komunikasi pertama mereka adalah tulisan, bukan lisan. Medium tulis hadir sejak awal — membayangi genesis.txt dalam register yang berbeda.",
+  "change": "At 00:03, GUA notices the timestamp anomaly alone. Instead of waiting, GUA types a short note: 'Timestamp kadang muncul sebelum event. Lo notice juga?' — prints it, walks to the shared printer, leaves it there. Returns to desk. Ten minutes later, LO walks over holding the printout. 'Gua kira cuma gua yang notice.' The first sync begins — not with speech, but with a piece of paper.",
+  "change_id": "Di 00:03, GUA menyadari anomali timestamp sendirian. Bukannya menunggu, GUA mengetik catatan pendek: 'Timestamp kadang muncul sebelum event. Lo notice juga?' — mencetaknya, berjalan ke printer bersama, meninggalkannya di sana. Kembali ke meja. Sepuluh menit kemudian, LO berjalan mendekat sambil memegang cetakan itu. 'Gua kira cuma gua yang notice.' Sinkronisasi pertama dimulai — bukan dengan ucapan, tapi dengan selembar kertas.",
+  "immediate_effect_id": "Kontak pertama terjadi lewat tulisan, bukan lisan. GUA menjadi pihak yang memulai kontak — membalik dinamika kanon. Medium tulis hadir sejak detik pertama kolaborasi. Printer kantor menjadi saksi bisu pertama Stealth Project. genesis.txt di 00:08 terasa seperti kelanjutan alami, bukan lompatan medium — karena semuanya memang dimulai dengan tulisan.",
+  "internal_summary_en": "At sub-chapter 00:03, instead of LO approaching GUA verbally, GUA notices the timestamp anomaly first and writes a note. GUA prints it and leaves it at the shared printer. LO finds it and walks over holding the printout: 'Gua kira cuma gua yang notice.' The first communication is written, not spoken. This is a meaningful structural divergence — GUA initiates contact (canon reversal), and the medium of writing anchors the collaboration from the start. genesis.txt at 00:08 becomes a natural continuation of a written-first relationship rather than a leap from speech to text. No law is violated: the sync remains organic (law-006 — they converge independently, the note is an invitation, not coordination), LO remains a stabilizing condition (law-002 — LO still responds to GUA's signal), GUA still builds a system rather than confronting (law-001 — the note IS a proto-protocol, a written buffer before direct speech). All 7 laws remain intact despite meaningful narrative divergence. Downstream effects: the written-first dynamic deepens the resonance of every subsequent co-authored artifact (genesis.txt, napkin protocol, AGREEMENTS.md). This is a VALID_FORK — a legitimate branch of the canon tree.",
+  "participants": ["GUA", "LO"],
+  "touched_laws": ["law-001", "law-002", "law-006"],
+  "violations": [],
+  "lineage": {
+    "forked_from": "bab00",
+    "forked_at": "00:03 — Bug Janggal",
+    "canon_moment": "LO berdiri di samping GUA, menunjuk layar: 'Lo ngerasa gak?'",
+    "divergence": "GUA notices the anomaly first. Prints a note. Leaves it at the shared printer. LO finds it. First contact is written — GUA initiates, LO responds.",
+    "downstream_effects": [
+      "GUA menjadi pihak yang memulai kontak pertama — membalikkan dinamika kanon (LO yang mendekat duluan)",
+      "Medium tulis hadir sejak detik pertama — genesis.txt terasa sebagai kelanjutan alami, bukan lompatan medium",
+      "Printer kantor menjadi saksi bisu Stealth Project — artefak fisik pertama",
+      "Pola 'menulis dulu, bicara kemudian' tertanam sejak awal — memengaruhi semua protokol berikutnya (RELATIONSHIP PROTOCOL, AGREEMENTS.md)",
+      "Di 00:08, genesis.txt terasa seperti pengulangan pola, bukan penemuan — 'kita selalu mulai dengan tulisan'",
+      "LO menyimpan cetakan printer itu — menjadi artefak pertama Stealth Project, mendahului genesis.txt"
+    ]
+  },
+  "price": null,
+  "verdict": "VALID_FORK",
+  "reason": "Meaningful structural divergence — GUA initiates first contact via writing, reversing the canon dynamic — but no Bab 00 law is violated. The sync remains organic (law-006: both independently noticed the anomaly; the note is an invitation, not coordination). LO remains a stabilizing condition (law-002: LO responds to GUA's signal rather than initiating). GUA builds a proto-protocol rather than confronting directly (law-001: the printer note IS a system — a written buffer before speech). This fork is a legitimate branch of the canon tree.",
+  "status": "valid"
+}

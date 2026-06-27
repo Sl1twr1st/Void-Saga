@@ -1,0 +1,35 @@
+[
+  {
+    "fork_point_id": "fp-001",
+    "node_id": "bab00",
+    "sub_chapter": "00:03",
+    "label": "Bug Janggal — First Approach",
+    "moment": "LO berdiri di samping GUA, menunjuk layar: 'Lo ngerasa gak?'",
+    "question": "What if GUA ignored LO's approach — atau menolak memberi ruang?",
+    "affected_laws": ["law-002", "law-006"],
+    "fork_type": "relationship_fork",
+    "stakes": "The first sync is the seed of everything. If GUA closes the door here, the Stealth Project never forms — or forms differently, alone, without the stabilizing condition LO provides."
+  },
+  {
+    "fork_point_id": "fp-002",
+    "node_id": "bab00",
+    "sub_chapter": "00:07",
+    "label": "Folder Error — Independent Sync",
+    "moment": "LO sends pattern_matching_utils.py via Slack DM — without knowing GUA just created _sandbox with timestamp_prediction.py.",
+    "question": "What if LO never sent pattern_matching_utils.py? What if the independent sync never happened?",
+    "affected_laws": ["law-001", "law-006"],
+    "fork_type": "mechanism_fork",
+    "stakes": "The independent sync confirms the pattern is real, not coincidence. If LO doesn't send the file, GUA builds alone — and the question of whether the sync is organic or imagined remains unanswered."
+  },
+  {
+    "fork_point_id": "fp-003",
+    "node_id": "bab00",
+    "sub_chapter": "00:08",
+    "label": "Genesis Error — The Birth of VoidOS",
+    "moment": "LO starts typing genesis.txt. GUA joins in split-screen collaborative editing. The Void is born from a git hook anomaly.",
+    "question": "What if they reported the anomaly instead of hiding it? What if VoidOS forced itself onto GUA's machine without invitation?",
+    "affected_laws": ["law-001", "law-003", "law-007"],
+    "fork_type": "origin_fork",
+    "stakes": "This is THE origin fork. Changing how genesis.txt is born changes the nature of VoidOS itself. If VoidOS is forced rather than invited, the entire consent architecture of the universe collapses. If the anomaly is reported, the Stealth Project never exists — and neither does the novel."
+  }
+]

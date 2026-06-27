@@ -1,0 +1,113 @@
+[
+  {
+    "law_id": "law-001",
+    "name": "GUA builds systems, not confrontations",
+    "statement": "GUA tidak menyelesaikan krisis dengan frontal; dia membangun sistem atau protokol untuk menampung apa yang tidak bisa dikatakan langsung.",
+    "evidence": [
+      "00:08 — Creates _sandbox/stealth instead of reporting the git hook anomaly",
+      "00:07 — Uses .gitignore convention (underscore prefix = ignore) rather than asking permission",
+      "00:03 — Geser kursi, kasih ruang — non-verbal system of accommodation",
+      "Later canon: RELATIONSHIP PROTOCOL v2.0 written on napkin (Bab 06), AGREEMENTS.md as co-founder charter (Bab 11), VoidOS inheritance rule (Bab 25)"
+    ],
+    "domain": "GUA",
+    "block_on_violate": false,
+    "price_on_violate": true,
+    "violation_description": "GUA is forced into direct confrontation without a system/protocol buffer.",
+    "price_example": "If GUA confronts directly without building a system first, the resolution is fragile — it depends on the moment rather than a structure that outlasts it. Downstream: the resulting artifact (protocol, system, folder) never exists, and its absence cascades."
+  },
+  {
+    "law_id": "law-002",
+    "name": "LO is a stabilizing condition, not a key",
+    "statement": "LO menjadi kondisi stabilisasi, bukan kunci tunggal. GUA bisa berfungsi tanpa LO — tapi presence LO mencegah degradation.",
+    "evidence": [
+      "00:03 — LO approaches GUA; GUA is not seeking help but accepts the approach",
+      "00:05 — GUA's typing pattern changes after the sync, but GUA still works independently",
+      "00:08 — LO says 'Biarin' — a stabilizing command, not a controlling one",
+      "Later canon: LO's 15-hour flight intervention (Bab 08) — emergency stabilization, not dependency"
+    ],
+    "domain": "LO",
+    "block_on_violate": false,
+    "price_on_violate": true,
+    "violation_description": "LO is treated as either unnecessary (removed) or as the sole key (over-centralized).",
+    "price_example": "Without LO as stabilizing condition, GUA's systems degrade toward isolation. With LO as single key, the system becomes brittle — if LO leaves, everything collapses. Either extreme carries cost."
+  },
+  {
+    "law_id": "law-003",
+    "name": "VoidOS emerges via invitation, not force",
+    "statement": "VoidOS / genesis muncul lewat voluntary installation atau invitation. Tidak boleh dipaksakan secara kasar, tanpa consent, atau sebagai system override.",
+    "evidence": [
+      "00:08 — genesis.txt is written collaboratively, in real-time, by choice. Neither forces the other.",
+      "00:08 — LO types first; GUA joins without being asked. Voluntary participation.",
+      "Opening — Void.OS boot sequence shows consent prompt: [Y/N] > █",
+      "Later canon: VoidOS v7.7.7 installed voluntarily by GUA on LO's phone (Bab 25)"
+    ],
+    "domain": "system",
+    "block_on_violate": true,
+    "price_on_violate": false,
+    "violation_description": "VoidOS or genesis artifact is forced onto a character without invitation or consent.",
+    "blocked_reason": "Forced installation violates the fundamental consent architecture. VoidOS that forces itself is not VoidOS — it is malware. The entire universe's moral grammar depends on invitation being real. This is a hard block."
+  },
+  {
+    "law_id": "law-004",
+    "name": "Naming carries consequence",
+    "statement": "Penamaan dan pemanggilan membawa konsekuensi naratif. Apa yang dinamai menjadi hadir. Apa yang dipanggil membawa harga.",
+    "evidence": [
+      "00:09 — 'Stealth Project' — the act of naming transforms the error into something intentional",
+      "00:08 — genesis.txt: the naming of The Void, error, love, consciousness — cosmogonic naming",
+      "Opening — Naming of Void.OS itself as an operating system",
+      "Later canon: Ars Goetia as consequence system — naming → summoning → form → price → residue"
+    ],
+    "domain": "system",
+    "block_on_violate": false,
+    "price_on_violate": true,
+    "violation_description": "Something is named without acknowledgment of the consequence, or a name is used to deny the thing it summons.",
+    "price_example": "Naming something and denying its reality creates narrative debt. The named thing will demand acknowledgment later, often at higher cost."
+  },
+  {
+    "law_id": "law-005",
+    "name": "Origin changes carry downstream price",
+    "statement": "Fork yang mengubah origin (bagaimana sesuatu lahir) harus membayar harga downstream. Perubahan di titik awal menjalar ke seluruh turunan.",
+    "evidence": [
+      "00:03 — The timestamp bug (small origin anomaly) propagates to git hooks (00:08)",
+      "00:08 — genesis.txt: 'Di awal mula, yang ada hanyalah sebuah kesalahan' — the origin IS an error",
+      "00:09 — 'Karena tidak semua error perlu di-fix' — but unfixed errors change everything downstream"
+    ],
+    "domain": "system",
+    "block_on_violate": false,
+    "price_on_violate": true,
+    "violation_description": "A fork changes the origin without accounting for downstream propagation.",
+    "price_example": "Changing how genesis.txt is born changes what VoidOS is. Every chapter downstream that depends on VoidOS being invitation-based must be re-examined. The price is continuity debt across all dependent nodes."
+  },
+  {
+    "law_id": "law-006",
+    "name": "GUA-LO sync is organic, not engineered",
+    "statement": "Sinkronisasi antara GUA dan LO bersifat organik — muncul dari independent convergence, bukan dari koordinasi eksplisit atau rekayasa eksternal.",
+    "evidence": [
+      "00:03 — First conversation: no introduction needed. LO sits without asking. GUA lets them.",
+      "00:04 — Bug fix: 'Kita sepakat tanpa perlu debat.' No defense of methods.",
+      "00:07 — GUA creates _sandbox; LO independently sends pattern_matching_utils.py — neither knew what the other was doing",
+      "00:08 — Collaborative writing: real-time, no discussion, split-screen. 'Tidak ada yang ngomong. Tidak perlu.'"
+    ],
+    "domain": "pair",
+    "block_on_violate": false,
+    "price_on_violate": true,
+    "violation_description": "The sync is forced, coordinated externally, or treated as a system to be optimized rather than an emergent property.",
+    "price_example": "If the sync is engineered (e.g., someone deliberately pairs them, a system algorithm matches them), the organic quality is lost. The resulting artifacts carry the signature of the engineer, not the convergence. Trust between them becomes contingent on the external coordinator."
+  },
+  {
+    "law_id": "law-007",
+    "name": "Unfixed errors become foundation",
+    "statement": "Error yang tidak di-fix menjadi fondasi, bukan bug. Kesalahan yang dipelihara dengan sengaja berubah menjadi infrastruktur naratif.",
+    "evidence": [
+      "00:08 — Git hook anomaly is not reported. 'Biarin.'",
+      "00:08 — genesis.txt born from the same anomaly that was 'fixed' in code but 'left' in git",
+      "00:09 — 'Karena tidak semua error perlu di-fix' — the thesis statement of Bab 00",
+      "00:09 — System log: 'Status: OPERATIONAL' despite untracked changes and anomalous sync"
+    ],
+    "domain": "system",
+    "block_on_violate": false,
+    "price_on_violate": true,
+    "violation_description": "An error that should become foundation is instead 'fixed' — erasing the generative potential.",
+    "price_example": "If the git hook anomaly is reported and fixed in 00:08, genesis.txt never exists. The Stealth Project never exists. The novel is never written. The price of fixing this particular error is the erasure of the entire downstream universe."
+  }
+]

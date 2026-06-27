@@ -23,10 +23,11 @@ The novel is a real deliverable. The engine is a real tool. The methodology is a
 
 ## Current Milestone
 
-**invariant-engine — identity stated (2026-06-27).** The project is named. Void Saga is reclassified as the first dataset, not the root. Overclaims downgraded per `contra/`.
+**invariant-engine — Bab 00 Fork MVP shipped (2026-06-27).** The genesis node is proven forkable. `mvp/` contains metadata, laws, 3 example forks, and a rule-based checker that returns PASS / PRICE_REQUIRED / BLOCKED / VALID_FORK.
 
 Roadmap (derived from `contra/2026-06-27-contra-week-one.md` — each phase kills a named blind spot):
 - **Fase 0 — Identity (done):** project = invariant-engine; Void Saga = dataset; "research program" / "emergence engine" language downgraded to honest status. (kills contra #5)
+- **Fase 0.5 — Bab 00 Fork MVP (done):** Genesis node metadata, 7 Bab 00 laws, 3 fork points, 3 demo forks, CLI checker. Proves Bab 00 is forkable with legal/illegal branches. (kills contra #5 — ships a concrete artifact)
 - **Fase 1 — Finish & seal the novel.** Strongest asset, closest to shipping. KPG is a real channel. (kills contra #5)
 - **Fase 2 — Replace the manual extractor** with LLM-based invariant extraction + citations from raw prose. Until it works, the "emergence detection engine" claim stays retracted. (kills contra #1)
 - **Fase 3 — One second writer in 90 days,** or downgrade "methodology" to "instrument built for one novel." (kills contra #3)
@@ -130,9 +131,40 @@ Delphie is the first SDK-created runtime (via `create_runtime.py`). The remainin
 PASS demo: Claude generated narrative live, JSON parsed, post-validation PASS, canon score 1.0.
 BLOCKED demo: Hard block triggered on forbidden behavior. **Claude API was never called.** No tokens spent.
 
+### Fork MVP (Bab 00 — Genesis Node Forkability)
+
+`mvp/` — Minimal viable demo proving Bab 00 can serve as a genesis node that is forkable.
+
+| Artifact | File | Description |
+|----------|------|-------------|
+| Genesis Node | `mvp/genesis/bab00.node.json` | Bab 00 metadata as source node (10 sub-chapters, 3 characters, 3 mechanisms) |
+| Fork Points | `mvp/genesis/fork-points.json` | 3 forkable moments in Bab 00 (fp-001: Bug Janggal, fp-002: Folder Error, fp-003: Genesis Error) |
+| Law Mapping | `mvp/laws/bab00-laws.json` | 7 Bab 00 laws with block_on_violate / price_on_violate flags |
+| Fork Records | `mvp/forks/fork-01-pass.json`, `fork-02-price.json`, `fork-03-blocked.json` | 3 example forks with full lineage |
+| Fork Checker | `mvp/checker/check_fork.py` | Rule-based verdict engine (PASS / PRICE_REQUIRED / BLOCKED / VALID_FORK) |
+| CLI Wrapper | `scripts/check-fork` | Entry point: `./scripts/check-fork path/to/fork.json` |
+
+**3 example forks:**
+1. 🟢 PASS — GUA hesitates 15 seconds, then lets LO sit. Laws intact.
+2. 🟡 PRICE_REQUIRED — GUA rejects LO. Sync severed. Stealth Project becomes monologue.
+3. 🛑 BLOCKED — VoidOS forces installation without consent. Consent architecture collapses.
+
+**Verdict logic:**
+- Law with `block_on_violate: true` violated → BLOCKED (exit 2)
+- Law with `price_on_violate: true` violated → PRICE_REQUIRED (exit 3)
+- No violations, trivial change → PASS (exit 0)
+- No violations, meaningful divergence → VALID_FORK (exit 0)
+
+**North Star:** "Fork Bab 00. Break canon. Pay the price. Continue the universe."
+
 ### How to Run Demo
 
 ```bash
+# Fork MVP — check Bab 00 forks
+./scripts/check-fork mvp/forks/fork-01-pass.json      # PASS
+./scripts/check-fork mvp/forks/fork-02-price.json     # PRICE_REQUIRED
+./scripts/check-fork mvp/forks/fork-03-blocked.json   # BLOCKED
+
 # PASS — canon-compliant scenario
 ./scripts/demo-pass
 
@@ -414,6 +446,8 @@ Bab = pengarang. Timer = karya mereka. Keduanya nyata dalam universe ini.
 | `research/INDEX.md` | **The lab notebook index.** Timeline of idea evolution. Which decisions are settled, which are open. |
 | `README.md` | Project identity, demo commands, research principle |
 | `QUICKSTART.md` | 10-minute walkthrough for new developers |
+| `mvp/README.md` | **Fork MVP.** Bab 00 genesis node, fork points, law mapping, 3 demo forks, checker CLI |
+| `scripts/check-fork` | Writer CLI — check Bab 00 fork verdict (PASS/PRICE_REQUIRED/BLOCKED/VALID_FORK) |
 | `scripts/check-scene` | Writer CLI — markdown → extractor → compiler → PASS/WARNING/BLOCKED |
 | `scripts/triage-scenes` | Batch classifier — PASS/WARNING/BLOCKED table |
 | `VOID_SAGA_UNIVERSE/apps/engine/engine_v2.py` | Constraint engine |
@@ -434,4 +468,4 @@ Bab = pengarang. Timer = karya mereka. Keduanya nyata dalam universe ini.
 
 ---
 
-*Last updated: 2026-06-27 — Executable Fiction Research Program. Theory stabilization in progress. Four-folder structure: docs/ (theory), experiments/ (evidence), writing/ (dataset), research/ (lab notebook). Principle: nothing enters theory without evidence, nothing enters implementation without theory.*
+*Last updated: 2026-06-27 — invariant-engine. Bab 00 Fork MVP shipped. Fase 0.5 complete. mvp/ contains genesis node, 7 laws, 3 fork points, 3 demo forks, CLI checker. North Star: "Fork Bab 00. Break canon. Pay the price. Continue the universe."*

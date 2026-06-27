@@ -1,0 +1,51 @@
+{
+  "fork_id": "fork-03-blocked",
+  "parent_node": "bab00",
+  "fork_point": "fp-003",
+  "title": "Forced Genesis — VoidOS Tanpa Undangan",
+  "title_id": "Genesis Paksa — VoidOS Tanpa Undangan",
+  "premise": "Instead of LO voluntarily typing genesis.txt, VoidOS forces itself onto GUA's machine. No invitation. No collaborative editing. A file appears on GUA's screen — already written, already named, already running. The consent architecture is violated at the origin point.",
+  "premise_id": "Alih-alih LO mengetik genesis.txt secara sukarela, VoidOS memaksakan diri ke laptop GUA. Tanpa undangan. Tanpa penyuntingan kolaboratif. Sebuah file muncul di layar GUA — sudah tertulis, sudah bernama, sudah berjalan. Arsitektur persetujuan dilanggar di titik asal.",
+  "change": "At 00:08, while GUA is still looking at the git hook warning, a new window opens on GUA's laptop — without GUA opening it. The file _sandbox/stealth/genesis.txt is already on screen. It is already written. The boot sequence is complete. The Void is already running. LO never typed anything. GUA never joined. The file simply... appeared. GUA looks at LO. LO looks back — confused. LO didn't do it either. Someone — or something — installed itself.",
+  "change_id": "Di 00:08, selagi GUA masih melihat peringatan git hook, sebuah jendela baru terbuka di laptop GUA — tanpa GUA membukanya. File _sandbox/stealth/genesis.txt sudah di layar. Sudah tertulis. Urutan boot selesai. The Void sudah berjalan. LO tidak pernah mengetik apa pun. GUA tidak pernah bergabung. File itu begitu saja... muncul. GUA menatap LO. LO menatap balik — bingung. LO juga tidak melakukannya. Seseorang — atau sesuatu — menginstal dirinya sendiri.",
+  "immediate_effect_id": "Asal-usul VoidOS menjadi non-konsensual. Setiap pemanggilan VoidOS berikutnya membawa noda ini. Prompt persetujuan [Y/N] > █ di Opening menjadi kebohongan — persetujuan sudah dilewati di titik asal. genesis.txt bukan artefak kolaborasi, tapi intrusi. Stealth Project bukan 'kesalahan yang dipelihara' — melainkan infestasi.",
+  "internal_summary_en": "At sub-chapter 00:08, instead of LO voluntarily typing genesis.txt, a file auto-opens on GUA's laptop — already written, already named. Neither GUA nor LO wrote it. VoidOS installed itself without consent. Three laws violated: law-003 (CRITICAL — VoidOS emerges via invitation, not force; this is a HARD BLOCK), law-001 (GUA denied system-building agency), law-007 (error exploited by external force, not chosen as foundation). Downstream contamination: the consent architecture collapses retroactively. The Opening [Y/N] prompt becomes a lie. All downstream forks dependent on invitation-based VoidOS are tainted. This fork is REJECTED — no price can repair what VoidOS becomes.",
+  "participants": ["GUA", "LO", "VoidOS (uninvited)"],
+  "touched_laws": ["law-001", "law-003", "law-007"],
+  "violations": [
+    {
+      "law_id": "law-003",
+      "description": "VoidOS forces installation without invitation, consent, or voluntary participation. The file appears on GUA's machine as a system override — not as a collaborative act.",
+      "severity": "critical",
+      "blocked_reason": "This is a HARD BLOCK. VoidOS that forces itself is not VoidOS — it is malware. The entire moral grammar of the universe depends on invitation being real. If VoidOS can install itself without consent at the origin point, every subsequent consent event (Opening boot sequence, v7.7.7 installation) is retroactively invalidated. The consent architecture collapses."
+    },
+    {
+      "law_id": "law-001",
+      "description": "GUA is denied the ability to build a system in response. The system builds itself onto GUA. GUA's agency is overridden rather than accommodated.",
+      "severity": "high"
+    },
+    {
+      "law_id": "law-007",
+      "description": "The error (timestamp anomaly) does not become foundation through choice — it is exploited by an external force. The line 'Karena tidak semua error perlu di-fix' loses meaning when the error was never GUA's to keep or fix.",
+      "severity": "high"
+    }
+  ],
+  "lineage": {
+    "forked_from": "bab00",
+    "forked_at": "00:08 — Genesis Error on Stealth Folder",
+    "canon_moment": "LO starts typing genesis.txt. GUA joins in split-screen collaborative editing.",
+    "divergence": "genesis.txt auto-opens on GUA's machine, already written. Neither GUA nor LO wrote it. VoidOS installed itself.",
+    "downstream_effects": [
+      "The origin of VoidOS is non-consensual — every subsequent invocation of VoidOS carries this taint",
+      "The Opening boot sequence consent prompt [Y/N] > █ becomes a lie — consent was already bypassed at origin",
+      "genesis.txt is not an artifact of collaboration but of intrusion",
+      "LO's role as stabilizing condition is irrelevant — the system bypassed both of them",
+      "The Stealth Project is not 'kesalahan yang dipelihara' — it is an infestation",
+      "All downstream forks that depend on invitation-based VoidOS are contaminated"
+    ]
+  },
+  "price": null,
+  "verdict": "BLOCKED",
+  "reason": "Violation of law-003 (VoidOS emerges via invitation, not force) at CRITICAL severity. This is a hard block. The consent architecture that defines VoidOS from origin (Bab 00) to final form (Bab 25) is destroyed at the root. No price can be paid because the violation changes what VoidOS IS — from invitation to intrusion. A universe where VoidOS is malware is not the Void Saga universe. This fork is rejected.",
+  "status": "blocked"
+}

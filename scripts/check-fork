@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+# check-fork — invariant-engine fork checker CLI
+#
+# Usage:
+#   ./scripts/check-fork path/to/fork.json
+#   ./scripts/check-fork path/to/fork.json --quiet
+#
+# Reads a fork record JSON and evaluates it against Bab 00 laws.
+# Returns verdict: PASS / PRICE_REQUIRED / BLOCKED / VALID_FORK.
+#
+# Exit codes:
+#   0 — PASS or VALID_FORK
+#   2 — BLOCKED
+#   3 — PRICE_REQUIRED
+
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(dirname "$SCRIPT_DIR")"
+CHECKER="$REPO_ROOT/mvp/checker/check_fork.py"
+LAWS="$REPO_ROOT/mvp/laws/bab00-laws.json"
+
+if [ $# -lt 1 ]; then
+    echo "Usage: check-fork <path/to/fork.json> [--quiet]"
+    echo ""
+    echo "Examples:"
+    echo "  ./scripts/check-fork mvp/forks/fork-01-pass.json"
+    echo "  ./scripts/check-fork mvp/forks/fork-02-price.json"
+    echo "  ./scripts/check-fork mvp/forks/fork-03-blocked.json"
+    echo ""
+    echo "Exit codes: 0=PASS/VALID_FORK  2=BLOCKED  3=PRICE_REQUIRED"
+    exit 1
+fi
+
+FORKS_PATH="$1"
+shift
+
+python3 "$CHECKER" "$FORKS_PATH" --laws "$LAWS" "$@"

@@ -1,0 +1,32 @@
+{
+  "fork_id": "fork-01-pass",
+  "parent_node": "bab00",
+  "fork_point": "fp-001",
+  "title": "Hesitation, Not Rejection",
+  "title_id": "Ragu, Bukan Tolak",
+  "premise": "GUA hesitates when LO first approaches at 00:03 — a moment of doubt, a brief internal resistance — but ultimately geser kursi dan kasih ruang. The sync still happens, slightly delayed.",
+  "premise_id": "GUA ragu sejenak saat LO pertama kali mendekat di 00:03 — momen keraguan, resistensi internal singkat — tapi akhirnya tetap menggeser kursi dan memberi ruang. Sinkronisasi tetap terjadi, hanya sedikit tertunda.",
+  "change": "GUA pauses for 15 seconds before responding to LO. During the pause, GUA thinks: 'Gua bisa sendiri.' But then looks at the bug again, at LO's face, and makes space. The delay is the only divergence.",
+  "change_id": "GUA berhenti selama 15 detik sebelum merespons LO. Dalam jeda itu, GUA berpikir: 'Gua bisa sendiri.' Tapi kemudian melihat bug itu lagi, melihat wajah LO, dan memberi ruang. Keterlambatan adalah satu-satunya divergensi.",
+  "immediate_effect_id": "Sinkronisasi tetap terjadi — hanya tertunda 15 detik. Tidak ada perubahan struktural. Bug timestamp tetap diperbaiki dalam 10 menit. genesis.txt tetap lahir di 00:08.",
+  "internal_summary_en": "GUA pauses for 15 seconds when LO first approaches at sub-chapter 00:03. Hesitation, then yields. The sync still happens. No law is violated. The timestamp bug is still fixed together. genesis.txt is still co-authored. Downstream: no structural change — only a microscopic emotional delay that changes nothing.",
+  "participants": ["GUA", "LO"],
+  "touched_laws": ["law-002", "law-006"],
+  "violations": [],
+  "lineage": {
+    "forked_from": "bab00",
+    "forked_at": "00:03 — Bug Janggal",
+    "canon_moment": "LO berdiri di samping GUA, menunjuk layar: 'Lo ngerasa gak?'",
+    "divergence": "GUA hesitates for 15 seconds. Internal monologue of resistance. Then yields.",
+    "downstream_effects": [
+      "The sync happens, just 15 seconds later",
+      "The timestamp bug is still fixed in 10 minutes",
+      "genesis.txt is still born at 00:08",
+      "No structural difference — only a microscopic emotional delay that changes nothing downstream"
+    ]
+  },
+  "price": null,
+  "verdict": "PASS",
+  "reason": "No law is violated. The hesitation is within GUA's normal behavioral range. The sync remains organic (law-006). LO remains a stabilizing condition (law-002). The 15-second delay is a ripple, not a break.",
+  "status": "valid"
+}

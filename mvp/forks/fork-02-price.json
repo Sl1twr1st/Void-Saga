@@ -1,0 +1,57 @@
+{
+  "fork_id": "fork-02-price",
+  "parent_node": "bab00",
+  "fork_point": "fp-001",
+  "title": "GUA Menolak — The Solo Path",
+  "title_id": "GUA Menolak — Jalur Solo",
+  "premise": "GUA says no. LO walks away. The first sync never happens. GUA builds everything alone — the stealth folder, the experimental function, eventually something like genesis.txt. But it's singular, not collaborative. The universe adapts, but the price is high.",
+  "premise_id": "GUA berkata tidak. LO pergi. Sinkronisasi pertama tidak pernah terjadi. GUA membangun semuanya sendiri — folder stealth, fungsi eksperimental, akhirnya sesuatu seperti genesis.txt. Tapi semuanya tunggal, bukan kolaboratif. Semesta beradaptasi, tapi harganya tinggi.",
+  "change": "At 00:03, when LO says 'Lo ngerasa gak?' and points at the screen, GUA responds: 'Gua bisa sendiri. Thanks.' LO pauses, nods once, returns to their desk. They never collaborate on the timestamp bug. The _sandbox folder is created by GUA alone. LO never sends pattern_matching_utils.py. genesis.txt is written by GUA alone, late at night, without LO's opening lines.",
+  "change_id": "Di 00:03, saat LO berkata 'Lo ngerasa gak?' dan menunjuk layar, GUA menjawab: 'Gua bisa sendiri. Thanks.' LO berhenti, mengangguk sekali, kembali ke mejanya. Mereka tidak pernah berkolaborasi di bug timestamp. Folder _sandbox dibuat GUA sendiri. LO tidak pernah mengirim pattern_matching_utils.py. genesis.txt ditulis GUA sendiri, larut malam, tanpa kalimat pembuka LO.",
+  "immediate_effect_id": "Bug timestamp diperbaiki GUA sendiri — butuh 45 menit, bukan 10. Folder stealth dibuat sendiri — tidak ada genesis.txt kolaboratif. LO tidak pernah tahu tentang folder stealth — rahasia bersama tidak pernah ada. Proyek Stealth menjadi proyek solo — tidak ada penulis kedua, tidak ada sync event.",
+  "internal_summary_en": "At sub-chapter 00:03, GUA rejects LO's approach: 'Gua bisa sendiri. Thanks.' LO walks away. The first sync is severed. GUA builds _sandbox/stealth alone. LO never sends pattern_matching_utils.py. genesis.txt is written solo. Two laws violated: law-002 (LO's stabilizing condition rejected) and law-006 (organic sync prevented). Downstream: all collaborative Bab events (Project Phoenix, MERGE, napkin protocol) must be rewritten. The Stealth Project becomes a monologue. Canon gravity resistance: strong. Price required — the most expensive legal fork in Bab 00.",
+  "participants": ["GUA", "LO"],
+  "touched_laws": ["law-002", "law-006"],
+  "violations": [
+    {
+      "law_id": "law-002",
+      "description": "LO's stabilizing condition is rejected. GUA operates without the stabilization LO provides.",
+      "severity": "high",
+      "price": "Without LO's stabilization, GUA's systems tend toward isolation rather than connection. The Stealth Project exists but is a monologue, not a dialogue. The novel is written by one author, not two. The sync that should have been organic is severed before it begins."
+    },
+    {
+      "law_id": "law-006",
+      "description": "The organic sync is prevented from forming. The independent convergence (pattern_matching_utils.py / timestamp_prediction.py) never happens because the first thread is cut.",
+      "severity": "high",
+      "price": "The proof that the sync is real — the independent arrival at the same idea — never materializes. GUA never knows whether the pattern was real or imagined. This uncertainty becomes a structural weakness in everything built afterward."
+    }
+  ],
+  "lineage": {
+    "forked_from": "bab00",
+    "forked_at": "00:03 — Bug Janggal",
+    "canon_moment": "LO berdiri di samping GUA, menunjuk layar: 'Lo ngerasa gak?'",
+    "divergence": "GUA says 'Gua bisa sendiri. Thanks.' LO walks away. The collaboration never begins.",
+    "downstream_effects": [
+      "The timestamp bug is fixed by GUA alone — takes 45 minutes instead of 10",
+      "_sandbox/stealth is created by GUA alone — no collaborative genesis.txt",
+      "LO never learns about the stealth folder — the shared secret never exists",
+      "The Stealth Project is a solo project — no second author, no sync events",
+      "Bab-level canonical events that depend on GUA-LO sync (Project Phoenix, MERGE keyword, napkin protocol) cannot happen in their original form",
+      "The novel 'Menatap Akhir Semesta dari Balik Kacamata Hitam' may still be written — but by one author, structurally different, lacking the collaborative register"
+    ]
+  },
+  "price": {
+    "type": "PRICE_REQUIRED",
+    "narrative_cost": "The collaboration that defines the entire Bab-level frame is erased. The universe adapts — GUA still builds systems (law-001 intact) — but the work is solitary, harder, and the resulting artifacts lack the dual-author signature. The Stealth Project becomes a private obsession rather than a shared secret.",
+    "required_payments": [
+      "Acknowledge that the Stealth Project is now a monologue, not a dialogue",
+      "Account for the absence of LO's voice in genesis.txt — what is lost when only one author writes the origin?",
+      "Accept that downstream Bab events (Project Phoenix, MERGE, RELATIONSHIP PROTOCOL) must be rewritten or marked as impossible in this fork",
+      "Register this fork as a SOLO lineage — distinct from the collaborative canon"
+    ],
+    "canon_gravity_resistance": "Strong. The GUA-LO pair is the structural spine of all 25 Bab chapters. Changing the origin of their sync creates the largest possible ripple. This is the most expensive legal fork in Bab 00."
+  },
+  "verdict": "PRICE_REQUIRED",
+  "reason": "Two laws are violated at high severity: law-002 (LO's stabilizing condition rejected) and law-006 (organic sync prevented from forming). These are not hard blocks — the universe permits GUA to work alone — but the downstream cost is massive. The entire collaborative architecture of the Bab frame must be re-examined.",
+  "status": "valid"
+}

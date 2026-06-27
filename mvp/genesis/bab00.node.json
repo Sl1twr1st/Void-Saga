@@ -1,0 +1,36 @@
+{
+  "node_id": "bab00",
+  "type": "genesis",
+  "title": "Bab 00 — Menatap Akhir Era dari Balik Laptop Kantor",
+  "source_file": "Bab 00 — Menatap Akhir Era dari Balik.md",
+  "status": "canon",
+  "forkable": true,
+  "sub_chapters": [
+    { "id": "00:00", "label": "Genesis Error", "summary": "GUA arrives at office. Nothing feels important. System boots. ON TRACK." },
+    { "id": "00:01", "label": "First Contact", "summary": "GUA notices LO's typing pattern — fast but not panicked, checking patterns." },
+    { "id": "00:02", "label": "Daily Standup", "summary": "Safe sentences. Progress. Blocker. Alignment. Both give vague, perfect updates." },
+    { "id": "00:03", "label": "Bug Janggal", "summary": "Timestamp bug writes 2-3 seconds before event. LO approaches GUA: 'Lo ngerasa gak?' First conversation." },
+    { "id": "00:04", "label": "First Sync", "summary": "Bug fixed in 10 minutes. No debate. No defense. Atomic append. Mutex too expensive. Queue." },
+    { "id": "00:05", "label": "Residu", "summary": "Both change without noticing. GUA writes in smaller fragments. LO's review: 'Clean. Ship it.'" },
+    { "id": "00:06", "label": "Pantry", "summary": "Microwave broken. 'Kerja itu kayak ngisi sesuatu yang bocor terus.' They speak the same language." },
+    { "id": "00:07", "label": "Folder Error", "summary": "GUA creates _sandbox. LO independently sends pattern_matching_utils.py. Neither knew what the other was doing." },
+    { "id": "00:08", "label": "Genesis Error on Stealth Folder", "summary": "Timestamp anomaly hits git. LO types genesis.txt. GUA joins real-time. The Void is born. 'Biarin.'" },
+    { "id": "00:09", "label": "Naming The Error", "summary": "Stealth Project. 'Karena tidak semua error perlu di-fix.' System log records Day Zero." }
+  ],
+  "characters": [
+    { "id": "GUA", "role": "Narrator / Software Engineer", "team": "Logging Middleware" },
+    { "id": "LO", "role": "Software Engineer", "team": "Platform Infrastructure" },
+    { "id": "MANAGER", "role": "Team Manager", "note": "Wears sunglasses. Validation function." }
+  ],
+  "key_artifacts": [
+    { "name": "timestamp_prediction.py", "location": "_sandbox/stealth/", "status": "untracked" },
+    { "name": "pattern_matching_utils.py", "location": "sent via Slack DM", "status": "independent sync" },
+    { "name": "genesis.txt", "location": "_sandbox/stealth/", "status": "untracked", "authors": ["LO", "GUA"] }
+  ],
+  "key_mechanisms": [
+    { "name": "Timestamp Anomaly", "description": "Log entries appear 2-3 seconds before events. First in logging middleware, then in git hooks." },
+    { "name": "Organic Sync", "description": "GUA and LO independently converge on same ideas without coordination." },
+    { "name": "Stealth Convention", "description": "Underscore prefix = ignore. .gitignore = not tracked. Local only. Voluntary hiding." }
+  ],
+  "ending_question": "Jika semua sistem dimulai dari error — apakah perbaikan adalah evolusi, atau penghancuran?"
+}

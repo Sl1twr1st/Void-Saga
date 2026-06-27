@@ -23,11 +23,11 @@ The novel is a real deliverable. The engine is a real tool. The methodology is a
 
 ## Current Milestone
 
-**invariant-engine — Bab 00 Fork MVP shipped (2026-06-27).** The genesis node is proven forkable. `mvp/` contains metadata, laws, 3 example forks, and a rule-based checker that returns PASS / PRICE_REQUIRED / BLOCKED / VALID_FORK.
+**invariant-engine — Bab 00 Fork MVP shipped (2026-06-27).** A working rule-based prototype demonstrates Bab 00 forkability. `mvp/` contains genesis node metadata, 7 explicit narrative laws, 4 example forks (PASS, PRICE_REQUIRED, BLOCKED, VALID_FORK), and a CLI checker. Currently supports Bab 00 only; verdicts are declared by the fork author, not auto-extracted from prose.
 
 Roadmap (derived from `contra/2026-06-27-contra-week-one.md` — each phase kills a named blind spot):
 - **Fase 0 — Identity (done):** project = invariant-engine; Void Saga = dataset; "research program" / "emergence engine" language downgraded to honest status. (kills contra #5)
-- **Fase 0.5 — Bab 00 Fork MVP (done):** Genesis node metadata, 7 Bab 00 laws, 3 fork points, 3 demo forks, CLI checker. Proves Bab 00 is forkable with legal/illegal branches. (kills contra #5 — ships a concrete artifact)
+- **Fase 0.5 — Bab 00 Fork MVP (done):** Genesis node metadata, 7 Bab 00 laws, 3 fork points, 4 demo forks, CLI checker. Working demonstration of Bab 00 forkability with legal/illegal branches. (kills contra #5 — ships a concrete artifact)
 - **Fase 1 — Finish & seal the novel.** Strongest asset, closest to shipping. KPG is a real channel. (kills contra #5)
 - **Fase 2 — Replace the manual extractor** with LLM-based invariant extraction + citations from raw prose. Until it works, the "emergence detection engine" claim stays retracted. (kills contra #1)
 - **Fase 3 — One second writer in 90 days,** or downgrade "methodology" to "instrument built for one novel." (kills contra #3)

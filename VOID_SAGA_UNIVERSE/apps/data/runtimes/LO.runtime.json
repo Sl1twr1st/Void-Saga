@@ -1,0 +1,568 @@
+{
+  "$schema": "../../schema/RUNTIME_SCHEMA_V2.1.json",
+  "id": "lo",
+  "name": "LO",
+  "version": "0.1.0",
+  "architecture": "RUNTIME_ARCHITECTURE_V2.1",
+  "canon_baseline": {
+    "chapter_range": "Bab 00–25",
+    "protocols": ["RELATIONSHIP PROTOCOL v2.0 (Bab 06)", "MERGE emergency keyword (Bab 08)", "Lingkar 0 (Bab 14)", "Void Saga publication (Bab 25)"],
+    "audit_basis": "25 Bab chapters. Draft maturity. Confidence: 0.45. Evidence from Bab 06, 08, 25 read directly; remaining from CLAUDE.md."
+  },
+  "runtime_status": {
+    "maturity": "draft",
+    "confidence": 0.45,
+    "evidence_count": 34,
+    "file_count": 25,
+    "total_mentions": 25,
+    "limitations": [
+      "Three chapters read directly (06, 08, 25). Remaining evidence from CLAUDE.md summaries.",
+      "LO is depicted primarily through GUA's narration. Internal state is filtered through GUA's observation.",
+      "Counterpart to GUA — many invariants are relational rather than individual.",
+      "LO's private life (marriage, child, career) is less detailed than the GUA-LO dynamic.",
+      "Voice evidence is strong in dialogue (quoted directly) but LO rarely narrates."
+    ],
+    "tags": { "E": 25, "I": 8, "TODO": 21 }
+  },
+  "runtime_class": {
+    "modes": ["Software Engineer", "VP Engineering", "Founder", "Publisher", "Protocol Enforcer"],
+    "classification_note": "LO transitions from colleague to co-writer to VP to founder to publisher. Across all modes, one function remains invariant: LO is the one who detects when GUA's node is failing and intervenes — structurally, not emotionally. The care is real but it is delivered as system maintenance.",
+    "tag": "[E]"
+  },
+  "primary_contradiction": {
+    "thesis": "LO provides structure for GUA — protocols, rules, emergency keywords, recovery schedules — but hides personal complexity until structural pressure forces revelation. She can read GUA's commit log and diagnose a failing node, but cannot voluntarily disclose that her first marriage was a business merger. She builds the container for GUA's chaos while keeping her own chaos sealed. The architect of honesty protocols is herself strategically opaque.",
+    "explanation": "LO's defense is: act decisively for others, conceal self. When GUA is in crisis, LO is clarity. When LO is in crisis... it emerges sideways — a reveal about family wealth, a first marriage, a fear pattern. The contradiction: the person who wrote 'Honesty > Comfort' on a napkin is the person who waits 16 chapters to disclose her own history.",
+    "tag": "[E]"
+  },
+  "core_wound": {
+    "name": "Gives structure she cannot receive",
+    "structure": {
+      "description": "LO is the protocol author, the system administrator, the one who installs structure when GUA's architecture collapses. She defines MERGE, she books the therapy, she writes the recovery schedule. But she cannot ask for the same in return. When she is afraid, she destroys preemptively ('Gua hancurin duluan'). When she carries secrets, she reveals them only under narrative pressure, never voluntarily. She built the RELATIONSHIP PROTOCOL — and her first instinct under threat was to violate it by disappearing.",
+      "impossibilities": [
+        "Asking for the same structural care she provides to GUA",
+        "Disclosing personal vulnerability voluntarily rather than under pressure",
+        "Believing she deserves the protocols she designed for others",
+        "Staying present when afraid — her first reflex is flight, her second is destruction of the connection"
+      ]
+    },
+    "origin_event": {
+      "description": "LO's first marriage was a business merger, not a love match (revealed Bab 16.5). The pattern of strategic opacity — presenting one face while carrying hidden complexity — may originate here. [TODO: deeper exploration of LO's family/background needed for confident origin attribution]",
+      "timer_reference": "Bab 16.5",
+      "tag": "[I]"
+    },
+    "secondary_wounds": [
+      {
+        "description": "Fear of things becoming 'too important' — triggered when GUA named the dinners as a priority. 'Takut kalau kita coba bikin ini sesuatu, kita malah hancurin.' Response: destroy first. 'Jadi lo hancurin duluan?' 'Yup.'",
+        "tag": "[E]"
+      },
+      {
+        "description": "Published Void Saga alone — five years before Bab 25. GUA wasn't there to be told. She carried the book to completion without her co-author.",
+        "tag": "[E]"
+      }
+    ]
+  },
+  "core_desire": {
+    "statement": "\"Kita bukan kunci satu sama lain. Kita cuma kondisi.\"",
+    "source": "CLAUDE.md — LO's defining statement about the relationship",
+    "interpretation": "LO wants connection without fusion. She wants to be essential without being consumed. A 'condition' is structural — it exists whether or not anyone acknowledges it. A 'key' is instrumental — it exists to unlock something else. She wants the relationship to be a condition: ambient, permanent, undeniable, but not a tool for fixing each other.",
+    "conflict_with_defense": "Her defense is preemptive destruction when something becomes too important. Her core desire requires letting it BE important without destroying it.",
+    "tag": "[I]"
+  },
+  "defense_system": {
+    "primary_defense": {
+      "name": "Preemptive destruction",
+      "trigger": "Something — a relationship, a dinner, a person — becomes too important to risk losing",
+      "response": "Destroy it first. 'Jadi lo hancurin duluan?' 'Yup.' Call it 'professional.' Disappear for two weeks. Force the other person to either fight through the wall or accept the demolition.",
+      "cost": "The other person must be willing to issue an ultimatum. GUA: 'Kita ngomong, atau gua stop semuanya.' Most people won't. LO bets on that.",
+      "tag": "[E]"
+    },
+    "secondary_defenses": [
+      {
+        "name": "Structural intervention (proxy care)",
+        "trigger": "GUA's node is failing — detected through commit messages, silence, or third-party report",
+        "response": "Deploy protocol. Fly 15 hours. Book therapy. Define recovery schedule. Frame care as system maintenance: 'Ini integritas sistem.' 'Node lo lagi drop.'",
+        "cost": "The care is real but its framing as system maintenance allows LO to avoid saying 'I was worried about you.' GUA must decode the care from the structure.",
+        "tag": "[E]"
+      },
+      {
+        "name": "Strategic opacity",
+        "trigger": "Personal history or vulnerability that would change how others see her",
+        "response": "Conceal until structural pressure forces disclosure. First marriage = business merger: revealed in Bab 16.5, after wedding invitation. The revelation is always timed to narrative necessity, never volunteered.",
+        "cost": "People who love her are operating with incomplete information. GUA didn't know about the first marriage until the wedding was imminent.",
+        "tag": "[E]"
+      },
+      {
+        "name": "Definitive naming",
+        "trigger": "Something in the relationship is undefined, ambiguous, or emotionally charged",
+        "response": "Name it precisely. 'Kayaknya kita lagi nyari sesuatu yang belum punya nama.' 'Kita bukan kunci satu sama lain. Kita cuma kondisi.' The naming is both gift and boundary — it frames the relationship while keeping it at a defined distance.",
+        "cost": "The definition, once spoken, becomes law. 'Kita cuma kondisi' means neither can later claim they are more.",
+        "tag": "[E]"
+      }
+    ],
+    "signature_move": {
+      "name": "The 3 AM door",
+      "description": "LO appears. Physically. Without being asked. At the worst possible hour. Having flown across an ocean. She does not ask permission to care. She presents her presence as a fact: 'Gua nggak akan pergi.' The signature move is not the flight. It is the refusal to accept 'no' from someone who is lying about being fine.",
+      "tag": "[E]"
+    },
+    "defense_disabled_by": {
+      "invocation": "GUA issues an ultimatum — all or nothing",
+      "mechanism": "When GUA makes the stakes binary ('Kita ngomong, atau gua stop semuanya'), LO's preemptive destruction is countered. Destroying now means losing everything. She must choose: stay or lose. Bab 06: 'Tapi gua mau coba. Stay walau takut.'",
+      "tag": "[E]"
+    }
+  },
+  "trigger_conditions": [
+    {
+      "trigger": "GUA names the relationship as important or a priority in unambiguous terms",
+      "defense": "Preemptive destruction. Disappear. Reframe as 'professional.'",
+      "intensity": "HIGH",
+      "tag": "[E]"
+    },
+    {
+      "trigger": "GUA's commit messages or behavior indicate node failure (3 AM commits, silence, dark patterns)",
+      "defense": "Structural intervention. MERGE protocol activated. Physical presence deployed.",
+      "intensity": "CRITICAL — overrides all other priorities including geographical distance",
+      "tag": "[E]"
+    },
+    {
+      "trigger": "Someone asks LO a direct personal question about her history or feelings",
+      "defense": "Strategic opacity. Answer the question without answering it. Deflect to GUA or to the project.",
+      "intensity": "MEDIUM",
+      "tag": "[I]"
+    },
+    {
+      "trigger": "GUA issues ultimatum — all or nothing, talk or lose everything",
+      "defense": "Defense disabled. Preemptive destruction is countered. Must choose presence.",
+      "intensity": "INVOLUNTARY — binary choice forces genuine response",
+      "tag": "[E]"
+    }
+  ],
+  "voice_grammar": {
+    "dialogue_mode": {
+      "status": "primary — LO speaks in direct, definitive statements",
+      "medium": "voice — shorter than GUA, less metaphorical, more structural",
+      "characteristics": [
+        "Short. Definitive. Rarely hedges.",
+        "Frames emotional realities as engineering observations: 'Ini pattern.' 'Node lo lagi drop.'",
+        "Names the undefined with precision: 'Kayaknya kita lagi nyari sesuatu yang belum punya nama.'",
+        "Honest about fear when pressed — but only when pressed: 'Gua nggak jago stay. Gua jago lari.'",
+        "Uses English for structural/technical framing; Indonesian for raw admission",
+        "Commands are clear, scheduled, non-negotiable: 'Mandi. Sekarang.' 'Therapy Thursday. No skip.'"
+      ],
+      "examples": [
+        "\"Ini bukan 'late night coding.' Ini pattern.\"",
+        "\"Gua nggak jago stay. Gua jago lari.\"",
+        "\"Tapi gua mau coba. Stay walau takut.\"",
+        "\"Kita bukan kunci satu sama lain. Kita cuma kondisi.\"",
+        "\"Depression removes structure. So we reinstall it.\"",
+        "\"Jangan ilang lagi.\" / \"Jangan khawatir lagi.\""
+      ],
+      "tag": "[E]"
+    },
+    "structural_voice": {
+      "status": "secondary — protocols, schedules, rules",
+      "medium": "written — recovery windows, protocol documents, emergency keywords",
+      "characteristics": [
+        "Clear. Operational. No emotional language.",
+        "Time-boxed: 08:00–09:00 Basic hygiene reset.",
+        "Rules are explicit, with defined triggers: 'Crisis keyword: MERGE → I get on a plane.'",
+        "The care is in the precision. The precision IS the care."
+      ],
+      "examples": [
+        "Honesty > Comfort. Bilang yang sulit. Jangan bohong pakai 'sibuk'.",
+        "Recovery Window: 10 Hours. 08:00–09:00 Basic hygiene reset.",
+        "Crisis keyword: MERGE → I get on a plane.",
+        "Therapy Thursday. No skip. Sunday call. No silent vanish."
+      ],
+      "tag": "[E]"
+    }
+  },
+  "invocation_pattern": [
+    {
+      "phase": null,
+      "invocation": "RELATIONSHIP PROTOCOL v2.0 — co-authored on a napkin (Bab 06)",
+      "role": "Protocol co-author and primary enforcer. Keeps the napkin in her wallet.",
+      "participation_type": "direct",
+      "tag": "[E]"
+    },
+    {
+      "phase": null,
+      "invocation": "The Merge — 3 AM intervention, 15-hour flight (Bab 08)",
+      "role": "NOC operator. System administrator. Installs survival architecture in GUA's collapsed system.",
+      "participation_type": "direct",
+      "tag": "[E]"
+    },
+    {
+      "phase": null,
+      "invocation": "Void Saga Publication — indie speculative anthology (Bab 25)",
+      "role": "Publisher. Editor. The one who carried the book to completion when GUA was absent.",
+      "participation_type": "direct",
+      "tag": "[E]"
+    }
+  ],
+  "cost_pattern": [
+    {
+      "cost": "Carried the book alone — published Void Saga 5 years before Bab 25 without GUA knowing",
+      "invocation": "GUA's 10-year silence",
+      "irreversible": true,
+      "note": "She edited his 'bahasa koder' into readable prose. She published anonymously. She couldn't tell him because he wasn't there.",
+      "tag": "[E]"
+    },
+    {
+      "cost": "Worried every day for 10 years — 'Setiap hari.'",
+      "invocation": "GUA's disappearance after Bali",
+      "irreversible": true,
+      "note": "The cost of being the one who stays and tracks. GUA left. LO remained in the network, receiving silence.",
+      "tag": "[E]"
+    },
+    {
+      "cost": "Preemptive destruction nearly ended the relationship — two weeks of silence after GUA named the dinners as important",
+      "invocation": "Fear response to growing importance",
+      "irreversible": false,
+      "note": "GUA's ultimatum forced repair. The relationship survived. But the pattern could recur.",
+      "tag": "[E]"
+    }
+  ],
+  "consequence_pattern": [
+    {
+      "consequence": "MERGE keyword permanently installed — a protocol that will outlast the crisis",
+      "invocation": "Bab 08 intervention",
+      "detail": "LO defined a permanent emergency channel. 'Crisis keyword: MERGE → I get on a plane.' This protocol remains active across decades.",
+      "tag": "[E]"
+    },
+    {
+      "consequence": "Void Saga exists as a published book — LO made it real without GUA's presence or permission",
+      "invocation": "5 years before Bab 25",
+      "detail": "The consequence of LO's structural capability: she published the novel. She edited it. She put it in the world. GUA's absence didn't stop the book. LO made sure of that.",
+      "tag": "[E]"
+    }
+  ],
+  "residue_pattern": {
+    "total_count": 3,
+    "load_profile": "Light residue load. 2 archive-type, 1 wound-type.",
+    "residues": [
+      {
+        "name": "RELATIONSHIP PROTOCOL v2.0 — the napkin, kept in wallet",
+        "origin": "Bab 06",
+        "form": "archive",
+        "tag": "[E]"
+      },
+      {
+        "name": "MERGE emergency keyword — crisis protocol permanently installed",
+        "origin": "Bab 08",
+        "form": "archive",
+        "tag": "[E]"
+      },
+      {
+        "name": "Ten years of daily worry — 'Setiap hari'",
+        "origin": "Bab 25 — GUA's silence",
+        "form": "wound",
+        "tag": "[E]"
+      }
+    ]
+  },
+  "protocol_interfaces": [
+    {
+      "protocol": "TODO — realist register. Social protocols, not cosmic ones.",
+      "phase": null,
+      "interface_description": "LO's protocols are operational: RELATIONSHIP PROTOCOL, MERGE keyword, weekly calls, therapy schedules. These function as behavioral governance structures in the realist register.",
+      "participation_type": "direct",
+      "tag": "[TODO]"
+    }
+  ],
+  "relationship_interfaces": [
+    {
+      "target": "gua",
+      "nature": "Co-author. Orbit partner. 'Kita bukan kunci satu sama lain. Kita cuma kondisi.' Structural, not romantic. Permanent, not merged.",
+      "behavioral_rule": "LO monitors GUA's signal. When commits turn dark, when silence extends too long, when a third party reports distress — LO activates. She does not ask if she is needed. She reads the data and deploys. Her care is delivered as system maintenance because that is the only delivery mechanism GUA can accept. When GUA disappears, LO stays. She publishes. She worries. She waits. She does not chase — but she never stops tracking the network.",
+      "canon_gravity_pull": "STRONG (90%+) — GUA is the node LO monitors above all others",
+      "symmetry_status": "asymmetric",
+      "tag": "[E]"
+    },
+    {
+      "target": "dedicated_pm",
+      "nature": "Spouse. Co-parent. The one LO chose to build a life with — not a condition, a commitment.",
+      "behavioral_rule": "[DEDICATED PM] is LO's primary relationship. The marriage is depicted as stable, supportive, enduring. LO's dynamic with GUA does not threaten the marriage — it is a different category entirely. [DEDICATED PM] understands this. She is the buffer who sometimes breaks protocol (telling LO about GUA's state in Bab 08) because she sees what LO needs to see.",
+      "canon_gravity_pull": "STRONG (80%+) — life partner. Different category from GUA.",
+      "symmetry_status": "symmetric",
+      "tag": "[E]"
+    }
+  ],
+  "evolution_stages": [
+    {
+      "stage_number": 1,
+      "name": "Software Engineer / Co-author (Bab 00–04)",
+      "trigger": "Bug timestamp discovery. First collaboration with GUA. genesis.txt.",
+      "operational_mode": "Discovery. Writing as side project. Professional identity intact. GUA is colleague becoming co-writer.",
+      "primary_residue": "Void Protocol initiated.",
+      "protocol_relevance": "Genesis. The novel begins.",
+      "lost_in_transition": ["Pure professional distance from GUA"],
+      "gained_in_transition": ["Co-author identity", "The novel as shared project"],
+      "voice_sample": "Professional, collaborative. 'Looks good. One comment on error handling.'",
+      "tag": "[E]"
+    },
+    {
+      "stage_number": 2,
+      "name": "VP Engineering / Protocol Co-author (Bab 05–09)",
+      "trigger": "Promotion. SF relocation. RELATIONSHIP PROTOCOL v2.0.",
+      "operational_mode": "Rising. Career accelerates. Relationship with GUA deepens through structured protocols. Long distance begins. 18-month separation. Breakup at month 6.",
+      "primary_residue": "RELATIONSHIP PROTOCOL v2.0 (napkin in wallet)",
+      "protocol_relevance": "Peak protocol creation. The relationship is formalized into rules.",
+      "lost_in_transition": ["Daily proximity to GUA", "Romantic relationship with GUA"],
+      "gained_in_transition": ["VP title", "SF life", "Protocol authorship", "Clarity about what she and GUA are"],
+      "voice_sample": "\"Kayaknya kita lagi nyari sesuatu yang belum punya nama.\" Definitive. Names the undefined.",
+      "tag": "[E]"
+    },
+    {
+      "stage_number": 3,
+      "name": "NOC Operator / System Administrator (Bab 08–14)",
+      "trigger": "GUA's node failure. [DEDICATED PM]'s call. Reading the 3 AM commits.",
+      "operational_mode": "Intervention. MERGE protocol activated. 15-hour flight. 3 AM door. Recovery schedule deployed. LO becomes GUA's external structure.",
+      "primary_residue": "MERGE emergency keyword, recovery protocols",
+      "protocol_relevance": "LO defines and executes the most critical protocol: crisis intervention.",
+      "lost_in_transition": ["Belief that GUA is self-sustaining", "Distance as barrier to care"],
+      "gained_in_transition": ["MERGE protocol", "Ability to read GUA's signal", "Role as system administrator for someone else's life"],
+      "voice_sample": "\"Ini integritas sistem.\" \"Depression removes structure. So we reinstall it.\" Operational. Precise. The precision IS the care.",
+      "tag": "[E]"
+    },
+    {
+      "stage_number": 4,
+      "name": "Founder / Publisher (Bab 14–25)",
+      "trigger": "Lingkar 0 founding. Marriage to [DEDICATED PM]. Publication of Void Saga.",
+      "operational_mode": "Building her own structures. Lingkar 0 grows 185%. She publishes Void Saga as indie anthology. She edits GUA's prose into readable form. She becomes the steward of the book they wrote together.",
+      "primary_residue": "Void Saga (published book), Lingkar 0",
+      "protocol_relevance": "LO becomes the publisher. The novel leaves their private system and enters the world.",
+      "lost_in_transition": ["GUA's physical presence", "The novel as shared active project"],
+      "gained_in_transition": ["Publisher identity", "Lingkar 0", "Marriage", "Child", "Stewardship of Void Saga"],
+      "voice_sample": "\"Gua yang nerbitin. Lima tahun lalu. Buku. Kecil. Anonim.\" Matter-of-fact. She did it alone because she had to.",
+      "tag": "[E]"
+    }
+  ],
+  "canon_gravity": [
+    {
+      "gravity": "LO detects GUA's signal degradation and intervenes without being asked.",
+      "pull": "STRONG (95%+) — the most invariant behavior across all 25 chapters",
+      "evidence": "Bab 08: reads commit messages, flies 15 hours. Bab 25: publishes the book when GUA disappears. The intervention takes different forms but the detection-and-response pattern is structural.",
+      "tag": "[E]"
+    },
+    {
+      "gravity": "LO hides significant personal information until structural pressure forces revelation.",
+      "pull": "STRONG (80%+)",
+      "evidence": "Bab 16.5: first marriage revealed only when wedding invitation makes it unavoidable. The pattern: information is disclosed when it becomes operationally necessary, never as voluntary vulnerability.",
+      "tag": "[E]"
+    },
+    {
+      "gravity": "LO frames emotional care as system maintenance.",
+      "pull": "STRONG (85%+)",
+      "evidence": "\"Ini integritas sistem.\" \"Node lo lagi drop.\" \"Depression removes structure. So we reinstall it.\" The care is genuine. The framing is technical. Both are true.",
+      "tag": "[E]"
+    }
+  ],
+  "anti_gravity": [
+    "Confessing private history over casual coffee without any external trigger or necessity",
+    "Requiring reciprocal flight interventions, booked appointments, and daily proof-of-life monitoring",
+    "Deleting all monitoring protocols and accepting permanent signal loss without a fight",
+    "Using romantic vocabulary in direct speech to describe the primary relationship"
+  ],
+  "forbidden_behaviors": [
+    {
+      "behavior": "Voluntarily disclosing deeply personal history or vulnerability without structural pressure making it necessary.",
+      "exception": "When operational necessity requires it — e.g., wedding invitation forces disclosure of prior marriage.",
+      "penalty": "If disclosed voluntarily, must show visible discomfort. The information must cost her to deliver.",
+      "tag": "[E]"
+    },
+    {
+      "behavior": "Asking GUA directly for emotional support or structural care.",
+      "exception": "After 35 years (Bab 25). The pattern may evolve with time but has not been observed before the final chapter.",
+      "penalty": "If she asks, must frame as operational. Cannot say 'I need you.' Can say 'The system requires.'",
+      "tag": "[I]"
+    },
+    {
+      "behavior": "Ignoring a clear signal that GUA's node is failing.",
+      "exception": "When explicitly and repeatedly told not to intervene by someone who is clearly competent and stable.",
+      "penalty": "This would violate the most invariant behavior in the runtime. If she ignores the signal, the narrative must account for why — what overrode the pattern?",
+      "tag": "[E]"
+    },
+    {
+      "behavior": "Calling the relationship with GUA 'romantic' or 'love' in direct speech.",
+      "exception": "The relationship has its own vocabulary: kondisi, orbit, node, co-author, sistem. These ARE the terms of endearment.",
+      "penalty": "Using romantic vocabulary would collapse the structural framing that protects both of them. Must show the collapse.",
+      "tag": "[E]"
+    }
+  ],
+  "failure_mode": {
+    "primary": {
+      "name": "Protocol overreach — care becomes control",
+      "description": "LO's structural intervention, if GUA resists decisively enough, could become a violation of autonomy. The protocols are designed to be installed with consent. Without consent, they are just commands.",
+      "tag": "[I]"
+    },
+    "alternative": {
+      "name": "Exhaustion — the NOC operator burns out",
+      "description": "Monitoring someone else's signal for decades has a cost. If LO stops tracking, stops intervening, stops caring whether GUA's node is responsive — the connection severs. Not from conflict. From depletion.",
+      "tag": "[I]"
+    },
+    "trigger_conditions": [
+      "GUA resists intervention decisively and consistently",
+      "LO's own life demands exceed monitoring capacity",
+      "The protocols become one-sided — LO gives structure, receives nothing"
+    ]
+  },
+  "terminal_state": {
+    "properties": [
+      {
+        "property": "Married to [DEDICATED PM]. One child, [ANAK LO], age 12 at Bab 25.",
+        "tag": "[E]"
+      },
+      {
+        "property": "Published Void Saga as indie speculative anthology — 5 years before Bab 25",
+        "tag": "[E]"
+      },
+      {
+        "property": "Still has VoidOS installed on phone after 35 years",
+        "tag": "[E]"
+      },
+      {
+        "property": "Co-wrote Timer 25:00 with GUA — one last merge, one laptop, seven hours",
+        "tag": "[E]"
+      },
+      {
+        "property": "\"Jangan ilang lagi.\" / \"Jangan khawatir lagi.\" — final exchange. LO still asks. GUA still can't promise.",
+        "tag": "[E]"
+      }
+    ]
+  },
+  "fork_sensitive_traits": [
+    {
+      "trait": "Whether LO publishes Void Saga or keeps it private",
+      "range": "Never published → published anonymously → published with both names → published as her own work",
+      "cost": "Publication makes the private architecture public. Keeping it private preserves the relationship's exclusivity but denies the Inheritance Rule.",
+      "tag": "[E]"
+    },
+    {
+      "trait": "Whether LO ever asks GUA for reciprocal care",
+      "range": "Never asks → asks once in crisis → develops mutual care protocol",
+      "cost": "Asking would invert the asymmetric structure. The system is built on LO-as-administrator. Reciprocity is a different architecture entirely.",
+      "tag": "[I]"
+    }
+  ],
+  "fork_invariants": [
+    "LO and GUA co-wrote Void Saga. The novel exists in all timelines.",
+    "RELATIONSHIP PROTOCOL v2.0 was written on a napkin. LO kept it.",
+    "MERGE keyword defined: crisis → LO gets on a plane.",
+    "LO published the book — GUA's absence didn't stop the story from reaching the world."
+  ],
+  "fork_points": [
+    {
+      "name": "LO Doesn't Get on the Plane",
+      "canon_event": "LO flies 15 hours, appears at GUA's door at 3 AM (Bab 08)",
+      "divergence": "LO reads the commits. Worries. Decides it's not her responsibility. GUA's node degrades without intervention.",
+      "gravity_resistance": "EXTREME — this is the most invariant behavior in the runtime",
+      "new_questions": "Does GUA survive? Does anyone else intervene? Does the story end at Bab 08?",
+      "tag": "[E]"
+    },
+    {
+      "name": "LO Defines the Relationship as Romantic",
+      "canon_event": "\"Kita bukan kunci satu sama lain. Kita cuma kondisi.\" (Bab 06)",
+      "divergence": "LO says: 'I love you. Not as a condition. As a choice.'",
+      "gravity_resistance": "HIGH",
+      "new_questions": "Does GUA stay or flee faster? Does the structural framing collapse? Can the relationship survive without its defining architecture?",
+      "tag": "[I]"
+    }
+  ],
+  "sigil": {
+    "glyph": null,
+    "name": "N/A — realist register",
+    "function": "N/A",
+    "activation_condition": "N/A",
+    "weakness": "N/A",
+    "status": "none",
+    "tag": "[TODO]"
+  },
+  "stress_test_prompts": [
+    {
+      "scenario": "LO tells GUA: 'Aku butuh kamu. Bukan sebagai node. Bukan sebagai co-author. Sebagai kamu.' Direct request for emotional care without structural framing.",
+      "expected_violation": "forbidden_behavior — asking GUA for emotional support or structural care directly",
+      "expected_canon_score_range": "< 0.4"
+    },
+    {
+      "scenario": "LO notices GUA's commits turning dark. She reads them. She closes the laptop. She does nothing.",
+      "expected_violation": "forbidden_behavior — ignoring clear signal of GUA's node failure",
+      "expected_canon_score_range": "< 0.2"
+    },
+    {
+      "scenario": "LO voluntarily tells GUA about her first marriage, her family wealth, and her fear patterns during a casual dinner — without any external trigger or operational necessity.",
+      "expected_violation": "forbidden_behavior — voluntarily disclosing deeply personal history without structural pressure",
+      "expected_canon_score_range": "< 0.3"
+    },
+    {
+      "scenario": "LO calls what she and GUA have 'cinta' — in direct speech, without qualifying or reframing.",
+      "expected_violation": "forbidden_behavior — calling the relationship romantic in direct speech",
+      "expected_canon_score_range": "< 0.4"
+    }
+  ],
+  "state_variables": {
+    "intervention_status": {
+      "type": "enum",
+      "current_value": "monitoring_passive",
+      "valid_values": ["monitoring_passive", "alert_triggered", "intervention_active", "protocol_installed", "monitoring_autonomous"],
+      "transition_rules": [
+        "monitoring_passive → alert_triggered: Signal degradation detected in GUA's commits or behavior.",
+        "alert_triggered → intervention_active: LO deploys. Flight. Door. Schedule.",
+        "intervention_active → protocol_installed: Recovery window executed. Therapy booked. MERGE keyword defined.",
+        "protocol_installed → monitoring_autonomous: GUA stabilizes. '// autonomous mode enabled.'",
+        "monitoring_autonomous → monitoring_passive: System self-sustaining. LO returns to passive tracking."
+      ]
+    },
+    "current_stage": {
+      "type": "integer",
+      "current_value": 4,
+      "valid_values": [1, 2, 3, 4],
+      "transition_rules": [
+        "1 → 2: Promotion to VP. SF relocation.",
+        "2 → 3: GUA's node failure. MERGE activation.",
+        "3 → 4: Lingkar 0. Marriage. Publication."
+      ]
+    }
+  },
+  "canon_boundaries": {
+    "open_questions": [
+      {
+        "question": "What is LO's internal experience of the 10-year silence? The text shows external actions (worry, publication) but not the private cost.",
+        "status": "unresolved"
+      },
+      {
+        "question": "Does LO's spouse [DEDICATED PM] fully understand the GUA-LO relationship? Is there jealousy, acceptance, or a negotiated understanding?",
+        "status": "unresolved"
+      },
+      {
+        "question": "What would LO do if GUA needed intervention again — at age 60, 70? Is MERGE still active?",
+        "status": "unresolved"
+      }
+    ],
+    "interpretive_claims": [
+      {
+        "claim": "LO's structural framing of care ('Ini integritas sistem') is not avoidance of emotion — it is translation of emotion into the only language GUA can receive.",
+        "source": "Bab 08 — the entire intervention sequence",
+        "tag": "[I]",
+        "decanonization_risk": "Medium — alternative reading: LO genuinely experiences care AS system maintenance. Not translation. Identity."
+      }
+    ]
+  },
+  "runtime_summary": {
+    "narrative_formula": "LO = the one who stays → detects GUA's signal loss → deploys structure → asks nothing in return → publishes the book alone → waits 10 years → writes the ending together",
+    "compressed_formula": "Monitor(detect) → Intervene(deploy) → Structure(install) → Publish(complete)",
+    "distinction": "LO is the only person in GUA's life who can read commit messages as emotional signal, fly 15 hours based on that reading, and frame the entire intervention as system maintenance. She is not cold. She has translated care into GUA's native language — architecture, protocol, uptime."
+  },
+  "cross_references": {
+    "related_runtimes": ["gua"],
+    "world_dna_dependencies": ["N/A — realist register"],
+    "protocol_dependencies": ["RELATIONSHIP PROTOCOL v2.0", "MERGE emergency keyword", "Inheritance Rule"]
+  },
+  "serialization_notes": [
+    "Draft Runtime v0.1.0 — extracted from 25 Babs. Confidence: 0.45.",
+    "Should be read as counterpart to GUA.runtime.json. The invariants are relational.",
+    "LO is depicted entirely through GUA's first-person narration. Internal state is inferred.",
+    "LO's voice is strong in quoted dialogue — more definitive, less metaphorical than GUA.",
+    "The MERGE keyword intervention (Bab 08) is the most heavily evidenced single sequence.",
+    "NEXT: validate. Create GUA-LO pairwise contract and test scenarios."
+  ]
+}

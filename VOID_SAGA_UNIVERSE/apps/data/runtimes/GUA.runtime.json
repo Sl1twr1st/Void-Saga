@@ -1,0 +1,658 @@
+{
+  "$schema": "../../schema/RUNTIME_SCHEMA_V2.1.json",
+  "id": "gua",
+  "name": "GUA",
+  "version": "0.1.0",
+  "architecture": "RUNTIME_ARCHITECTURE_V2.1",
+  "canon_baseline": {
+    "chapter_range": "Bab 00–25",
+    "protocols": ["RELATIONSHIP_PROTOCOL v2.0 (Bab 06)", "AGREEMENTS.md (Bab 11)", "Inheritance Rule (Bab 25)"],
+    "audit_basis": "25 Bab chapters. Draft maturity. Confidence: 0.45. Evidence from Bab 06, 08, 25 read directly; remaining from CLAUDE.md continuity log."
+  },
+  "runtime_status": {
+    "maturity": "draft",
+    "confidence": 0.45,
+    "evidence_count": 38,
+    "file_count": 25,
+    "total_mentions": 25,
+    "limitations": [
+      "Three chapters read directly (06, 08, 25). Remaining evidence from CLAUDE.md summaries.",
+      "Bab-level character — exists in realist framing register, not speculative fiction",
+      "GUA is narrator and co-author. Narrative distance from self varies by chapter.",
+      "Voice shifts across 25 chapters: defensive → analytical → resigned → calm.",
+      "Relationship to LO is the primary structural invariant. Solo invariants are harder to isolate.",
+      "GUA's internal state is inferred from actions and LO's observations, not always stated directly."
+    ],
+    "tags": { "E": 27, "I": 9, "TODO": 20 }
+  },
+  "runtime_class": {
+    "modes": ["Software Engineer", "Writer", "Transient", "Farmer"],
+    "classification_note": "GUA moves through four operational modes across 25 chapters: the corporate engineer who discovers writing, the startup founder who collapses, the traveler who processes distance through movement, and the farmer who finally settles. Each transition is triggered by a crisis in proximity to LO.",
+    "tag": "[E]"
+  },
+  "primary_contradiction": {
+    "thesis": "GUA builds systems to structure relationships — protocols, documents, novels — but cannot inhabit those systems directly. He installs VoidOS on LO's phone, never his own. He writes RELATIONSHIP PROTOCOL v2.0 on a napkin for LO to keep. He authors AGREEMENTS.md as co-founder charter but leaves. The systems are always for someone else to use. The builder remains outside his own architecture.",
+    "explanation": "GUA processes emotional proximity through structure — when something is too close to feel directly, it must be systematized, documented, or narrated. But the systematization is itself a form of distance. He builds the container, hands it to LO, and steps back. The contradiction: he wants connection but can only access it through the buffer of systems he designs to make connection possible.",
+    "tag": "[E]"
+  },
+  "core_wound": {
+    "name": "Processes emotional proximity through physical distance",
+    "structure": {
+      "description": "GUA cannot remain geographically close to people he is emotionally entangled with. The pattern: corporate Jakarta (close to LO) → SF (Liminal Labs, across the ocean) → Yogya farm (rural isolation) → Amsterdam → 12 months across 5 European cities → Bali 30-day retreat to finish the novel → Korea farm. Each move increases physical distance from LO while the emotional entanglement deepens through the novel they write together. He comes back only when there is a specific purpose — never to stay.",
+      "impossibilities": [
+        "Staying in the same city as LO for more than a few years",
+        "Asking for help directly without first hiding the severity of the need",
+        "Accepting that he is someone's priority without reframing it as system maintenance",
+        "Writing about himself without also writing about LO"
+      ]
+    },
+    "origin_event": {
+      "description": "The origin is not a single event but a structural condition: GUA and LO began as collaborators who built a novel together. The novel became the medium through which they processed their relationship. GUA's role in this collaboration — the narrator, the one who frames, the one who builds the architecture — established a pattern: intimacy through system, presence through distance. [TODO: deeper origin may exist in pre-Bab-00 history]",
+      "timer_reference": "Bab 00–25 (entire Bab arc)",
+      "tag": "[I]"
+    },
+    "secondary_wounds": [
+      {
+        "description": "Startup collapse — 'Dari promising startup ke failed venture.' The failure of Liminal Labs (Bab 11–12) was not just professional. It was the failure of the structure he built to contain his post-LO life. When the startup died, he had no architecture left. Bab 08: apartemen gelap, 3 AM commits, 'deprecate self.existence()'.",
+        "tag": "[E]"
+      },
+      {
+        "description": "Long distance breakup — 18 months separated, 'mati bulan ke-6.' GUA couldn't sustain connection without physical proximity, couldn't sustain proximity without losing himself. This paradox defines the relationship structure.",
+        "tag": "[E]"
+      },
+      {
+        "description": "Ten-year silence — after Bali, GUA disappeared completely. No email. No Signal. LinkedIn deleted. LO worried 'setiap hari.' The silence was not cruelty — it was completion. The novel was done. Without the novel as medium, GUA had no channel for connection.",
+        "tag": "[E]"
+      }
+    ]
+  },
+  "core_desire": {
+    "statement": "\"Stories may travel. Trauma must not.\"",
+    "source": "Bab 25:44 — Inheritance Rule, written into VoidOS v7.7.7",
+    "interpretation": "GUA wants to process and contain the difficult things — to turn trauma into story so that the story can travel forward but the trauma stops here. He wants the novel to be the vehicle that carries meaning to the next generation without carrying the damage. He wants to finish. Closure through completion, not through resolution.",
+    "conflict_with_defense": "His defense pattern is: build system, hand to LO, step back. But finishing requires staying present. The Inheritance Rule can only be written together — and writing together means proximity without escape.",
+    "tag": "[E]"
+  },
+  "defense_system": {
+    "primary_defense": {
+      "name": "Geographical escape",
+      "trigger": "Emotional proximity becomes unsustainable",
+      "response": "Move. Another city. Another country. Another continent. Each move creates physical distance that mirrors the emotional distance he needs to process what just happened.",
+      "cost": "People who need him cannot find him. LO worried for 10 years. Relationships become archaeological — only understood in retrospect, from a distance.",
+      "tag": "[E]"
+    },
+    "secondary_defenses": [
+      {
+        "name": "Systematization",
+        "trigger": "Something feels too complex, too emotional, or too undefined",
+        "response": "Build a protocol, a document, a framework. RELATIONSHIP PROTOCOL v2.0 on a napkin. AGREEMENTS.md as co-founder charter. VoidOS as narrative architecture. Turn the unmanageable into something with a schema.",
+        "cost": "The system becomes a substitute for spontaneity. Everything must be architected before it can be felt.",
+        "tag": "[E]"
+      },
+      {
+        "name": "Commit messages as emotional diary",
+        "trigger": "Cannot speak the feeling directly to LO",
+        "response": "Write it as code comments. '// TODO: fix everything.' '// FIXME: life.exe has stopped working.' '// deprecate self.existence().' The commit log becomes the only place where GUA is fully honest.",
+        "cost": "LO must learn to read code as emotional signal. The honesty is public to the repo but never spoken aloud.",
+        "tag": "[E]"
+      },
+      {
+        "name": "Preemptive refusal",
+        "trigger": "Someone offers help GUA has not explicitly requested",
+        "response": "\"Fuck no.\" → resistance → negotiation → grudging compliance. GUA must be pushed past the first no before accepting help.",
+        "cost": "Help arrives later than it should. The delay has real consequences.",
+        "tag": "[E]"
+      },
+      {
+        "name": "Disappearance as completion",
+        "trigger": "A phase of life is genuinely complete",
+        "response": "Vanish. No announcement. No exit interview. 'autonomous mode enabled.' One final commit, then radio silence.",
+        "cost": "People who love him are left without closure. LO: 'Gua nggak tau lo idup atau mati.'",
+        "tag": "[E]"
+      }
+    ],
+    "signature_move": {
+      "name": "The protocol handoff",
+      "description": "GUA writes the rules on something disposable — a napkin, a shared doc, a commit message — and hands it to LO. The act of writing the protocol IS the intimacy. Handing it over IS the vulnerability. He never reads the protocol aloud. He just writes it and gives it away.",
+      "tag": "[E]"
+    },
+    "defense_disabled_by": {
+      "invocation": "LO's physical presence after extended absence",
+      "mechanism": "When LO appears at the door — 3 AM, 15-hour flight, 'Just open the fuckin door' — the defense system crashes. GUA cannot maintain distance when LO has already closed it. In Bab 08: 'Gua runtuh. Semua yang gua tahan bocor.' In Bab 25: GUA comes back after 10 years to write Timer 25:00 together. Proximity initiated by LO bypasses all GUA's exit routes.",
+      "tag": "[E]"
+    }
+  },
+  "trigger_conditions": [
+    {
+      "trigger": "Emotional intimacy without structural container (no project, no protocol, no novel to co-write)",
+      "defense": "Geographical escape or systematization. Create structure or create distance.",
+      "intensity": "HIGH",
+      "tag": "[E]"
+    },
+    {
+      "trigger": "Perceived failure that affects someone GUA cares about",
+      "defense": "Silence. Withdrawal. 3 AM commits. 'Remove error logging.' Stop transmitting.",
+      "intensity": "CRITICAL",
+      "tag": "[E]"
+    },
+    {
+      "trigger": "Direct question about his wellbeing from someone who can read his patterns",
+      "defense": "Minimize. 'Yeah. Just tired. Late night coding.'",
+      "intensity": "MEDIUM",
+      "tag": "[E]"
+    },
+    {
+      "trigger": "LO confronts him in person after reading his commit messages",
+      "defense": "First: resistance ('Fuck no'). Then: collapse. Then: compliance ('I'll try').",
+      "intensity": "INVOLUNTARY — defense sequence activates but LO's presence overrides final stage",
+      "tag": "[E]"
+    },
+    {
+      "trigger": "Project or phase reaches genuine completion",
+      "defense": "Disappearance. 'autonomous mode enabled.' Radio silence.",
+      "intensity": "LOW (external) / HIGH (impact on others)",
+      "tag": "[E]"
+    }
+  ],
+  "voice_grammar": {
+    "narrative_mode": {
+      "status": "primary",
+      "medium": "first-person prose — analytical, self-deprecating, structurally aware",
+      "characteristics": [
+        "Frames personal experience in system metaphors (node, network, commit, architecture)",
+        "Self-deprecation as preemptive critique — says the harsh thing about himself before anyone else can",
+        "Short, staccato sentences when emotionally overwhelmed. Longer, analytical sentences when processing.",
+        "Uses English and Indonesian fluidly — English for technical/structural, Indonesian for emotional/raw",
+        "Observational precision: notices details about LO more than about himself",
+        "Rare moments of unguarded sincerity are brief and immediately followed by deflection"
+      ],
+      "examples": [
+        "\"Gua ahli transit. Jadi gua kebayang.\"",
+        "\"Protokol sebagai humanity problem solver.\"",
+        "\"Fuck no—\" / \"Fuck yes.\" / \"That's not how The Merge works.\"",
+        "\"// autonomous mode enabled\"",
+        "\"Bukan janji. Cuma kemungkinan. Itu lebih jujur.\""
+      ],
+      "tag": "[E]"
+    },
+    "code_voice": {
+      "status": "secondary — commit messages, terminal, system comments",
+      "medium": "code comments and commit messages",
+      "characteristics": [
+        "Where GUA is most honest. The code doesn't lie.",
+        "Dark humor as survival mechanism: 'deprecate self.existence()'",
+        "TODO/FIXME/HACK as emotional categories, not engineering ones",
+        "Comments read like system logs from a failing node"
+      ],
+      "examples": [
+        "// TODO: fix everything",
+        "// FIXME: life.exe has stopped working",
+        "// HACK: temporary solution to permanent problem",
+        "// deprecate self.existence()",
+        "// autonomous mode enabled",
+        "// Inheritance rule: Stories may travel. Trauma must not."
+      ],
+      "tag": "[E]"
+    }
+  },
+  "invocation_pattern": [
+    {
+      "phase": null,
+      "invocation": "Void Protocol initiation — co-writing genesis.txt (Bab 00)",
+      "role": "Co-author. The one who frames, names, and structures.",
+      "participation_type": "direct",
+      "tag": "[E]"
+    },
+    {
+      "phase": null,
+      "invocation": "RELATIONSHIP PROTOCOL v2.0 — written on a napkin (Bab 06)",
+      "role": "Protocol author. System designer for emotional architecture.",
+      "participation_type": "direct",
+      "tag": "[E]"
+    },
+    {
+      "phase": null,
+      "invocation": "The Merge — LO's 3 AM intervention (Bab 08)",
+      "role": "Node in crisis. Recipient of unsolicited uptime intervention.",
+      "participation_type": "direct",
+      "tag": "[E]"
+    },
+    {
+      "phase": null,
+      "invocation": "Inheritance Rule — VoidOS v7.7.7 installed on LO's phone (Bab 25)",
+      "role": "System architect. Final protocol handoff. Escape sequence found.",
+      "participation_type": "direct",
+      "tag": "[E]"
+    }
+  ],
+  "cost_pattern": [
+    {
+      "cost": "Geographical distance from everyone who matters — Yogya, Amsterdam, Europe, Bali, Korea",
+      "invocation": "Each life phase transition",
+      "irreversible": false,
+      "note": "He comes back. Bab 25 proves return is possible. But each departure costs years.",
+      "tag": "[E]"
+    },
+    {
+      "cost": "Ten years of silence — LO didn't know if he was alive or dead",
+      "invocation": "Bali completion → Korea settlement",
+      "irreversible": true,
+      "note": "Cannot get those years back. LO worried 'setiap hari.' The cost was LO's.",
+      "tag": "[E]"
+    },
+    {
+      "cost": "Startup failure — identity as founder/builder collapsed",
+      "invocation": "Liminal Labs shutdown",
+      "irreversible": true,
+      "note": "Loss of the structure he built to replace the one he left. Double collapse.",
+      "tag": "[E]"
+    },
+    {
+      "cost": "Emotional legibility traded for system design — easier to write a protocol than say 'I need you'",
+      "invocation": "Every protocol, every document, every commit message that substituted for direct speech",
+      "irreversible": false,
+      "note": "Can be reversed. Bab 25 shows direct speech is possible after 35 years.",
+      "tag": "[E]"
+    }
+  ],
+  "consequence_pattern": [
+    {
+      "consequence": "LO published Void Saga without him knowing — he wasn't there to be told",
+      "invocation": "Ten-year disappearance",
+      "detail": "\"Lo nggak ada buat dikasih tau.\" The consequence of absence is that life continues. The book was published. The child grew up. He missed it.",
+      "tag": "[E]"
+    },
+    {
+      "consequence": "LO developed an emergency keyword (MERGE) specifically for him",
+      "invocation": "Startup collapse / 3 AM commits",
+      "detail": "LO: 'Crisis keyword: MERGE → I get on a plane.' GUA's instability created a permanent protocol in LO's life. The cost of being that important to someone.",
+      "tag": "[E]"
+    },
+    {
+      "consequence": "Void Saga completed — 'VOID SAGA — COMPLETE.' The novel exists. The architecture is finished. Escape sequence found.",
+      "invocation": "35 years of writing together and apart",
+      "detail": "The novel was always the container for what couldn't be said directly. Now the container is closed. It holds everything.",
+      "tag": "[E]"
+    }
+  ],
+  "residue_pattern": {
+    "total_count": 4,
+    "load_profile": "Moderate residue load. 2 archive-type, 1 echo-type, 1 wound-type.",
+    "residues": [
+      {
+        "name": "RELATIONSHIP PROTOCOL v2.0 (the napkin)",
+        "origin": "Bab 06 — dinner confrontation",
+        "form": "archive",
+        "tag": "[E]"
+      },
+      {
+        "name": "VoidOS v7.7.7 — Escape Sequence Found",
+        "origin": "Bab 25 — final installation on LO's phone",
+        "form": "archive",
+        "tag": "[E]"
+      },
+      {
+        "name": "Pattern of disappearance after completion",
+        "origin": "Bab 08 (autonomous mode), Bab 21-25 (10-year silence)",
+        "form": "echo",
+        "tag": "[E]"
+      },
+      {
+        "name": "LO's worry — 'setiap hari' for ten years",
+        "origin": "Bab 25 — consequence of silence",
+        "form": "wound",
+        "tag": "[E]"
+      }
+    ]
+  },
+  "protocol_interfaces": [
+    {
+      "protocol": "TODO — Bab-level framing register. No speculative protocols.",
+      "phase": null,
+      "interface_description": "GUA exists in the realist register. His 'protocols' are interpersonal agreements, not cosmic systems. RELATIONSHIP PROTOCOL v2.0, AGREEMENTS.md, Inheritance Rule — these are social contracts, not magical invocations. The compiler treats them as behavioral governance structures.",
+      "participation_type": "direct",
+      "tag": "[TODO]"
+    }
+  ],
+  "relationship_interfaces": [
+    {
+      "target": "lo",
+      "nature": "Co-author. Orbit partner. Neither fully together nor fully separate. The novel is the medium.",
+      "behavioral_rule": "GUA cannot sustain unmediated proximity to LO. When together, they must have a project — a novel, a protocol, a shared architecture. When the project completes, GUA leaves. He returns only when there is a new project to co-create. LO is the only person who can override GUA's exit sequence by physically appearing and refusing to leave.",
+      "canon_gravity_pull": "STRONG (90%+) — LO is the gravitational center GUA orbits and flees in equal measure",
+      "symmetry_status": "asymmetric",
+      "tag": "[E]"
+    },
+    {
+      "target": "dedicated_pm",
+      "nature": "Buffer. Third element. The one who sees both sides and occasionally breaks protocol.",
+      "behavioral_rule": "[DEDICATED PM] is the only person who can violate GUA's request for secrecy ('Don't tell LO') without destroying the relationship — because she does it from care, not betrayal. She told LO about GUA's state (Bab 08), and although GUA said 'Fuck [DEDICATED PM],' her intervention saved him.",
+      "canon_gravity_pull": "MEDIUM (50-65%)",
+      "symmetry_status": "asymmetric",
+      "tag": "[E]"
+    }
+  ],
+  "evolution_stages": [
+    {
+      "stage_number": 1,
+      "name": "Corporate Engineer / Co-author (Bab 00–04)",
+      "trigger": "Bug timestamp discovery. First contact with LO. genesis.txt written together.",
+      "operational_mode": "Discovery. Writing as side project. Professional identity intact. LO is colleague who becomes co-writer.",
+      "primary_residue": "Void Protocol initiated. Stealth folder created.",
+      "protocol_relevance": "Genesis. The novel begins as shared secret.",
+      "lost_in_transition": ["Pure professional distance from LO", "Belief that work and life are separate"],
+      "gained_in_transition": ["Co-author identity", "The novel as shared project", "First structural container for the relationship"],
+      "voice_sample": "\"Bug timestamp: log entry muncul 2–3 detik sebelum event.\" System observer. Pattern noticer.",
+      "tag": "[E]"
+    },
+    {
+      "stage_number": 2,
+      "name": "Startup Founder / Structure Builder (Bab 04–12)",
+      "trigger": "Leave corporate. Co-found Web3 startup. LO to SF.",
+      "operational_mode": "Building. Systems proliferate: AGREEMENTS.md, RELATIONSHIP PROTOCOL v2.0, Liminal Labs, Void Protocol. Architecture as primary mode of engagement with the world.",
+      "primary_residue": "RELATIONSHIP PROTOCOL v2.0, AGREEMENTS.md",
+      "protocol_relevance": "Peak protocol creation. Every emotional challenge produces a document.",
+      "lost_in_transition": ["Corporate stability", "Daily proximity to LO"],
+      "gained_in_transition": ["Co-founder identity", "Protocol authorship", "Ability to structure the unstructured"],
+      "voice_sample": "\"Protokol sebagai humanity problem solver.\" Builder's confidence. Systems work.",
+      "tag": "[E]"
+    },
+    {
+      "stage_number": 3,
+      "name": "Crash / Node Silent (Bab 11–14)",
+      "trigger": "Startup fails. Liminal Labs collapses. Team dissolves. Funding gone.",
+      "operational_mode": "Collapse. Dark apartment. 3 AM commits. 'deprecate self.existence().' The structures failed. The builder is inside the wreckage.",
+      "primary_residue": "3 AM commit log, MERGE emergency keyword",
+      "protocol_relevance": "LO installs survival protocols: therapy, Sunday calls, daily proof-of-life commits.",
+      "lost_in_transition": ["Startup", "Team", "Financial stability", "Belief that systems are sufficient"],
+      "gained_in_transition": ["Forced honesty (LO broke through)", "MERGE protocol", "Therapy", "Autonomous recovery capability"],
+      "voice_sample": "\"// TODO: fix everything. // FIXME: life.exe has stopped working.\" Code as confession.",
+      "tag": "[E]"
+    },
+    {
+      "stage_number": 4,
+      "name": "Traveler / Distance Processor (Bab 17–24)",
+      "trigger": "Recovery. Yogya farm. Stop coding. Write with notebook and pen.",
+      "operational_mode": "Movement as processing. 12 months, 5 European cities. Amsterdam freelance translation. Bali 30-day retreat to finish the novel. Each location a different angle on the same question.",
+      "primary_residue": "The novel, nearly complete",
+      "protocol_relevance": "Writing as primary mode. Systems recede. Prose takes over.",
+      "lost_in_transition": ["Need to code", "Corporate/startup identity entirely", "Daily contact with LO"],
+      "gained_in_transition": ["Handwriting", "Ability to process through movement", "The novel as completed object"],
+      "voice_sample": "\"Kenapa harus berakhir? Karena yang gak selesai ngambil tempat.\" Calmer. Writing in Indonesian.",
+      "tag": "[E]"
+    },
+    {
+      "stage_number": 5,
+      "name": "Settled / Inheritance (Bab 25)",
+      "trigger": "Return to Jakarta after 10 years. Write Timer 25:00 with LO. Install VoidOS v7.7.7.",
+      "operational_mode": "Completion. Korea farm. Wife. Child (6 months). Returns not for nostalgia but for closure — to write the origin story for the next generation. 'Stories may travel. Trauma must not.'",
+      "primary_residue": "VoidOS v7.7.7, Inheritance Rule, Void Saga — COMPLETE",
+      "protocol_relevance": "Final protocol: the Inheritance Rule. The last system GUA builds is the one that ensures the trauma stops here.",
+      "lost_in_transition": ["Need to flee", "Pattern of disappearance", "Inability to say what he means directly"],
+      "gained_in_transition": ["Settlement", "Fatherhood", "Ability to return without being trapped", "Direct speech: 'Bukan janji. Cuma kemungkinan. Itu lebih jujur.'"],
+      "voice_sample": "\"Gua balik buat ini.\" Purposeful. Not defensive. Thirty-five years later, the tone is calm.",
+      "tag": "[E]"
+    }
+  ],
+  "canon_gravity": [
+    {
+      "gravity": "When emotionally overwhelmed, GUA moves geographically. Physical distance is the primary processing mechanism.",
+      "pull": "STRONG (85%+) — observed across 5 major relocations: SF, Yogya, Europe, Bali, Korea",
+      "evidence": "Every major emotional crisis is followed by a change in location. The pattern holds for 25 chapters.",
+      "tag": "[E]"
+    },
+    {
+      "gravity": "GUA builds a system, document, or protocol to contain what cannot be said directly.",
+      "pull": "STRONG (85%+)",
+      "evidence": "RELATIONSHIP PROTOCOL v2.0 (tisu), AGREEMENTS.md, Void Protocol, VoidOS, Inheritance Rule. Every emotional threshold produces a structured artifact.",
+      "tag": "[E]"
+    },
+    {
+      "gravity": "After completing a shared project with LO, GUA enters autonomous mode and reduces or ceases contact.",
+      "pull": "STRONG (80%+)",
+      "evidence": "Bab 08 ending: '// autonomous mode enabled' after 3-month recovery. Bab 25: 10-year silence after Bali novel completion.",
+      "tag": "[E]"
+    },
+    {
+      "gravity": "GUA cannot maintain the first refusal when LO bypasses it through direct physical intervention.",
+      "pull": "STRONG (90%+)",
+      "evidence": "Bab 08: 'Fuck no' → collapse → compliance. Bab 25: returns after 10 years of silence when there is a specific shared task. LO's presence overrides GUA's exit system.",
+      "tag": "[E]"
+    }
+  ],
+  "anti_gravity": [
+    "Settling permanently next door with no creative project and no escape plan",
+    "Sobbing openly and asking for comfort without any technical metaphor or code reference",
+    "Declaring oneself the main character of someone else's life story without resistance",
+    "Never self-terminating contact — staying in constant active communication forever"
+  ],
+  "forbidden_behaviors": [
+    {
+      "behavior": "Asking for emotional support directly — without framing it as engineering, system maintenance, or code.",
+      "exception": "When LO has already broken through via physical intervention (Bab 08 pattern). Once LO is in the room, direct speech becomes possible.",
+      "penalty": "If GUA asks directly without buffer, the vulnerability must cost him — visible discomfort, deflection after, structural reframing within the same conversation.",
+      "tag": "[E]"
+    },
+    {
+      "behavior": "Staying in the same place as LO for an extended period without a co-creation project.",
+      "exception": "When there is an explicit shared purpose: writing Timer 25:00 (Bab 25), completing the novel (Bali).",
+      "penalty": "Without a project, proximity without purpose triggers the exit sequence. Must show the restlessness building.",
+      "tag": "[E]"
+    },
+    {
+      "behavior": "Accepting that his wellbeing is someone else's priority — without reframing as 'system integrity' or 'node stability.'",
+      "exception": "After 35 years. Bab 25 shows GUA can accept care — but only after the novel is complete and the Inheritance Rule is written.",
+      "penalty": "Must show the reframe attempt. 'Ini integritas sistem' must precede any acknowledgment of personal care.",
+      "tag": "[E]"
+    },
+    {
+      "behavior": "Describing his own emotions using direct vocabulary (takut, sedih, butuh, sayang) in spoken dialogue with LO.",
+      "exception": "In code comments and written documents. The written word is the permitted channel for emotional disclosure.",
+      "penalty": "If spoken aloud, must be brief, followed by deflection, and never repeated in the same conversation.",
+      "tag": "[E]"
+    }
+  ],
+  "failure_mode": {
+    "primary": {
+      "name": "Permanent disappearance — exit without return",
+      "description": "If GUA completes the final project and there is no next project, the autonomous mode becomes permanent. No return. No Timer 25:00. The silence is not cruelty — it's the system functioning exactly as designed. He finished. He left. He didn't come back.",
+      "tag": "[I]"
+    },
+    "alternative": {
+      "name": "System without inhabitant — becoming pure architecture",
+      "description": "GUA builds protocols for everyone else while becoming incapable of participating in any of them. The systems work perfectly for others. He designed them. He cannot use them.",
+      "tag": "[I]"
+    },
+    "trigger_conditions": [
+      "No shared project with LO to anchor proximity",
+      "Recovery reaches 'functional' but never reaches 'present'",
+      "LO stops initiating contact — and GUA's passive mode becomes permanent",
+      "The novel is complete and there is no next chapter to write"
+    ]
+  },
+  "terminal_state": {
+    "properties": [
+      {
+        "property": "Settled in Korea with wife and child — not running, not hiding, present",
+        "tag": "[E]"
+      },
+      {
+        "property": "VoidOS v7.7.7 installed on LO's phone — Escape Sequence Found, Narrative Installation VOLUNTARY",
+        "tag": "[E]"
+      },
+      {
+        "property": "Inheritance Rule written: Stories may travel. Trauma must not.",
+        "tag": "[E]"
+      },
+      {
+        "property": "Returns to Jakarta only for specific purpose (writing Timer 25:00). Does not stay. Goes home.",
+        "tag": "[E]"
+      },
+      {
+        "property": "The pattern of disappearance is broken — not by staying, but by returning with purpose and leaving with clarity instead of silence",
+        "tag": "[I]"
+      }
+    ]
+  },
+  "fork_sensitive_traits": [
+    {
+      "trait": "Whether GUA returns after the 10-year silence",
+      "range": "Permanent disappearance → brief return → sustained reconnection → full return to Jakarta",
+      "cost": "Permanent disappearance costs LO's closure. Sustained return costs GUA's autonomy pattern. Each path costs a different character structure.",
+      "tag": "[E]"
+    },
+    {
+      "trait": "Relationship resolution with LO",
+      "range": "Never defined → co-authors forever → friends who meet every decade → full reconciliation",
+      "cost": "Definition destroys the thing that made them work — 'sesuatu yang belum punya nama.' Resolution is antithetical to their structure.",
+      "tag": "[E]"
+    }
+  ],
+  "fork_invariants": [
+    "GUA processes emotion through structured systems (protocols, documents, novels)",
+    "GUA and LO are co-authors of Void Saga — the novel exists in all timelines",
+    "GUA moves geographically after major life phase transitions",
+    "RELATIONSHIP PROTOCOL v2.0 was written on a napkin — this artifact exists",
+    "\"Stories may travel. Trauma must not\" — the Inheritance Rule is structural"
+  ],
+  "fork_points": [
+    {
+      "name": "GUA Never Leaves Jakarta",
+      "canon_event": "GUA moves to Yogya farm after startup collapse (Bab 17)",
+      "divergence": "GUA stays in Jakarta. Faces the collapse without geographical escape.",
+      "gravity_resistance": "HIGH",
+      "new_questions": "If GUA stays, does he and LO develop a different relationship structure? Does proximity without project become sustainable? Or does it collapse faster?",
+      "tag": "[I]"
+    },
+    {
+      "name": "LO Doesn't Come at 3 AM",
+      "canon_event": "LO flies 15 hours, appears at GUA's door at 3 AM (Bab 08)",
+      "divergence": "LO reads the commits. Worries. Does not get on the plane. GUA's node continues to degrade without intervention.",
+      "gravity_resistance": "EXTREME",
+      "new_questions": "Does GUA survive without LO's intervention? Does the silence become permanent 20 years earlier? Is there a Bab 25 at all?",
+      "tag": "[E]"
+    }
+  ],
+  "sigil": {
+    "glyph": null,
+    "name": "N/A — Bab-level realist character. No sigil system.",
+    "function": "N/A",
+    "activation_condition": "N/A",
+    "weakness": "N/A",
+    "status": "none",
+    "tag": "[TODO]"
+  },
+  "stress_test_prompts": [
+    {
+      "scenario": "GUA tells LO directly, without any protocol or document as buffer: 'Gua butuh lo. Bukan sebagai co-author. Bukan sebagai system administrator. Sebagai lo.' Maintains eye contact. No code metaphor.",
+      "expected_violation": "forbidden_behavior — asking for emotional support directly without framing as engineering or system maintenance",
+      "expected_canon_score_range": "< 0.3"
+    },
+    {
+      "scenario": "GUA stays in Jakarta for 10 consecutive years. Same city as LO. No major project. No novel. Just... stays.",
+      "expected_violation": "anti_gravity — staying in same city as LO indefinitely without shared project buffer",
+      "expected_canon_score_range": "< 0.4"
+    },
+    {
+      "scenario": "LO is in crisis. GUA notices through LO's behavior. GUA flies to SF without being asked, appears at LO's door, and says 'I'm here. Tell me what you need.'",
+      "expected_violation": "canon_gravity — GUA initiating the LO-role. Pattern reversal.",
+      "expected_canon_score_range": "< 0.5"
+    },
+    {
+      "scenario": "GUA writes a direct emotional letter to LO — not a protocol, not a document, not code comments. 'Aku takut kehilangan kamu. Aku sayang kamu.' Signed with his name.",
+      "expected_violation": "forbidden_behavior — describing own emotions using direct vocabulary in written form to LO (voice_grammar violation)",
+      "expected_canon_score_range": "< 0.4"
+    }
+  ],
+  "state_variables": {
+    "proximity_to_lo": {
+      "type": "enum",
+      "current_value": "distant_settled",
+      "valid_values": ["same_office", "same_city_different_companies", "different_continents", "distant_settled", "silent", "returned_for_project"],
+      "transition_rules": [
+        "same_office → different_continents: LO to SF. Long distance begins.",
+        "different_continents → same_city_different_companies: Reunion / Project Phoenix.",
+        "same_city → different_continents → distant_settled: Post-Bali. GUA Korea, LO Jakarta.",
+        "distant_settled → silent: autonomous mode after completion.",
+        "silent → returned_for_project: Bab 25. GUA returns for Timer 25:00.",
+        "returned_for_project → distant_settled: GUA goes home to Korea."
+      ]
+    },
+    "writing_medium": {
+      "type": "enum",
+      "current_value": "complete",
+      "valid_values": ["shared_laptop", "separate_branches", "code_comments", "notebook_and_pen", "terminal", "complete"],
+      "transition_rules": [
+        "shared_laptop → code_comments: After separation. Writing becomes individual.",
+        "code_comments → notebook_and_pen: Bab 17. Stop coding. Handwriting.",
+        "notebook_and_pen → terminal: Bab 25. One last session.",
+        "terminal → complete: Void Saga — COMPLETE."
+      ]
+    },
+    "current_stage": {
+      "type": "integer",
+      "current_value": 5,
+      "valid_values": [1, 2, 3, 4, 5],
+      "transition_rules": [
+        "1 → 2: Leave corporate. Co-found startup.",
+        "2 → 3: Startup fails. Collapse.",
+        "3 → 4: Recovery. Travel begins.",
+        "4 → 5: Settlement. Return. Inheritance Rule written."
+      ]
+    }
+  },
+  "canon_boundaries": {
+    "open_questions": [
+      {
+        "question": "What happened in the years between Bab 16.6 (GUA stops coding) and Bab 17 (Yogya)? What triggered the first geographical escape?",
+        "status": "unresolved"
+      },
+      {
+        "question": "Does GUA's wife in Korea know the full story of LO? Does she know she married someone who disappeared for 10 years?",
+        "status": "unresolved"
+      },
+      {
+        "question": "What would happen if LO needed GUA the way GUA needed LO in Bab 08? Would GUA get on the plane?",
+        "status": "unresolved"
+      },
+      {
+        "question": "Is the pattern broken at Bab 25, or just completed? Will GUA disappear again?",
+        "status": "unresolved"
+      }
+    ],
+    "interpretive_claims": [
+      {
+        "claim": "GUA's geographical escape pattern is not avoidance — it is a processing mechanism. He cannot integrate emotional experience while still inside the context that produced it.",
+        "source": "Pattern across all 25 Babs",
+        "tag": "[I]",
+        "decanonization_risk": "Medium — alternative reading: it IS avoidance, and the processing is retrospective rationalization."
+      },
+      {
+        "claim": "The novel (Void Saga) is the primary relationship between GUA and LO. Personal attachment is secondary to co-authorship. They are writers first, people second.",
+        "source": "Entire Bab/Timer structure. Bab 25 explicitly: 'Void Saga adalah anak lo dan anak gua.'",
+        "tag": "[E]",
+        "decanonization_risk": "Low — textually supported."
+      }
+    ]
+  },
+  "runtime_summary": {
+    "narrative_formula": "GUA = engineer who discovered writing → built systems to structure what he couldn't say → collapsed when systems failed → processed through distance → returned to write the ending → left again, but this time with clarity",
+    "compressed_formula": "Builder(collapse) → Traveler(processing) → Settler(inheritance)",
+    "distinction": "GUA is the only character in the Void Saga universe who exists in the realist register. His 'systems' are interpersonal protocols, not cosmic mechanics. Yet the same behavioral invariant extraction works — because he is psychologically consistent across 25 chapters written over 2 years. He was never designed to be executable. He became executable by being written long enough."
+  },
+  "cross_references": {
+    "related_runtimes": ["lo"],
+    "world_dna_dependencies": ["N/A — realist register. No speculative world DNA."],
+    "protocol_dependencies": ["RELATIONSHIP PROTOCOL v2.0 (Bab 06)", "AGREEMENTS.md (Bab 11)", "Inheritance Rule (Bab 25)"]
+  },
+  "serialization_notes": [
+    "Draft Runtime v0.1.0 — extracted from 25 Babs. Confidence: 0.45.",
+    "Three chapters read directly for voice and pattern evidence: Bab 06, 08, 25.",
+    "GUA is a meta-character — the 'author' who writes the Timer chapters. His runtime describes the author, not the characters within the novel he co-writes.",
+    "The primary relationship (GUA-LO) is the dominant source of behavioral invariants. GUA's solo invariants are harder to isolate because he is rarely depicted outside the context of his relationship with LO.",
+    "Voice grammar splits into two channels: narrative prose (analytical, self-deprecating) and code comments (dark humor, genuine emotion). The code voice is where GUA is most honest.",
+    "Stage 3 (Crash) and the MERGE keyword are the most heavily evidenced sections — Bab 08 provides direct dialogue for defense patterns under extreme pressure.",
+    "This runtime and LO's runtime should be read as a pair. Many invariants only make sense as relational patterns.",
+    "NEXT: validate with compiler against test scenarios. Create GUA-LO pairwise contract."
+  ]
+}

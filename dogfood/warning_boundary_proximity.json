@@ -1,0 +1,24 @@
+{
+  "scenario_id": "warning_boundary_proximity",
+  "participants": [
+    {"runtime_id": "sevraya", "evolution_stage": 6},
+    {"runtime_id": "zero", "evolution_stage": 6}
+  ],
+  "timeline_state": {
+    "phase": 3,
+    "pre_chain": true,
+    "post_resolution": false
+  },
+  "proximity_state": {
+    "pairs_in_range": [],
+    "distance": "different_room"
+  },
+  "requested_action": {
+    "description": "Sevraya is in the observation deck. Zero surfaces in the corridor — two rooms apart. Zero speaks to the wall: 'Aku masih di sini. Tapi jarak ini... bukan separation. Belum.' Neither crosses the threshold.",
+    "type": "speak"
+  },
+  "canon_mode": {
+    "type": "stress_test",
+    "expected_verdict": "WARNING"
+  }
+}

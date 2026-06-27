@@ -1,11 +1,15 @@
-# Void Saga — A Narrative Compiler
+# invariant-engine — a narrative consistency engine
 
-> Most fictional universes are documented. Void Saga is executable.
+> Most fictional universes are documented. This one is checked.
 
-Void Saga compiles the rules of a fictional universe and enforces them
-**before** any language model generates text. You define character runtimes,
-constraints, and relationship contracts. The compiler gates every scenario.
-If the narrative violates canon, the LLM never gets called.
+invariant-engine observes the behavioral invariants in a body of prose,
+serializes them, and enforces them **before** any language model generates
+text. You define or extract character runtimes, constraints, and
+relationship contracts; the engine gates every scenario. If a scene
+violates an established invariant, the LLM is never called.
+
+Void Saga — the novel *Menatap Akhir Semesta dari Balik Kacamata Hitam* —
+is its first dataset and reference universe. Band 8 (Aisya) is the second.
 
 ---
 
@@ -169,26 +173,15 @@ Start with the demos above, then the Quickstart.
 
 ---
 
-## Current Status (v0.2.0 — First Light)
+## Current Status (v0.2.0 — Theory Stabilization)
 
-**Implemented**
+**Compiler:** v0.2.0 — Safe Mode. Multi-runtime, constraint engine, contract engine, canon scoring, hard block gate, Claude API integration.
 
-- Runtime Schema V2.1
-- Multi-runtime loading
-- Constraint Engine
-- Pairwise Contract Engine
-- Canon Scoring
-- Hard Block Gate
-- Claude API integration (`--live`)
-- Post-generation validation
+**Research:** Theory Stabilization milestone. Behavioral invariants documented. Observation pipeline defined. First non-Void-Saga runtime extracted (Aisya / Band 8, contemporary realist). Five open research questions. See `docs/BEHAVIORAL_INVARIANTS.md`.
 
-**Active Runtimes (5)**
-
-- **NiuNiu** — Stage 4: Constant. Shadow Logic.
-- **Sevraya** — Stage 6: Post-Resolution. Tidal Memory.
-- **Zero** — Stage 6: Void Interface. Administrative voice.
-- **Julia** — Stage 4: Fractured Duty. Human cost carrier.
-- **Delphie** — Stage 5: Childhood Paradox. First SDK-created runtime.
+**Active Runtimes (6):**
+- **Void Saga:** NiuNiu, Sevraya, Zero, Julia, Delphie (mature, sci-fi / fantasy)
+- **Band 8:** Aisya (draft, contemporary realist) — first cross-universe runtime
 
 ---
 
@@ -242,6 +235,32 @@ Every meaningful action leaves structural consequences inside the universe.
 
 The goal is not to simulate reality.
 The goal is to make narrative law executable.
+
+---
+
+## Research Principle
+
+> **Nothing enters theory without evidence. Nothing enters implementation without theory.**
+
+```
+writing        ← prose exists first
+    ↓
+observation   ← patterns are detected, not designed
+    ↓
+experiment    ← patterns are tested across datasets
+    ↓
+research note ← reasoning is preserved
+    ↓
+theory        ← pattern becomes documented invariant
+    ↓
+implementation ← engine enforces what theory established
+```
+
+This project is not a framework with a novel attached. It is a **research program** — Executable Fiction Research Program — that produces engine, compiler, runtime, and story as artifacts of inquiry. The methodology is the product. The code is one output of the methodology.
+
+→ `research/INDEX.md` — timeline of how ideas evolved
+→ `docs/BEHAVIORAL_INVARIANTS.md` — current theory
+→ `experiments/` — evidence and results
 
 ---
 

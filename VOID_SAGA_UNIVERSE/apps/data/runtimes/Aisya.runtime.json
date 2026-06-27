@@ -5,7 +5,7 @@
   "version": "0.1.0",
   "architecture": "RUNTIME_ARCHITECTURE_V2.1",
   "canon_baseline": {
-    "chapter_range": "writing/day-01/1–5",
+    "chapter_range": "writing/band8/day-01/1–5",
     "protocols": ["TODO — no protocols defined yet for this universe"],
     "audit_basis": "5 chapters (832 + 293 + 477 + 364 + 593 words). Draft maturity. Confidence: 0.35."
   },
@@ -655,7 +655,7 @@
   },
   "serialization_notes": [
     "Draft Runtime v0.1.0 — first serialization. Confidence: 0.35. Maturity: draft.",
-    "Evidence drawn from 5 chapters (~2,559 words) in writing/day-01/.",
+    "Evidence drawn from 5 chapters (~2,559 words) in writing/band8/day-01/.",
     "This runtime is designed to EVOLVE. Constraints tagged [I] may become [E] with more evidence. Constraints tagged [TODO] will be filled as the story progresses.",
     "The character exists in a contemporary realist universe — no speculative elements, no sigils, no protocols. This means many Void Saga-specific fields (cosmic_function, sigil, invocation phases) are marked N/A or TODO.",
     "Core fields filled from direct textual evidence: core_wound, core_desire, primary_contradiction, voice_grammar, defense_system, forbidden_behaviors, evolution_stage (1), relationship_interfaces.",

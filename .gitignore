@@ -3,3 +3,17 @@
 # Local editor state/config.
 .obsidian/
 __pycache__/
+
+# Credentials — NEVER commit these.
+.env
+.env.*
+*.pem
+*.key
+credentials.json
+credentials.*
+secrets.*
+*.keystore
+*.jks
+*.p12
+*.pfx
+settings.local.json

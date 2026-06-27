@@ -1,4 +1,12 @@
-# Daily Writer Workflow — Scene Triage
+# Daily Writer Workflow — Scene Triage (Void Saga)
+
+> ⚠️ **Void Saga only.** Dokumen ini menjelaskan workflow compiler-driven: bikin scenario JSON → triage → PASS → tulis prosa. Workflow ini berlaku untuk Void Saga (runtime mature, constraint ketat).
+>
+> **Untuk Band 8:** workflow-nya beda — prosa langsung, tanpa scenario, tanpa triage. Constraint belum settled. Lo menulis untuk *menemukan* invariant, bukan untuk *menjaga* invariant yang udah established. Lihat `writing/README.md`.
+>
+> **Ringkasan:** kalau lo nulis Band 8 hari ini → `writing/README.md`. Kalau lo nambahin chapter Void Saga → dokumen ini.
+
+---
 
 > The compiler is your first editor. It reads your ideas before you spend
 > hours writing them.
@@ -202,7 +210,7 @@ When a scene is final and moves into a Bab or Timer:
 2. In the Bab/Timer file, add as the first line:
 
 ```
-<!-- Derived from: writing/day-01/niuniu_menunggu.md -->
+<!-- Derived from: writing/band8/day-01/niuniu_menunggu.md -->
 ```
 
 Months later, you will want to see: "What did the first draft of this scene look like?"

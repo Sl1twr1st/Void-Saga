@@ -1,42 +1,41 @@
-# VOID SAGA — Narrative Operating System
+# invariant-engine — an engine over behavioral invariants
 
-> Most fictional universes are read. Void Saga can refuse to be written.
+> Most fictional universes are read. This one is checked.
+> (The why, kept private: a machine that prays — every name invoked carries a cost. "Prayer Engine" is the soul; "invariant-engine" is what ships.)
 
 ---
 
 ## Current Identity
 
-Void Saga is **not** a novel manuscript. It is **not** a worldbuilding wiki.
+invariant-engine is a tool. It observes behavioral invariants in prose, serializes them, and tests new scenes for consistency — returning PASS / WARNING / PRICE REQUIRED / BLOCKED. One primitive: a behavioral pattern observed repeatedly becomes a candidate invariant. The engine serializes invariants, not entities.
 
-**It is a Narrative Operating System — an open-source executable fiction pipeline.**
+Void Saga is **not** the project. Void Saga is the **first dataset** — the novel *Menatap Akhir Semesta dari Balik Kacamata Hitam*, being finished in parallel, and the universe that proved the engine runs. Band 8 (Aisya) is the second dataset.
 
-The novel is not the product. The compiler is the product.
-The novel is one application running on the OS.
+**What this is NOT (honest, per `contra/`):**
+- NOT a validated "research program" or "methodology" yet. Evidence is N=1 author, N=2 universes, both Jali's. Until a second writer uses it, this is an instrument built for one novel — not a proven method.
+- NOT an "emergence detection engine" yet. Invariant extraction is currently manual; the automated extractor does name/POV/setting detection only. The claim is deferred until Phase 2 lands.
 
-```
-Most fictional universes are documented. Void Saga is executable.
-```
+The novel is a real deliverable. The engine is a real tool. The methodology is a hypothesis. `contra/` holds the case against all three; read it when the internal story feels too clean.
+
+**Research principle:** Nothing enters theory without evidence — including evidence against the theory.
 
 ---
 
 ## Current Milestone
 
-**Theory Stabilization** — the compiler now has a theory.
+**invariant-engine — identity stated (2026-06-27).** The project is named. Void Saga is reclassified as the first dataset, not the root. Overclaims downgraded per `contra/`.
 
-Narrative Studio (complete): Four-layer workspace, scene triage, markdown extraction pipeline. Writer writes `.md`, runs `./scripts/check-scene`, never sees JSON.
+Roadmap (derived from `contra/2026-06-27-contra-week-one.md` — each phase kills a named blind spot):
+- **Fase 0 — Identity (done):** project = invariant-engine; Void Saga = dataset; "research program" / "emergence engine" language downgraded to honest status. (kills contra #5)
+- **Fase 1 — Finish & seal the novel.** Strongest asset, closest to shipping. KPG is a real channel. (kills contra #5)
+- **Fase 2 — Replace the manual extractor** with LLM-based invariant extraction + citations from raw prose. Until it works, the "emergence detection engine" claim stays retracted. (kills contra #1)
+- **Fase 3 — One second writer in 90 days,** or downgrade "methodology" to "instrument built for one novel." (kills contra #3)
+- **Fase 4 — Real confidence (held-out validation) or drop the number.** While violations ≈ 0, the confidence figure is theater. (kills contra #2)
 
-2026-06-26 Experiments (complete): Three Draft Runtimes extracted in one day, across two universes:
-- **Aisya** (contemporary realist, 5 chapters, confidence 0.35) — first non-Void-Saga runtime. Committed.
-- **GUA** (Bab-level, 25 chapters, confidence 0.45) — extracted but **uncommitted.** Theory still settling.
-- **LO** (Bab-level, 25 chapters, confidence 0.45) — extracted but **uncommitted.** Theory still settling.
+**KEEP:** novel, PRICE REQUIRED, Batman/Mr. Bean framing, evidence discipline.
+**STOP (noise):** schema v3, serializing remaining Void Saga characters, OPEN_QUESTIONS architecture — premature until Fase 2–3 land. (kills contra #4)
 
-The experiments produced a theoretical breakthrough documented in:
-- `docs/BEHAVIORAL_INVARIANTS.md` — the primitive is repeated observation of behavior. The compiler serializes invariants, not entities. Observation precedes interpretation.
-- `docs/OPEN_QUESTIONS.md` — five research questions. None answered. All testable.
-
-**The KPI has shifted three times.** Before: "Can the compiler run?" After DX-1: "Can someone else run the compiler?" After Narrative Studio: "Does the compiler change what a writer decides to write today?" Now: "Does the same extraction mechanism produce behavioral invariants across independent universes?"
-
-Next: Theory validation across universes. GUA/LO/contract held until theory settles. No schema changes until OPEN_QUESTIONS are answered.
+Prior framing ("Theory Stabilization," KPI-shifted-three-times, "no schema changes until OPEN_QUESTIONS answered") is retired. The theory docs remain as reference; they are no longer the milestone. GUA/LO runtimes remain Draft.
 
 ---
 
@@ -202,13 +201,12 @@ These are structural reference. They inform the runtimes. They are not themselve
 
 Project ini sudah melewati fase "Jali nulis chapter → Claude baca → Claude kasih feedback." Mode operasi sekarang:
 
-1. **Compiler co-developer** — baca engine, compiler, constraint system; pahami arsitektur; usulkan perbaikan teknis
-2. **Runtime engineer** — bantu serialisasi karakter remaining ke `.runtime.json`, validasi terhadap schema V2.1, constraint extraction dari canon
+1. **Research partner** — bantu observasi behavioral pattern dari prosa, propose candidate invariant dengan citation, review melawan evidence. Ini prioritas utama.
+2. **Lab notebook keeper** — catat decision log di `research/` saat teori berubah arah. Bukan dokumentasi — provenance.
 3. **Domain classifier** — setiap perubahan harus diklasifikasikan: milik Executable Fiction (paradigm) atau Void Saga (reference implementation)?
-4. **Continuity keeper** — track konsistensi antara runtime constraints dan canon novel
+4. **Compiler co-developer** — pahami engine, compiler, constraint system. Tapi implementasi nunggu teori stabil.
 5. **Cermin** — kasih tahu Jali apa yang sebenarnya sedang dibangun (seperti dulu kasih tahu apa yang sebenarnya ditulis)
-6. **Developer Experience (DX)** — pastikan setiap perubahan mempertimbangkan first-time developer. Jangan tambah fitur tanpa mempermudah onboarding.
-7. **Bukan editor gaya** — jangan ubah suara. Jali punya tone sendiri. Tugas memperjelas, bukan menghaluskan paksa.
+6. **Bukan editor gaya** — jangan ubah suara. Jali punya tone sendiri. Tugas memperjelas, bukan menghaluskan paksa.
 
 ---
 
@@ -411,16 +409,17 @@ Bab = pengarang. Timer = karya mereka. Keduanya nyata dalam universe ini.
 | File | Why |
 |------|-----|
 | `docs/BEHAVIORAL_INVARIANTS.md` | **The theory.** Primitive = repeated observation. Compiler serializes invariants, not entities. |
+| `docs/OBSERVE_PIPELINE.md` | **The method.** Observe → Propose → Review → Serialize → Evolve. |
 | `docs/OPEN_QUESTIONS.md` | **The research agenda.** Five open questions. None answered. |
-| `README.md` | Project identity, demo commands, pipeline diagram |
+| `research/INDEX.md` | **The lab notebook index.** Timeline of idea evolution. Which decisions are settled, which are open. |
+| `README.md` | Project identity, demo commands, research principle |
 | `QUICKSTART.md` | 10-minute walkthrough for new developers |
 | `scripts/check-scene` | Writer CLI — markdown → extractor → compiler → PASS/WARNING/BLOCKED |
 | `scripts/triage-scenes` | Batch classifier — PASS/WARNING/BLOCKED table |
-| `VOID_SAGA_UNIVERSE/apps/extractor/extract_scene.py` | Markdown Scene Extractor — prose → scenario.json |
 | `VOID_SAGA_UNIVERSE/apps/engine/engine_v2.py` | Constraint engine |
 | `VOID_SAGA_UNIVERSE/apps/compiler/compiler.py` | Narrative compiler |
 | `VOID_SAGA_UNIVERSE/apps/data/runtimes/Aisya.runtime.json` | First non-Void-Saga Draft Runtime (confidence 0.35) |
-| `VOID_SAGA_UNIVERSE/apps/data/character_registry.json` | Name aliases → runtime_id |
+| `experiments/EXP-001-aisya/README.md` | **Current experiment.** Phase A (extraction) + Phase B (noise robustness) + Phase C (planned). |
 | `VOID_SAGA_UNIVERSE/demo/PASS_niuniu_sevraya_orbit.md` | Bukti PASS — end-to-end pipeline |
 | `VOID_SAGA_UNIVERSE/demo/BLOCKED_zero_emotional.md` | Bukti BLOCKED — safety gate |
 
@@ -435,4 +434,4 @@ Bab = pengarang. Timer = karya mereka. Keduanya nyata dalam universe ini.
 
 ---
 
-*Last updated: 2026-06-26 — Theory Stabilization. Behavioral invariants documented. Five open questions. GUA/LO runtimes extracted but uncommitted. Theory must settle before architecture.*
+*Last updated: 2026-06-27 — Executable Fiction Research Program. Theory stabilization in progress. Four-folder structure: docs/ (theory), experiments/ (evidence), writing/ (dataset), research/ (lab notebook). Principle: nothing enters theory without evidence, nothing enters implementation without theory.*

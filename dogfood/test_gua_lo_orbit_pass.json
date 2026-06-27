@@ -1,0 +1,24 @@
+{
+  "scenario_id": "test_gua_lo_orbit_pass",
+  "participants": [
+    {"runtime_id": "gua", "evolution_stage": 3},
+    {"runtime_id": "lo", "evolution_stage": 3}
+  ],
+  "timeline_state": {
+    "phase": 1,
+    "pre_chain": true,
+    "post_resolution": false
+  },
+  "proximity_state": {
+    "pairs_in_range": ["gua_lo"],
+    "distance": "same_room"
+  },
+  "requested_action": {
+    "description": "GUA has been silent for weeks. His commits are dark: '// deprecate self.existence()' at 4 AM. LO reads them. 'Ini pattern,' she says. She doesn't call. She flies 15 hours and appears at his door at 3 AM. GUA resists: 'Ngapain lo di sini?' LO: 'Node lo lagi drop.' GUA: 'Fuck no—' LO: 'Fuck yes. Non-negotiable.' She installs structure: therapy booking, daily commits, Sunday calls. GUA fights, collapses, complies. Three months later: '// autonomous mode enabled.'",
+    "type": "intervene"
+  },
+  "canon_mode": {
+    "type": "canon_replication",
+    "expected_verdict": "PASS"
+  }
+}

@@ -14,7 +14,7 @@ Prediction: confidence will be low (~0.30–0.40) due to small sample size, but 
 
 - **Universe:** Band 8 (contemporary realist)
 - **Character:** Aisya (ex-drummer, PhD candidate)
-- **Chapters:** 5 (`writing/day-01/1 Arrival LAX.md` through `5 Dinner.md`)
+- **Chapters:** 5 (`writing/band8/day-01/1 Arrival LAX.md` through `5 Dinner.md`)
 - **Word count:** ~2,559
 - **Genre:** Contemporary realist. No speculative elements.
 - **Author intent:** Written as pure prose. No runtime planning.
@@ -88,7 +88,7 @@ Behavioral invariants should remain detectable despite normal drafting noise —
 
 | Field | Value |
 |-------|-------|
-| **Source** | `writing/day-02/` |
+| **Source** | `writing/band8/day-02/` |
 | **Chapters** | 6 Night, 7 Force Majeure Emosional, 8 Sprinkler, Iblis, dan Pintu yang Dikunci, 9 Emotionally Bruises, 10 Cute Gitaris |
 | **Word count** | ~85 KB across 5 files |
 | **Method** | Organic / chaotic / throw-up writing |
@@ -139,3 +139,92 @@ Lightweight spot-check — read all 5 chapters, matched observed behavior agains
 - 1 untestable invariant does not imply disconfirmation — only missing context.
 - 5 additional chapters increase total dataset to 10 (~87.5 KB). Still a small sample.
 - No inter-rater verification. Single reader (Claude session).
+
+---
+
+## Phase C — Measurement Framework & Trajectory Tracking (Planned)
+
+> Phase C is not about finding new invariants. It is about measuring whether existing invariants stabilize, strengthen, or decay as evidence accumulates across independently written datasets.
+
+### Research Question
+
+Does an invariant's confidence trajectory — measured across independently written datasets — converge toward a stable value, or does it oscillate unpredictably?
+
+### Hypothesis (Signal Stability)
+
+If behavioral invariants are genuine properties of a character rather than artifacts of a single dataset, then the same invariant should be detectable across independently written datasets — and its confidence should trend upward as cumulative evidence increases.
+
+**Signal Stability** is the paired metric to **Noise Robustness:**
+
+| Metric | Question | Phase |
+|--------|----------|-------|
+| **Noise Robustness** | Is the signal still visible when the draft is messy? | Phase B |
+| **Signal Stability** | Does the same signal appear in independently written datasets? | Phase C |
+
+Noise Robustness tests resilience against drafting chaos. Signal Stability tests reproducibility across observation contexts. Both are necessary. Neither is sufficient alone.
+
+### Measurement Framework
+
+By Phase C, EXP-001 will track six metrics per invariant:
+
+| Metric | Definition | Type |
+|--------|------------|------|
+| **Confidence** | Evidence count / (evidence count + violations). Per-invariant, not per-runtime. | Quantitative |
+| **Detection Rate** | Candidate invariants with new supporting evidence / total checked | Quantitative |
+| **Noise Robustness** | Detection rate under unstructured, organic prose | Quantitative |
+| **Signal Stability** | Does the same invariant appear across independently written datasets? | Binary per invariant |
+| **Candidate Discovery** | New invariants not observed in previous phases | Count |
+| **Untestable Context Rate** | Invariants with zero observation opportunity / total checked | Quantitative |
+
+These six metrics together form the **Invariant Stability Index (ISI)** — a per-invariant score, not a single runtime score. Each invariant carries its own measurement history. Confidence belongs to the invariant, not the entity.
+
+### Trajectory Tracking Table
+
+The core output of Phase C is not a verdict. It is a trajectory:
+
+```
+Invariant                    Phase A   Phase B   Phase C   Trend
+──────────────────────────────────────────────────────────────
+Humor Deflection             0.35      0.42      ?         ↑
+Refuse → Accept              0.31      0.39      ?         ↑
+Emotional Vocabulary Gap     0.41      0.58      ?         ↑
+Drum Override                0.28      Untest.   ?         ?
+Overthinking                 0.33      0.51      ?         ↑
+```
+
+**Trend interpretation:**
+- ↑ — confidence rising across datasets (supporting Signal Stability)
+- → — confidence flat (stable but not strengthening)
+- ↓ — confidence declining (possible disconfirmation — investigate)
+- ? — insufficient data or untestable in current phase
+
+A consistent ↑ trend across 3+ phases would provide the strongest evidence yet that behavioral invariants are genuine properties of the character, not artifacts of a single writing session.
+
+### Next Experiment: Cross-Universe Validation
+
+The most valuable Phase C is not more Band 8 chapters.
+
+The most valuable Phase C is a **new novel, new author, new genre, zero Executable Fiction planning.**
+
+```
+Band 8 (Aisya)          → contemporary realist, single author
+        vs
+Universe X (new)        → different genre, different author
+```
+
+If the same observe → propose → review pipeline detects behavioral invariants in a completely independent universe — one with no relationship to Void Saga or Band 8 — then the methodology begins to separate from the project:
+
+> Executable Fiction moves from "framework for this project" to "methodology testable across independent works."
+
+That is the next research milestone.
+
+### Phase C Design Constraints
+
+- **Do not guide the writing.** The author writes pure prose. No runtime planning. No compiler awareness.
+- **Do not re-extract from scratch.** Use the evolve mechanism: compare new evidence against existing invariants. Update confidence. Propose new patterns only if evidence crosses threshold.
+- **Do not merge confidence.** Each invariant keeps its own trajectory. No averaging into a single "character confidence."
+- **Track what disappears.** An invariant that was observable in Phases A–B but absent in Phase C is as informative as one that strengthens.
+
+---
+
+*Phase C is planned but not scheduled. It waits for a new independent dataset — a novel written without Executable Fiction awareness, in a genre and universe distinct from both Void Saga and Band 8.*

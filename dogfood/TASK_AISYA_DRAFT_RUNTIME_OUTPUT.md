@@ -115,4 +115,4 @@ The PASS scenario shows WARNING instead of pure PASS because the runtime confide
 
 ---
 
-*Draft Runtime created 2026-06-26. Based on writing/day-01/1–5. Confidence: 0.35.*
+*Draft Runtime created 2026-06-26. Based on writing/band8/day-01/1–5. Confidence: 0.35.*

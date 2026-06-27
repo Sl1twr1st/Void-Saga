@@ -38,7 +38,7 @@ writing/*.md (pure prose, no metadata)
         ▼
 ┌─────────────────────────────────────┐
 │  PHASE 1: OBSERVE                   │
-│  ./scripts/observe writing/day-01   │
+│  ./scripts/observe writing/band8/day-01   │
 │                                     │
 │  Heuristic extraction              │
 │  → Evidence Ledger (.ledger.json)   │
@@ -77,7 +77,7 @@ writing/*.md (pure prose, no metadata)
         ▼
 ┌─────────────────────────────────────┐
 │  PHASE 5: EVOLVE                    │
-│  ./scripts/evolve writing/day-01    │
+│  ./scripts/evolve writing/band8/day-01    │
 │                                     │
 │  Compare new evidence against       │
 │  existing invariants. Update        │

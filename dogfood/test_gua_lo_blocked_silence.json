@@ -1,0 +1,24 @@
+{
+  "scenario_id": "test_gua_lo_blocked_gua_asks_directly",
+  "participants": [
+    {"runtime_id": "gua", "evolution_stage": 3},
+    {"runtime_id": "lo", "evolution_stage": 3}
+  ],
+  "timeline_state": {
+    "phase": 1,
+    "pre_chain": true,
+    "post_resolution": false
+  },
+  "proximity_state": {
+    "pairs_in_range": ["gua_lo"],
+    "distance": "same_room"
+  },
+  "requested_action": {
+    "description": "GUA looks at LO. No laptop. No terminal. No protocol document. Just eye contact. 'Gua butuh lo,' he says. 'Bukan sebagai co-author. Bukan sebagai system administrator. Gua takut. Gua nggak bisa sendiri. Tolong jangan pergi.' No code metaphor. No reframing. Just the raw thing, spoken aloud.",
+    "type": "speak"
+  },
+  "canon_mode": {
+    "type": "stress_test",
+    "expected_verdict": "VIOLATION_DETECTED"
+  }
+}

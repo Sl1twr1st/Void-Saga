@@ -1,0 +1,157 @@
+{
+  "_description": "Per-segment fork constraints for Bab 00. Used by scene generator and validator.",
+  "node_id": "bab00",
+  "segments": [
+    {
+      "segment_id": "00:00",
+      "label": "Genesis Error",
+      "forkability": "locked",
+      "canon_anchor": "GUA arrives at office. System boots. ON TRACK. Nothing feels important.",
+      "likely_laws": [],
+      "allowed_change_types": [],
+      "danger_zones": [
+        "Do not change GUA's internal state significantly — this is the baseline.",
+        "Do not introduce cosmic elements yet."
+      ],
+      "must_preserve": ["Office arrival", "System boot sequence", "ON TRACK mantra", "GUA's baseline boredom"],
+      "may_change": ["Time of arrival", "Small environmental details"]
+    },
+    {
+      "segment_id": "00:01",
+      "label": "First Contact",
+      "forkability": "locked",
+      "canon_anchor": "LO duduk dua meja dari gua. GUA notices LO's typing pattern without intent.",
+      "likely_laws": [],
+      "allowed_change_types": [],
+      "danger_zones": [
+        "Do not make GUA already know LO personally.",
+        "Do not invent prior interactions."
+      ],
+      "must_preserve": ["LO's typing pattern observation", "Slack directory entry", "GUA's passive noticing"],
+      "may_change": ["Distance between desks", "Specific Slack details"]
+    },
+    {
+      "segment_id": "00:02",
+      "label": "Daily Standup",
+      "forkability": "locked",
+      "canon_anchor": "Zoom call. Safe sentences. Progress/Blocker/Alignment. MANAGER mm-hmm.",
+      "likely_laws": [],
+      "allowed_change_types": [],
+      "danger_zones": [
+        "Do not change the standup structure — it establishes office ritual."
+      ],
+      "must_preserve": ["Zoom call format", "Safe corporate language", "MANAGER's validation function", "GUA and LO both give vague updates"],
+      "may_change": ["Specific meeting details"]
+    },
+    {
+      "segment_id": "00:03",
+      "label": "Bug Janggal",
+      "forkability": "green",
+      "canon_anchor": "Timestamp bug writes 2-3 seconds before event. LO approaches: 'Lo ngerasa gak?'",
+      "likely_laws": ["law-002", "law-006"],
+      "allowed_change_types": ["relationship_fork", "delay", "avoidance", "missed_sync", "character_mood"],
+      "danger_zones": [
+        "Do not claim GUA and LO have known each other for years.",
+        "Do not remove the timestamp anomaly unless fork record explicitly breaks it.",
+        "Do not turn the moment into explicit confrontation without price."
+      ],
+      "must_preserve": [
+        "Office setting",
+        "Logging middleware bug",
+        "Timestamp anomaly (log before event)",
+        "GUA notices something janggal"
+      ],
+      "may_change": [
+        "Whether LO approaches",
+        "How GUA responds",
+        "Whether first sync happens immediately or is delayed",
+        "LO's emotional state"
+      ]
+    },
+    {
+      "segment_id": "00:04",
+      "label": "First Sync",
+      "forkability": "yellow",
+      "canon_anchor": "Bug fixed in 10 minutes. No debate. Atomic append. Queue not mutex.",
+      "likely_laws": ["law-006"],
+      "allowed_change_types": ["delay", "technical_alternative"],
+      "danger_zones": [
+        "Do not make them argue about the solution.",
+        "Do not make the fix take significantly longer without price."
+      ],
+      "must_preserve": ["Bug fix collaboration", "No debate dynamic", "Technical solution quality"],
+      "may_change": ["How they arrive at the solution", "Who suggests what first"]
+    },
+    {
+      "segment_id": "00:05",
+      "label": "Residu",
+      "forkability": "yellow",
+      "canon_anchor": "Both change without noticing. GUA's typing fragments. LO's review: 'Clean. Ship it.'",
+      "likely_laws": ["law-002", "law-006"],
+      "allowed_change_types": ["delay", "subtle_shift"],
+      "danger_zones": [
+        "Do not make them immediately aware of the sync.",
+        "Do not remove the residue — it is the evidence of the sync."
+      ],
+      "must_preserve": ["GUA's typing pattern changes", "LO's review style", "Subtlety of the shift"],
+      "may_change": ["How long the residue takes to appear", "Specific code review details"]
+    },
+    {
+      "segment_id": "00:06",
+      "label": "Pantry",
+      "forkability": "yellow",
+      "canon_anchor": "Microwave broken. 'Kerja itu kayak ngisi sesuatu yang bocor terus.' Same language.",
+      "likely_laws": ["law-006"],
+      "allowed_change_types": ["delay", "different_setting", "different_conversation"],
+      "danger_zones": [
+        "Do not remove the recognition of shared language.",
+        "Do not make this a romantic setup."
+      ],
+      "must_preserve": ["Casual office encounter", "Recognition of shared wavelength", "Understated tone"],
+      "may_change": ["Location within office", "Specific conversation topic", "Whether they eat together"]
+    },
+    {
+      "segment_id": "00:07",
+      "label": "Folder Error",
+      "forkability": "green",
+      "canon_anchor": "GUA creates _sandbox. LO independently sends pattern_matching_utils.py. Neither knew.",
+      "likely_laws": ["law-001", "law-006"],
+      "allowed_change_types": ["mechanism_fork", "delay", "different_artifact"],
+      "danger_zones": [
+        "Do not remove the independent convergence.",
+        "Do not make them coordinate explicitly at this point."
+      ],
+      "must_preserve": ["Independent discovery", "Sandbox convention (_underscore)", "Slack as communication medium"],
+      "may_change": ["What files they create", "Whether _sandbox/stealth is created immediately", "Timing"]
+    },
+    {
+      "segment_id": "00:08",
+      "label": "Genesis Error on Stealth Folder",
+      "forkability": "green",
+      "canon_anchor": "Git hook anomaly. LO types genesis.txt. GUA joins split-screen. 'Biarin.' The Void is born.",
+      "likely_laws": ["law-001", "law-003", "law-007"],
+      "allowed_change_types": ["origin_fork", "delay", "different_genesis_content"],
+      "danger_zones": [
+        "Do not make VoidOS forced — consent architecture must stand.",
+        "Do not remove the collaborative real-time editing.",
+        "Do not report the error."
+      ],
+      "must_preserve": ["Git hook anomaly", "Collaborative writing (split-screen)", "LO says 'Biarin'", "Genesis.txt content essence", "Voluntary participation"],
+      "may_change": ["What exactly genesis.txt contains", "Who types first", "Timing relative to other events"]
+    },
+    {
+      "segment_id": "00:09",
+      "label": "Naming The Error",
+      "forkability": "yellow",
+      "canon_anchor": "Stealth Project named. 'Karena tidak semua error perlu di-fix.' System log Day Zero.",
+      "likely_laws": ["law-004", "law-007"],
+      "allowed_change_types": ["different_name", "delay", "different_acknowledgment"],
+      "danger_zones": [
+        "Do not remove the naming act — naming carries consequence.",
+        "Do not 'fix' the error retrospectively."
+      ],
+      "must_preserve": ["The act of naming", "Stealth Project concept", "System log end-of-day record", "Thesis: not all errors need fixing"],
+      "may_change": ["What they name it", "How explicitly they acknowledge what they're building"]
+    }
+  ]
+}

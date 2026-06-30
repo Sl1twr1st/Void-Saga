@@ -223,6 +223,11 @@ class ForkHandler(http.server.BaseHTTPRequestHandler):
             if not fork_path.exists():
                 shutil.copy2(TEMPLATE, fork_path)
 
+            # Save interview.json — structured machine-readable interview data
+            interview = self._build_interview(name, slug, content)
+            interview_path = run_dir / "interview.json"
+            interview_path.write_text(json.dumps(interview, indent=2, ensure_ascii=False))
+
             resp = {"ok": True, "run_dir": str(run_dir.relative_to(ROOT))}
             self.send_response(200)
             self.send_header("Content-Type", "application/json")
@@ -483,6 +488,79 @@ class ForkHandler(http.server.BaseHTTPRequestHandler):
             "affected_nodes": [],
         }
 
+    # ── Interview JSON builder ────────────────────
+    def _build_interview(self, name, slug, answers_text):
+        """Build structured interview.json from answers.md."""
+        answers = self._parse_answers(answers_text)
+        q1 = answers.get("q1", "")
+        q2 = answers.get("q2", "")
+        q3 = answers.get("q3", "")
+        q4 = answers.get("q4", "")
+        q5 = answers.get("q5", "")
+        q6 = answers.get("q6", "")
+        q7 = answers.get("q7", "")
+
+        # Determine fork point from Q1
+        q1_lower = q1.lower()
+        if "a" in q1_lower[:2] or "bug janggal" in q1_lower:
+            fp_id = "fp-001"
+            segment = "00:03"
+        elif "c" in q1_lower[:2] or "genesis error" in q1_lower:
+            fp_id = "fp-003"
+            segment = "00:08"
+        else:
+            fp_id = "fp-002"
+            segment = "00:07"
+
+        # Extract introduced entities (capitalized unknown names)
+        all_answers = " ".join(answers.values())
+        introduced = self._extract_entities(all_answers)
+
+        return {
+            "writer": name,
+            "slug": slug,
+            "created_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+            "target_node": "bab00",
+            "target_segment": segment,
+            "fork_point_id": fp_id,
+            "answers": {
+                "chosen_moment": q1,
+                "what_if": q2,
+                "character_action": q3,
+                "stakes": q4,
+                "duration": q5,
+                "immediate_consequence": q6,
+                "survives_breaks": q7,
+            },
+            "introduced_entities": introduced,
+        }
+
+    def _extract_entities(self, text):
+        """Extract capitalized names not in the known common set."""
+        known = {
+            "GUA", "LO", "MANAGER", "NOVI", "BAB", "VOID", "VOIDOS", "JIRA", "SLACK",
+            "GIT", "API", "EOD", "PR", "DM", "PM", "ON", "TRACK", "SYSTEM", "BOOT",
+            "ERROR", "WARNING", "PASSED", "APPROVED", "RESOLVED", "COLLABORATED",
+            "DETECTED", "MONITOR", "OPERATIONAL", "UNDEFINED", "LOCAL", "ONLY",
+            "UNTRACKED", "END", "DAY", "ZERO", "ORIGIN", "TOTAL", "MINOR",
+            "SEVERITY", "ACTION", "SPRINT", "WEEK", "BURNDOWN", "JANGKAL",
+            "FIRST", "CONTACT", "SYNC", "GENESIS", "FOLDER", "STEALTH", "PANTRY",
+            "STANDUP", "DAILY", "PROJECT", "PROTOCOL", "RELATIONSHIP",
+        }
+        entities = []
+        seen = set()
+        for word in re.findall(r'\b([A-Z][A-Z]{2,})\b', text):
+            if word not in known and word not in seen:
+                seen.add(word)
+                entities.append({
+                    "name": word,
+                    "type": "character",
+                    "source_answer": "duration/immediate_consequence/survives_breaks",
+                    "user_declared": True,
+                    "status": "unvalidated",
+                })
+        return entities[:5]  # Cap at 5
+
     # ── Scene Generation ────────────────────────────
     # TODO: replace client-supplied API keys with secure server-side credential
     # handling before public launch.
@@ -530,49 +608,96 @@ class ForkHandler(http.server.BaseHTTPRequestHandler):
                 self._json_resp(403, {"ok": False, "error": "BLOCKED forks cannot generate scenes. This fork violates a hard-block law and cannot continue."})
                 return
 
-            # Build prompt
-            prompt = self._build_generation_prompt(answers_path.read_text(), fork_record, actual_verdict)
+            # Load interview.json if available
+            interview = {}
+            interview_path = run_dir / "interview.json"
+            if interview_path.exists():
+                try:
+                    interview = json.loads(interview_path.read_text())
+                except Exception:
+                    pass
+
+            # Build scene prompt packet with all context
+            packet = self._build_prompt_packet(name, slug, fork_record, interview, actual_verdict)
+            packet_path = run_dir / "scene-prompt-packet.json"
+            packet_path.write_text(json.dumps(packet, indent=2, ensure_ascii=False))
+
+            # Build prompt from packet
+            prompt = self._build_generation_prompt(packet)
 
             # Call provider (API key never logged or persisted)
             try:
                 scene_md = self._call_provider(provider, model, api_key, prompt)
             except Exception as e:
                 err_msg = str(e)
-                # Sanitize: never include API key in error
                 if api_key and len(api_key) > 4:
                     err_msg = err_msg.replace(api_key, "[REDACTED]")
                 self._json_resp(500, {"ok": False, "error": f"Provider error: {err_msg}"})
                 return
 
-            # Save generated scene
-            scene_path = run_dir / "fork-scene.md"
-            scene_path.write_text(scene_md)
+            # Save raw draft
+            draft_path = run_dir / "fork-scene.draft.md"
+            draft_path.write_text(scene_md)
+
+            # Run scene gate validator
+            gate_result = {"overall": "WARNING", "checks": [], "issues": ["Scene Gate not run — checker unavailable."]}
+            scene_checker = ROOT / "mvp" / "checker" / "check_scene.py"
+            if scene_checker.exists():
+                try:
+                    import subprocess
+                    proc = subprocess.run(
+                        [sys.executable, str(scene_checker), str(draft_path), "--packet", str(packet_path)],
+                        capture_output=True, text=True, timeout=30,
+                    )
+                    gate_result = json.loads(proc.stdout)
+                except Exception as e:
+                    gate_result = {"overall": "WARNING", "checks": [], "issues": [f"Scene Gate error: {e}"]}
+
+            # Save gate result
+            gate_path = run_dir / "scene-gate.json"
+            gate_path.write_text(json.dumps(gate_result, indent=2, ensure_ascii=False))
+
+            # Determine final scene
+            overall = gate_result.get("overall", "WARNING")
+            final_scene_written = False
+            if overall == "FAIL":
+                # Draft only — do not write fork-scene.md
+                pass
+            else:
+                # PASS or WARNING: write final scene
+                scene_path = run_dir / "fork-scene.md"
+                scene_path.write_text(scene_md)
+                final_scene_written = True
 
             # Save metadata
+            gallery_id = f"{slug}-{int(datetime.now(timezone.utc).timestamp())}"
             meta = {
-                "writer": name,
-                "slug": slug,
+                "writer": name, "slug": slug,
                 "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
-                "provider": provider,
-                "model": model,
+                "provider": provider, "model": model,
                 "verdict": actual_verdict,
+                "scene_gate": overall,
                 "fork_id": fork_record.get("fork_id", ""),
                 "fork_point": fork_record.get("fork_point", ""),
-                "scene_path": str(scene_path.relative_to(ROOT)),
-                "gallery_id": f"{slug}-{int(datetime.now(timezone.utc).timestamp())}",
+                "scene_path": str((run_dir / "fork-scene.md").relative_to(ROOT)) if final_scene_written else "",
+                "draft_path": str(draft_path.relative_to(ROOT)),
+                "gallery_id": gallery_id,
             }
             meta_path = run_dir / "scene-meta.json"
             meta_path.write_text(json.dumps(meta, indent=2, ensure_ascii=False))
 
-            self._json_resp(200, {
+            resp = {
                 "ok": True,
-                "scene_path": str(scene_path.relative_to(ROOT)),
                 "scene_markdown": scene_md,
-                "provider": provider,
-                "model": model,
+                "provider": provider, "model": model,
                 "verdict": actual_verdict,
-                "gallery_id": meta["gallery_id"],
-            })
+                "gallery_id": gallery_id,
+                "scene_gate": gate_result,
+                "final_scene_written": final_scene_written,
+                "scene_path": str((run_dir / "fork-scene.md").relative_to(ROOT)) if final_scene_written else "",
+                "draft_path": str(draft_path.relative_to(ROOT)),
+            }
+            self._json_resp(200, resp)
 
         except Exception as e:
             self._json_resp(500, {"ok": False, "error": str(e)})
@@ -586,18 +711,27 @@ class ForkHandler(http.server.BaseHTTPRequestHandler):
                     if not run_dir.is_dir():
                         continue
                     meta_path = run_dir / "scene-meta.json"
+                    # Accept either fork-scene.md (final) or fork-scene.draft.md (draft only)
                     scene_path = run_dir / "fork-scene.md"
-                    if not meta_path.exists() or not scene_path.exists():
+                    draft_path = run_dir / "fork-scene.draft.md"
+                    if not meta_path.exists():
                         continue
+                    if not scene_path.exists() and not draft_path.exists():
+                        continue
+                    read_path = scene_path if scene_path.exists() else draft_path
                     try:
                         meta = json.loads(meta_path.read_text())
+                        # Skip FAIL drafts — they were rejected by Scene Gate
+                        if meta.get("scene_gate") == "FAIL" and not scene_path.exists():
+                            continue
                         # Include a short excerpt
-                        scene_text = scene_path.read_text()
+                        scene_text = read_path.read_text()
                         excerpt = scene_text[:200].replace("\n", " ").strip()
                         if len(scene_text) > 200:
                             excerpt += "…"
                         meta["excerpt"] = excerpt
                         meta["scene_text"] = scene_text
+                        meta["has_final"] = scene_path.exists()
                         entries.append(meta)
                     except Exception:
                         continue
@@ -684,68 +818,145 @@ class ForkHandler(http.server.BaseHTTPRequestHandler):
 
     # ── Prompt builder ──────────────────────────────
 
-    def _build_generation_prompt(self, answers_text, fork_record, verdict):
-        """Build the AI generation prompt following the project's strict rules."""
-        fp = fork_record.get("fork_point", "")
-        title = fork_record.get("title", "Untitled Fork")
-        title_id = fork_record.get("title_id", title)
-        premise_id = fork_record.get("premise_id", "")
-        change_id = fork_record.get("change_id", "")
-        effect_id = fork_record.get("immediate_effect_id", "")
-        lineage = fork_record.get("lineage", {})
-        divergence = lineage.get("divergence", change_id)
-        downstream = lineage.get("downstream_effects", [])
-        price = fork_record.get("price") or {}
+    def _build_prompt_packet(self, name, slug, fork_record, interview, verdict):
+        """Build the scene prompt packet with all context artifacts."""
+        fp_id = fork_record.get("fork_point", interview.get("fork_point_id", "fp-001"))
+        target_segment = interview.get("target_segment", "00:03")
 
-        verdict_guidance = {
-            "PASS": "This fork is canon-compatible. The change is within normal behavioral range. Keep the canon mostly intact — the scene should feel like it could have happened between the lines of Bab 00. Show the subtle shift, not a rewrite.",
-            "VALID_FORK": "This fork is a legal branch of the canon tree. The divergence is meaningful but no law is violated. Write the first scene of this branch — make the difference visible but consistent with the universe's rules.",
-            "PRICE_REQUIRED": "This fork carries narrative cost that must be shown. The universe permits the divergence, but the price must be paid on-page. Include the required narrative cost explicitly in the scene — show what is lost, delayed, or changed as consequence.",
+        # Load segment-fork-map
+        segment_ctx = {}
+        seg_map_path = ROOT / "mvp" / "genesis" / "segment-fork-map.json"
+        if seg_map_path.exists():
+            seg_map = json.loads(seg_map_path.read_text())
+            for seg in seg_map.get("segments", []):
+                if seg.get("segment_id") == target_segment:
+                    segment_ctx = seg
+                    break
+
+        # Load voice contract
+        voice = {}
+        voice_path = ROOT / "mvp" / "style" / "bab00-voice-contract.json"
+        if voice_path.exists():
+            voice = json.loads(voice_path.read_text())
+
+        # Allowed entities
+        introduced = interview.get("introduced_entities", [])
+        introduced_names = [e["name"] for e in introduced]
+        allowed_entities = ["GUA", "LO", "MANAGER"] + introduced_names
+
+        # Laws touched
+        laws_touched = fork_record.get("touched_laws", [])
+        if not laws_touched and segment_ctx:
+            laws_touched = segment_ctx.get("likely_laws", [])
+
+        # Generation constraints from segment
+        constraints = []
+        if segment_ctx:
+            constraints = segment_ctx.get("danger_zones", [])[:3]
+            constraints = [f"AVOID: {dz}" for dz in constraints]
+
+        # Voice constraints
+        if voice:
+            for rule in voice.get("required", [])[:4]:
+                constraints.append(f"REQUIRED: {rule}")
+            for rule in voice.get("forbidden", [])[:4]:
+                constraints.append(f"FORBIDDEN: {rule}")
+
+        return {
+            "writer": name,
+            "slug": slug,
+            "target_node": "bab00",
+            "target_segment": target_segment,
+            "segment_context": segment_ctx,
+            "fork_record": fork_record,
+            "interview": interview,
+            "verdict": verdict,
+            "laws_touched": laws_touched,
+            "allowed_entities": allowed_entities,
+            "voice_contract": voice,
+            "generation_constraints": constraints,
         }
 
-        guidance = verdict_guidance.get(verdict, verdict_guidance["VALID_FORK"])
+    def _build_generation_prompt(self, packet):
+        """Build the AI generation prompt from the prompt packet."""
+        fork_record = packet.get("fork_record", {})
+        interview = packet.get("interview", {})
+        verdict = packet.get("verdict", "VALID_FORK")
+        segment_ctx = packet.get("segment_context", {})
+        constraints = packet.get("generation_constraints", [])
+        allowed = packet.get("allowed_entities", ["GUA", "LO", "MANAGER"])
+        voice = packet.get("voice_contract", {})
+        target_segment = packet.get("target_segment", "00:03")
 
-        price_text = ""
-        if verdict == "PRICE_REQUIRED" and price:
-            ptype = price.get("type", "")
-            pdesc = price.get("description", "")
-            price_text = f"\nRequired narrative price: {ptype}\nPrice description: {pdesc}\nThe scene must show this cost being paid."
+        title = fork_record.get("title", "Untitled Fork")
+        divergence = fork_record.get("lineage", {}).get("divergence", "")
+        premise_id = fork_record.get("premise_id", "")
+        price = fork_record.get("price") or {}
+        answers = interview.get("answers", {})
+        introduced = interview.get("introduced_entities", [])
 
-        downstream_text = ""
-        if downstream:
-            items = "\n".join(f"- {d}" for d in downstream[:5])
-            downstream_text = f"\nDownstream effects to respect:\n{items}"
+        verdict_guidance = {
+            "PASS": "This fork is canon-compatible. Keep the canon mostly intact — show the subtle shift, not a rewrite.",
+            "VALID_FORK": "This fork is a legal branch. Make the difference visible but consistent with Bab 00 rules.",
+            "PRICE_REQUIRED": "CRITICAL: This fork carries narrative cost. The scene MUST include one concrete, specific cost that alters behavior, artifact, system output, or downstream condition. Not just mention 'price' — show the cost as a tangible change: a log that now parses wrong, a timestamp that drifts further, a system that interprets text as code, a file that corrupts in a meaningful way. The cost should feel small and specific, not abstract.",
+        }
 
-        prompt = f"""You are a writer, not the canon authority. The universe and its checker have already decided whether this fork can continue — you do not get to overrule that decision. Your only job is to write the first scene of this fork.
+        segment_must = segment_ctx.get("must_preserve", [])
+        segment_danger = segment_ctx.get("danger_zones", [])
+        segment_label = segment_ctx.get("label", target_segment)
+
+        # Build constraints text
+        constraint_text = "\n".join(f"- {c}" for c in constraints[:12])
+
+        # Introduced entity guidance
+        intro_text = ""
+        if introduced:
+            names = [e["name"] for e in introduced]
+            intro_text = f"\nIntroduced entity: {', '.join(names)}. Keep them scoped to the fork record — do not let them dominate unless the fork requires it."
+
+        # Segment anchor text
+        segment_text = f"Target segment: {target_segment} ({segment_label})"
+        if segment_must:
+            segment_text += f"\nMust preserve: {'; '.join(segment_must[:4])}"
+
+        prompt = f"""You are writing a draft fork scene, not canon. The checker is the authority — you do not overrule it. Follow the Fork Record exactly. Follow the target segment anchor. Follow the Bab 00 Voice Contract.
 
 FORK RECORD:
-- Fork: {title} ({title_id})
+- Fork: {title}
 - Premise: {premise_id}
-- Change from canon: {divergence}
-- Immediate effect: {effect_id}
-- Verdict from universe: {verdict}
-{downstream_text}
-{price_text}
+- Divergence: {divergence}
+- Verdict: {verdict}
+- {verdict_guidance.get(verdict, verdict_guidance['VALID_FORK'])}
+{intro_text}
+
+SEGMENT ANCHOR:
+{segment_text}
+
+VOICE CONTRACT (Bab 00 Office Anomaly):
+- Use first-person GUA narration: 'gua' and 'lo' naturally.
+- Keep paragraphs short, often 1-3 lines. Fragmented rhythm. Negative space.
+- Use office/tooling artifacts: logs, Slack, Jira, terminal, code, timestamps, cursor.
+- ARTIFACT-FIRST: Let logs, cursors, timestamps, code, file diffs, Slack pauses carry the meaning. Do NOT explain what the reader can infer from artifacts. Avoid sentences like 'Gua paham bahwa...' or 'Tapi harganya adalah...' — show the artifact, then move on.
+- LO IS NOT EXPOSITION: Sync happens with few words, often none. Slack exchanges are sparse — single lines, not paragraphs. LO does not explain the situation to GUA or the reader.
+- Anomaly must feel small before it feels cosmic. Bab 00 is cold and strange, not warm and explanatory.
+- Show emotion through cursor stillness, typing pauses, what is NOT said — not through internal monologue.
+- Do NOT write in third-person. Do NOT use 'aku'/'saya' for GUA.
+- Do NOT invent prior relationship ('bertahun-tahun', 'sudah kenal lama') unless fork record explicitly permits.
+- The generated scene should feel like one segment/fork moment — not a full chapter.
+
+CONSTRAINTS:
+{constraint_text}
+
+INTERVIEW CONTEXT:
+{json.dumps(answers, ensure_ascii=False, indent=1)[:1500]}
 
 WRITING RULES:
-1. Write ONLY the first scene of this fork. Not a summary, not a plan, not an outline. One scene.
-2. {guidance}
-3. Respect Bab 00's tone:
-   - Office realism — the setting is a software engineering office
-   - Quiet anomaly — strange things happen but are understated, never melodramatic
-   - GUA/LO behavioral texture — GUA is a systems-builder who avoids confrontation; LO is a stabilizing condition, not a controller
-   - Indonesian prose voice close to Bab 00's mood — understated, rhythmic, full of pauses
-   - No grand lore dump — the cosmic elements are glimpsed through ordinary moments
-4. Target 700-1200 words.
-5. Write in Indonesian (Bahasa Indonesia), with occasional English for technical/office terms.
-6. Do not explain the app, the system, or the fork mechanism to the reader.
-7. Do not say "as an AI" or break the fourth wall.
-8. Output markdown prose only. No meta-commentary.
+1. Write ONLY the first scene of this fork. One scene. Target 500-900 words. Quality over length.
+2. Write in Indonesian (Bahasa Indonesia), with occasional English for technical terms.
+3. Output markdown prose only. No meta-commentary. No "as an AI".
+4. Allowed characters: {', '.join(allowed)}.
 
-BAB 00 REFERENCE (answers from the fork interview):
-{answers_text[:3000]}
-
-Write the first scene now. Markdown prose only."""
+Write the first scene now."""
         return prompt
 
     def _json_resp(self, code, data):

@@ -1,0 +1,45 @@
+{
+  "voice_id": "bab00",
+  "name": "Bab 00 Office Anomaly Voice",
+  "target_node": "bab00",
+  "required": [
+    "Use first-person GUA narration ('gua' perspective).",
+    "Use 'gua' and 'lo' naturally as the core texture.",
+    "Keep paragraphs short, often 1-3 lines.",
+    "Use office/tooling artifacts: logs, Slack, Jira, terminal, code, system output, timestamps.",
+    "Anomaly must feel small before it feels cosmic.",
+    "Show emotion through behavior, silence, code, cursor, logs, and small actions.",
+    "Use fragmented rhythm and negative space."
+  ],
+  "forbidden": [
+    "Do not write in third-person omniscient style.",
+    "Do not refer to GUA as 'dia' as the main narration mode.",
+    "Do not invent long prior relationship between GUA and LO ('bertahun-tahun bekerja bersama', 'sudah kenal lama') unless explicitly present in fork record.",
+    "Do not use melodramatic exposition.",
+    "Do not explain the system/app to the reader.",
+    "Do not turn the scene into generic workplace literary prose.",
+    "Do not use 'aku'/'kamu' for GUA/LO — use 'gua'/'lo'."
+  ],
+  "style_markers": [
+    "Short declarative lines.",
+    "Fragmented rhythm with deliberate line breaks.",
+    "Terminal/code blocks prefixed with > or in monospace blocks.",
+    "Corporate language made strange (ON TRACK, alignment, support, collaborated).",
+    "Quiet dry observation rather than emotional declaration.",
+    "Negative space between paragraphs carries meaning.",
+    "System artifacts interrupt narrative flow naturally."
+  ],
+  "pov": "first-person-gua",
+  "pronouns": {
+    "narrator_self": "gua",
+    "narrator_possessive": "gua punya",
+    "LO_address": "lo",
+    "forbidden_narrator": ["dia (for GUA self-reference)", "aku", "saya"]
+  },
+  "paragraph_convention": {
+    "max_lines_per_paragraph": 4,
+    "preferred_lines": "1-2",
+    "fragment_ok": true,
+    "single_word_line_ok": true
+  }
+}

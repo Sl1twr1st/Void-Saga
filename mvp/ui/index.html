@@ -1127,18 +1127,76 @@ function apiGateHTML() {
 function scenePreviewHTML(data) {
   const slug = writerName.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'') || 'anon';
   const runPath = `mvp/runs/${slug}/`;
-  return `
-    <div class="complete-box" style="border-left:3px solid var(--pass);margin-top:16px" id="scenePreview">
-      <div style="text-align:center;font-size:18px;color:var(--pass);margin-bottom:8px">✦</div>
-      <div style="text-align:center;font-size:14px;color:var(--pass);margin-bottom:4px"><strong>First fork scene generated.</strong></div>
-      <div class="small" style="text-align:center;margin-bottom:12px">
-        Generated with ${esc(data.provider)} / ${esc(data.model)}<br>
-        Scene: <span class="path">${runPath}fork-scene.md</span>
-      </div>
-      <div class="scene-preview-box">${esc(data.scene_markdown)}</div>
+  const gate = data.scene_gate || {};
+  const overall = gate.overall || 'WARNING';
+  const gateIcon = {PASS:'🟢',WARNING:'🟡',FAIL:'🛑'}[overall] || '❓';
+  const gateClass = {PASS:'pass',WARNING:'warn',FAIL:'block'}[overall] || 'warn';
+
+  // Build Scene Gate checks display
+  let gateHTML = '';
+  if (gate.checks && gate.checks.length > 0) {
+    gateHTML = '<hr class="divider"><div class="field-label" style="margin-bottom:6px">Scene Gate</div>';
+    for (const c of gate.checks) {
+      const icon = {PASS:'✓',WARNING:'⚠',FAIL:'✗'}[c.status] || '?';
+      const color = {PASS:'var(--pass)',WARNING:'var(--warn)',FAIL:'var(--block)'}[c.status] || 'var(--text-dim)';
+      gateHTML += `<div style="font-size:10px;margin-bottom:2px;color:${color}">${icon} ${esc(c.label)}: ${esc(c.status)} — <span style="color:var(--text-dim)">${esc(c.message || '')}</span></div>`;
+    }
+    if (gate.issues && gate.issues.length > 0) {
+      gateHTML += '<div style="margin-top:6px;font-size:9px;color:var(--warn)">';
+      for (const i of gate.issues.slice(0, 3)) {
+        gateHTML += `▸ ${esc(i)}<br>`;
+      }
+      gateHTML += '</div>';
+    }
+  }
+
+  // Buttons based on gate result
+  let buttonsHTML = '';
+  if (overall === 'FAIL') {
+    buttonsHTML = `
+      <div class="complete-box" style="border-left:3px solid var(--block);margin-top:12px">
+        <div class="small" style="color:var(--block);text-align:center;margin-bottom:8px">
+          Scene draft rejected by Scene Gate. Fix the issues or accept the draft manually.
+        </div>
+        <div style="display:flex;gap:10px">
+          <button class="btn skip" id="btnViewDraft" style="flex:1">VIEW DRAFT</button>
+          <button class="btn enter" id="btnRegenerate" style="flex:1" disabled>REGENERATE (TODO)</button>
+        </div>
+      </div>`;
+  } else if (overall === 'WARNING') {
+    buttonsHTML = `
       <div style="display:flex;gap:10px;margin-top:16px">
         <button class="btn enter" id="btnShowGallery" style="flex:1">SHOW IN GALLERY</button>
-        <button class="btn" onclick="window.location.reload()" style="flex:1">MAKE ANOTHER FORK</button>
+        <button class="btn skip" id="btnRegenerate" style="flex:1" disabled>REGENERATE (TODO)</button>
+      </div>`;
+  } else {
+    buttonsHTML = `
+      <div style="display:flex;gap:10px;margin-top:16px">
+        <button class="btn enter" id="btnShowGallery" style="flex:1">SHOW IN GALLERY</button>
+      </div>`;
+  }
+
+  const sceneTitle = overall === 'FAIL' ? 'Scene draft generated (Gate: FAIL)' :
+                     overall === 'WARNING' ? 'Scene compiled with warnings' :
+                     'First fork scene compiled.';
+
+  const finalNote = !data.final_scene_written ? ' (draft only — not in Gallery)' : '';
+
+  return `
+    <div class="complete-box" style="border-left:3px solid var(--${gateClass});margin-top:16px" id="scenePreview">
+      <div style="text-align:center;font-size:18px;color:var(--${gateClass});margin-bottom:4px">
+        Universe Verdict: <strong style="color:var(--pass)">${esc(data.verdict)}</strong><br>
+        Scene Gate: <strong>${gateIcon} ${overall}</strong><br>
+        <span style="font-size:9px;color:var(--text-dim)">Voice: Bab 00 Office Anomaly</span>
+      </div>
+      <div class="small" style="text-align:center;margin-bottom:4px">
+        Generated with ${esc(data.provider)} / ${esc(data.model)}${finalNote}
+      </div>
+      ${gateHTML}
+      <div class="scene-preview-box" id="scenePreviewBox">${esc(data.scene_markdown)}</div>
+      ${buttonsHTML}
+      <div style="text-align:center;margin-top:12px">
+        <button class="btn" onclick="window.location.reload()">MAKE ANOTHER FORK</button>
       </div>
     </div>`;
 }
@@ -1163,10 +1221,12 @@ function galleryHTML(entries) {
   let entriesHTML = '';
   for (const e of entries) {
     const verdictIcon = {PASS:'🟢',VALID_FORK:'🔵',PRICE_REQUIRED:'🟡'}[e.verdict] || '⚪';
+    const gateIcon = {PASS:'🟢',WARNING:'🟡',FAIL:'🛑'}[e.scene_gate] || '⚪';
+    const draftLabel = e.has_final ? '' : ' · DRAFT';
     entriesHTML += `
       <div class="gallery-entry" data-slug="${esc(e.slug)}">
         <div class="gallery-meta">
-          <span>${verdictIcon} ${esc(e.verdict)}</span>
+          <span>${verdictIcon} ${esc(e.verdict)} · Scene Gate: ${gateIcon} ${esc(e.scene_gate || '?')}${draftLabel}</span>
           <span>${esc(e.provider)} / ${esc(e.model)}</span>
           <span>${esc((e.generated_at || '').substring(0, 10))}</span>
         </div>
@@ -1268,7 +1328,7 @@ function bindGateEvents() {
       if (data.ok) {
         sceneData = data;
         genArea.innerHTML = scenePreviewHTML(data);
-        bindSceneEvents();
+        bindSceneEvents(data);
       } else {
         genArea.innerHTML = `<div class="complete-box" style="border-left:3px solid var(--block);margin-top:16px">
           <strong>Generation failed</strong><br><br>${esc(data.error || 'Unknown error')}<br><br>
@@ -1285,10 +1345,15 @@ function bindGateEvents() {
   });
 }
 
-function bindSceneEvents() {
+function bindSceneEvents(data) {
   document.getElementById('btnShowGallery')?.addEventListener('click', () => {
     screen = 'gallery';
     render();
+  });
+  // VIEW DRAFT for FAIL scenes
+  document.getElementById('btnViewDraft')?.addEventListener('click', () => {
+    const box = document.getElementById('scenePreviewBox');
+    if (box) box.scrollIntoView({behavior:'smooth'});
   });
 }
 

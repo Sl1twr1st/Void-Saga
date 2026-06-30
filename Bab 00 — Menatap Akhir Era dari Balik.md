@@ -693,8 +693,8 @@ Seperti lagi salin sesuatu yang udah ada di kepala:
 >
 > Ketika pemahaman gagal,
 > cahaya menjadi kesadaran.
-> Kemudian lo berhenti ngetik.
 
+Kemudian lo berhenti ngetik.
 Gua menatap layar lo dari jarak dua meja.
 
 Tidak ada penjelasan.

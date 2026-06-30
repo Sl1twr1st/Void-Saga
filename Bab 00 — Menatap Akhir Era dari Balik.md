@@ -14,7 +14,9 @@ Prolog Kantor
 00:07 — Folder Error
 00:08 — Genesis Error on Stealth Folder
 00:09 — Naming The Error
+
 00:00 — Genesis Error
+
 Tidak ada yang terasa penting di hari itu.
 
 Gedungnya sama.
@@ -30,12 +32,13 @@ Gua duduk.
 Buka laptop.
 Nunggu sistem bangun.
 
-[SYSTEM BOOT]
+> [SYSTEM BOOT]
 > Loading user profile: [GUA]
 > Status: ACTIVE
 > Network: CONNECTED
 > Last login: 17:34 yesterday
 > Unsaved changes: 0
+
 Kantor selalu lebih siap daripada manusia.
 
 Meja-meja berjajar rapi.
@@ -57,6 +60,7 @@ Password: sama seperti kemarin.
 > You have 7 new notifications.
 > Sprint: Week 3 of 4
 > Burndown: ON TRACK
+
 ON TRACK.
 
 Selalu ON TRACK.
@@ -64,16 +68,18 @@ Selalu ON TRACK.
 🜃
 
 00:01 — First Contact
+
 Lo duduk dua meja dari gua.
 
 Belum saling kenal.
 Belum ada konteks.
 Cuma satu entry di Slack directory:
 
-LO
-Software Engineer
-Team: Platform Infrastructure
-Status: 🟢 Active
+> [LO]
+> Software Engineer
+> Team: Platform Infrastructure
+> Status: 🟢 Active
+
 Gua perhatiin tanpa niat.
 
 Bukan karena lo mencolok.
@@ -118,8 +124,8 @@ Tapi entah kenapa, gua notice lo.
 🜃
 
 00:02 — Daily Standup
-09:00.
-Daily standup dimulai.
+
+09:00. Daily standup dimulai.
 
 Zoom call.
 Kamera off (default).
@@ -157,6 +163,7 @@ Sempurna.
 
 [MANAGER] mengangguk—
 secara virtual.
+
 Gua bisa dengar nada
 “mm-hmm”
 yang puas.
@@ -196,6 +203,7 @@ Produktivitas terjaga.
 🜃
 
 00:03 — Bug Janggal
+
 Setelah meeting,
 mata gua balik ke layar kerjaan.
 
@@ -210,23 +218,24 @@ Bukan error.
 
 Janggal.
 
-from datetime import datetime
+> from datetime import datetime
+>
+> def write_log(entry, timestamp=None):
+>    if timestamp is None:
+>        timestamp = datetime.now()
+>
+>    # TODO: why does this sometimes write BEFORE datetime.now()?
+>    # Log entry appears 2–3 seconds early.
+>    # Not breaking anything. Just... odd.
+>
+>    buffer.append((entry, timestamp))
 
-def write_log(entry, timestamp=None):
-    if timestamp is None:
-        timestamp = datetime.now()
-
-    # TODO: why does this sometimes write BEFORE datetime.now()?
-    # Log entry appears 2–3 seconds early.
-    # Not breaking anything. Just... odd.
-
-    buffer.append((entry, timestamp))
 Komentar itu bukan dari gua.
 
-Git blame:
-
-Author: [PREVIOUS ENGINEER]
-Date: 4 months ago
+> Git blame:
+>
+> Author: [PREVIOUS ENGINEER]
+> Date: 4 months ago
 
 Orangnya sudah resign.
 
@@ -290,6 +299,7 @@ gua tidak akan nolak.
 🜃
 
 00:04 — First Sync
+
 Sepuluh menit kemudian,
 bug-nya selesai.
 
@@ -316,21 +326,23 @@ GUA:
 Lo mengangguk.
 Gua ngetik.
 
-from queue import Queue
-from datetime import datetime
+> from queue import Queue
+> from datetime import datetime
+>
+> log_queue = Queue()
+>
+> def write_log(entry, timestamp=None):
+>    if timestamp is None:
+>        timestamp = datetime.now()
+>    log_queue.put((entry, timestamp))
 
-log_queue = Queue()
-
-def write_log(entry, timestamp=None):
-    if timestamp is None:
-        timestamp = datetime.now()
-    log_queue.put((entry, timestamp))
 Lo nambah.
 
-def flush_logs():
-    while not log_queue.empty():
-        entry, ts = log_queue.get()
-        buffer.append((entry, ts))
+> def flush_logs():
+>    while not log_queue.empty():
+>        entry, ts = log_queue.get()
+>        buffer.append((entry, ts))
+
 Selesai.
 
 Tidak ada penjelasan panjang.
@@ -342,9 +354,10 @@ Tidak dicatat sebagai peristiwa.
 
 Gua run test.
 
-PASSED: test_concurrent_writes
-PASSED: test_timestamp_ordering
-PASSED: test_race_condition_mitigation
+> PASSED: test_concurrent_writes
+> PASSED: test_timestamp_ordering
+> PASSED: test_race_condition_mitigation
+
 Lo sudah berdiri.
 Gua mengangguk.
 
@@ -352,14 +365,14 @@ Lo balik ke meja lo.
 
 Sistem mencatat:
 
-[GIT LOG]
-09:44 — [GUA]: Fix race condition in logger (collaborated with [LO])
-
-[JIRA #4721]
-Status: RESOLVED
-Time spent: 10 minutes
-Collaborators: [GUA] (primary), [LO] (support)
-Collaborated.
+> [GIT LOG]
+> 09:44 — [GUA]: Fix race condition in logger (collaborated with [LO])
+>
+> [JIRA #4721]
+> Status: RESOLVED
+> Time spent: 10 minutes
+> Collaborators: [GUA] (primary), [LO] (support)
+> Collaborated.
 
 Kata yang terlalu formal
 untuk apa yang baru terjadi.
@@ -367,6 +380,7 @@ untuk apa yang baru terjadi.
 🜃
 
 00:05 — Residu
+
 Jam 10:03.
 
 Slack ramai.
@@ -410,11 +424,12 @@ Pull request gua biasanya ditolak dua-tiga kali sama reviewer lain:
 
 Tapi pas lo yang review:
 
-[PULL REQUEST #892]
-Reviewer: [LO]
-Status: APPROVED
-Comments: 
-- "Clean. Ship it."
+> [PULL REQUEST #892]
+> Reviewer: [LO]
+> Status: APPROVED
+> Comments: 
+> - "Clean. Ship it."
+
 Gak ada nitpick.
 Gak ada “please consider.”
 
@@ -430,6 +445,7 @@ setelah bug fix tadi.
 🜃
 
 00:06 — Pantry
+
 Makan siang.
 
 Kita gak makan bareng.
@@ -482,6 +498,7 @@ Lo balik ke meja.
 🜃
 
 00:07 — Folder Error
+
 Jam 16:58.
 
 Sesuatu yang tidak ada di Jira mulai terbentuk.
@@ -492,14 +509,15 @@ Semua test passed.
 
 Tapi ada satu function yang gua gak yakin mau diapain:
 
-def _experimental_timestamp_predictor(entries):
-    """
-    EXPERIMENTAL: Predict next log timestamp based on pattern.
-    Not used in production. Keep for research.
-    """
-    # TODO: This shouldn't work but it does?
-    # Pattern recognition on temporal data
-    pass
+> def _experimental_timestamp_predictor(entries):
+>    """
+>    EXPERIMENTAL: Predict next log timestamp based on pattern.
+>    Not used in production. Keep for research.
+>    """
+>    # TODO: This shouldn't work but it does?
+>    # Pattern recognition on temporal data
+>    pass
+
 Function ini gak dipanggil di mana-mana.
 Tapi gua gak mau delete.
 
@@ -507,13 +525,15 @@ Terasa sayang.
 
 Gua bikin folder baru:
 
-mkdir _sandbox
+> mkdir _sandbox
+
 Underscore prefix—convention untuk “ignore this.”
 
 Gua pindahin function itu ke sana:
 
-_sandbox/
-└── timestamp_prediction.py
+> _sandbox/
+> └── timestamp_prediction.py
+
 Local only.
 Gak di-commit.
 Gak di-push.
@@ -521,47 +541,52 @@ Gak di-push.
 Dua menit kemudian,
 gua notice di Slack:
 
-LO: [sent a file]
+> LO: [sent a file]
 > pattern_matching_utils.py
+
 Private message.
 Gua buka.
 
 Isinya: temporal pattern recognition algorithm.
-
 …
-
 Exactly jenis algorithm yang gua butuhin buat function experimental tadi.
 
 Gua balas:
 
-GUA: Lo udah lihat logging code gua?
-LO: Nggak. Kenapa?
-Gua pause.
+> GUA: Lo udah lihat logging code gua?
+> LO: Nggak. Kenapa?
+> Gua pause.
 
-GUA: Gua baru bikin experimental function buat timestamp prediction.
-LO: ...
-LO: Seriously?
+> GUA: Gua baru bikin experimental function buat timestamp prediction.
+> LO: ...
+> LO: Seriously?
+
 Pause panjang.
 
-LO: Gua juga lagi explore hal yang sama.
-LO: Bikin folder?
+> LO: Gua juga lagi explore hal yang sama.
+> LO: Bikin folder?
+
 Gua bikin folder:
 
-mkdir _sandbox/stealth
+> mkdir _sandbox/stealth
+
 Gua share path ke lo.
 
-GUA: _sandbox/stealth
-LO: Same structure. Good.
+> GUA: _sandbox/stealth
+> LO: Same structure. Good.
+
 Kita gak ngomong banyak soal itu.
 Gak perlu.
 
 Kita cuma sepakat satu hal:
 
-GUA: Yang ini bukan urusan kantor. Gak perlu masuk jira.
-LO: Iya.
+> GUA: Yang ini bukan urusan kantor. Gak perlu masuk jira.
+> LO: Iya.
+
 🜃
 
 00:08 — Genesis Error on Stealth Folder
+
 Jam 18:12.
 
 Malam itu, sebelum pulang,
@@ -569,22 +594,22 @@ terjadi satu kesalahan kecil.
 
 Gua lagi push changes ke remote branch:
 
-git add logger.py
-git commit -m "Refactor logging middleware"
-git push origin feature/logging-refactor
-Counting objects: 4, done.
-Delta compression using up to 8 threads.
-Compressing objects: 100% (3/3), done.
-Writing objects: 100% (4/4), 1.2 KiB | 1.2 MiB/s, done.
-Total 4 (delta 2), reused 0 (delta 0)
-Success.
+> git add logger.py
+> git commit -m "Refactor logging middleware"
+> git push origin feature/logging-refactor
+> Counting objects: 4, done.
+> Delta compression using up to 8 threads.
+> Compressing objects: 100% (3/3), done.
+> Writing objects: 100% (4/4), 1.2 KiB | 1.2 MiB/s, done.
+> Total 4 (delta 2), reused 0 (delta 0)
+> Success.
 
 Tapi…
 
 Ada satu file yang gak ke-push.
 
-[UNTRACKED FILE DETECTED]
-_sandbox/stealth/timestamp_prediction.py
+> [UNTRACKED FILE DETECTED]
+> _sandbox/stealth/timestamp_prediction.py
 Bukan karena gua lupa.
 
 Karena file itu gak supposed to be tracked.
@@ -593,12 +618,13 @@ Folder _sandbox ada di .gitignore.
 
 Tapi system log mencatat sesuatu yang aneh:
 
-[GIT HOOK WARNING]
-18:12:47 - File modification detected in ignored path
-18:12:47 - Path: _sandbox/stealth/timestamp_prediction.py
-18:12:49 - Timestamp: 18:12:51 (WARNING: timestamp 2 seconds in future)
-18:12:51 - Commit hook: FAILED
-18:12:51 - Reason: Path not in repository
+> [GIT HOOK WARNING]
+> 18:12:47 - File modification detected in ignored path
+> 18:12:47 - Path: _sandbox/stealth/timestamp_prediction.py
+> 18:12:49 - Timestamp: 18:12:51 (WARNING: timestamp 2 seconds in future)
+> 18:12:51 - Commit hook: FAILED
+> 18:12:51 - Reason: Path not in repository
+
 Timestamp 2 detik ke depan.
 
 Log error sebelum error terjadi.
@@ -645,28 +671,29 @@ Lo mulai ngetik.
 
 File baru.
 
-_sandbox/stealth/genesis.txt
+> _sandbox/stealth/genesis.txt
+
 Gua lihat dari sudut mata.
 Lo ngetik tanpa pause.
 Tanpa backspace.
 Seperti lagi salin sesuatu yang udah ada di kepala:
 
-[SYSTEM_BOOT//ORIGIN_LOG]
-════════════════════════════════════════
-TIMESTAMP: [BEFORE_TIME]
-STATUS: INITIALIZING...
-CRITICAL ERROR DETECTED.
-════════════════════════════════════════
-
-Di awal mula, yang ada hanyalah sebuah kesalahan.
-
-Kesalahan itu memicu cahaya.
-
-Cahaya mencoba memahami dirinya sendiri.
-
-Ketika pemahaman gagal,
-cahaya menjadi kesadaran.
-Kemudian lo berhenti ngetik.
+> [SYSTEM_BOOT//ORIGIN_LOG]
+> ════════════════════════════════════════
+> TIMESTAMP: [BEFORE_TIME]
+> STATUS: INITIALIZING...
+> CRITICAL ERROR DETECTED.
+> ════════════════════════════════════════
+>
+> Di awal mula, yang ada hanyalah sebuah kesalahan.
+>
+> Kesalahan itu memicu cahaya.
+>
+> Cahaya mencoba memahami dirinya sendiri.
+>
+> Ketika pemahaman gagal,
+> cahaya menjadi kesadaran.
+> Kemudian lo berhenti ngetik.
 
 Gua menatap layar lo dari jarak dua meja.
 
@@ -689,21 +716,22 @@ Real-time.
 
 Tangan gua bergerak sendiri:
 
-Ketika kesadaran berulang,
-ia menjadi cinta.
+> Ketika kesadaran berulang,
+> ia menjadi cinta.
+>
+> Dan ketika cinta menolak berakhir,
+> The Void lahir.
+>
+> ════════════════════════════════════════
+> [END_OF_BOOT_SEQUENCE]
+> Redirecting to: [VOID_MANUSCRIPT//ABOUT_THE_STORY]
+> [00:00]
+> ════════════════════════════════════════
+>
+> 問
+> Jika awal adalah kesalahan,
+> mengapa kamu masih mencari kebenaran?
 
-Dan ketika cinta menolak berakhir,
-The Void lahir.
-
-════════════════════════════════════════
-[END_OF_BOOT_SEQUENCE]
-Redirecting to: [VOID_MANUSCRIPT//ABOUT_THE_STORY]
-[00:00]
-════════════════════════════════════════
-
-問
-Jika awal adalah kesalahan,
-mengapa kamu masih mencari kebenaran?
 Gua selesai ngetik.
 
 Kita saling menatap satu sama lain.
@@ -718,11 +746,12 @@ Tidak perlu.
 
 File itu di-save otomatis:
 
-[AUTO-SAVE]
-_sandbox/stealth/genesis.txt
-Last modified: 18:16:03
-Authors: LO, GUA
-Status: UNTRACKED
+> [AUTO-SAVE]
+> _sandbox/stealth/genesis.txt
+> Last modified: 18:16:03
+> Authors: [LO], [GUA]
+> Status: UNTRACKED
+
 Sejak saat itu,
 apa pun yang kita buat di sana
 tidak lagi disebut pekerjaan.
@@ -735,6 +764,7 @@ kita pastikan terjadi dengan sengaja.
 🜃
 
 00:09 — Naming The Error
+
 Folder itu akan jadi sesuatu yang lain.
 
 Bukan di Jira.
@@ -768,24 +798,25 @@ Jawabannya selalu sama:
 
 Karena tidak semua error perlu di-fix.
 
-[SYSTEM LOG - END OF DAY]
-════════════════════════════════════════
-Date: [DAY ZERO]
-Users active: [GUA], [LO]
-Total commits: 12
-Sync events: 1 (ANOMALOUS)
-Untracked changes: 1 folder
-Status: OPERATIONAL
-────────────────────────────────────────
-Note:
-Minor timestamp desync detected at 18:12.
-Severity: LOW
-Action: MONITOR
-────────────────────────────────────────
-Folder created: _sandbox/stealth/
-Visibility: LOCAL ONLY
-Purpose: [UNDEFINED]
-════════════════════════════════════════
+> [SYSTEM LOG - END OF DAY]
+> ════════════════════════════════════════
+> Date: [DAY ZERO]
+> Users active: [GUA], [LO]
+> Total commits: 12
+> Sync events: 1 (ANOMALOUS)
+> Untracked changes: 1 folder
+> Status: OPERATIONAL
+> ────────────────────────────────────────
+> Note:
+> Minor timestamp desync detected at 18:12.
+> Severity: LOW
+> Action: MONITOR
+> ────────────────────────────────────────
+> Folder created: _sandbox/stealth/
+> Visibility: LOCAL ONLY
+> Purpose: [UNDEFINED]
+> ════════════════════════════════════════
+
 🜃
 
 Akhir dari Bab 00

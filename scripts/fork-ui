@@ -1,0 +1,533 @@
+#!/usr/bin/env python3
+"""fork-ui — serve the Void Saga Fork Interview as a local web page.
+
+Layer 1 (Experience) only. Layer 2 (questions) and Layer 3 (engine) are untouched.
+Same output as ./scripts/start-fork: answers.md + fork-record.json stub.
+"""
+
+import http.server
+import json
+import os
+import re
+import shutil
+import socketserver
+import sys
+import webbrowser
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+UI_DIR = ROOT / "mvp" / "ui"
+INPUT_DIR = ROOT / "mvp" / "input"
+RUNS_DIR = ROOT / "mvp" / "runs"
+TEMPLATE = ROOT / "mvp" / "templates" / "fork-record.template.json"
+LAWS_PATH = ROOT / "mvp" / "laws" / "bab00-laws.json"
+FORK_POINTS_PATH = ROOT / "mvp" / "genesis" / "fork-points.json"
+
+BAB00 = ROOT / "Bab 00 — Menatap Akhir Era dari Balik.md"
+INDEX_HTML = UI_DIR / "index.html"
+
+PORT = 3720
+
+# Add mvp to path so we can import check_fork
+sys.path.insert(0, str(ROOT / "mvp" / "checker"))
+try:
+    from check_fork import check_fork as run_checker
+except ImportError:
+    run_checker = None
+
+
+class ThreadingServer(socketserver.ThreadingMixIn, http.server.HTTPServer):
+    """Handle requests in threads so a refresh doesn't block."""
+    daemon_threads = True
+
+
+class ForkHandler(http.server.BaseHTTPRequestHandler):
+    def log_message(self, format, *args):
+        # Quiet logging
+        sys.stderr.write(f"  {args[0]}\n")
+
+    def do_GET(self):
+        try:
+            self._do_GET()
+        except Exception as e:
+            self.send_error(500, str(e))
+
+    def _do_GET(self):
+        if self.path in ("/", "/index.html"):
+            self._serve_index()
+        elif self.path == "/api/bab00":
+            self._serve_bab00()
+        elif self.path == "/favicon.ico":
+            self.send_error(204)  # No content — stop browser nagging
+        else:
+            # Try static files from UI dir
+            filepath = UI_DIR / self.path.lstrip("/")
+            if filepath.exists() and filepath.is_file():
+                self._serve_file(filepath)
+            else:
+                self.send_error(404)
+
+    def do_POST(self):
+        try:
+            self._do_POST()
+        except Exception as e:
+            self.send_error(500, str(e))
+
+    def _do_POST(self):
+        if self.path == "/api/save":
+            self._handle_save()
+        elif self.path == "/api/translate":
+            self._handle_translate()
+        elif self.path == "/api/check":
+            self._handle_check()
+        else:
+            self.send_error(404)
+
+    def _serve_file(self, path, content_type=None):
+        if content_type is None:
+            ext = path.suffix.lower()
+            ct_map = {
+                ".html": "text/html; charset=utf-8",
+                ".css": "text/css; charset=utf-8",
+                ".js": "application/javascript; charset=utf-8",
+                ".json": "application/json",
+                ".md": "text/markdown; charset=utf-8",
+                ".txt": "text/plain; charset=utf-8",
+                ".png": "image/png",
+                ".svg": "image/svg+xml",
+            }
+            content_type = ct_map.get(ext, "application/octet-stream")
+
+        try:
+            data = path.read_bytes()
+            self.send_response(200)
+            self.send_header("Content-Type", content_type)
+            self.send_header("Content-Length", len(data))
+            self.end_headers()
+            self.wfile.write(data)
+        except Exception:
+            self.send_error(500)
+
+    def _serve_index(self):
+        """Serve index.html with Bab 00 content injected inline (no fetch needed)."""
+        try:
+            import html as html_mod
+            html = INDEX_HTML.read_text()
+            bab00 = BAB00.read_text()
+            # Process: terminal-line blocks (starting with >) become styled HTML
+            processed = self._process_bab00(bab00)
+            html = html.replace("<!--BAB00_SOURCE-->", processed)
+            data = html.encode("utf-8")
+            self.send_response(200)
+            self.send_header("Content-Type", "text/html; charset=utf-8")
+            self.send_header("Content-Length", len(data))
+            self.send_header("Cache-Control", "no-store, no-cache, must-revalidate")
+            self.end_headers()
+            self.wfile.write(data)
+        except Exception:
+            self.send_error(500)
+
+    def _process_bab00(self, text):
+        """Convert >-prefixed lines into terminal blocks. Everything else is HTML-escaped text."""
+        import html as html_mod
+        lines = text.split('\n')
+        out = []
+        term_buf = []
+        text_buf = []
+
+        def flush_text():
+            nonlocal text_buf
+            if text_buf:
+                escaped = html_mod.escape('\n'.join(text_buf))
+                out.append('<div class="genesis-text">' + escaped.replace('\n', '<br>') + '</div>')
+                text_buf = []
+
+        def flush_term():
+            nonlocal term_buf
+            if term_buf:
+                out.append('<div class="term-block">')
+                for tline in term_buf:
+                    # Strip the leading ">"
+                    content = tline[1:] if tline.startswith('>') else tline
+                    # Remove one leading space if present
+                    if content.startswith(' '):
+                        content = content[1:]
+                    if content.strip() == '':
+                        # Blank line inside term block
+                        out.append('<span class="term-line term-blank">&nbsp;</span>')
+                    else:
+                        content_esc = html_mod.escape(content)
+                        out.append(f'<span class="term-line"><span class="prompt">▸</span>{content_esc}</span>')
+                out.append('</div>')
+                term_buf = []
+
+        for line in lines:
+            stripped = line.lstrip(' ')
+            if stripped.startswith('>'):
+                # Any line starting with > is a term line (including blank >)
+                flush_text()
+                term_buf.append(line)
+            else:
+                flush_term()
+                text_buf.append(line)
+
+        flush_term()
+        flush_text()
+
+        return '\n'.join(out)
+
+    def _serve_bab00(self):
+        try:
+            text = BAB00.read_text()
+            self.send_response(200)
+            self.send_header("Content-Type", "text/plain; charset=utf-8")
+            self.send_header("Content-Length", len(text.encode("utf-8")))
+            self.end_headers()
+            self.wfile.write(text.encode("utf-8"))
+        except Exception:
+            self.send_error(500, "Cannot read bab-00.md")
+
+    def _handle_save(self):
+        try:
+            length = int(self.headers.get("Content-Length", 0))
+            body = self.rfile.read(length)
+            data = json.loads(body)
+
+            name = data.get("name", "anon")
+            content = data.get("content", "")
+
+            # Slugify name (same logic as start-fork script)
+            import re
+            slug = name.lower()
+            slug = re.sub(r'[^a-z0-9]+', '-', slug)
+            slug = slug.strip('-')
+            if not slug:
+                slug = "anon"
+
+            run_dir = RUNS_DIR / slug
+            run_dir.mkdir(parents=True, exist_ok=True)
+
+            # Save answers.md
+            answers_path = run_dir / "answers.md"
+            answers_path.write_text(content)
+
+            # Copy fork-record template if not already present
+            fork_path = run_dir / "fork-record.json"
+            if not fork_path.exists():
+                shutil.copy2(TEMPLATE, fork_path)
+
+            resp = {"ok": True, "run_dir": str(run_dir.relative_to(ROOT))}
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json")
+            self.end_headers()
+            self.wfile.write(json.dumps(resp).encode("utf-8"))
+
+        except Exception as e:
+            resp = {"ok": False, "error": str(e)}
+            self.send_response(500)
+            self.send_header("Content-Type", "application/json")
+            self.end_headers()
+            self.wfile.write(json.dumps(resp).encode("utf-8"))
+
+    def _handle_translate(self):
+        """Read answers.md, translate to fork-record.json, run checker, return verdict."""
+        try:
+            length = int(self.headers.get("Content-Length", 0))
+            body = self.rfile.read(length)
+            req = json.loads(body)
+            name = req.get("name", "anon")
+            slug = self._slugify(name)
+            run_dir = RUNS_DIR / slug
+            answers_path = run_dir / "answers.md"
+
+            if not answers_path.exists():
+                self._json_resp(404, {"ok": False, "error": f"answers.md not found for {name}. Run interview first."})
+                return
+
+            # Parse answers
+            answers = self._parse_answers(answers_path.read_text())
+
+            # Load reference data
+            fork_points = json.loads(FORK_POINTS_PATH.read_text())
+            laws = json.loads(LAWS_PATH.read_text())
+            fp_index = {fp["fork_point_id"]: fp for fp in fork_points}
+            law_index = {l["law_id"]: l for l in laws}
+
+            # Determine fork point from Q1
+            q1 = answers.get("q1", "").lower()
+            if "a" in q1[:1] or "bug janggal" in q1:
+                fp_id = "fp-001"
+            elif "c" in q1[:1] or "genesis error" in q1:
+                fp_id = "fp-003"
+            else:
+                fp_id = "fp-002"  # default to Folder Error
+
+            fp = fp_index.get(fp_id, fork_points[0])
+            affected_laws = fp.get("affected_laws", [])
+
+            # Build fork record
+            violations = self._detect_violations(answers, affected_laws, law_index)
+            # Merge detected violation laws into touched_laws
+            all_touched = list(set(affected_laws + [v["law_id"] for v in violations]))
+
+            fork = {
+                "fork_id": f"fork-{slug}-01",
+                "parent_node": "bab00",
+                "fork_point": fp_id,
+                "title": self._make_title(answers.get("q2", "")),
+                "title_id": self._make_title_id(answers.get("q2", "")),
+                "premise_id": answers.get("q2", ""),
+                "change_id": answers.get("q3", ""),
+                "immediate_effect_id": answers.get("q6", ""),
+                "internal_summary_en": self._build_summary(answers, fp),
+                "participants": ["GUA", "LO"],
+                "touched_laws": all_touched,
+                "violations": violations,
+                "lineage": self._build_lineage(answers, fp, fp_id),
+                "price": self._build_price(answers, all_touched, law_index),
+                "verdict": "",
+                "status": "draft"
+            }
+
+            # Save fork record
+            fork_path = run_dir / "fork-record.json"
+            fork_path.write_text(json.dumps(fork, indent=2, ensure_ascii=False))
+
+            # Run checker
+            result = None
+            if run_checker:
+                try:
+                    result = run_checker(str(fork_path), laws=str(LAWS_PATH), verbose=False)
+                except Exception as e:
+                    result = {"verdict": "UNKNOWN", "reason": f"Checker error: {e}", "status": "error"}
+
+            resp = {
+                "ok": True,
+                "fork_id": fork["fork_id"],
+                "fork_point": fp_id,
+                "fork_point_label": fp.get("label", ""),
+                "title": fork["title"],
+                "verdict": result.get("verdict", "UNKNOWN") if result else "UNKNOWN",
+                "status": result.get("status", "unknown") if result else "unknown",
+                "reason": result.get("reason", "") if result else "",
+                "touched_laws": result.get("touched_laws_detail", []) if result else [],
+                "prices": result.get("prices") if result else None,
+                "blocked_by": result.get("blocked_by") if result else None,
+                "total_laws_touched": result.get("total_laws_touched", 0) if result else 0,
+                "total_violations": result.get("total_violations", 0) if result else 0,
+            }
+            self._json_resp(200, resp)
+
+        except Exception as e:
+            import traceback
+            self._json_resp(500, {"ok": False, "error": str(e), "trace": traceback.format_exc()})
+
+    def _handle_check(self):
+        """Run checker on an existing fork-record.json and return verdict."""
+        try:
+            length = int(self.headers.get("Content-Length", 0))
+            body = self.rfile.read(length)
+            req = json.loads(body)
+            name = req.get("name", "anon")
+            slug = self._slugify(name)
+            fork_path = RUNS_DIR / slug / "fork-record.json"
+
+            if not fork_path.exists():
+                self._json_resp(404, {"ok": False, "error": f"fork-record.json not found for {name}"})
+                return
+
+            if not run_checker:
+                self._json_resp(500, {"ok": False, "error": "Checker module not available"})
+                return
+
+            result = run_checker(str(fork_path), laws=str(LAWS_PATH), verbose=False)
+
+            resp = {
+                "ok": True,
+                "verdict": result.get("verdict", "UNKNOWN"),
+                "status": result.get("status", "unknown"),
+                "reason": result.get("reason", ""),
+                "touched_laws": result.get("touched_laws_detail", []),
+                "prices": result.get("prices"),
+                "blocked_by": result.get("blocked_by"),
+                "total_laws_touched": result.get("total_laws_touched", 0),
+                "total_violations": result.get("total_violations", 0),
+            }
+            self._json_resp(200, resp)
+
+        except Exception as e:
+            self._json_resp(500, {"ok": False, "error": str(e)})
+
+    # ── Translation helpers ────────────────────────────
+
+    def _slugify(self, name):
+        slug = name.lower()
+        slug = re.sub(r'[^a-z0-9]+', '-', slug)
+        slug = slug.strip('-')
+        return slug or "anon"
+
+    def _parse_answers(self, text):
+        """Parse answers.md into {q1..q7} dict."""
+        answers = {}
+        pattern = r'## Q(\d)\. .+?\n(.+?)(?=\n## Q|\Z)'
+        for m in re.finditer(pattern, text, re.DOTALL):
+            qnum = m.group(1)
+            ans = m.group(2).strip()
+            answers[f"q{qnum}"] = ans
+        return answers
+
+    def _make_title(self, q2):
+        """Make a short English title from Q2 answer."""
+        t = q2.strip()
+        if len(t) > 80:
+            t = t[:77] + "..."
+        return t or "Untitled Fork"
+
+    def _make_title_id(self, q2):
+        """Make a short Indonesian title from Q2 answer."""
+        return self._make_title(q2)
+
+    def _build_summary(self, answers, fp):
+        """Build internal_summary_en from all answers."""
+        q1 = answers.get("q1", "")
+        q2 = answers.get("q2", "")
+        q3 = answers.get("q3", "")
+        q4 = answers.get("q4", "")
+        q5 = answers.get("q5", "")
+        q6 = answers.get("q6", "")
+        q7 = answers.get("q7", "")
+        return (
+            f"At {fp.get('label', 'the fork point')} ({fp.get('sub_chapter', '')}): "
+            f"{q2} Character action: {q3}. Stakes: {q4}. "
+            f"Duration: {q5}. Immediate effect: {q6}. "
+            f"Survives/breaks: {q7}"
+        )
+
+    def _build_lineage(self, answers, fp, fp_id):
+        """Build lineage block from answers and fork point data."""
+        q2 = answers.get("q2", "")
+        q5 = answers.get("q5", "")
+        q7 = answers.get("q7", "")
+
+        # Parse Q7 into survives/breaks list
+        effects = [s.strip() for s in q7.replace("SURVIVES:", "SURVIVES:").split("\n") if s.strip()]
+        if not effects:
+            effects = [q7] if q7 else ["Uncertain — downstream effects not specified."]
+
+        fork_point_labels = {
+            "fp-001": "00:03 — Bug Janggal",
+            "fp-002": "00:07 — Folder Error (Independent Sync)",
+            "fp-003": "00:08 — Genesis Error (The Birth of VoidOS)",
+        }
+
+        return {
+            "forked_from": "bab00",
+            "forked_at": fork_point_labels.get(fp_id, fp.get("sub_chapter", "")),
+            "canon_moment": fp.get("moment", ""),
+            "divergence": q2,
+            "downstream_effects": effects,
+        }
+
+    def _detect_violations(self, answers, affected_laws, law_index):
+        """Rule-based violation detection from answer text. Checks all 7 laws."""
+        violations = []
+        all_text = " ".join(answers.values()).lower()
+
+        # Simple keyword-based detection per law
+        patterns = {
+            "law-001": {"keywords": ["konfrontasi", "hadapi langsung", "confront"], "desc": "GUA may be forced into confrontation without a system buffer."},
+            "law-002": {"keywords": ["gak butuh lo", "gak perlu lo", "tanpa lo", "remove lo", "removed", "unnecessary", "pergi dari"], "desc": "LO's stabilizing role may be diminished or removed."},
+            "law-003": {"keywords": ["paksa", "dipaksa", "dipaksakan", "tanpa izin", "tanpa consent", "force", "override", "tanpa persetujuan"], "desc": "VoidOS/genesis may be forced without consent."},
+            "law-004": {"keywords": ["tanpa nama", "gak dinamain", "unnamed"], "desc": "Naming may be avoided, denying the consequence."},
+            "law-005": {"keywords": ["gak ada efek", "gak berubah", "nothing changes", "no ripple", "no downstream", "tidak mengubah"], "desc": "Origin change may not account for downstream propagation."},
+            "law-006": {"keywords": ["gak sinkron", "ngga nyambung", "gak nyambung", "disengaja", "direkayasa", "dikoordinasi", "engineered", "coordinated", "dipasangkan"], "desc": "The GUA-LO sync may be forced or externally coordinated."},
+            "law-007": {"keywords": ["diabaikan", "diacuhkan", "dismiss", "dianggap sepele", "kebetulan", "coincidence", "gak penting", "trivial", "not an error", "bukan error", "keberuntungan", "cuma masalah sepele", "mengacuhkan", "ngga ngeh", "cuek"], "desc": "An error that should become foundation is dismissed as coincidence or fixed."},
+        }
+
+        # Check ALL laws, not just affected ones
+        for law_id, p in patterns.items():
+            if any(kw in all_text for kw in p["keywords"]):
+                law = law_index.get(law_id, {})
+                # Only flag as violation if the law is block_on_violate or price_on_violate
+                if law.get("block_on_violate") or law.get("price_on_violate"):
+                    violations.append({
+                        "law_id": law_id,
+                        "severity": "medium",
+                        "description": f"Auto-detected: {p['desc']} (based on keyword match in interview answers). Review required by Archivist."
+                    })
+
+        return violations
+
+    def _build_price(self, answers, affected_laws, law_index):
+        """Build price block if any price_on_violate laws are affected."""
+        price_laws = []
+        for law_id in affected_laws:
+            law = law_index.get(law_id, {})
+            if law.get("price_on_violate") and not law.get("block_on_violate"):
+                price_laws.append(law["name"])
+
+        if not price_laws:
+            return None
+
+        q5 = answers.get("q5", "")
+        return {
+            "type": "narrative_cost",
+            "description": f"This fork touches laws that carry price: {', '.join(price_laws)}. Duration of change: {q5}. The Archivist should review and specify exact payment.",
+            "affected_nodes": [],
+        }
+
+    def _json_resp(self, code, data):
+        """Send a JSON response."""
+        self.send_response(code)
+        self.send_header("Content-Type", "application/json")
+        self.end_headers()
+        self.wfile.write(json.dumps(data, ensure_ascii=False).encode("utf-8"))
+
+
+def main():
+    # Verify required files
+    if not BAB00.exists():
+        print(f"ERROR: {BAB00} not found")
+        sys.exit(1)
+    if not INDEX_HTML.exists():
+        print(f"ERROR: {INDEX_HTML} not found")
+        sys.exit(1)
+    if not TEMPLATE.exists():
+        print(f"ERROR: {TEMPLATE} not found")
+        sys.exit(1)
+
+    # Allow immediate rebind after crash
+    socketserver.TCPServer.allow_reuse_address = True
+
+    try:
+        server = ThreadingServer(("localhost", PORT), ForkHandler)
+    except OSError as e:
+        if "Address already in use" in str(e):
+            print(f"\n  Port {PORT} masih dipakai proses lain.")
+            print(f"  Coba:  lsof -ti :{PORT} | xargs kill")
+            sys.exit(1)
+        raise
+
+    url = f"http://localhost:{PORT}"
+    print()
+    print("╔══════════════════════════════════════════════════════════╗")
+    print("║  VOID SAGA — Fork Interview                             ║")
+    print("║  Genesis Node: Bab 00                                   ║")
+    print("║                                                        ║")
+    print(f"║  Open: {url:<44} ║")
+    print("║  Press Ctrl+C to stop                                   ║")
+    print("╚══════════════════════════════════════════════════════════╝")
+    print()
+
+    # Open browser
+    webbrowser.open(url)
+
+    try:
+        server.serve_forever()
+    except KeyboardInterrupt:
+        print("\n  Interview session ended.")
+        server.shutdown()
+
+
+if __name__ == "__main__":
+    main()

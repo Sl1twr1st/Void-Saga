@@ -4,32 +4,31 @@ You are about to fork the opening chapter of the Void Saga universe. Forking mea
 
 You never edit JSON. You answer questions in your own words.
 
-## Do this
+## Two ways in
 
-1. **Read the chapter:** [`input/bab-00.md`](input/bab-00.md)
-2. **Run the tool** (from the repo root):
+### Way A — Terminal (script)
 
-   ```bash
-   ./scripts/start-fork
-   ```
+```bash
+./scripts/start-fork
+```
 
-   It asks your name, then a few questions. Answer in plain language. Your answers are saved to `mvp/runs/<your-name>/answers.md`.
+Minimal. Works. Feels like running a tool.
 
-3. **Translate (still manual):** right now, Jali or Claude turns your answers into a fork record at `mvp/runs/<your-name>/fork-record.json`. **This is the only step that is not automated yet** — it is the gate the project is working toward closing.
+### Way B — Web UI (local)
 
-4. **Check the fork:**
+```bash
+./scripts/fork-ui
+```
 
-   ```bash
-   ./scripts/check-fork mvp/runs/<your-name>/fork-record.json
-   ```
+Opens a local web page. Same questions. Same output. Feels like entering a universe.
 
-   You get a verdict against the 7 Bab 00 laws.
+Both produce the same `answers.md` in `mvp/runs/<your-name>/`.
 
-## The flow, honestly
+## The flow
 
 ```
 You answer in prose
-        ↓   ./scripts/start-fork
+        ↓   ./scripts/start-fork   OR   ./scripts/fork-ui
 answers.md  (yours, untouched)
         ↓   TRANSLATE — still manual (Jali/Claude)   ← the Fase 2 gate
 fork-record.json
@@ -38,3 +37,7 @@ Verdict: PASS / VALID_FORK / PRICE_REQUIRED / BLOCKED
 ```
 
 The whole point of this version is to make that one manual step **visible** — so we can see exactly where the writer stops being able to do it alone.
+
+## After your fork is checked
+
+If your verdict is PRICE REQUIRED, the universe permits your divergence but asks for narrative cost. Read the fork record's `price` field to see what you owe.

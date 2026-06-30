@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Void Saga — Fork Interview</title>
+<style>
+  :root {
+    --void: #0a0a0f;
+    --void-deep: #06060a;
+    --text: #c8c8d0;
+    --text-dim: #6a6a78;
+    --text-bright: #e8e8f0;
+    --accent: #7b6f9e;
+    --accent-glow: #a08fc0;
+    --warn: #c4a44a;
+    --block: #8b4a4a;
+    --pass: #5a8a5a;
+    --border: #1e1e2a;
+    --surface: #111118;
+    --progress-bg: #1a1a24;
+    --progress-fill: #7b6f9e;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Courier New', 'Menlo', 'SF Mono', monospace;
+    background: var(--void);
+    color: var(--text);
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.6;
+    padding: 12px;
+  }
+
+  /* ── Container ───────────────────────────── */
+  .terminal {
+    width: 100%;
+    max-width: 430px;
+    height: 100%;
+    max-height: 900px;
+    min-height: 0;
+    margin: 0 auto;
+    background: var(--void-deep);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 0 60px rgba(123,111,158,0.06);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .terminal-header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 8px 14px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 10px;
+    color: var(--text-dim);
+    letter-spacing: 0.5px;
+    flex-shrink: 0;
+  }
+  .terminal-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: #333;
+    display: inline-block;
+  }
+  .terminal-dot.r { background: #5a3a3a; }
+  .terminal-dot.y { background: #5a5a3a; }
+  .terminal-dot.g { background: #3a5a3a; }
+  .terminal-title {
+    flex: 1;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 10px;
+  }
+
+  .terminal-body {
+    padding: 24px 20px;
+    flex: 1;
+    overflow-y: auto;
+    min-height: 0;
+  }
+
+  /* ── Screens ─────────────────────────────── */
+  .screen { }
+
+  /* ── Landing ─────────────────────────────── */
+  .landing-sigil {
+    text-align: center;
+    font-size: 28px;
+    color: var(--accent);
+    margin-bottom: 12px;
+    letter-spacing: 6px;
+    opacity: 0.7;
+  }
+  .landing-title {
+    text-align: center;
+    font-size: 17px;
+    font-weight: bold;
+    color: var(--text-bright);
+    margin-bottom: 4px;
+    letter-spacing: 1px;
+  }
+  .landing-subtitle {
+    text-align: center;
+    font-size: 10px;
+    color: var(--text-dim);
+    margin-bottom: 28px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  .landing-body {
+    font-size: 12px;
+    color: var(--text-dim);
+    text-align: center;
+    margin-bottom: 10px;
+    line-height: 1.7;
+  }
+  .landing-body em {
+    color: var(--text);
+    font-style: normal;
+  }
+  .landing-invocation {
+    text-align: center;
+    font-size: 13px;
+    color: var(--accent-glow);
+    margin-bottom: 24px;
+    line-height: 1.8;
+    letter-spacing: 0.5px;
+  }
+  .landing-steps {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+  }
+  .landing-step {
+    text-align: center;
+    font-size: 10px;
+    color: var(--text-dim);
+    max-width: 90px;
+  }
+  .landing-step .num {
+    font-size: 18px;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 2px;
+  }
+  .btn.enter {
+    display: block;
+    width: 100%;
+    max-width: 280px;
+    margin: 0 auto;
+    padding: 13px 24px;
+    font-size: 13px;
+    letter-spacing: 2px;
+    background: transparent;
+    border: 2px solid var(--accent);
+    color: var(--accent-glow);
+    cursor: pointer;
+    transition: all 0.3s;
+    font-family: inherit;
+    text-transform: uppercase;
+  }
+  .btn.enter:hover {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent-glow);
+    box-shadow: 0 0 24px rgba(123,111,158,0.25);
+  }
+
+  .genesis-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    padding: 14px 16px;
+    margin-bottom: 20px;
+    font-size: 11px;
+    color: var(--text-dim);
+    max-height: 280px;
+    overflow-y: auto;
+    line-height: 1.6;
+    -webkit-overflow-scrolling: touch;
+  }
+  .genesis-box strong { color: var(--text-bright); }
+  .genesis-text {
+    margin: 8px 0;
+    font-family: inherit;
+    line-height: 1.6;
+  }
+
+  /* ── Terminal blocks inside genesis ──────────── */
+  .term-block {
+    background: #050510;
+    border: 1px solid #15152a;
+    border-left: 2px solid #3a3a5a;
+    margin: 12px 0;
+    padding: 10px 14px;
+    font-family: 'SF Mono', 'Menlo', 'Courier New', monospace;
+    font-size: 10px;
+    line-height: 1.6;
+    color: #8899aa;
+    white-space: pre-wrap;
+    border-radius: 2px;
+  }
+  .term-block .term-line {
+    display: block;
+    color: #8899aa;
+  }
+  .term-block .term-line .prompt {
+    color: #4a5a6a;
+    margin-right: 6px;
+    user-select: none;
+  }
+
+  /* ── Form elements ────────────────────────── */
+  .field {
+    margin-bottom: 16px;
+  }
+  .field-label {
+    display: block;
+    font-size: 10px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 6px;
+  }
+  .field-input {
+    width: 100%;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text-bright);
+    font-family: inherit;
+    font-size: 13px;
+    padding: 10px 12px;
+    border-radius: 2px;
+    outline: none;
+    transition: border-color 0.2s;
+    -webkit-appearance: none;
+  }
+  .field-input:focus { border-color: var(--accent); }
+  textarea.field-input {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  /* ── Question screen ──────────────────────── */
+  .question-progress {
+    margin-bottom: 20px;
+  }
+  .progress-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 9px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+  .progress-bar-outer {
+    height: 3px;
+    background: var(--progress-bg);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .progress-bar-inner {
+    height: 100%;
+    background: var(--progress-fill);
+    transition: width 0.4s ease;
+    border-radius: 2px;
+  }
+
+  .question-meta {
+    font-size: 9px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+  }
+  .question-text {
+    font-size: 13px;
+    color: var(--text-bright);
+    margin-bottom: 16px;
+    line-height: 1.6;
+  }
+
+  .btn {
+    display: inline-block;
+    background: var(--surface);
+    color: var(--text-bright);
+    border: 1px solid var(--border);
+    font-family: inherit;
+    font-size: 12px;
+    padding: 9px 18px;
+    cursor: pointer;
+    border-radius: 2px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.2s;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+  .btn:hover { border-color: var(--accent); background: #1a1a26; }
+  .btn:active { background: var(--accent); }
+  .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .btn.primary:hover { background: var(--accent-glow); }
+
+  /* ── Completion ───────────────────────────── */
+  .complete-header {
+    text-align: center;
+    font-size: 14px;
+    color: var(--pass);
+    margin-bottom: 16px;
+    letter-spacing: 1px;
+  }
+  .complete-check {
+    text-align: center;
+    font-size: 30px;
+    margin-bottom: 6px;
+  }
+  .complete-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 16px 18px;
+    margin-bottom: 12px;
+    font-size: 11px;
+    line-height: 1.7;
+  }
+  .complete-box .path {
+    color: var(--accent-glow);
+    word-break: break-all;
+  }
+
+  .divider {
+    border: 0;
+    border-top: 1px solid var(--border);
+    margin: 14px 0;
+  }
+  .small { font-size: 10px; color: var(--text-dim); }
+  .accent { color: var(--accent-glow); }
+  .warn { color: var(--warn); }
+
+  /* ── Context bar ──────────────────────────── */
+  .context-bar {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 7px 14px;
+    font-size: 9px;
+    color: var(--text-dim);
+    display: flex;
+    gap: 14px;
+    letter-spacing: 0.3px;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  .context-bar span { white-space: nowrap; }
+  .context-bar .val { color: var(--text); }
+
+  /* ── Desktop: subtle max-width constraint only ── */
+  @media (min-width: 500px) {
+    body { padding: 24px; }
+    .terminal-body { padding: 28px 28px; }
+    .landing-sigil { font-size: 32px; }
+    .landing-title { font-size: 19px; }
+    .landing-invocation { font-size: 15px; }
+    .landing-steps { gap: 28px; }
+    .landing-step { font-size: 11px; max-width: 110px; }
+    .genesis-box { padding: 16px 20px; font-size: 12px; max-height: 320px; }
+    .question-text { font-size: 14px; }
+    .btn { font-size: 12px; padding: 10px 20px; }
+  }
+
+  /* ── Transitions ──────────────────────────── */
+  .fade-in {
+    animation: fadeIn 0.3s ease;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── Bab 00 preview ───────────────────────── */
+  .bab-preview-toggle {
+    font-size: 11px;
+    color: var(--accent);
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 8px;
+    display: inline-block;
+    user-select: none;
+  }
+  .bab-preview-toggle:hover { color: var(--accent-glow); }
+</style>
+</head>
+<body>
+
+<div class="terminal">
+  <!-- Header -->
+  <div class="terminal-header">
+    <span class="terminal-dot r"></span>
+    <span class="terminal-dot y"></span>
+    <span class="terminal-dot g"></span>
+    <span class="terminal-title">Void.OS — Fork Protocol v0.2</span>
+  </div>
+
+  <!-- Context bar -->
+  <div class="context-bar" id="contextBar">
+    <span>Genesis: <span class="val">Bab 00</span></span>
+    <span>Node: <span class="val">bab00</span></span>
+    <span>Laws: <span class="val">7 active</span></span>
+    <span>Fork Points: <span class="val">3 available</span></span>
+  </div>
+
+  <!-- Body -->
+  <div class="terminal-body" id="app">
+    <!-- Screens are injected by JS -->
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════════
+// Void Saga — Fork Interview
+// Layer 1: Experience. Same questions. Same output.
+// ═══════════════════════════════════════════════════════════
+
+const QUESTIONS = [
+  {
+    id: 1,
+    text: "Which moment do you want to change? (a) Bug Janggal — LO first approaches GUA at 00:03; (b) Folder Error — they sync independently; (c) Genesis Error — the birth of VoidOS. Pick one letter and say why that moment.",
+    hint: "Choose a letter (a/b/c) and explain your choice"
+  },
+  {
+    id: 2,
+    text: "In one sentence: what if...? Describe your change in your own words.",
+    hint: "One clear sentence — paint the alternate moment"
+  },
+  {
+    id: 3,
+    text: "Be specific — does the character ignore, refuse, not notice, or something else? Say which.",
+    hint: "ignore / refuse / not notice / hesitate / accept / something else"
+  },
+  {
+    id: 4,
+    text: "What is at stake in that moment? What shifts if your change happens?",
+    hint: "What is hanging in the balance?"
+  },
+  {
+    id: 5,
+    text: "How long does the change last — only that moment, or does it ripple forward permanently?",
+    hint: "A moment? A month? Forever?"
+  },
+  {
+    id: 6,
+    text: "What is the immediate consequence — what happens right after?",
+    hint: "The ripple right after the stone hits the water"
+  },
+  {
+    id: 7,
+    text: "Does the rest of Bab 00 still happen? (the timestamp bug still gets fixed, genesis.txt still gets written, the stealth project still starts) Say what survives and what breaks.",
+    hint: "What remains? What shatters?"
+  }
+];
+
+const FORMAT = `# Fork answers — {name}
+# date: {date}
+# fork target: Bab 00 (Void Saga genesis)
+
+## Q1. Which moment do you want to change? (a) Bug Janggal — LO first approaches GUA at 00:03; (b) Folder Error — they sync independently; (c) Genesis Error — the birth of VoidOS. Pick one letter and say why that moment.
+{q1}
+
+## Q2. In one sentence: what if...? Describe your change in your own words.
+{q2}
+
+## Q3. Be specific — does the character ignore, refuse, not notice, or something else? Say which.
+{q3}
+
+## Q4. What is at stake in that moment? What shifts if your change happens?
+{q4}
+
+## Q5. How long does the change last — only that moment, or does it ripple forward permanently?
+{q5}
+
+## Q6. What is the immediate consequence — what happens right after?
+{q6}
+
+## Q7. Does the rest of Bab 00 still happen? (the timestamp bug still gets fixed, genesis.txt still gets written, the stealth project still starts) Say what survives and what breaks.
+{q7}
+`;
+
+// ── State ──────────────────────────────────────
+let screen = 'landing';
+let writerName = '';
+let currentQ = 0;
+let answers = {};
+
+// ── Screens ────────────────────────────────────
+function render() {
+  const app = document.getElementById('app');
+  const ctx = document.getElementById('contextBar');
+
+  // Update context bar per screen
+  const ctxMap = {
+    'landing':   `<span>Genesis: <span class="val">Bab 00</span></span><span>Node: <span class="val">bab00</span></span><span>Laws: <span class="val">7 active</span></span><span>Fork Points: <span class="val">3 available</span></span>`,
+    'read':      `<span>📖 <span class="val">Bab 00 — Menatap Akhir Era dari Balik Laptop Kantor</span></span>`,
+    'name':      `<span>✧ <span class="val">Fork Interview — Who is writing?</span></span>`,
+    'question':  `<span>✧ <span class="val">Fork Interview — Question ${currentQ+1} of ${QUESTIONS.length}</span></span><span style="margin-left:auto">Writer: <span class="val">${esc(writerName) || '…'}</span></span>`,
+  };
+
+  switch (screen) {
+    case 'landing':
+      ctx.style.display = 'flex';
+      ctx.innerHTML = ctxMap['landing'];
+      app.innerHTML = landingHTML();
+      break;
+    case 'read':
+      ctx.style.display = 'flex';
+      ctx.innerHTML = ctxMap['read'];
+      app.innerHTML = readHTML();
+      break;
+    case 'name':
+      ctx.style.display = 'flex';
+      ctx.innerHTML = ctxMap['name'];
+      app.innerHTML = nameHTML();
+      break;
+    case 'question':
+      ctx.style.display = 'flex';
+      ctx.innerHTML = ctxMap['question'];
+      app.innerHTML = questionHTML();
+      break;
+    case 'complete':
+      ctx.style.display = 'none';
+      app.innerHTML = completeHTML();
+      break;
+  }
+
+  // Fade-in effect
+  app.querySelector('.screen')?.classList.add('fade-in');
+
+  // Bind events
+  bindEvents();
+}
+
+function landingHTML() {
+  return `
+    <div class="screen fade-in">
+      <div class="landing-sigil">🜃</div>
+      <div class="landing-title">Fork Bab 00</div>
+      <div class="landing-subtitle">Void Saga — Genesis Node</div>
+
+      <div class="landing-invocation">
+        Read Bab 00.<br>
+        Choose one fracture.<br>
+        Pay the price.
+      </div>
+
+      <div class="landing-steps">
+        <div class="landing-step">
+          <span class="num">1</span>
+          Read the<br>genesis chapter
+        </div>
+        <div class="landing-step">
+          <span class="num">2</span>
+          Answer seven<br>questions
+        </div>
+        <div class="landing-step">
+          <span class="num">3</span>
+          See what the<br>universe allows
+        </div>
+      </div>
+
+      <button class="btn enter" onclick="screen='read';render()">
+        ENTER GENESIS
+      </button>
+    </div>`;
+}
+
+function readHTML() {
+  return `
+    <div class="screen fade-in">
+      <div class="landing-invocation" style="margin-bottom:16px">Bab 00 — Menatap Akhir Era<br>dari Balik Laptop Kantor</div>
+      <div class="genesis-box" id="bab00Content">
+        Loading genesis.txt…
+      </div>
+      <div style="text-align:center">
+        <button class="btn enter" style="max-width:280px;margin-top:8px" id="btnReadDone">
+          I HAVE READ BAB 00
+        </button>
+      </div>
+    </div>`;
+}
+
+function nameHTML() {
+  return `
+    <div class="screen fade-in">
+      <div class="landing-invocation" style="margin-bottom:20px">Who is writing<br>this fork?</div>
+      <div class="field" style="max-width:360px;margin:0 auto 20px">
+        <input class="field-input" id="inputName" type="text"
+               placeholder="Your name…"
+               value="${esc(writerName)}" autofocus
+               style="text-align:center;font-size:16px">
+      </div>
+      <div style="text-align:center">
+        <button class="btn enter" style="max-width:280px" id="btnNameNext">
+          BEGIN INTERVIEW
+        </button>
+      </div>
+    </div>`;
+}
+
+function questionHTML() {
+  const q = QUESTIONS[currentQ];
+  const pct = Math.round((currentQ / QUESTIONS.length) * 100);
+  const bar = '■'.repeat(currentQ) + '□'.repeat(QUESTIONS.length - currentQ);
+
+  return `
+    <div class="screen fade-in">
+      <div class="question-progress">
+        <div class="progress-info">
+          <span>Fork Interview — Question ${q.id} of ${QUESTIONS.length}</span>
+          <span>${bar}</span>
+        </div>
+        <div class="progress-bar-outer">
+          <div class="progress-bar-inner" style="width:${pct}%"></div>
+        </div>
+      </div>
+
+      <div class="question-meta">
+        Choose your fracture: &nbsp; Bug Janggal &nbsp;·&nbsp; Folder Error &nbsp;·&nbsp; Genesis Error
+      </div>
+
+      <div class="question-text">${q.text}</div>
+      <div class="small" style="margin-bottom:12px; color:var(--text-dim)">
+        ${q.hint}
+      </div>
+
+      <div class="field">
+        <textarea class="field-input" id="inputAnswer" rows="4"
+                  placeholder="Your answer…"
+                  style="resize:vertical;min-height:80px">${esc(answers[q.id] || '')}</textarea>
+      </div>
+
+      <div style="display:flex; justify-content:space-between; align-items:center">
+        <button class="btn" id="btnPrev" ${currentQ === 0 ? 'disabled style="opacity:0.3"' : ''}>
+          ← Back
+        </button>
+        <span class="small">${currentQ + 1} / ${QUESTIONS.length}</span>
+        <button class="btn primary" id="btnNext">
+          ${currentQ < QUESTIONS.length - 1 ? 'Next ▸' : 'Finish ▸'}
+        </button>
+      </div>
+    </div>`;
+}
+
+function completeHTML() {
+  const now = new Date();
+  const dateStr = now.getFullYear() + '-' +
+    String(now.getMonth()+1).padStart(2,'0') + '-' +
+    String(now.getDate()).padStart(2,'0') + ' ' +
+    String(now.getHours()).padStart(2,'0') + ':' +
+    String(now.getMinutes()).padStart(2,'0');
+
+  const slug = writerName.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'') || 'anon';
+  const runPath = `mvp/runs/${slug}/`;
+
+  return `
+    <div class="screen fade-in">
+      <div class="complete-check">✧</div>
+      <div class="complete-header">Your fork has been recorded.</div>
+
+      <div class="complete-box">
+        <span class="accent">Writer:</span> <strong>${esc(writerName)}</strong><br>
+        <span class="accent">Date:</span> ${dateStr}<br>
+        <span class="accent">Genesis:</span> Bab 00<br>
+        <span class="accent">Record:</span> <span class="path">${runPath}answers.md</span>
+      </div>
+
+      <!-- Translate button -->
+      <div style="text-align:center;margin:24px 0" id="translateArea">
+        <button class="btn enter" id="btnTranslate" style="max-width:360px">
+          TRANSLATE THE INTERVIEW
+        </button>
+        <div class="small" style="margin-top:8px">
+          The Archivist will translate your answers<br>into the canonical Fork Record and check the laws.
+        </div>
+      </div>
+
+      <!-- Verdict (hidden initially, shown after translate) -->
+      <div id="verdictArea" style="display:none"></div>
+
+      <div style="text-align:center; margin-top:20px">
+        <button class="btn" onclick="window.location.reload()">
+          Make Another Fork
+        </button>
+      </div>
+    </div>`;
+}
+
+// ── Verdict display ──────────────────────────
+function verdictHTML(data) {
+  if (!data.ok) {
+    return `<div class="complete-box" style="border-left:3px solid var(--warn)">
+      <strong>Translation unavailable</strong><br><br>
+      ${esc(data.error || 'Unknown error')}<br><br>
+      <span class="small">The Archivist will translate manually. Run:</span><br>
+      <span class="path">$ ./scripts/check-fork mvp/runs/${esc(writerName.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'') || 'anon')}/fork-record.json</span>
+    </div>`;
+  }
+
+  const icons = {PASS: '🟢', VALID_FORK: '🔵', PRICE_REQUIRED: '🟡', BLOCKED: '🛑', UNKNOWN: '❓'};
+  const icon = icons[data.verdict] || '❓';
+  const verdictClass = data.verdict === 'BLOCKED' ? 'block' : (data.verdict === 'PRICE_REQUIRED' ? 'warn' : 'pass');
+
+  let lawsHTML = '';
+  if (data.touched_laws && data.touched_laws.length > 0) {
+    lawsHTML = '<hr class="divider"><div class="field-label" style="margin-bottom:8px">Law Evaluation</div>';
+    for (const entry of data.touched_laws) {
+      const mark = entry.violated ? '✗' : '✓';
+      const color = entry.violated ? 'var(--warn)' : 'var(--pass)';
+      const tag = entry.block_on_violate && entry.violated ? ' [HARD BLOCK]' :
+                  entry.price_on_violate && entry.violated ? ' [PRICE]' : '';
+      lawsHTML += `<div style="font-size:12px;margin-bottom:4px;color:${color}">${mark} ${esc(entry.law_name)}${tag}</div>`;
+      if (entry.violated && entry.description) {
+        lawsHTML += `<div class="small" style="margin-left:16px;margin-bottom:6px">${esc(entry.description.substring(0, 120))}</div>`;
+      }
+    }
+  }
+
+  let priceHTML = '';
+  if (data.prices && data.prices.length > 0) {
+    priceHTML = '<hr class="divider"><div class="field-label" style="margin-bottom:8px">Required Price</div>';
+    for (const p of data.prices) {
+      priceHTML += `<div class="small" style="color:var(--warn)">⟡ ${esc(p.law_name)}: ${esc((p.description || '').substring(0, 100))}</div>`;
+    }
+  }
+
+  let blockHTML = '';
+  if (data.blocked_by && data.blocked_by.length > 0) {
+    blockHTML = '<hr class="divider"><div class="field-label" style="margin-bottom:8px">Blocked By</div>';
+    for (const b of data.blocked_by) {
+      blockHTML += `<div class="small" style="color:var(--block)">⊘ ${esc(b.law_name)}: ${esc((b.description || '').substring(0, 100))}</div>`;
+    }
+  }
+
+  return `
+    <div class="complete-box" style="border-left:3px solid var(--${verdictClass})">
+      <div style="text-align:center;font-size:28px;margin-bottom:4px">${icon}</div>
+      <div style="text-align:center;font-size:16px;color:var(--${verdictClass});margin-bottom:12px">
+        <strong>${data.verdict}</strong>
+      </div>
+      <div class="small" style="text-align:center">${esc(data.reason || '')}</div>
+      ${lawsHTML}
+      ${priceHTML}
+      ${blockHTML}
+    </div>
+    <div class="small" style="text-align:center;margin-top:8px">
+      Laws touched: ${data.total_laws_touched} &nbsp;|&nbsp; Violations: ${data.total_violations} &nbsp;|&nbsp; Fork: ${esc(data.fork_id || '')}
+    </div>`;
+}
+
+// ── Helpers ────────────────────────────────────
+function esc(s) {
+  if (!s) return '';
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function bindEvents() {
+  // Read screen — load Bab 00 from embedded source (no fetch)
+  const bab00El = document.getElementById('bab00Content');
+  if (bab00El) {
+    const src = document.getElementById('bab00-source');
+    if (src && src.innerHTML.trim() && !src.innerHTML.includes('BAB00_SOURCE')) {
+      bab00El.innerHTML = src.innerHTML.trim();
+    } else {
+      bab00El.textContent = 'Bab 00 tidak tersedia. Baca manual: mvp/input/bab-00.md';
+    }
+  }
+
+  // Translate button (completion screen)
+  document.getElementById('btnTranslate')?.addEventListener('click', () => {
+    const btn = document.getElementById('btnTranslate');
+    btn.disabled = true;
+    btn.textContent = 'TRANSLATING…';
+    document.getElementById('verdictArea').style.display = 'block';
+    document.getElementById('verdictArea').innerHTML = '<div class="small" style="text-align:center;padding:20px">The Archivist is translating your interview…</div>';
+
+    fetch('/api/translate', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({name: writerName})
+    })
+    .then(r => r.json())
+    .then(data => {
+      document.getElementById('translateArea').style.display = 'none';
+      document.getElementById('verdictArea').innerHTML = verdictHTML(data);
+    })
+    .catch(err => {
+      document.getElementById('translateArea').style.display = 'none';
+      document.getElementById('verdictArea').innerHTML =
+        `<div class="complete-box warn">Translation failed: ${err.message}.<br>The Archivist will translate manually.</div>`;
+    });
+  });
+
+  // Read done button
+  document.getElementById('btnReadDone')?.addEventListener('click', () => {
+    screen = 'name';
+    render();
+  });
+
+  // Name → first question
+  document.getElementById('btnNameNext')?.addEventListener('click', () => {
+    const input = document.getElementById('inputName');
+    writerName = input.value.trim() || 'Anon';
+    currentQ = 0;
+    answers = {};
+    screen = 'question';
+    render();
+  });
+
+  // Input name enter key
+  document.getElementById('inputName')?.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      writerName = e.target.value.trim() || 'Anon';
+      currentQ = 0;
+      answers = {};
+      screen = 'question';
+      render();
+    }
+  });
+
+  // Prev button
+  document.getElementById('btnPrev')?.addEventListener('click', () => {
+    // Save current answer before navigating
+    const input = document.getElementById('inputAnswer');
+    if (input) answers[currentQ + 1] = input.value;
+
+    if (currentQ > 0) {
+      currentQ--;
+      screen = 'question';
+      render();
+    }
+  });
+
+  // Next button
+  document.getElementById('btnNext')?.addEventListener('click', () => {
+    const input = document.getElementById('inputAnswer');
+    const val = input ? input.value.trim() : '';
+    answers[currentQ + 1] = val;
+
+    if (currentQ < QUESTIONS.length - 1) {
+      currentQ++;
+      screen = 'question';
+      render();
+    } else {
+      // Build answers.md content
+      const now = new Date();
+      const dateStr = now.getFullYear() + '-' +
+        String(now.getMonth()+1).padStart(2,'0') + '-' +
+        String(now.getDate()).padStart(2,'0') + ' ' +
+        String(now.getHours()).padStart(2,'0') + ':' +
+        String(now.getMinutes()).padStart(2,'0');
+
+      const content = FORMAT
+        .replace('{name}', writerName)
+        .replace('{date}', dateStr)
+        .replace('{q1}', answers[1] || '(no answer)')
+        .replace('{q2}', answers[2] || '(no answer)')
+        .replace('{q3}', answers[3] || '(no answer)')
+        .replace('{q4}', answers[4] || '(no answer)')
+        .replace('{q5}', answers[5] || '(no answer)')
+        .replace('{q6}', answers[6] || '(no answer)')
+        .replace('{q7}', answers[7] || '(no answer)');
+
+      // Save via API
+      fetch('/api/save', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: writerName, content: content })
+      }).then(r => r.json()).then(data => {
+        if (data.ok) {
+          screen = 'complete';
+          render();
+        } else {
+          alert('Error saving: ' + (data.error || 'unknown'));
+        }
+      }).catch(err => {
+        // Fallback — show completion anyway, offer download
+        console.error(err);
+        screen = 'complete';
+        render();
+        // Add download link
+        setTimeout(() => {
+          const box = document.querySelector('.complete-box');
+          if (box) {
+            const blob = new Blob([content], {type:'text/markdown'});
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'answers.md';
+            a.textContent = '⬇ Download answers.md';
+            a.style.cssText = 'display:block;margin-top:12px;color:#a08fc0;cursor:pointer';
+            box.appendChild(a);
+          }
+        }, 100);
+      });
+    }
+  });
+
+  // Textarea enter doesn't submit — Shift+Enter for newline
+  document.getElementById('inputAnswer')?.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      document.getElementById('btnNext')?.click();
+    }
+  });
+}
+
+// ── Init ───────────────────────────────────────
+render();
+</script>
+
+<!-- Bab 00 source — injected by server, read by JS. No fetch needed. -->
+<pre id="bab00-source" style="display:none"><!--BAB00_SOURCE--></pre>
+
+</body>
+</html>

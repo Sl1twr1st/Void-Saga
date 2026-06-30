@@ -8,9 +8,9 @@
   :root {
     --void: #0a0a0f;
     --void-deep: #06060a;
-    --text: #c8c8d0;
-    --text-dim: #6a6a78;
-    --text-bright: #e8e8f0;
+    --text: #d0d0d8;
+    --text-dim: #8a8a96;
+    --text-bright: #eeeeee;
     --accent: #7b6f9e;
     --accent-glow: #a08fc0;
     --warn: #c4a44a;
@@ -28,28 +28,26 @@
     font-family: 'Courier New', 'Menlo', 'SF Mono', monospace;
     background: var(--void);
     color: var(--text);
-    min-height: 100vh;
     min-height: 100dvh;
     display: flex;
     align-items: center;
     justify-content: center;
     line-height: 1.6;
-    padding: 12px;
+    padding: 0;
+    margin: 0;
   }
 
   /* ── Container ───────────────────────────── */
   .terminal {
-    width: 100%;
-    max-width: 430px;
-    height: 100%;
-    max-height: 900px;
+    width: 100vw;
+    height: 100dvh;
     min-height: 0;
-    margin: 0 auto;
+    margin: 0;
     background: var(--void-deep);
-    border: 1px solid var(--border);
-    border-radius: 6px;
+    border: none;
+    border-radius: 0;
     overflow: hidden;
-    box-shadow: 0 0 60px rgba(123,111,158,0.06);
+    box-shadow: none;
     display: flex;
     flex-direction: column;
   }
@@ -158,10 +156,9 @@
   .btn.enter {
     display: block;
     width: 100%;
-    max-width: 280px;
     margin: 0 auto;
-    padding: 13px 24px;
-    font-size: 13px;
+    padding: 14px 24px;
+    font-size: 14px;
     letter-spacing: 2px;
     background: transparent;
     border: 2px solid var(--accent);
@@ -170,6 +167,8 @@
     transition: all 0.3s;
     font-family: inherit;
     text-transform: uppercase;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
   }
   .btn.enter:hover {
     background: var(--accent);
@@ -177,25 +176,95 @@
     border-color: var(--accent-glow);
     box-shadow: 0 0 24px rgba(123,111,158,0.25);
   }
+  .btn.enter:active {
+    background: var(--accent);
+  }
+  .btn.enter:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+    border-color: var(--border);
+    color: var(--text-dim);
+  }
+  .btn.enter:disabled:hover {
+    background: transparent;
+    box-shadow: none;
+  }
+
+  /* ── Reading progress ── */
+  .read-progress {
+    text-align: center;
+    font-size: 9px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 8px;
+    min-height: 12px;
+  }
+  .read-progress.ready {
+    color: var(--pass);
+  }
 
   .genesis-box {
     background: var(--surface);
     border: 1px solid var(--border);
     border-left: 3px solid var(--accent);
     padding: 14px 16px;
-    margin-bottom: 20px;
     font-size: 11px;
     color: var(--text-dim);
-    max-height: 280px;
-    overflow-y: auto;
     line-height: 1.6;
     -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: #2a2a38 transparent;
   }
+  .genesis-box::-webkit-scrollbar { width: 5px; }
+  .genesis-box::-webkit-scrollbar-track { background: transparent; }
+  .genesis-box::-webkit-scrollbar-thumb {
+    background: #2a2a38;
+    border-radius: 3px;
+  }
+  .genesis-box::-webkit-scrollbar-thumb:hover { background: #3a3a4a; }
   .genesis-box strong { color: var(--text-bright); }
   .genesis-text {
     margin: 8px 0;
     font-family: inherit;
     line-height: 1.6;
+  }
+
+  /* ── Read screen layout ── */
+  .read-screen {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 0;
+  }
+  .read-scroll {
+    flex: 1;
+    overflow-y: auto;
+    min-height: 0;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: #2a2a38 transparent;
+    padding-bottom: 24px;
+  }
+  .read-scroll::-webkit-scrollbar { width: 5px; }
+  .read-scroll::-webkit-scrollbar-track { background: transparent; }
+  .read-scroll::-webkit-scrollbar-thumb { background: #2a2a38; border-radius: 3px; }
+  .read-bottom {
+    flex-shrink: 0;
+    padding: 14px 20px 16px;
+    padding-bottom: max(16px, env(safe-area-inset-bottom, 16px));
+    text-align: center;
+    border-top: 2px solid var(--border);
+    background: var(--void-deep);
+  }
+  .read-bottom .btn-row {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+  }
+  .read-bottom .btn-row .btn.enter {
+    flex: 1;
+    min-width: 0;
   }
 
   /* ── Terminal blocks inside genesis ──────────── */
@@ -208,16 +277,16 @@
     font-family: 'SF Mono', 'Menlo', 'Courier New', monospace;
     font-size: 10px;
     line-height: 1.6;
-    color: #8899aa;
+    color: #99aabb;
     white-space: pre-wrap;
     border-radius: 2px;
   }
   .term-block .term-line {
     display: block;
-    color: #8899aa;
+    color: #99aabb;
   }
   .term-block .term-line .prompt {
-    color: #4a5a6a;
+    color: #5a6a7a;
     margin-right: 6px;
     user-select: none;
   }
@@ -240,7 +309,7 @@
     border: 1px solid var(--border);
     color: var(--text-bright);
     font-family: inherit;
-    font-size: 13px;
+    font-size: 16px;
     padding: 10px 12px;
     border-radius: 2px;
     outline: none;
@@ -249,7 +318,7 @@
   }
   .field-input:focus { border-color: var(--accent); }
   textarea.field-input {
-    font-size: 13px;
+    font-size: 16px;
     line-height: 1.5;
   }
 
@@ -367,18 +436,30 @@
   .context-bar span { white-space: nowrap; }
   .context-bar .val { color: var(--text); }
 
-  /* ── Desktop: subtle max-width constraint only ── */
-  @media (min-width: 500px) {
+  /* ── Desktop: card styling ── */
+  @media (min-width: 600px) {
     body { padding: 24px; }
+    .terminal {
+      width: 100%;
+      max-width: 430px;
+      height: calc(100dvh - 48px);
+      max-height: 900px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      box-shadow: 0 0 60px rgba(123,111,158,0.06);
+      margin: 0 auto;
+    }
     .terminal-body { padding: 28px 28px; }
     .landing-sigil { font-size: 32px; }
     .landing-title { font-size: 19px; }
     .landing-invocation { font-size: 15px; }
     .landing-steps { gap: 28px; }
     .landing-step { font-size: 11px; max-width: 110px; }
-    .genesis-box { padding: 16px 20px; font-size: 12px; max-height: 320px; }
+    .genesis-box { padding: 16px 20px; font-size: 12px; }
     .question-text { font-size: 14px; }
     .btn { font-size: 12px; padding: 10px 20px; }
+    .btn.enter { max-width: 320px; font-size: 13px; }
+    .field-input, textarea.field-input { font-size: 14px; }
   }
 
   /* ── Transitions ──────────────────────────── */
@@ -390,19 +471,147 @@
     to   { opacity: 1; transform: translateY(0); }
   }
 
-  /* ── Bab 00 preview ───────────────────────── */
-  .bab-preview-toggle {
+  /* ── API Key Gate ─────────────────────── */
+  .gate-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    padding: 16px 18px;
+    margin: 16px 0;
+  }
+  .gate-provider-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+  }
+  .gate-provider-btn {
+    flex: 1;
+    min-width: 80px;
+    padding: 10px 8px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    font-family: inherit;
     font-size: 11px;
-    color: var(--accent);
     cursor: pointer;
     text-transform: uppercase;
     letter-spacing: 1px;
-    margin-top: 8px;
-    display: inline-block;
-    user-select: none;
+    border-radius: 2px;
+    transition: all 0.2s;
   }
-  .bab-preview-toggle:hover { color: var(--accent-glow); }
-</style>
+  .gate-provider-btn.active {
+    border-color: var(--accent);
+    color: var(--accent-glow);
+    background: #1a1a2a;
+  }
+  .gate-model-select {
+    width: 100%;
+    background: var(--void);
+    border: 1px solid var(--border);
+    color: var(--text-bright);
+    font-family: inherit;
+    font-size: 12px;
+    padding: 8px 10px;
+    border-radius: 2px;
+    margin-bottom: 10px;
+  }
+  .gate-key-input {
+    width: 100%;
+    background: var(--void);
+    border: 1px solid var(--border);
+    color: var(--text-bright);
+    font-family: 'SF Mono', 'Menlo', monospace;
+    font-size: 12px;
+    padding: 8px 10px;
+    border-radius: 2px;
+    margin-bottom: 8px;
+    -webkit-text-security: disc;
+  }
+  .gate-remember {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 12px;
+    font-size: 10px;
+    color: var(--text-dim);
+  }
+  .gate-note {
+    font-size: 9px;
+    color: var(--text-dim);
+    text-align: center;
+    margin-bottom: 12px;
+    line-height: 1.5;
+  }
+  .gate-forget {
+    font-size: 9px;
+    color: var(--warn);
+    cursor: pointer;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  .gate-actions {
+    display: flex;
+    gap: 10px;
+  }
+  .gate-actions .btn {
+    flex: 1;
+  }
+  .btn.skip {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+  }
+
+  /* ── Scene Preview ──────────────────────── */
+  .scene-preview-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--pass);
+    padding: 16px 18px;
+    margin: 16px 0;
+    max-height: 350px;
+    overflow-y: auto;
+    font-size: 12px;
+    line-height: 1.7;
+    white-space: pre-wrap;
+    scrollbar-width: thin;
+    scrollbar-color: #2a2a38 transparent;
+  }
+  .scene-preview-box::-webkit-scrollbar { width: 5px; }
+  .scene-preview-box::-webkit-scrollbar-track { background: transparent; }
+  .scene-preview-box::-webkit-scrollbar-thumb { background: #2a2a38; border-radius: 3px; }
+
+  /* ── Gallery ────────────────────────────── */
+  .gallery-entry {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    padding: 14px 16px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: border-color 0.2s;
+  }
+  .gallery-entry:hover { border-color: var(--accent-glow); }
+  .gallery-entry .gallery-meta {
+    font-size: 9px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 4px;
+  }
+  .gallery-entry .gallery-writer { color: var(--accent-glow); font-size: 12px; }
+  .gallery-excerpt {
+    font-size: 10px;
+    color: var(--text-dim);
+    line-height: 1.5;
+    margin-top: 6px;
+    font-style: italic;
+  }
+  </style>
 </head>
 <body>
 
@@ -504,6 +713,9 @@ let screen = 'landing';
 let writerName = '';
 let currentQ = 0;
 let answers = {};
+let lastVerdict = null;      // { verdict, reason, ... }
+let lastTranslateData = null; // full translate response
+let sceneData = null;        // { scene_markdown, provider, model, ... }
 
 // ── Screens ────────────────────────────────────
 function render() {
@@ -543,6 +755,14 @@ function render() {
       ctx.style.display = 'none';
       app.innerHTML = completeHTML();
       break;
+    case 'gallery':
+      ctx.style.display = 'none';
+      app.innerHTML = '<div class="small" style="text-align:center;padding:40px">Loading Gallery…</div>';
+      fetch('/api/gallery')
+        .then(r => r.json())
+        .then(data => { app.innerHTML = galleryHTML(data.entries || []); bindGalleryEvents(); })
+        .catch(() => { app.innerHTML = galleryHTML([]); });
+      break;
   }
 
   // Fade-in effect
@@ -565,18 +785,22 @@ function landingHTML() {
         Pay the price.
       </div>
 
+      <div class="landing-body" style="margin-bottom:24px">
+        You will fork one moment from Bab 00<br>and test what the universe allows.
+      </div>
+
       <div class="landing-steps">
         <div class="landing-step">
           <span class="num">1</span>
-          Read the<br>genesis chapter
+          Read Bab 00
         </div>
         <div class="landing-step">
           <span class="num">2</span>
-          Answer seven<br>questions
+          Answer 7<br>Questions
         </div>
         <div class="landing-step">
           <span class="num">3</span>
-          See what the<br>universe allows
+          Review Fork
         </div>
       </div>
 
@@ -588,15 +812,22 @@ function landingHTML() {
 
 function readHTML() {
   return `
-    <div class="screen fade-in">
-      <div class="landing-invocation" style="margin-bottom:16px">Bab 00 — Menatap Akhir Era<br>dari Balik Laptop Kantor</div>
-      <div class="genesis-box" id="bab00Content">
-        Loading genesis.txt…
+    <div class="screen fade-in read-screen">
+      <div style="flex-shrink:0;margin-bottom:12px;font-size:12px;color:var(--accent-glow);text-align:center;line-height:1.5">
+        Bab 00 — Menatap Akhir Era<br>dari Balik Laptop Kantor
       </div>
-      <div style="text-align:center">
-        <button class="btn enter" style="max-width:280px;margin-top:8px" id="btnReadDone">
-          I HAVE READ BAB 00
-        </button>
+      <div class="read-scroll" id="readScroll">
+        <div class="genesis-box" id="bab00Content">
+          Loading genesis.txt…
+        </div>
+      </div>
+      <div class="read-bottom">
+        <div class="read-progress" id="readProgress">Opening…</div>
+        <div class="btn-row">
+          <button class="btn enter" id="btnReadDone" disabled>
+            READ BAB 00 TO CONTINUE
+          </button>
+        </div>
       </div>
     </div>`;
 }
@@ -612,7 +843,7 @@ function nameHTML() {
                style="text-align:center;font-size:16px">
       </div>
       <div style="text-align:center">
-        <button class="btn enter" style="max-width:280px" id="btnNameNext">
+        <button class="btn enter" id="btnNameNext">
           BEGIN INTERVIEW
         </button>
       </div>
@@ -623,6 +854,27 @@ function questionHTML() {
   const q = QUESTIONS[currentQ];
   const pct = Math.round((currentQ / QUESTIONS.length) * 100);
   const bar = '■'.repeat(currentQ) + '□'.repeat(QUESTIONS.length - currentQ);
+
+  // Q1: visual A/B/C fork point cards
+  let forkCardsHTML = '';
+  if (currentQ === 0) {
+    const forks = [
+      {letter: 'A', id: 'Bug Janggal', sub: '00:03', desc: 'LO first approaches GUA. "Lo ngerasa gak?" The first sync moment.'},
+      {letter: 'B', id: 'Folder Error', sub: '00:07', desc: 'They sync independently. GUA creates _sandbox, LO sends pattern_matching_utils.py.'},
+      {letter: 'C', id: 'Genesis Error', sub: '00:08', desc: 'The birth of VoidOS. genesis.txt is written. The Stealth Project begins.'},
+    ];
+    forkCardsHTML = '<div style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px">';
+    for (const f of forks) {
+      forkCardsHTML += `
+        <div style="background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);padding:10px 12px;border-radius:2px">
+          <span style="font-size:13px;color:var(--accent-glow);font-weight:bold">(${f.letter})</span>
+          <span style="font-size:12px;color:var(--text-bright)"> ${f.id}</span>
+          <span style="font-size:10px;color:var(--text-dim);margin-left:4px">${f.sub}</span>
+          <div class="small" style="margin-top:2px">${f.desc}</div>
+        </div>`;
+    }
+    forkCardsHTML += '</div>';
+  }
 
   return `
     <div class="screen fade-in">
@@ -636,11 +888,8 @@ function questionHTML() {
         </div>
       </div>
 
-      <div class="question-meta">
-        Choose your fracture: &nbsp; Bug Janggal &nbsp;·&nbsp; Folder Error &nbsp;·&nbsp; Genesis Error
-      </div>
-
       <div class="question-text">${q.text}</div>
+      ${forkCardsHTML}
       <div class="small" style="margin-bottom:12px; color:var(--text-dim)">
         ${q.hint}
       </div>
@@ -688,7 +937,7 @@ function completeHTML() {
 
       <!-- Translate button -->
       <div style="text-align:center;margin:24px 0" id="translateArea">
-        <button class="btn enter" id="btnTranslate" style="max-width:360px">
+        <button class="btn enter" id="btnTranslate">
           TRANSLATE THE INTERVIEW
         </button>
         <div class="small" style="margin-top:8px">
@@ -753,6 +1002,28 @@ function verdictHTML(data) {
     }
   }
 
+  // Generation CTA for legal verdicts
+  let genCTA = '';
+  if (data.verdict === 'BLOCKED') {
+    genCTA = `
+      <div class="complete-box" style="border-left:3px solid var(--block);margin-top:16px">
+        <div class="small">This fork is <strong>BLOCKED</strong> — it violates a hard-block law and cannot continue. No scene can be generated.</div>
+      </div>`;
+  } else if (data.verdict === 'PASS' || data.verdict === 'VALID_FORK' || data.verdict === 'PRICE_REQUIRED') {
+    const genCopy = {
+      'PASS': 'This fork is canon-compatible. Generate its first scene?',
+      'VALID_FORK': 'This branch is legal. Generate the first scene of this fork?',
+      'PRICE_REQUIRED': 'This branch can continue, but it carries a price. Generate the first scene with that price included?',
+    };
+    genCTA = `
+      <div style="text-align:center;margin-top:20px" id="genCTA">
+        <div class="small" style="margin-bottom:10px;color:var(--text)">${genCopy[data.verdict] || genCopy['VALID_FORK']}</div>
+        <button class="btn enter" id="btnGenerateScene">
+          GENERATE FORK SCENE
+        </button>
+      </div>`;
+  }
+
   return `
     <div class="complete-box" style="border-left:3px solid var(--${verdictClass})">
       <div style="text-align:center;font-size:28px;margin-bottom:4px">${icon}</div>
@@ -766,7 +1037,295 @@ function verdictHTML(data) {
     </div>
     <div class="small" style="text-align:center;margin-top:8px">
       Laws touched: ${data.total_laws_touched} &nbsp;|&nbsp; Violations: ${data.total_violations} &nbsp;|&nbsp; Fork: ${esc(data.fork_id || '')}
+    </div>
+    ${genCTA}`;
+}
+
+// ── Provider Config ─────────────────────────────
+const PROVIDERS = {
+  claude: {
+    label: 'Claude',
+    models: ['claude-haiku-4-5-20251001', 'claude-sonnet-4-5-20250929'],
+    keyHint: 'sk-ant-api03-…',
+    keyUrl: 'https://console.anthropic.com/',
+  },
+  openai: {
+    label: 'OpenAI',
+    models: ['gpt-4o-mini', 'gpt-4.1-mini'],
+    keyHint: 'sk-proj-…',
+    keyUrl: 'https://platform.openai.com/api-keys',
+  },
+  deepseek: {
+    label: 'DeepSeek',
+    models: ['deepseek-chat'],
+    keyHint: 'sk-…',
+    keyUrl: 'https://platform.deepseek.com/api_keys',
+  },
+};
+
+const LS_KEY = 'voidsaga_fork_api_config';
+
+function loadApiConfig() {
+  try { return JSON.parse(localStorage.getItem(LS_KEY)) || {}; }
+  catch(e) { return {}; }
+}
+function saveApiConfig(cfg) { localStorage.setItem(LS_KEY, JSON.stringify(cfg)); }
+function forgetApiConfig() { localStorage.removeItem(LS_KEY); }
+
+// ── API Gate HTML ────────────────────────────────
+function apiGateHTML() {
+  const saved = loadApiConfig();
+  const prov = saved.provider || 'claude';
+  const model = saved.model || '';
+  const key = saved.apiKey || '';
+
+  let providerBtns = '';
+  for (const [pid, p] of Object.entries(PROVIDERS)) {
+    const active = pid === prov ? ' active' : '';
+    providerBtns += `<button class="gate-provider-btn${active}" data-provider="${pid}">${p.label}</button>`;
+  }
+
+  const p = PROVIDERS[prov];
+  let modelOpts = '';
+  for (const m of p.models) {
+    const sel = m === model ? ' selected' : '';
+    modelOpts += `<option value="${m}"${sel}>${m}</option>`;
+  }
+
+  const forgetHTML = Object.keys(saved).length > 0
+    ? '<div class="gate-forget" id="btnForgetKey">Forget saved API key</div>'
+    : '';
+
+  return `
+    <div class="gate-box" id="apiGate">
+      <div class="field-label" style="margin-bottom:10px">Model & API Key</div>
+      <div class="gate-provider-row" id="providerRow">
+        ${providerBtns}
+      </div>
+      <select class="gate-model-select" id="gateModel">${modelOpts}</select>
+      <input class="gate-key-input" id="gateApiKey" type="password"
+             placeholder="${p.keyHint}" value="${esc(key)}" autocomplete="off">
+      <div style="text-align:right;font-size:9px;margin-bottom:10px">
+        <a href="${p.keyUrl}" target="_blank" style="color:var(--text-dim)">Get a key →</a>
+      </div>
+      <label class="gate-remember">
+        <input type="checkbox" id="gateRemember" ${saved.provider ? 'checked' : ''}>
+        Remember on this browser
+      </label>
+      ${forgetHTML}
+      <div class="gate-note">
+        Temporary MVP mode. Your key is used only for this generation and is never written to fork records.
+      </div>
+      <div class="gate-actions">
+        <button class="btn skip" id="btnSkipGen">SKIP FOR NOW</button>
+        <button class="btn enter" id="btnDoGenerate">GENERATE WITH THIS MODEL</button>
+      </div>
     </div>`;
+}
+
+// ── Scene Preview HTML ────────────────────────────
+function scenePreviewHTML(data) {
+  const slug = writerName.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'') || 'anon';
+  const runPath = `mvp/runs/${slug}/`;
+  return `
+    <div class="complete-box" style="border-left:3px solid var(--pass);margin-top:16px" id="scenePreview">
+      <div style="text-align:center;font-size:18px;color:var(--pass);margin-bottom:8px">✦</div>
+      <div style="text-align:center;font-size:14px;color:var(--pass);margin-bottom:4px"><strong>First fork scene generated.</strong></div>
+      <div class="small" style="text-align:center;margin-bottom:12px">
+        Generated with ${esc(data.provider)} / ${esc(data.model)}<br>
+        Scene: <span class="path">${runPath}fork-scene.md</span>
+      </div>
+      <div class="scene-preview-box">${esc(data.scene_markdown)}</div>
+      <div style="display:flex;gap:10px;margin-top:16px">
+        <button class="btn enter" id="btnShowGallery" style="flex:1">SHOW IN GALLERY</button>
+        <button class="btn" onclick="window.location.reload()" style="flex:1">MAKE ANOTHER FORK</button>
+      </div>
+    </div>`;
+}
+
+// ── Gallery HTML ──────────────────────────────────
+function galleryHTML(entries) {
+  if (!entries || entries.length === 0) {
+    return `
+      <div class="screen fade-in">
+        <div class="landing-sigil">🜃</div>
+        <div class="landing-title">Gallery</div>
+        <div class="landing-subtitle">Recorded Fork Scenes</div>
+        <div class="complete-box" style="text-align:center">
+          <div class="small">No fork scenes generated yet.<br>Complete a fork interview and generate a scene to see it here.</div>
+        </div>
+        <div style="text-align:center;margin-top:20px">
+          <button class="btn enter" onclick="window.location.reload()">START A FORK</button>
+        </div>
+      </div>`;
+  }
+
+  let entriesHTML = '';
+  for (const e of entries) {
+    const verdictIcon = {PASS:'🟢',VALID_FORK:'🔵',PRICE_REQUIRED:'🟡'}[e.verdict] || '⚪';
+    entriesHTML += `
+      <div class="gallery-entry" data-slug="${esc(e.slug)}">
+        <div class="gallery-meta">
+          <span>${verdictIcon} ${esc(e.verdict)}</span>
+          <span>${esc(e.provider)} / ${esc(e.model)}</span>
+          <span>${esc((e.generated_at || '').substring(0, 10))}</span>
+        </div>
+        <div class="gallery-writer">${esc(e.writer)}</div>
+        <div style="font-size:10px;color:var(--text-dim)">Fork: ${esc(e.fork_id || '')} @ ${esc(e.fork_point || '')}</div>
+        <div class="gallery-excerpt">${esc(e.excerpt || '')}</div>
+        <div style="margin-top:8px">
+          <button class="btn" data-read="${esc(e.slug)}" style="font-size:10px">READ SCENE</button>
+        </div>
+      </div>`;
+  }
+
+  return `
+    <div class="screen fade-in">
+      <div class="landing-sigil">🜃</div>
+      <div class="landing-title">Gallery</div>
+      <div class="landing-subtitle">Recorded Fork Scenes — ${entries.length} generated</div>
+      ${entriesHTML}
+      <div style="text-align:center;margin-top:20px">
+        <button class="btn enter" onclick="window.location.reload()">MAKE ANOTHER FORK</button>
+      </div>
+    </div>`;
+}
+
+// ── Generation event bindings ────────────────────
+function bindGenEvents() {
+  // Generate CTA click → show API gate
+  document.getElementById('btnGenerateScene')?.addEventListener('click', () => {
+    const genArea = document.getElementById('genCTA');
+    if (genArea) {
+      genArea.innerHTML = apiGateHTML();
+      bindGateEvents();
+    }
+  });
+}
+
+function bindGateEvents() {
+  // Provider switching
+  document.getElementById('providerRow')?.addEventListener('click', (e) => {
+    const btn = e.target.closest('.gate-provider-btn');
+    if (!btn) return;
+    const pid = btn.dataset.provider;
+    const p = PROVIDERS[pid];
+    if (!p) return;
+    // Update active state
+    document.querySelectorAll('.gate-provider-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    // Update model dropdown
+    const sel = document.getElementById('gateModel');
+    if (sel) {
+      sel.innerHTML = p.models.map(m => `<option value="${m}">${m}</option>`).join('');
+    }
+    // Update key hint
+    const keyInput = document.getElementById('gateApiKey');
+    if (keyInput) keyInput.placeholder = p.keyHint;
+  });
+
+  // Forget key
+  document.getElementById('btnForgetKey')?.addEventListener('click', () => {
+    forgetApiConfig();
+    const genArea = document.getElementById('genCTA');
+    if (genArea) { genArea.innerHTML = apiGateHTML(); bindGateEvents(); }
+  });
+
+  // Skip
+  document.getElementById('btnSkipGen')?.addEventListener('click', () => {
+    const genArea = document.getElementById('genCTA');
+    if (genArea) genArea.innerHTML = '';
+  });
+
+  // Generate
+  document.getElementById('btnDoGenerate')?.addEventListener('click', () => {
+    const activeBtn = document.querySelector('.gate-provider-btn.active');
+    const provider = activeBtn ? activeBtn.dataset.provider : 'claude';
+    const model = document.getElementById('gateModel')?.value || '';
+    const apiKey = document.getElementById('gateApiKey')?.value?.trim() || '';
+    const remember = document.getElementById('gateRemember')?.checked || false;
+
+    if (!apiKey) { alert('Please enter an API key.'); return; }
+
+    // Remember config
+    if (remember) {
+      saveApiConfig({ provider, model, apiKey });
+    } else {
+      forgetApiConfig();
+    }
+
+    // Show loading
+    const genArea = document.getElementById('genCTA');
+    if (genArea) genArea.innerHTML = '<div class="small" style="text-align:center;padding:20px">Generating fork scene…</div>';
+
+    fetch('/api/generate-scene', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({ name: writerName, provider, model, apiKey })
+    })
+    .then(r => r.json())
+    .then(data => {
+      if (data.ok) {
+        sceneData = data;
+        genArea.innerHTML = scenePreviewHTML(data);
+        bindSceneEvents();
+      } else {
+        genArea.innerHTML = `<div class="complete-box" style="border-left:3px solid var(--block);margin-top:16px">
+          <strong>Generation failed</strong><br><br>${esc(data.error || 'Unknown error')}<br><br>
+          <button class="btn skip" onclick="document.getElementById('genCTA').innerHTML=apiGateHTML();bindGateEvents();">Try Again</button>
+        </div>`;
+      }
+    })
+    .catch(err => {
+      genArea.innerHTML = `<div class="complete-box" style="border-left:3px solid var(--block);margin-top:16px">
+        <strong>Generation failed</strong><br><br>${esc(err.message)}<br><br>
+        <button class="btn skip" onclick="document.getElementById('genCTA').innerHTML=apiGateHTML();bindGateEvents();">Try Again</button>
+      </div>`;
+    });
+  });
+}
+
+function bindSceneEvents() {
+  document.getElementById('btnShowGallery')?.addEventListener('click', () => {
+    screen = 'gallery';
+    render();
+  });
+}
+
+function bindGalleryEvents() {
+  document.querySelectorAll('.gallery-entry button[data-read]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const slug = btn.dataset.read;
+      // Find entry data from the gallery response would be ideal, but for now
+      // we open the scene directly — the gallery already loaded entries with scene_text
+      const entry = document.querySelector(`.gallery-entry[data-slug="${slug}"]`);
+      const app = document.getElementById('app');
+      app.innerHTML = `<div class="small" style="text-align:center;padding:20px">Loading scene…</div>`;
+      // Re-fetch gallery to get full text
+      fetch('/api/gallery')
+        .then(r => r.json())
+        .then(data => {
+          const found = (data.entries || []).find(e => e.slug === slug);
+          if (found && found.scene_text) {
+            app.innerHTML = `
+              <div class="screen fade-in">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+                  <button class="btn" onclick="screen='gallery';render()">← BACK TO GALLERY</button>
+                  <span class="small">${esc(found.writer)} — ${esc(found.verdict)}</span>
+                </div>
+                <div class="scene-preview-box" style="max-height:none">${esc(found.scene_text)}</div>
+              </div>`;
+          } else {
+            app.innerHTML = `<div class="complete-box"><div class="small">Scene not found.</div>
+              <button class="btn" onclick="screen='gallery';render()">← BACK TO GALLERY</button></div>`;
+          }
+        })
+        .catch(() => {
+          app.innerHTML = `<div class="complete-box"><div class="small">Could not load scene.</div>
+            <button class="btn" onclick="screen='gallery';render()">← BACK TO GALLERY</button></div>`;
+        });
+    });
+  });
 }
 
 // ── Helpers ────────────────────────────────────
@@ -802,8 +1361,12 @@ function bindEvents() {
     })
     .then(r => r.json())
     .then(data => {
+      lastTranslateData = data;
+      lastVerdict = { verdict: data.verdict, reason: data.reason };
       document.getElementById('translateArea').style.display = 'none';
       document.getElementById('verdictArea').innerHTML = verdictHTML(data);
+      // Re-bind events for generation CTA
+      bindGenEvents();
     })
     .catch(err => {
       document.getElementById('translateArea').style.display = 'none';
@@ -811,6 +1374,46 @@ function bindEvents() {
         `<div class="complete-box warn">Translation failed: ${err.message}.<br>The Archivist will translate manually.</div>`;
     });
   });
+
+  // Read screen — scroll-to-enable CTA
+  const readScroll = document.getElementById('readScroll');
+  const btnReadDone = document.getElementById('btnReadDone');
+  const readProgress = document.getElementById('readProgress');
+  if (readScroll && btnReadDone && readProgress) {
+    const onScroll = () => {
+      const scrollTop = readScroll.scrollTop;
+      const scrollHeight = readScroll.scrollHeight;
+      const clientHeight = readScroll.clientHeight;
+      const maxScroll = scrollHeight - clientHeight;
+
+      // Edge case: content fits without scrolling → enable immediately
+      if (maxScroll <= 0) {
+        btnReadDone.disabled = false;
+        btnReadDone.textContent = 'I HAVE READ BAB 00';
+        readProgress.textContent = 'Ready';
+        readProgress.className = 'read-progress ready';
+        return;
+      }
+
+      const pct = Math.round((scrollTop / maxScroll) * 100);
+      const nearBottom = pct >= 90;
+
+      if (nearBottom) {
+        btnReadDone.disabled = false;
+        btnReadDone.textContent = 'I HAVE READ BAB 00';
+        readProgress.textContent = 'Ready';
+        readProgress.className = 'read-progress ready';
+      } else {
+        btnReadDone.disabled = true;
+        btnReadDone.textContent = 'READ BAB 00 TO CONTINUE';
+        readProgress.textContent = 'Reading ' + pct + '%';
+        readProgress.className = 'read-progress';
+      }
+    };
+    readScroll.addEventListener('scroll', onScroll, {passive: true});
+    // Run once after content loads (defer to let innerHTML settle)
+    setTimeout(onScroll, 200);
+  }
 
   // Read done button
   document.getElementById('btnReadDone')?.addEventListener('click', () => {

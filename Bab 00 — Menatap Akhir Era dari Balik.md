@@ -1,9 +1,7 @@
-Bab 00 — Menatap Akhir Era dari Balik Laptop Kantor.
+Prolog Kantor.
 
-Prolog Kantor
-Table of Contents
+Table of Contents:
 
-Prolog Kantor
 00:00 — Genesis Error
 00:01 — First Contact
 00:02 — Daily Standup
@@ -14,6 +12,8 @@ Prolog Kantor
 00:07 — Folder Error
 00:08 — Genesis Error on Stealth Folder
 00:09 — Naming The Error
+
+----------------------------
 
 00:00 — Genesis Error
 

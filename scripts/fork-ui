@@ -12,7 +12,10 @@ import re
 import shutil
 import socketserver
 import sys
+import urllib.request
+import urllib.error
 import webbrowser
+from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -57,6 +60,8 @@ class ForkHandler(http.server.BaseHTTPRequestHandler):
             self._serve_index()
         elif self.path == "/api/bab00":
             self._serve_bab00()
+        elif self.path == "/api/gallery":
+            self._handle_gallery()
         elif self.path == "/favicon.ico":
             self.send_error(204)  # No content — stop browser nagging
         else:
@@ -80,6 +85,8 @@ class ForkHandler(http.server.BaseHTTPRequestHandler):
             self._handle_translate()
         elif self.path == "/api/check":
             self._handle_check()
+        elif self.path == "/api/generate-scene":
+            self._handle_generate_scene()
         else:
             self.send_error(404)
 
@@ -475,6 +482,271 @@ class ForkHandler(http.server.BaseHTTPRequestHandler):
             "description": f"This fork touches laws that carry price: {', '.join(price_laws)}. Duration of change: {q5}. The Archivist should review and specify exact payment.",
             "affected_nodes": [],
         }
+
+    # ── Scene Generation ────────────────────────────
+    # TODO: replace client-supplied API keys with secure server-side credential
+    # handling before public launch.
+
+    def _handle_generate_scene(self):
+        """POST /api/generate-scene — generate one fork scene via AI provider."""
+        try:
+            length = int(self.headers.get("Content-Length", 0))
+            body = self.rfile.read(length)
+            req = json.loads(body)
+            name = req.get("name", "anon")
+            provider = req.get("provider", "").lower()
+            model = req.get("model", "")
+            api_key = (req.get("apiKey") or "").strip()
+
+            if not provider or not model or not api_key:
+                self._json_resp(400, {"ok": False, "error": "Provider, model, and API key are required."})
+                return
+
+            slug = self._slugify(name)
+            run_dir = RUNS_DIR / slug
+            answers_path = run_dir / "answers.md"
+            fork_path = run_dir / "fork-record.json"
+
+            if not answers_path.exists():
+                self._json_resp(404, {"ok": False, "error": f"answers.md not found for {name}. Run the interview first."})
+                return
+            if not fork_path.exists():
+                self._json_resp(404, {"ok": False, "error": f"fork-record.json not found for {name}. Translate first."})
+                return
+
+            fork_record = json.loads(fork_path.read_text())
+            verdict = fork_record.get("verdict", "")
+
+            # Check verdict with the real checker if available
+            actual_verdict = verdict
+            if run_checker:
+                try:
+                    result = run_checker(str(fork_path), laws=str(LAWS_PATH), verbose=False)
+                    actual_verdict = result.get("verdict", verdict)
+                except Exception:
+                    actual_verdict = verdict
+
+            if actual_verdict == "BLOCKED" or verdict == "BLOCKED":
+                self._json_resp(403, {"ok": False, "error": "BLOCKED forks cannot generate scenes. This fork violates a hard-block law and cannot continue."})
+                return
+
+            # Build prompt
+            prompt = self._build_generation_prompt(answers_path.read_text(), fork_record, actual_verdict)
+
+            # Call provider (API key never logged or persisted)
+            try:
+                scene_md = self._call_provider(provider, model, api_key, prompt)
+            except Exception as e:
+                err_msg = str(e)
+                # Sanitize: never include API key in error
+                if api_key and len(api_key) > 4:
+                    err_msg = err_msg.replace(api_key, "[REDACTED]")
+                self._json_resp(500, {"ok": False, "error": f"Provider error: {err_msg}"})
+                return
+
+            # Save generated scene
+            scene_path = run_dir / "fork-scene.md"
+            scene_path.write_text(scene_md)
+
+            # Save metadata
+            meta = {
+                "writer": name,
+                "slug": slug,
+                "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+                "provider": provider,
+                "model": model,
+                "verdict": actual_verdict,
+                "fork_id": fork_record.get("fork_id", ""),
+                "fork_point": fork_record.get("fork_point", ""),
+                "scene_path": str(scene_path.relative_to(ROOT)),
+                "gallery_id": f"{slug}-{int(datetime.now(timezone.utc).timestamp())}",
+            }
+            meta_path = run_dir / "scene-meta.json"
+            meta_path.write_text(json.dumps(meta, indent=2, ensure_ascii=False))
+
+            self._json_resp(200, {
+                "ok": True,
+                "scene_path": str(scene_path.relative_to(ROOT)),
+                "scene_markdown": scene_md,
+                "provider": provider,
+                "model": model,
+                "verdict": actual_verdict,
+                "gallery_id": meta["gallery_id"],
+            })
+
+        except Exception as e:
+            self._json_resp(500, {"ok": False, "error": str(e)})
+
+    def _handle_gallery(self):
+        """GET /api/gallery — list all generated fork scenes."""
+        try:
+            entries = []
+            if RUNS_DIR.exists():
+                for run_dir in sorted(RUNS_DIR.iterdir(), reverse=True):
+                    if not run_dir.is_dir():
+                        continue
+                    meta_path = run_dir / "scene-meta.json"
+                    scene_path = run_dir / "fork-scene.md"
+                    if not meta_path.exists() or not scene_path.exists():
+                        continue
+                    try:
+                        meta = json.loads(meta_path.read_text())
+                        # Include a short excerpt
+                        scene_text = scene_path.read_text()
+                        excerpt = scene_text[:200].replace("\n", " ").strip()
+                        if len(scene_text) > 200:
+                            excerpt += "…"
+                        meta["excerpt"] = excerpt
+                        meta["scene_text"] = scene_text
+                        entries.append(meta)
+                    except Exception:
+                        continue
+            self._json_resp(200, {"ok": True, "entries": entries})
+        except Exception as e:
+            self._json_resp(500, {"ok": False, "error": str(e)})
+
+    # ── Provider calling ────────────────────────────
+
+    def _call_provider(self, provider, model, api_key, prompt):
+        """Call the selected AI provider and return generated markdown text."""
+        if provider == "claude":
+            return self._call_claude(model, api_key, prompt)
+        elif provider == "openai":
+            return self._call_openai(model, api_key, prompt)
+        elif provider == "deepseek":
+            return self._call_deepseek(model, api_key, prompt)
+        else:
+            raise ValueError(f"Unknown provider: {provider}")
+
+    def _call_claude(self, model, api_key, prompt):
+        """Call Anthropic Claude API."""
+        url = "https://api.anthropic.com/v1/messages"
+        body = json.dumps({
+            "model": model,
+            "max_tokens": 4096,
+            "temperature": 0.8,
+            "messages": [{"role": "user", "content": prompt}],
+        }).encode("utf-8")
+        req = urllib.request.Request(url, data=body)
+        req.add_header("Content-Type", "application/json")
+        req.add_header("x-api-key", api_key)
+        req.add_header("anthropic-version", "2023-06-01")
+        try:
+            with urllib.request.urlopen(req, timeout=120) as resp:
+                data = json.loads(resp.read().decode("utf-8"))
+                content = data.get("content", [])
+                if isinstance(content, list):
+                    return "".join(b.get("text", "") for b in content if b.get("type") == "text")
+                return str(content)
+        except urllib.error.HTTPError as e:
+            msg = e.read().decode("utf-8", errors="replace")[:500]
+            raise RuntimeError(f"Claude API error {e.code}: {msg}")
+
+    def _call_openai(self, model, api_key, prompt):
+        """Call OpenAI API."""
+        url = "https://api.openai.com/v1/chat/completions"
+        body = json.dumps({
+            "model": model,
+            "max_tokens": 4096,
+            "temperature": 0.8,
+            "messages": [{"role": "user", "content": prompt}],
+        }).encode("utf-8")
+        req = urllib.request.Request(url, data=body)
+        req.add_header("Content-Type", "application/json")
+        req.add_header("Authorization", f"Bearer {api_key}")
+        try:
+            with urllib.request.urlopen(req, timeout=120) as resp:
+                data = json.loads(resp.read().decode("utf-8"))
+                return data["choices"][0]["message"]["content"]
+        except urllib.error.HTTPError as e:
+            msg = e.read().decode("utf-8", errors="replace")[:500]
+            raise RuntimeError(f"OpenAI API error {e.code}: {msg}")
+
+    def _call_deepseek(self, model, api_key, prompt):
+        """Call DeepSeek API (OpenAI-compatible)."""
+        url = "https://api.deepseek.com/v1/chat/completions"
+        body = json.dumps({
+            "model": model,
+            "max_tokens": 4096,
+            "temperature": 0.8,
+            "messages": [{"role": "user", "content": prompt}],
+        }).encode("utf-8")
+        req = urllib.request.Request(url, data=body)
+        req.add_header("Content-Type", "application/json")
+        req.add_header("Authorization", f"Bearer {api_key}")
+        try:
+            with urllib.request.urlopen(req, timeout=120) as resp:
+                data = json.loads(resp.read().decode("utf-8"))
+                return data["choices"][0]["message"]["content"]
+        except urllib.error.HTTPError as e:
+            msg = e.read().decode("utf-8", errors="replace")[:500]
+            raise RuntimeError(f"DeepSeek API error {e.code}: {msg}")
+
+    # ── Prompt builder ──────────────────────────────
+
+    def _build_generation_prompt(self, answers_text, fork_record, verdict):
+        """Build the AI generation prompt following the project's strict rules."""
+        fp = fork_record.get("fork_point", "")
+        title = fork_record.get("title", "Untitled Fork")
+        title_id = fork_record.get("title_id", title)
+        premise_id = fork_record.get("premise_id", "")
+        change_id = fork_record.get("change_id", "")
+        effect_id = fork_record.get("immediate_effect_id", "")
+        lineage = fork_record.get("lineage", {})
+        divergence = lineage.get("divergence", change_id)
+        downstream = lineage.get("downstream_effects", [])
+        price = fork_record.get("price") or {}
+
+        verdict_guidance = {
+            "PASS": "This fork is canon-compatible. The change is within normal behavioral range. Keep the canon mostly intact — the scene should feel like it could have happened between the lines of Bab 00. Show the subtle shift, not a rewrite.",
+            "VALID_FORK": "This fork is a legal branch of the canon tree. The divergence is meaningful but no law is violated. Write the first scene of this branch — make the difference visible but consistent with the universe's rules.",
+            "PRICE_REQUIRED": "This fork carries narrative cost that must be shown. The universe permits the divergence, but the price must be paid on-page. Include the required narrative cost explicitly in the scene — show what is lost, delayed, or changed as consequence.",
+        }
+
+        guidance = verdict_guidance.get(verdict, verdict_guidance["VALID_FORK"])
+
+        price_text = ""
+        if verdict == "PRICE_REQUIRED" and price:
+            ptype = price.get("type", "")
+            pdesc = price.get("description", "")
+            price_text = f"\nRequired narrative price: {ptype}\nPrice description: {pdesc}\nThe scene must show this cost being paid."
+
+        downstream_text = ""
+        if downstream:
+            items = "\n".join(f"- {d}" for d in downstream[:5])
+            downstream_text = f"\nDownstream effects to respect:\n{items}"
+
+        prompt = f"""You are a writer, not the canon authority. The universe and its checker have already decided whether this fork can continue — you do not get to overrule that decision. Your only job is to write the first scene of this fork.
+
+FORK RECORD:
+- Fork: {title} ({title_id})
+- Premise: {premise_id}
+- Change from canon: {divergence}
+- Immediate effect: {effect_id}
+- Verdict from universe: {verdict}
+{downstream_text}
+{price_text}
+
+WRITING RULES:
+1. Write ONLY the first scene of this fork. Not a summary, not a plan, not an outline. One scene.
+2. {guidance}
+3. Respect Bab 00's tone:
+   - Office realism — the setting is a software engineering office
+   - Quiet anomaly — strange things happen but are understated, never melodramatic
+   - GUA/LO behavioral texture — GUA is a systems-builder who avoids confrontation; LO is a stabilizing condition, not a controller
+   - Indonesian prose voice close to Bab 00's mood — understated, rhythmic, full of pauses
+   - No grand lore dump — the cosmic elements are glimpsed through ordinary moments
+4. Target 700-1200 words.
+5. Write in Indonesian (Bahasa Indonesia), with occasional English for technical/office terms.
+6. Do not explain the app, the system, or the fork mechanism to the reader.
+7. Do not say "as an AI" or break the fourth wall.
+8. Output markdown prose only. No meta-commentary.
+
+BAB 00 REFERENCE (answers from the fork interview):
+{answers_text[:3000]}
+
+Write the first scene now. Markdown prose only."""
+        return prompt
 
     def _json_resp(self, code, data):
         """Send a JSON response."""

@@ -121,6 +121,8 @@ class ForkHandler(http.server.BaseHTTPRequestHandler):
             import html as html_mod
             html = INDEX_HTML.read_text()
             bab00 = BAB00.read_text()
+            # Replace "Prolog Kantor." header with VOID SAGA branding
+            bab00 = bab00.replace("Prolog Kantor.", "VOID SAGA", 1)
             # Process: terminal-line blocks (starting with >) become styled HTML
             processed = self._process_bab00(bab00)
             html = html.replace("<!--BAB00_SOURCE-->", processed)

@@ -32,6 +32,7 @@ Gua duduk.
 Buka laptop.
 Nunggu sistem bangun.
 
+
 > [SYSTEM BOOT]
 > Loading user profile: [GUA]
 > Status: ACTIVE
@@ -56,6 +57,7 @@ Tidak dijelaskan kapan “future” itu dimulai.
 Gua login.
 Password: sama seperti kemarin.
 
+
 > Welcome back.
 > You have 7 new notifications.
 > Sprint: Week 3 of 4
@@ -74,6 +76,7 @@ Lo duduk dua meja dari gua.
 Belum saling kenal.
 Belum ada konteks.
 Cuma satu entry di Slack directory:
+
 
 > [LO]
 > Software Engineer
@@ -125,7 +128,8 @@ Tapi entah kenapa, gua notice lo.
 
 00:02 — Daily Standup
 
-09:00. Daily standup dimulai.
+Jam 09:00.
+Daily standup dimulai.
 
 Zoom call.
 Kamera off (default).
@@ -218,6 +222,7 @@ Bukan error.
 
 Janggal.
 
+
 > from datetime import datetime
 >
 > def write_log(entry, timestamp=None):
@@ -232,8 +237,8 @@ Janggal.
 
 Komentar itu bukan dari gua.
 
+
 > Git blame:
->
 > Author: [PREVIOUS ENGINEER]
 > Date: 4 months ago
 
@@ -326,6 +331,7 @@ GUA:
 Lo mengangguk.
 Gua ngetik.
 
+
 > from queue import Queue
 > from datetime import datetime
 >
@@ -337,6 +343,7 @@ Gua ngetik.
 >    log_queue.put((entry, timestamp))
 
 Lo nambah.
+
 
 > def flush_logs():
 >    while not log_queue.empty():
@@ -354,6 +361,7 @@ Tidak dicatat sebagai peristiwa.
 
 Gua run test.
 
+
 > PASSED: test_concurrent_writes
 > PASSED: test_timestamp_ordering
 > PASSED: test_race_condition_mitigation
@@ -365,6 +373,7 @@ Lo balik ke meja lo.
 
 Sistem mencatat:
 
+
 > [GIT LOG]
 > 09:44 — [GUA]: Fix race condition in logger (collaborated with [LO])
 >
@@ -372,8 +381,8 @@ Sistem mencatat:
 > Status: RESOLVED
 > Time spent: 10 minutes
 > Collaborators: [GUA] (primary), [LO] (support)
-> Collaborated.
 
+Collaborated.
 Kata yang terlalu formal
 untuk apa yang baru terjadi.
 
@@ -423,6 +432,7 @@ Pull request gua biasanya ditolak dua-tiga kali sama reviewer lain:
 “Refactor this function.”
 
 Tapi pas lo yang review:
+
 
 > [PULL REQUEST #892]
 > Reviewer: [LO]
@@ -509,6 +519,7 @@ Semua test passed.
 
 Tapi ada satu function yang gua gak yakin mau diapain:
 
+
 > def _experimental_timestamp_predictor(entries):
 >    """
 >    EXPERIMENTAL: Predict next log timestamp based on pattern.
@@ -525,11 +536,13 @@ Terasa sayang.
 
 Gua bikin folder baru:
 
+
 > mkdir _sandbox
 
 Underscore prefix—convention untuk “ignore this.”
 
 Gua pindahin function itu ke sana:
+
 
 > _sandbox/
 > └── timestamp_prediction.py
@@ -540,6 +553,7 @@ Gak di-push.
 
 Dua menit kemudian,
 gua notice di Slack:
+
 
 > LO: [sent a file]
 > pattern_matching_utils.py
@@ -553,9 +567,11 @@ Exactly jenis algorithm yang gua butuhin buat function experimental tadi.
 
 Gua balas:
 
+
 > GUA: Lo udah lihat logging code gua?
 > LO: Nggak. Kenapa?
-> Gua pause.
+
+Gua pause.
 
 > GUA: Gua baru bikin experimental function buat timestamp prediction.
 > LO: ...
@@ -563,14 +579,17 @@ Gua balas:
 
 Pause panjang.
 
+
 > LO: Gua juga lagi explore hal yang sama.
 > LO: Bikin folder?
 
 Gua bikin folder:
 
+
 > mkdir _sandbox/stealth
 
 Gua share path ke lo.
+
 
 > GUA: _sandbox/stealth
 > LO: Same structure. Good.
@@ -579,6 +598,7 @@ Kita gak ngomong banyak soal itu.
 Gak perlu.
 
 Kita cuma sepakat satu hal:
+
 
 > GUA: Yang ini bukan urusan kantor. Gak perlu masuk jira.
 > LO: Iya.
@@ -594,6 +614,7 @@ terjadi satu kesalahan kecil.
 
 Gua lagi push changes ke remote branch:
 
+
 > git add logger.py
 > git commit -m "Refactor logging middleware"
 > git push origin feature/logging-refactor
@@ -608,6 +629,7 @@ Tapi…
 
 Ada satu file yang gak ke-push.
 
+
 > [UNTRACKED FILE DETECTED]
 > _sandbox/stealth/timestamp_prediction.py
 Bukan karena gua lupa.
@@ -617,6 +639,7 @@ Karena file itu gak supposed to be tracked.
 Folder _sandbox ada di .gitignore.
 
 Tapi system log mencatat sesuatu yang aneh:
+
 
 > [GIT HOOK WARNING]
 > 18:12:47 - File modification detected in ignored path
@@ -671,12 +694,14 @@ Lo mulai ngetik.
 
 File baru.
 
+
 > _sandbox/stealth/genesis.txt
 
 Gua lihat dari sudut mata.
 Lo ngetik tanpa pause.
 Tanpa backspace.
 Seperti lagi salin sesuatu yang udah ada di kepala:
+
 
 > [SYSTEM_BOOT//ORIGIN_LOG]
 > ════════════════════════════════════════
@@ -688,11 +713,9 @@ Seperti lagi salin sesuatu yang udah ada di kepala:
 > Di awal mula, yang ada hanyalah sebuah kesalahan.
 >
 > Kesalahan itu memicu cahaya.
->
 > Cahaya mencoba memahami dirinya sendiri.
 >
-> Ketika pemahaman gagal,
-> cahaya menjadi kesadaran.
+> Ketika pemahaman gagal,cahaya menjadi kesadaran.
 
 Kemudian lo berhenti ngetik.
 Gua menatap layar lo dari jarak dua meja.
@@ -715,6 +738,7 @@ Collaborative editing.
 Real-time.
 
 Tangan gua bergerak sendiri:
+
 
 > Ketika kesadaran berulang,
 > ia menjadi cinta.
@@ -745,6 +769,7 @@ Tidak ada yang ngomong.
 Tidak perlu.
 
 File itu di-save otomatis:
+
 
 > [AUTO-SAVE]
 > _sandbox/stealth/genesis.txt
@@ -797,6 +822,7 @@ setiap kali sistem bertanya:
 Jawabannya selalu sama:
 
 Karena tidak semua error perlu di-fix.
+
 
 > [SYSTEM LOG - END OF DAY]
 > ════════════════════════════════════════

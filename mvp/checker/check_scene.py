@@ -382,6 +382,46 @@ def check_law_echo(text, packet):
     }
 
 
+def check_mood_guardrail(text):
+    """Check for pop-culture meme references that violate Bab 00's dry corporate tone."""
+    # Pop-culture meme terms that signal wrong tone
+    meme_patterns = [
+        (r'\b[Ss]hrek\b', 'Shrek reference'),
+        (r'\b[Dd]onkey\b.*\b[Ss]hrek\b|\b[Ss]hrek\b.*\b[Dd]onkey\b', 'Shrek/Donkey reference'),
+        (r'\b[Ss]tar\s*[Ww]ars\b', 'Star Wars reference'),
+        (r'\b[Mm]arvel\b', 'Marvel reference'),
+        (r'\b[Aa]vengers\b', 'Avengers reference'),
+        (r'\b[Nn]aruto\b', 'Naruto reference'),
+        (r'\b[Dd]ragon\s*[Bb]all\b', 'Dragon Ball reference'),
+        (r'\b[Pp]ok[eé]mon\b', 'Pokémon reference'),
+        (r'\b[Hh]arry\s*[Pp]otter\b', 'Harry Potter reference'),
+        (r'\b[Mm]ickey\s*[Mm]ouse\b', 'Mickey Mouse reference'),
+        (r'\b[Ss]pongebob\b', 'Spongebob reference'),
+        (r'\b[Tt]iktok\b', 'TikTok reference'),
+        (r'\b[Mm]eme\b', 'explicit meme mention'),
+        (r'\b[Yy]ou\s?[Tt]ube\b', 'YouTube reference'),
+        (r'\b[Ii]nstagram\b', 'Instagram reference'),
+        (r'\b[Mm]onday\s*[Bb]lues\b', 'generic workplace comedy — Monday blues'),
+        (r'\b[Cc]offee\s*[Mm]achine\b.*\b[Bb]roke\b|\b[Bb]roken\b.*\b[Cc]offee\b', 'generic workplace comedy — broken coffee machine'),
+        (r'\bIT\s+[Gg]uy\b', 'generic IT guy trope'),
+    ]
+
+    issues = []
+    for pat, desc in meme_patterns:
+        if re.search(pat, text, re.IGNORECASE):
+            issues.append(f"Mood Guardrail: {desc} detected. Bab 00 humor is dry, corporate, and uncanny — not pop-culture meme comedy.")
+
+    status = "WARNING" if issues else "PASS"
+
+    return {
+        "id": "mood_guardrail",
+        "label": "Mood Guardrail",
+        "status": status,
+        "message": f"{len(issues)} pop-culture/meme pattern(s) found." if issues else "No forbidden humor patterns detected.",
+        "issues": issues,
+    }
+
+
 def check_scene(scene_path, packet_path=None):
     """Main entry point. Run all checks and return result dict."""
     scene_text = Path(scene_path).read_text()
@@ -395,6 +435,7 @@ def check_scene(scene_path, packet_path=None):
         check_forbidden_backstory(scene_text, packet),
         check_entity_scope(scene_text, packet),
         check_law_echo(scene_text, packet),
+        check_mood_guardrail(scene_text),
     ]
 
     # Determine overall

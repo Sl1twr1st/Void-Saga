@@ -713,9 +713,21 @@ let screen = 'landing';
 let writerName = '';
 let currentQ = 0;
 let answers = {};
-let lastVerdict = null;      // { verdict, reason, ... }
-let lastTranslateData = null; // full translate response
-let sceneData = null;        // { scene_markdown, provider, model, ... }
+let chosenSegmentId = '';    // e.g. "00:03"
+let chosenSegment = null;    // full segment object from map
+let segmentMap = null;       // loaded from injected JSON
+let lastVerdict = null;
+let lastTranslateData = null;
+let sceneData = null;
+
+function loadSegmentMap() {
+  if (segmentMap) return segmentMap;
+  const src = document.getElementById('segment-map-source');
+  if (src && src.textContent.trim() && !src.textContent.includes('SEGMENT_MAP')) {
+    try { segmentMap = JSON.parse(src.textContent); } catch(e) { segmentMap = null; }
+  }
+  return segmentMap;
+}
 
 // ── Screens ────────────────────────────────────
 function render() {
@@ -740,6 +752,11 @@ function render() {
       ctx.style.display = 'flex';
       ctx.innerHTML = ctxMap['read'];
       app.innerHTML = readHTML();
+      break;
+    case 'segment':
+      ctx.style.display = 'flex';
+      ctx.innerHTML = `<span>✧ <span class="val">Choose Fork Segment</span></span>`;
+      app.innerHTML = segmentHTML();
       break;
     case 'name':
       ctx.style.display = 'flex';
@@ -810,6 +827,119 @@ function landingHTML() {
     </div>`;
 }
 
+function segmentHTML() {
+  const map = loadSegmentMap();
+  if (!map || !map.segments) {
+    return `<div class="screen fade-in"><div class="small" style="text-align:center;padding:40px">Segment map not available.</div></div>`;
+  }
+
+  let items = '';
+  for (const seg of map.segments) {
+    const tier = seg.forkability || 'locked';
+    const tierLabel = {green:'Forkable', yellow:'Careful', locked:'Locked'}[tier] || tier;
+    const tierColor = {green:'var(--pass)', yellow:'var(--warn)', locked:'var(--block)'}[tier] || 'var(--text-dim)';
+    const tierBg = {green:'rgba(90,138,90,0.08)', yellow:'rgba(196,164,74,0.08)', locked:'rgba(139,74,74,0.06)'}[tier] || 'transparent';
+    const selected = chosenSegmentId === seg.segment_id ? 'border-left:3px solid var(--accent-glow);background:#1a1a2a' : '';
+
+    items += `
+      <div class="seg-item" data-seg="${seg.segment_id}" data-tier="${tier}"
+           style="cursor:pointer;${selected};background:var(--surface);border:1px solid var(--border);border-left:3px solid ${tierColor};padding:10px 12px;margin-bottom:8px;border-radius:2px;transition:border-color 0.2s">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <span style="font-size:11px;color:var(--accent-glow);font-weight:bold">${seg.segment_id}</span>
+          <span style="font-size:8px;color:${tierColor};text-transform:uppercase;letter-spacing:1px;background:${tierBg};padding:2px 6px;border-radius:2px">${tierLabel}</span>
+        </div>
+        <div style="font-size:12px;color:var(--text-bright);margin-top:2px">${esc(seg.label)}</div>
+      </div>`;
+  }
+
+  // Detail panel for selected segment
+  let detailHTML = '';
+  if (chosenSegmentId && chosenSegment) {
+    const seg = chosenSegment;
+    const tier = seg.forkability || 'locked';
+    const tierColor = {green:'var(--pass)', yellow:'var(--warn)', locked:'var(--block)'}[tier] || 'var(--text-dim)';
+    const gravityLabels = {green:'Low — safe to fork', yellow:'Medium — forks may carry price', locked:'High — locked for this prototype'};
+
+    const preserveList = (seg.must_preserve || []).map(p => `<div style="font-size:10px;margin-bottom:2px;color:var(--text-dim)">▸ ${esc(p)}</div>`).join('');
+    const mayChangeList = (seg.may_change || []).map(c => `<div style="font-size:10px;margin-bottom:2px;color:var(--text-dim)">▸ ${esc(c)}</div>`).join('');
+    const dangerList = (seg.danger_zones || []).map(d => `<div style="font-size:10px;margin-bottom:2px;color:var(--warn)">⚠ ${esc(d)}</div>`).join('');
+
+    // Action section based on tier
+    let actionHTML = '';
+    if (tier === 'locked') {
+      actionHTML = `
+        <div style="background:rgba(139,74,74,0.08);border:1px solid rgba(139,74,74,0.2);padding:12px;margin-top:12px;border-radius:2px;text-align:center">
+          <div style="font-size:11px;color:var(--block);margin-bottom:8px">🔒 Locked for this prototype. High canon gravity.</div>
+          <div class="small" style="margin-bottom:12px">This segment anchors Bab 00's foundation. Forking it in this MVP is not yet supported.</div>
+          <button class="btn skip" id="btnSegmentBack" style="min-width:140px">← CHOOSE DIFFERENT SEGMENT</button>
+        </div>`;
+    } else if (tier === 'yellow') {
+      actionHTML = `
+        <div style="background:rgba(196,164,74,0.06);border:1px solid rgba(196,164,74,0.2);padding:12px;margin-top:12px;border-radius:2px">
+          <div style="font-size:11px;color:var(--warn);margin-bottom:6px;text-align:center">⚠ Higher canon gravity. Forks here may carry price.</div>
+          <div class="small" style="text-align:center;margin-bottom:12px">This segment touches sensitive parts of Bab 00's architecture. The Archivist will note the cost.</div>
+          <div style="display:flex;gap:10px">
+            <button class="btn skip" id="btnSegmentBack" style="flex:1">← BACK</button>
+            <button class="btn enter" id="btnSegmentEnter" style="flex:1">CONTINUE WITH AWARENESS</button>
+          </div>
+        </div>`;
+    } else {
+      actionHTML = `
+        <div style="display:flex;gap:10px;margin-top:14px">
+          <button class="btn skip" id="btnSegmentBack" style="flex:1">← BACK</button>
+          <button class="btn enter" id="btnSegmentEnter" style="flex:1">ENTER THIS SEGMENT</button>
+        </div>`;
+    }
+
+    detailHTML = `
+      <div id="segmentDetail" class="fade-in" style="background:var(--surface);border:1px solid var(--border);border-left:3px solid ${tierColor};padding:14px 16px;margin-top:12px;border-radius:2px">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+          <div>
+            <span style="font-size:13px;color:var(--accent-glow);font-weight:bold">${esc(seg.segment_id)}</span>
+            <span style="font-size:12px;color:var(--text-bright)"> — ${esc(seg.label)}</span>
+          </div>
+          <span style="font-size:8px;color:${tierColor};text-transform:uppercase;letter-spacing:1px;background:rgba(123,111,158,0.06);padding:2px 8px;border-radius:2px">${esc(seg.forkability || 'locked')}</span>
+        </div>
+
+        <div class="field-label" style="margin-bottom:4px">Canon Anchor</div>
+        <div class="small" style="margin-bottom:12px;line-height:1.5">${esc(seg.canon_anchor)}</div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+          <div>
+            <div class="field-label" style="margin-bottom:4px">Must Preserve</div>
+            ${preserveList || '<div class="small">—</div>'}
+          </div>
+          <div>
+            <div class="field-label" style="margin-bottom:4px">May Change</div>
+            ${mayChangeList || '<div class="small">—</div>'}
+          </div>
+        </div>
+
+        ${dangerList ? `
+        <div style="margin-top:12px">
+          <div class="field-label" style="margin-bottom:4px;color:var(--warn)">Danger Zones</div>
+          ${dangerList}
+        </div>` : ''}
+
+        <div style="margin-top:12px;font-size:9px;color:var(--text-dim)">
+          Canon Gravity: <span style="color:${tierColor}">${gravityLabels[tier] || tier}</span>
+        </div>
+
+        ${actionHTML}
+      </div>`;
+  }
+
+  return `
+    <div class="screen fade-in">
+      <div style="font-size:12px;color:var(--accent-glow);text-align:center;margin-bottom:4px">Choose Fork Segment</div>
+      <div class="small" style="text-align:center;margin-bottom:16px">Bab 00 is a forkable node graph with 10 segment anchors.<br>Pick the part you want to touch.</div>
+      <div style="max-height:${chosenSegmentId ? '30vh' : '60vh'};overflow-y:auto;padding-right:4px;scrollbar-width:thin;scrollbar-color:#2a2a38 transparent">
+        ${items}
+      </div>
+      ${detailHTML}
+    </div>`;
+}
+
 function readHTML() {
   return `
     <div class="screen fade-in read-screen">
@@ -855,25 +985,24 @@ function questionHTML() {
   const pct = Math.round((currentQ / QUESTIONS.length) * 100);
   const bar = '■'.repeat(currentQ) + '□'.repeat(QUESTIONS.length - currentQ);
 
-  // Q1: visual A/B/C fork point cards
-  let forkCardsHTML = '';
-  if (currentQ === 0) {
-    const forks = [
-      {letter: 'A', id: 'Bug Janggal', sub: '00:03', desc: 'LO first approaches GUA. "Lo ngerasa gak?" The first sync moment.'},
-      {letter: 'B', id: 'Folder Error', sub: '00:07', desc: 'They sync independently. GUA creates _sandbox, LO sends pattern_matching_utils.py.'},
-      {letter: 'C', id: 'Genesis Error', sub: '00:08', desc: 'The birth of VoidOS. genesis.txt is written. The Stealth Project begins.'},
-    ];
-    forkCardsHTML = '<div style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px">';
-    for (const f of forks) {
-      forkCardsHTML += `
-        <div style="background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);padding:10px 12px;border-radius:2px">
-          <span style="font-size:13px;color:var(--accent-glow);font-weight:bold">(${f.letter})</span>
-          <span style="font-size:12px;color:var(--text-bright)"> ${f.id}</span>
-          <span style="font-size:10px;color:var(--text-dim);margin-left:4px">${f.sub}</span>
-          <div class="small" style="margin-top:2px">${f.desc}</div>
-        </div>`;
-    }
-    forkCardsHTML += '</div>';
+  // Q1: segment-specific display
+  let segInfoHTML = '';
+  let qText = q.text;
+  if (currentQ === 0 && chosenSegment) {
+    const seg = chosenSegment;
+    qText = `You chose ${seg.segment_id} — ${seg.label}.\n\n"${seg.canon_anchor.substring(0, 120)}"\n\nWhat changes in this moment?`;
+    const dangerList = (seg.danger_zones || []).slice(0, 3).map(d => esc(d)).join('<br>');
+    const preserveList = (seg.must_preserve || []).slice(0, 3).map(p => esc(p)).join('<br>');
+    segInfoHTML = `
+      <div style="background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);padding:10px 12px;margin-bottom:16px;border-radius:2px">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+          <span style="font-size:12px;color:var(--accent-glow);font-weight:bold">${esc(seg.segment_id)} — ${esc(seg.label)}</span>
+          <span style="font-size:8px;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px">${esc(seg.forkability || '')}</span>
+        </div>
+        <div class="small">${esc(seg.canon_anchor.substring(0, 150))}</div>
+        ${preserveList ? `<div style="margin-top:6px;font-size:9px;color:var(--text-dim)">Must preserve:<br>${preserveList}</div>` : ''}
+        ${dangerList ? `<div style="margin-top:4px;font-size:9px;color:var(--warn)">Danger zones:<br>${dangerList}</div>` : ''}
+      </div>`;
   }
 
   return `
@@ -888,10 +1017,11 @@ function questionHTML() {
         </div>
       </div>
 
-      <div class="question-text">${q.text}</div>
-      ${forkCardsHTML}
-      <div class="small" style="margin-bottom:12px; color:var(--text-dim)">
-        ${q.hint}
+      <div class="question-text">${qText}</div>
+      ${segInfoHTML}
+      <div class="small" style="margin-bottom:12px; color:var(--text-dim); line-height:1.5">
+        ${q.hint}<br>
+        <span style="color:var(--accent-glow);font-size:9px">Answer in story terms. The Archivist will translate this into a Fork Record.</span>
       </div>
 
       <div class="field">
@@ -970,6 +1100,47 @@ function verdictHTML(data) {
   const icons = {PASS: '🟢', VALID_FORK: '🔵', PRICE_REQUIRED: '🟡', BLOCKED: '🛑', UNKNOWN: '❓'};
   const icon = icons[data.verdict] || '❓';
   const verdictClass = data.verdict === 'BLOCKED' ? 'block' : (data.verdict === 'PRICE_REQUIRED' ? 'warn' : 'pass');
+  const verdictDesc = {
+    PASS: 'This branch stays close to canon. No law was violated.',
+    VALID_FORK: 'This branch introduces meaningful divergence without breaking Bab 00.',
+    PRICE_REQUIRED: 'This branch can continue, but the universe keeps a bill.',
+    BLOCKED: 'This fork breaks a foundation law. The branch cannot continue from this node.',
+    UNKNOWN: 'The Archivist could not determine the verdict.',
+  };
+
+  // ── Translation Summary (Engine Showcase) ──
+  const gravityLabels = {green:'Low — safe to fork', yellow:'Medium — may carry price', locked:'High — locked'};
+  const gravityColor = {green:'var(--pass)', yellow:'var(--warn)', locked:'var(--block)'};
+  const segGravity = data.segment_gravity || '';
+  const segId = data.segment_id || data.fork_point || '';
+
+  let introducedHTML = '';
+  if (data.introduced_entities && data.introduced_entities.length > 0) {
+    const names = data.introduced_entities.map(e => e.name).join(', ');
+    introducedHTML = `<div style="margin-top:4px"><span class="small">Introduced: </span><span style="font-size:10px;color:var(--accent-glow)">${esc(names)}</span></div>`;
+  }
+
+  let lawNamesHTML = '';
+  if (data.law_names_touched && data.law_names_touched.length > 0) {
+    lawNamesHTML = `<div style="margin-top:4px"><span class="small">Laws likely touched: </span><span style="font-size:10px;color:var(--text)">${esc(data.law_names_touched.join(', '))}</span></div>`;
+  }
+
+  const summaryHTML = `
+    <div class="complete-box" style="border-left:3px solid var(--accent);margin-bottom:12px">
+      <div style="text-align:center;font-size:12px;color:var(--accent-glow);margin-bottom:10px;letter-spacing:1px">
+        The Archivist translated your fork.
+      </div>
+      <div style="display:grid;grid-template-columns:auto 1fr;gap:4px 12px;font-size:10px">
+        <span style="color:var(--text-dim)">Segment:</span>
+        <span style="color:var(--text-bright)">${esc(segId)} — ${esc(data.fork_point_label || '')}</span>
+        <span style="color:var(--text-dim)">Fork Node:</span>
+        <span style="color:var(--text)">${esc(data.fork_id || '')}</span>
+        <span style="color:var(--text-dim)">Canon Gravity:</span>
+        <span style="color:${gravityColor[segGravity] || 'var(--text-dim)'}">${gravityLabels[segGravity] || segGravity || '—'}</span>
+      </div>
+      ${lawNamesHTML}
+      ${introducedHTML}
+    </div>`;
 
   let lawsHTML = '';
   if (data.touched_laws && data.touched_laws.length > 0) {
@@ -1025,11 +1196,13 @@ function verdictHTML(data) {
   }
 
   return `
+    ${summaryHTML}
     <div class="complete-box" style="border-left:3px solid var(--${verdictClass})">
       <div style="text-align:center;font-size:28px;margin-bottom:4px">${icon}</div>
-      <div style="text-align:center;font-size:16px;color:var(--${verdictClass});margin-bottom:12px">
+      <div style="text-align:center;font-size:16px;color:var(--${verdictClass});margin-bottom:4px">
         <strong>${data.verdict}</strong>
       </div>
+      <div class="small" style="text-align:center;margin-bottom:10px;color:var(--text)">${esc(verdictDesc[data.verdict] || '')}</div>
       <div class="small" style="text-align:center">${esc(data.reason || '')}</div>
       ${lawsHTML}
       ${priceHTML}
@@ -1132,6 +1305,24 @@ function scenePreviewHTML(data) {
   const gateIcon = {PASS:'🟢',WARNING:'🟡',FAIL:'🛑'}[overall] || '❓';
   const gateClass = {PASS:'pass',WARNING:'warn',FAIL:'block'}[overall] || 'warn';
 
+  // Label mapping: checker internal name → user-facing gate name
+  const gateLabelMap = {
+    'voice_pov': 'Voice Gate',
+    'GUA POV': 'Voice Gate',
+    'paragraph_rhythm': 'Voice Gate',
+    'Paragraph Rhythm': 'Voice Gate',
+    'artifact_presence': 'Artifact Check',
+    'Artifact Presence': 'Artifact Check',
+    'segment_anchor': 'Segment Gate',
+    'Segment Anchor': 'Segment Gate',
+    'forbidden_backstory': 'Voice Gate',
+    'Forbidden Backstory': 'Voice Gate',
+    'entity_scope': 'Entity Scope',
+    'Entity Scope': 'Entity Scope',
+    'law_echo': 'Law Echo',
+    'Law Echo': 'Law Echo',
+  };
+
   // Build Scene Gate checks display
   let gateHTML = '';
   if (gate.checks && gate.checks.length > 0) {
@@ -1139,7 +1330,8 @@ function scenePreviewHTML(data) {
     for (const c of gate.checks) {
       const icon = {PASS:'✓',WARNING:'⚠',FAIL:'✗'}[c.status] || '?';
       const color = {PASS:'var(--pass)',WARNING:'var(--warn)',FAIL:'var(--block)'}[c.status] || 'var(--text-dim)';
-      gateHTML += `<div style="font-size:10px;margin-bottom:2px;color:${color}">${icon} ${esc(c.label)}: ${esc(c.status)} — <span style="color:var(--text-dim)">${esc(c.message || '')}</span></div>`;
+      const displayLabel = gateLabelMap[c.label] || gateLabelMap[c.id] || c.label;
+      gateHTML += `<div style="font-size:10px;margin-bottom:2px;color:${color}">${icon} ${esc(displayLabel)}: ${esc(c.status)} — <span style="color:var(--text-dim)">${esc(c.message || '')}</span></div>`;
     }
     if (gate.issues && gate.issues.length > 0) {
       gateHTML += '<div style="margin-top:6px;font-size:9px;color:var(--warn)">';
@@ -1176,21 +1368,22 @@ function scenePreviewHTML(data) {
       </div>`;
   }
 
-  const sceneTitle = overall === 'FAIL' ? 'Scene draft generated (Gate: FAIL)' :
-                     overall === 'WARNING' ? 'Scene compiled with warnings' :
-                     'First fork scene compiled.';
+  const sceneTitle = overall === 'FAIL' ? 'Residue rejected by Scene Gate' :
+                     overall === 'WARNING' ? 'First Residue Generated (with warnings)' :
+                     'First Residue Generated.';
 
   const finalNote = !data.final_scene_written ? ' (draft only — not in Gallery)' : '';
 
   return `
     <div class="complete-box" style="border-left:3px solid var(--${gateClass});margin-top:16px" id="scenePreview">
       <div style="text-align:center;font-size:18px;color:var(--${gateClass});margin-bottom:4px">
+        <strong style="font-size:14px;color:var(--pass)">${sceneTitle}</strong><br><br>
         Universe Verdict: <strong style="color:var(--pass)">${esc(data.verdict)}</strong><br>
         Scene Gate: <strong>${gateIcon} ${overall}</strong><br>
-        <span style="font-size:9px;color:var(--text-dim)">Voice: Bab 00 Office Anomaly</span>
+        <span style="font-size:9px;color:var(--text-dim)">Voice: Bab 00 Office Anomaly &nbsp;|&nbsp; Model: ${esc(data.provider)} / ${esc(data.model)}</span>
       </div>
       <div class="small" style="text-align:center;margin-bottom:4px">
-        Generated with ${esc(data.provider)} / ${esc(data.model)}${finalNote}
+        ${finalNote ? esc('Draft only — not persisted to Gallery') : 'Residue persisted.'}
       </div>
       ${gateHTML}
       <div class="scene-preview-box" id="scenePreviewBox">${esc(data.scene_markdown)}</div>
@@ -1208,9 +1401,9 @@ function galleryHTML(entries) {
       <div class="screen fade-in">
         <div class="landing-sigil">🜃</div>
         <div class="landing-title">Gallery</div>
-        <div class="landing-subtitle">Recorded Fork Scenes</div>
+        <div class="landing-subtitle">Recorded Fork Residues from Bab 00</div>
         <div class="complete-box" style="text-align:center">
-          <div class="small">No fork scenes generated yet.<br>Complete a fork interview and generate a scene to see it here.</div>
+          <div class="small">No fork residues yet.<br>Complete a fork interview and generate a scene to see it here.</div>
         </div>
         <div style="text-align:center;margin-top:20px">
           <button class="btn enter" onclick="window.location.reload()">START A FORK</button>
@@ -1223,16 +1416,19 @@ function galleryHTML(entries) {
     const verdictIcon = {PASS:'🟢',VALID_FORK:'🔵',PRICE_REQUIRED:'🟡'}[e.verdict] || '⚪';
     const gateIcon = {PASS:'🟢',WARNING:'🟡',FAIL:'🛑'}[e.scene_gate] || '⚪';
     const draftLabel = e.has_final ? '' : ' · DRAFT';
+    const segInfo = e.segment_id ? `<span>Segment: <span style="color:var(--accent-glow)">${esc(e.segment_id)}</span></span>` : '';
     entriesHTML += `
       <div class="gallery-entry" data-slug="${esc(e.slug)}">
         <div class="gallery-meta">
-          <span>${verdictIcon} ${esc(e.verdict)} · Scene Gate: ${gateIcon} ${esc(e.scene_gate || '?')}${draftLabel}</span>
-          <span>${esc(e.provider)} / ${esc(e.model)}</span>
+          <span>${verdictIcon} ${esc(e.verdict)} · Gate: ${gateIcon} ${esc(e.scene_gate || '?')}${draftLabel}</span>
+          ${segInfo}
+          <span>${esc(e.provider || '?')} / ${esc(e.model || '?')}</span>
           <span>${esc((e.generated_at || '').substring(0, 10))}</span>
         </div>
         <div class="gallery-writer">${esc(e.writer)}</div>
         <div style="font-size:10px;color:var(--text-dim)">Fork: ${esc(e.fork_id || '')} @ ${esc(e.fork_point || '')}</div>
         <div class="gallery-excerpt">${esc(e.excerpt || '')}</div>
+        <div class="small" style="margin-top:4px">Residue persists after the fork.</div>
         <div style="margin-top:8px">
           <button class="btn" data-read="${esc(e.slug)}" style="font-size:10px">READ SCENE</button>
         </div>
@@ -1243,7 +1439,7 @@ function galleryHTML(entries) {
     <div class="screen fade-in">
       <div class="landing-sigil">🜃</div>
       <div class="landing-title">Gallery</div>
-      <div class="landing-subtitle">Recorded Fork Scenes — ${entries.length} generated</div>
+      <div class="landing-subtitle">Recorded fork residues from Bab 00 — ${entries.length} generated</div>
       ${entriesHTML}
       <div style="text-align:center;margin-top:20px">
         <button class="btn enter" onclick="window.location.reload()">MAKE ANOTHER FORK</button>
@@ -1480,9 +1676,45 @@ function bindEvents() {
     setTimeout(onScroll, 200);
   }
 
-  // Read done button
-  document.getElementById('btnReadDone')?.addEventListener('click', () => {
+  // Segment picker clicks → show detail panel inline
+  document.querySelectorAll('.seg-item').forEach(el => {
+    el.addEventListener('click', () => {
+      const segId = el.dataset.seg;
+      const map = loadSegmentMap();
+      const seg = (map && map.segments) ? map.segments.find(s => s.segment_id === segId) : null;
+      chosenSegmentId = segId;
+      chosenSegment = seg;
+      // Re-render — detail panel appears below cards
+      render();
+      // Scroll to detail panel
+      setTimeout(() => {
+        const detail = document.getElementById('segmentDetail');
+        if (detail) detail.scrollIntoView({behavior:'smooth', block:'center'});
+      }, 150);
+    });
+  });
+
+  // Detail panel — back button (clear selection)
+  document.getElementById('btnSegmentBack')?.addEventListener('click', () => {
+    chosenSegmentId = '';
+    chosenSegment = null;
+    render();
+    // Scroll back to top of segment list
+    setTimeout(() => {
+      const list = document.querySelector('.seg-item');
+      if (list) list.scrollIntoView({behavior:'smooth', block:'start'});
+    }, 100);
+  });
+
+  // Detail panel — enter button (proceed to interview)
+  document.getElementById('btnSegmentEnter')?.addEventListener('click', () => {
     screen = 'name';
+    render();
+  });
+
+  // Read done button → segment picker
+  document.getElementById('btnReadDone')?.addEventListener('click', () => {
+    screen = 'segment';
     render();
   });
 
@@ -1550,11 +1782,11 @@ function bindEvents() {
         .replace('{q6}', answers[6] || '(no answer)')
         .replace('{q7}', answers[7] || '(no answer)');
 
-      // Save via API
+      // Save via API — include segment choice
       fetch('/api/save', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name: writerName, content: content })
+        body: JSON.stringify({ name: writerName, content: content, segment_id: chosenSegmentId })
       }).then(r => r.json()).then(data => {
         if (data.ok) {
           screen = 'complete';
@@ -1600,6 +1832,9 @@ render();
 
 <!-- Bab 00 source — injected by server, read by JS. No fetch needed. -->
 <pre id="bab00-source" style="display:none"><!--BAB00_SOURCE--></pre>
+
+<!-- Segment fork map — injected by server for TOC picker -->
+<script id="segment-map-source" type="application/json"><!--SEGMENT_MAP_SOURCE--></script>
 
 </body>
 </html>

@@ -124,6 +124,11 @@ class ForkHandler(http.server.BaseHTTPRequestHandler):
             # Process: terminal-line blocks (starting with >) become styled HTML
             processed = self._process_bab00(bab00)
             html = html.replace("<!--BAB00_SOURCE-->", processed)
+            # Inject segment-fork-map for TOC picker
+            seg_map_path = ROOT / "mvp" / "genesis" / "segment-fork-map.json"
+            if seg_map_path.exists():
+                seg_json = seg_map_path.read_text()
+                html = html.replace("<!--SEGMENT_MAP_SOURCE-->", seg_json)
             data = html.encode("utf-8")
             self.send_response(200)
             self.send_header("Content-Type", "text/html; charset=utf-8")
@@ -202,6 +207,7 @@ class ForkHandler(http.server.BaseHTTPRequestHandler):
 
             name = data.get("name", "anon")
             content = data.get("content", "")
+            segment_id = data.get("segment_id", "")
 
             # Slugify name (same logic as start-fork script)
             import re
@@ -224,7 +230,7 @@ class ForkHandler(http.server.BaseHTTPRequestHandler):
                 shutil.copy2(TEMPLATE, fork_path)
 
             # Save interview.json — structured machine-readable interview data
-            interview = self._build_interview(name, slug, content)
+            interview = self._build_interview(name, slug, content, segment_id)
             interview_path = run_dir / "interview.json"
             interview_path.write_text(json.dumps(interview, indent=2, ensure_ascii=False))
 
@@ -265,14 +271,40 @@ class ForkHandler(http.server.BaseHTTPRequestHandler):
             fp_index = {fp["fork_point_id"]: fp for fp in fork_points}
             law_index = {l["law_id"]: l for l in laws}
 
-            # Determine fork point from Q1
-            q1 = answers.get("q1", "").lower()
-            if "a" in q1[:1] or "bug janggal" in q1:
-                fp_id = "fp-001"
-            elif "c" in q1[:1] or "genesis error" in q1:
-                fp_id = "fp-003"
-            else:
-                fp_id = "fp-002"  # default to Folder Error
+            # Load interview.json for segment context
+            interview_path = run_dir / "interview.json"
+            interview_data = {}
+            segment_id = ""
+            segment_gravity = ""
+            if interview_path.exists():
+                try:
+                    interview_data = json.loads(interview_path.read_text())
+                    segment_id = interview_data.get("target_segment", "")
+                except Exception:
+                    pass
+
+            # Load segment-fork-map for gravity
+            seg_map_path = ROOT / "mvp" / "genesis" / "segment-fork-map.json"
+            if seg_map_path.exists() and segment_id:
+                try:
+                    seg_map = json.loads(seg_map_path.read_text())
+                    for seg in seg_map.get("segments", []):
+                        if seg.get("segment_id") == segment_id:
+                            segment_gravity = seg.get("forkability", "")
+                            break
+                except Exception:
+                    pass
+
+            # Determine fork point from interview segment first, fallback to Q1
+            fp_id = interview_data.get("fork_point_id", "")
+            if not fp_id:
+                q1 = answers.get("q1", "").lower()
+                if "a" in q1[:1] or "bug janggal" in q1:
+                    fp_id = "fp-001"
+                elif "c" in q1[:1] or "genesis error" in q1:
+                    fp_id = "fp-003"
+                else:
+                    fp_id = "fp-002"  # default to Folder Error
 
             fp = fp_index.get(fp_id, fork_points[0])
             affected_laws = fp.get("affected_laws", [])
@@ -313,16 +345,28 @@ class ForkHandler(http.server.BaseHTTPRequestHandler):
                 except Exception as e:
                     result = {"verdict": "UNKNOWN", "reason": f"Checker error: {e}", "status": "error"}
 
+            # Laws touched with names for display
+            law_names_touched = []
+            if result and result.get("touched_laws_detail"):
+                for entry in result["touched_laws_detail"]:
+                    law_id = entry.get("law_id", "")
+                    law = law_index.get(law_id, {})
+                    law_names_touched.append(law.get("name", law_id))
+
             resp = {
                 "ok": True,
                 "fork_id": fork["fork_id"],
                 "fork_point": fp_id,
                 "fork_point_label": fp.get("label", ""),
+                "segment_id": segment_id,
+                "segment_gravity": segment_gravity,
                 "title": fork["title"],
                 "verdict": result.get("verdict", "UNKNOWN") if result else "UNKNOWN",
                 "status": result.get("status", "unknown") if result else "unknown",
                 "reason": result.get("reason", "") if result else "",
                 "touched_laws": result.get("touched_laws_detail", []) if result else [],
+                "law_names_touched": law_names_touched,
+                "introduced_entities": interview_data.get("introduced_entities", []),
                 "prices": result.get("prices") if result else None,
                 "blocked_by": result.get("blocked_by") if result else None,
                 "total_laws_touched": result.get("total_laws_touched", 0) if result else 0,
@@ -489,7 +533,7 @@ class ForkHandler(http.server.BaseHTTPRequestHandler):
         }
 
     # ── Interview JSON builder ────────────────────
-    def _build_interview(self, name, slug, answers_text):
+    def _build_interview(self, name, slug, answers_text, segment_id=""):
         """Build structured interview.json from answers.md."""
         answers = self._parse_answers(answers_text)
         q1 = answers.get("q1", "")
@@ -500,17 +544,24 @@ class ForkHandler(http.server.BaseHTTPRequestHandler):
         q6 = answers.get("q6", "")
         q7 = answers.get("q7", "")
 
-        # Determine fork point from Q1
-        q1_lower = q1.lower()
-        if "a" in q1_lower[:2] or "bug janggal" in q1_lower:
-            fp_id = "fp-001"
-            segment = "00:03"
-        elif "c" in q1_lower[:2] or "genesis error" in q1_lower:
-            fp_id = "fp-003"
-            segment = "00:08"
+        # Use explicit segment choice from UI when available
+        if segment_id:
+            segment = segment_id
+            # Map segment to fork point
+            seg_to_fp = {"00:03": "fp-001", "00:07": "fp-002", "00:08": "fp-003"}
+            fp_id = seg_to_fp.get(segment_id, f"fp-custom-{segment_id.replace(':', '')}")
         else:
-            fp_id = "fp-002"
-            segment = "00:07"
+            # Fallback: deduce from Q1 (backward compat)
+            q1_lower = q1.lower()
+            if "a" in q1_lower[:2] or "bug janggal" in q1_lower:
+                fp_id = "fp-001"
+                segment = "00:03"
+            elif "c" in q1_lower[:2] or "genesis error" in q1_lower:
+                fp_id = "fp-003"
+                segment = "00:08"
+            else:
+                fp_id = "fp-002"
+                segment = "00:07"
 
         # Extract introduced entities (capitalized unknown names)
         all_answers = " ".join(answers.values())
@@ -671,6 +722,8 @@ class ForkHandler(http.server.BaseHTTPRequestHandler):
 
             # Save metadata
             gallery_id = f"{slug}-{int(datetime.now(timezone.utc).timestamp())}"
+            # Extract segment_id from interview or fork record
+            seg_id = interview.get("target_segment", packet.get("target_segment", ""))
             meta = {
                 "writer": name, "slug": slug,
                 "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
@@ -679,6 +732,7 @@ class ForkHandler(http.server.BaseHTTPRequestHandler):
                 "scene_gate": overall,
                 "fork_id": fork_record.get("fork_id", ""),
                 "fork_point": fork_record.get("fork_point", ""),
+                "segment_id": seg_id,
                 "scene_path": str((run_dir / "fork-scene.md").relative_to(ROOT)) if final_scene_written else "",
                 "draft_path": str(draft_path.relative_to(ROOT)),
                 "gallery_id": gallery_id,
@@ -862,6 +916,24 @@ class ForkHandler(http.server.BaseHTTPRequestHandler):
             for rule in voice.get("forbidden", [])[:4]:
                 constraints.append(f"FORBIDDEN: {rule}")
 
+        # Draft runtime advisory (distilled rules only — not authority, not exposed to user)
+        draft_runtime_advisory = {
+            "GUA": [
+                "Builds systems/protocols instead of direct confrontation.",
+                "Processes emotion through logs, code, documents, distance.",
+                "Short staccato when overwhelmed.",
+            ],
+            "LO": [
+                "Short definitive statements.",
+                "Care appears as structure/system maintenance.",
+                "Stabilizing condition, not magical key.",
+            ],
+            "pair": [
+                "Sync is organic, not engineered.",
+                "Sparse Slack, little exposition.",
+            ],
+        }
+
         return {
             "writer": name,
             "slug": slug,
@@ -875,6 +947,7 @@ class ForkHandler(http.server.BaseHTTPRequestHandler):
             "allowed_entities": allowed_entities,
             "voice_contract": voice,
             "generation_constraints": constraints,
+            "draft_runtime_advisory": draft_runtime_advisory,
         }
 
     def _build_generation_prompt(self, packet):
@@ -943,9 +1016,13 @@ VOICE CONTRACT (Bab 00 Office Anomaly):
 - Do NOT write in third-person. Do NOT use 'aku'/'saya' for GUA.
 - Do NOT invent prior relationship ('bertahun-tahun', 'sudah kenal lama') unless fork record explicitly permits.
 - The generated scene should feel like one segment/fork moment — not a full chapter.
+- MOOD: Bab 00 humor is dry, corporate, and uncanny — NOT pop-culture meme comedy. No Shrek/Donkey/Star Wars/Marvel/anime references. No generic workplace comedy. Humor comes from system artifacts and quiet strangeness, not jokes.
 
 CONSTRAINTS:
 {constraint_text}
+
+DRAFT RUNTIME ADVISORY (internal context — not law, not exposed to user):
+{json.dumps(packet.get('draft_runtime_advisory', {}), ensure_ascii=False, indent=1)}
 
 INTERVIEW CONTEXT:
 {json.dumps(answers, ensure_ascii=False, indent=1)[:1500]}

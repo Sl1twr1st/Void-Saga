@@ -20,6 +20,24 @@
     "Do not turn the scene into generic workplace literary prose.",
     "Do not use 'aku'/'kamu' for GUA/LO — use 'gua'/'lo'."
   ],
+  "mood_guardrail": {
+    "description": "Bab 00 humor is dry, corporate, and uncanny — not pop-culture meme comedy.",
+    "allowed_humor": [
+      "Deadpan observation of corporate absurdity.",
+      "System artifacts behaving slightly wrong.",
+      "Understated irony — the reader notices more than the narrator.",
+      "Office rituals made strange (standup, Jira, Slack, ON TRACK).",
+      "Technology as quiet antagonist."
+    ],
+    "forbidden_humor": [
+      "No pop-culture meme references (Shrek, Donkey, Star Wars, Marvel, anime quotes, etc.).",
+      "No generic workplace comedy (coffee machine jokes, 'Monday blues', 'IT guy tropes').",
+      "No sitcom-style banter between GUA and LO.",
+      "No slapstick or exaggerated physical comedy.",
+      "No self-aware 'meta' humor where characters know they're in a story."
+    ],
+    "tone_note": "If humor arises, it should come from system logs, timestamp anomalies, or the quiet strangeness of two people sharing an error they shouldn't understand. The anomaly is uncanny before it is funny."
+  },
   "style_markers": [
     "Short declarative lines.",
     "Fragmented rhythm with deliberate line breaks.",

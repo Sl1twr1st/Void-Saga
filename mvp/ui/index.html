@@ -988,20 +988,24 @@ function questionHTML() {
   // Q1: segment-specific display
   let segInfoHTML = '';
   let qText = q.text;
+  let qHint = q.hint;
   if (currentQ === 0 && chosenSegment) {
     const seg = chosenSegment;
-    qText = `You chose ${seg.segment_id} — ${seg.label}.\n\n"${seg.canon_anchor.substring(0, 120)}"\n\nWhat changes in this moment?`;
+    qText = `You chose ${seg.segment_id} — ${seg.label}.\n\nWhat changes in this moment?`;
+    qHint = 'Describe what happens differently. Be specific about who does what.';
     const dangerList = (seg.danger_zones || []).slice(0, 3).map(d => esc(d)).join('<br>');
     const preserveList = (seg.must_preserve || []).slice(0, 3).map(p => esc(p)).join('<br>');
+    const mayChangeList = (seg.may_change || []).slice(0, 3).map(c => esc(c)).join('<br>');
     segInfoHTML = `
       <div style="background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);padding:10px 12px;margin-bottom:16px;border-radius:2px">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
-          <span style="font-size:12px;color:var(--accent-glow);font-weight:bold">${esc(seg.segment_id)} — ${esc(seg.label)}</span>
-          <span style="font-size:8px;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px">${esc(seg.forkability || '')}</span>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+          <span style="font-size:11px;color:var(--accent-glow);font-weight:bold">${esc(seg.segment_id)} — ${esc(seg.label)}</span>
+          <span style="font-size:8px;color:var(--pass);text-transform:uppercase;letter-spacing:1px">${esc(seg.forkability || '')}</span>
         </div>
-        <div class="small">${esc(seg.canon_anchor.substring(0, 150))}</div>
-        ${preserveList ? `<div style="margin-top:6px;font-size:9px;color:var(--text-dim)">Must preserve:<br>${preserveList}</div>` : ''}
-        ${dangerList ? `<div style="margin-top:4px;font-size:9px;color:var(--warn)">Danger zones:<br>${dangerList}</div>` : ''}
+        <div class="small" style="line-height:1.5;margin-bottom:8px">Canon: ${esc(seg.canon_anchor)}</div>
+        ${preserveList ? `<div style="margin-bottom:6px;font-size:9px;color:var(--text-dim)"><span style="color:var(--pass)">Must preserve:</span><br>${preserveList}</div>` : ''}
+        ${mayChangeList ? `<div style="margin-bottom:6px;font-size:9px;color:var(--text-dim)"><span style="color:var(--accent-glow)">May change:</span><br>${mayChangeList}</div>` : ''}
+        ${dangerList ? `<div style="font-size:9px;color:var(--warn)"><span>Danger zones:</span><br>${dangerList}</div>` : ''}
       </div>`;
   }
 
@@ -1020,7 +1024,7 @@ function questionHTML() {
       <div class="question-text">${qText}</div>
       ${segInfoHTML}
       <div class="small" style="margin-bottom:12px; color:var(--text-dim); line-height:1.5">
-        ${q.hint}<br>
+        ${qHint}<br>
         <span style="color:var(--accent-glow);font-size:9px">Answer in story terms. The Archivist will translate this into a Fork Record.</span>
       </div>
 

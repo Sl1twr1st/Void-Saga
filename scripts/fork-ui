@@ -291,6 +291,17 @@ class ForkHandler(http.server.BaseHTTPRequestHandler):
             # Parse answers
             answers = self._parse_answers(answers_path.read_text())
 
+            # Guard: reject empty interviews
+            non_empty = [v for v in answers.values() if v.strip() and v.strip() != '(no answer)']
+            if len(non_empty) == 0:
+                self._json_resp(400, {
+                    "ok": False,
+                    "error": "All answers are empty. You must answer at least one question before the Archivist can translate.",
+                    "verdict": "UNKNOWN",
+                    "reason": "Empty interview — nothing to translate."
+                })
+                return
+
             # Load reference data
             fork_points = json.loads(FORK_POINTS_PATH.read_text())
             laws = json.loads(LAWS_PATH.read_text())

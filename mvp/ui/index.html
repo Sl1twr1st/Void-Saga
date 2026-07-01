@@ -1906,6 +1906,14 @@ function bindEvents() {
   document.getElementById('btnNext')?.addEventListener('click', () => {
     const input = document.getElementById('inputAnswer');
     const val = input ? input.value.trim() : '';
+
+    // Block empty answers — user must write something
+    if (!val) {
+      input?.focus();
+      input?.style.setProperty('border-color', 'var(--warn)');
+      setTimeout(() => input?.style.setProperty('border-color', ''), 1500);
+      return;
+    }
     answers[currentQ + 1] = val;
 
     if (currentQ < QUESTIONS.length - 1) {

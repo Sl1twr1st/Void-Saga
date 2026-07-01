@@ -660,9 +660,10 @@
   <!-- Context bar -->
   <div class="context-bar" id="contextBar">
     <span>Genesis: <span class="val">Bab 00</span></span>
-    <span>Node: <span class="val">bab00</span></span>
+    <span class="val" style="color:var(--text-dim);font-style:italic">Distributed. Anyone may write inside this universe.</span>
     <span>Laws: <span class="val">7 active</span></span>
     <span>Fork Points: <span class="val">3 available</span></span>
+    <a href="#" onclick="alert('Tentang Void Saga — akan datang.')" style="margin-left:auto;font-size:8px;color:var(--text-dim);text-decoration:none;text-transform:uppercase;letter-spacing:1px">ABOUT ▸</a>
   </div>
 
   <!-- Body -->
@@ -779,7 +780,7 @@ function render() {
 
   // Update context bar per screen
   const ctxMap = {
-    'landing':   `<span>Genesis: <span class="val">Bab 00</span></span><span>Node: <span class="val">bab00</span></span><span>Laws: <span class="val">7 active</span></span><span>Fork Points: <span class="val">3 available</span></span>`,
+    'landing':   `<span>Genesis: <span class="val">Bab 00</span></span><span class="val" style="color:var(--text-dim);font-style:italic">Distributed. Anyone may write inside this universe.</span><span>Laws: <span class="val">7 active</span></span><span>Fork Points: <span class="val">3 available</span></span><a href="#" onclick="alert('Tentang Void Saga — akan datang.')" style="margin-left:auto;font-size:8px;color:var(--text-dim);text-decoration:none;text-transform:uppercase;letter-spacing:1px">ABOUT ▸</a>`,
     'read':      `<span>📖 <span class="val">Bab 00 — Menatap Akhir Era dari Balik Laptop Kantor</span></span>`,
     'name':      `<span>✧ <span class="val">Fork Interview — Who is writing?</span></span>`,
     'question':  `<span>✧ <span class="val">Fork Interview — Question ${currentQ+1} of ${QUESTIONS.length}</span></span><span style="margin-left:auto">Writer: <span class="val">${esc(writerName) || '…'}</span></span>`,

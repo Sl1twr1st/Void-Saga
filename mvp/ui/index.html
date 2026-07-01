@@ -1081,9 +1081,12 @@ function readHTML() {
       </div>
       <div class="read-bottom">
         <div class="read-progress" id="readProgress">Opening…</div>
-        <div class="btn-row">
-          <button class="btn enter" id="btnReadDone" disabled>
-            READ BAB 00 TO CONTINUE
+        <div class="btn-row" id="readBtnRow" style="display:none">
+          <button class="btn enter" id="btnForkNode" style="flex:1">
+            FORK THIS NODE
+          </button>
+          <button class="btn" id="btnContinueTimer" disabled style="flex:1;opacity:0.4;cursor:not-allowed">
+            CONTINUE TO TIMER 00:00
           </button>
         </div>
       </div>
@@ -1786,20 +1789,18 @@ function bindEvents() {
 
   // Read screen — scroll-to-enable CTA
   const readScroll = document.getElementById('readScroll');
-  const btnReadDone = document.getElementById('btnReadDone');
+  const readBtnRow = document.getElementById('readBtnRow');
   const readProgress = document.getElementById('readProgress');
-  if (readScroll && btnReadDone && readProgress) {
+  if (readScroll && readBtnRow && readProgress) {
     const onScroll = () => {
       const scrollTop = readScroll.scrollTop;
       const scrollHeight = readScroll.scrollHeight;
       const clientHeight = readScroll.clientHeight;
       const maxScroll = scrollHeight - clientHeight;
 
-      // Edge case: content fits without scrolling → enable immediately
       if (maxScroll <= 0) {
-        btnReadDone.disabled = false;
-        btnReadDone.textContent = 'I HAVE READ BAB 00';
-        readProgress.textContent = 'Ready';
+        readBtnRow.style.display = 'flex';
+        readProgress.textContent = 'BAB 00 ACKNOWLEDGED';
         readProgress.className = 'read-progress ready';
         return;
       }
@@ -1808,13 +1809,11 @@ function bindEvents() {
       const nearBottom = pct >= 90;
 
       if (nearBottom) {
-        btnReadDone.disabled = false;
-        btnReadDone.textContent = 'I HAVE READ BAB 00';
-        readProgress.textContent = 'Ready';
+        readBtnRow.style.display = 'flex';
+        readProgress.textContent = 'BAB 00 ACKNOWLEDGED';
         readProgress.className = 'read-progress ready';
       } else {
-        btnReadDone.disabled = true;
-        btnReadDone.textContent = 'READ BAB 00 TO CONTINUE';
+        readBtnRow.style.display = 'none';
         readProgress.textContent = 'Reading ' + pct + '%';
         readProgress.className = 'read-progress';
       }
@@ -1860,10 +1859,15 @@ function bindEvents() {
     render();
   });
 
-  // Read done button → segment picker
-  document.getElementById('btnReadDone')?.addEventListener('click', () => {
+  // Fork button → segment picker
+  document.getElementById('btnForkNode')?.addEventListener('click', () => {
     screen = 'segment';
     render();
+  });
+
+  // Continue to Timer → placeholder
+  document.getElementById('btnContinueTimer')?.addEventListener('click', () => {
+    alert('Timer 00:00 akan datang. Bab 00 adalah genesis node — Timer menyusul.');
   });
 
   // Name → first question

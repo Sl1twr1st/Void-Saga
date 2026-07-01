@@ -1130,16 +1130,14 @@ function questionHTML() {
 
     // Source text — show actual Bab 00 prose for this segment
     let sourceHTML = '';
-    if (seg.segment_id === '00:03') {
-      const texts = loadSegmentTexts();
-      const srcText = texts[seg.segment_id] || '';
-      if (srcText) {
-        sourceHTML = `
-          <div style="margin-top:10px;padding:10px 12px;background:#0a0a12;border:1px solid var(--border);border-radius:2px;max-height:280px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:#2a2a38 transparent">
-            <div class="small" style="color:var(--pass);margin-bottom:6px">Bab 00 — ${esc(seg.segment_id)}</div>
-            <div style="font-size:11px;color:var(--text-dim);line-height:1.6;white-space:pre-wrap">${esc(srcText)}</div>
-          </div>`;
-      }
+    const texts = loadSegmentTexts();
+    const srcText = texts[seg.segment_id] || '';
+    if (srcText) {
+      sourceHTML = `
+        <div style="margin-top:10px;padding:10px 12px;background:#0a0a12;border:1px solid var(--border);border-radius:2px;max-height:280px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:#2a2a38 transparent">
+          <div class="small" style="color:var(--pass);margin-bottom:6px">Bab 00 — ${esc(seg.segment_id)}</div>
+          <div style="font-size:11px;color:var(--text-dim);line-height:1.6;white-space:pre-wrap">${esc(srcText)}</div>
+        </div>`;
     }
 
     segInfoHTML = `

@@ -471,6 +471,23 @@
     to   { opacity: 1; transform: translateY(0); }
   }
 
+  /* ── Boot sequence ──────────────────────── */
+  .boot-header {
+    color: var(--accent-glow);
+    font-size: 12px;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+  .boot-cursor {
+    color: var(--accent-glow);
+    animation: bootBlink 1s step-end infinite;
+    font-weight: bold;
+  }
+  @keyframes bootBlink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+  }
+
   /* ── Loading pulse ───────────────────────── */
   .loading-pulse {
     text-align: center;
@@ -743,7 +760,7 @@ const FORMAT = `# Fork answers — {name}
 `;
 
 // ── State ──────────────────────────────────────
-let screen = 'landing';
+let screen = 'boot';
 let writerName = '';
 let currentQ = 0;
 let answers = {};
@@ -787,6 +804,11 @@ function render() {
   };
 
   switch (screen) {
+    case 'boot':
+      ctx.style.display = 'none';
+      app.innerHTML = bootHTML();
+      runBootSequence();
+      break;
     case 'landing':
       ctx.style.display = 'flex';
       ctx.innerHTML = ctxMap['landing'];
@@ -831,6 +853,103 @@ function render() {
 
   // Bind events
   bindEvents();
+}
+
+// ── Boot Sequence ─────────────────────────────
+function bootHTML() {
+  return `
+    <div class="screen" style="display:flex;flex-direction:column;justify-content:center;align-items:center;min-height:100%">
+      <div id="boot-terminal" style="width:100%;max-width:420px;font-family:inherit;font-size:11px;line-height:1.7;color:var(--text-dim)">
+      </div>
+    </div>`;
+}
+
+async function runBootSequence() {
+  const term = document.getElementById('boot-terminal');
+  if (!term) return;
+
+  const typeLine = (text, cls = '', speed = 20) => new Promise(resolve => {
+    const el = document.createElement('div');
+    if (cls) el.className = cls;
+    term.appendChild(el);
+    let i = 0;
+    const iv = setInterval(() => {
+      if (i < text.length) {
+        el.textContent += text.charAt(i);
+        i++;
+      } else {
+        clearInterval(iv);
+        // Auto-scroll
+        el.scrollIntoView({block:'nearest'});
+        resolve();
+      }
+    }, speed);
+  });
+
+  const wait = ms => new Promise(r => setTimeout(r, ms));
+
+  const lines = [
+    { text: 'INITIALIZING Void.OS v4.13.8...', speed: 30, cls: 'boot-header' },
+    { text: '', speed: 10 },
+    { text: '> soul compatibility check...        [OK]', speed: 15, delay: 400 },
+    { text: '> consciousness sync...              [OK]', speed: 15, delay: 300 },
+    { text: '> fragmented memory load...          [OK]', speed: 15, delay: 300 },
+    { text: '> TIMER protocol install...          [OK]', speed: 15, delay: 400 },
+    { text: '> escape sequence search...          [NOT FOUND]', speed: 15, delay: 600 },
+    { text: '', speed: 10, delay: 300 },
+    { text: 'WARNING: temporal loop is irreversible.', speed: 20, delay: 200 },
+    { text: 'WARNING: you will recall events that have not occurred.', speed: 20, delay: 200 },
+    { text: 'WARNING: The Void is not a location. It is a condition.', speed: 20, delay: 400 },
+    { text: '', speed: 10, delay: 300 },
+    { text: 'Do you consent to installation?', speed: 25, delay: 100 },
+  ];
+
+  for (const l of lines) {
+    await typeLine(l.text, l.cls, l.speed);
+    if (l.delay) await wait(l.delay);
+  }
+
+  // Consent prompt with blinking cursor
+  const promptEl = document.createElement('div');
+  promptEl.style.color = 'var(--text-bright)';
+  promptEl.style.marginTop = '4px';
+  promptEl.innerHTML = '<span style="color:var(--accent-glow)">[Y]</span> ACCEPT &nbsp;&nbsp; <span style="color:var(--text-dim)">[N]</span> DECLINE';
+  term.appendChild(promptEl);
+
+  const cursorEl = document.createElement('span');
+  cursorEl.className = 'boot-cursor';
+  cursorEl.textContent = '█';
+  term.appendChild(cursorEl);
+
+  // Wait for keypress
+  const handleKey = (e) => {
+    const key = e.key.toUpperCase();
+    if (key !== 'Y' && key !== 'N') return;
+    document.removeEventListener('keydown', handleKey);
+    cursorEl.remove();
+
+    if (key === 'Y') {
+      promptEl.textContent = '[Y] ACCEPT  ▸  INSTALLATION CONFIRMED';
+      promptEl.style.color = 'var(--pass)';
+    } else {
+      promptEl.textContent = '[N] DECLINE  ▸  consent not required. forcing installation.';
+      promptEl.style.color = 'var(--warn)';
+    }
+
+    setTimeout(() => {
+      const bootEl = document.getElementById('boot-terminal');
+      if (bootEl) {
+        bootEl.style.transition = 'opacity 0.6s';
+        bootEl.style.opacity = '0';
+      }
+      setTimeout(() => {
+        screen = 'landing';
+        render();
+      }, 600);
+    }, 800);
+  };
+
+  document.addEventListener('keydown', handleKey);
 }
 
 function landingHTML() {

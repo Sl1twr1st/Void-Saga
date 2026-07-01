@@ -471,6 +471,39 @@
     to   { opacity: 1; transform: translateY(0); }
   }
 
+  /* ── Loading pulse ───────────────────────── */
+  .loading-pulse {
+    text-align: center;
+    padding: 28px 20px;
+  }
+  .loading-pulse .pulse-ring {
+    width: 32px; height: 32px;
+    border: 2px solid var(--border);
+    border-top-color: var(--accent-glow);
+    border-radius: 50%;
+    margin: 0 auto 14px;
+    animation: spin 0.9s linear infinite;
+  }
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+  .loading-pulse .pulse-label {
+    font-size: 11px;
+    color: var(--text-dim);
+    letter-spacing: 1px;
+  }
+  .loading-pulse .pulse-dots::after {
+    content: '';
+    animation: dots 1.6s steps(4, end) infinite;
+  }
+  @keyframes dots {
+    0%   { content: ''; }
+    25%  { content: '.'; }
+    50%  { content: '..'; }
+    75%  { content: '...'; }
+    100% { content: ''; }
+  }
+
   /* ── API Key Gate ─────────────────────── */
   .gate-box {
     background: var(--surface);
@@ -1417,8 +1450,9 @@ function scenePreviewHTML(data) {
       ${gateHTML}
       <div class="scene-preview-box" id="scenePreviewBox">${esc(data.scene_markdown)}</div>
       ${buttonsHTML}
-      <div style="text-align:center;margin-top:12px">
-        <button class="btn" onclick="window.location.reload()">MAKE ANOTHER FORK</button>
+      <div style="text-align:center;margin-top:14px">
+        <button class="btn enter" disabled style="opacity:0.4;cursor:not-allowed;border-color:var(--border);color:var(--text-dim)">MAJU TIMER 00:00</button>
+        <div class="small" style="margin-top:4px">Timer fork belum tersedia. Akan datang.</div>
       </div>
     </div>`;
 }
@@ -1541,7 +1575,7 @@ function bindGateEvents() {
 
     // Show loading
     const genArea = document.getElementById('genCTA');
-    if (genArea) genArea.innerHTML = '<div class="small" style="text-align:center;padding:20px">Generating fork scene…</div>';
+    if (genArea) genArea.innerHTML = '<div class="loading-pulse"><div class="pulse-ring"></div><div class="pulse-label">Generating fork scene<span class="pulse-dots"></span></div></div>';
 
     fetch('/api/generate-scene', {
       method: 'POST',

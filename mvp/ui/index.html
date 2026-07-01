@@ -729,6 +729,16 @@ function loadSegmentMap() {
   return segmentMap;
 }
 
+let segmentTexts = null;
+function loadSegmentTexts() {
+  if (segmentTexts) return segmentTexts;
+  const src = document.getElementById('segment-texts-source');
+  if (src && src.textContent.trim() && !src.textContent.includes('SEGMENT_TEXTS')) {
+    try { segmentTexts = JSON.parse(src.textContent); } catch(e) { segmentTexts = null; }
+  }
+  return segmentTexts || {};
+}
+
 // ── Screens ────────────────────────────────────
 function render() {
   const app = document.getElementById('app');
@@ -996,16 +1006,31 @@ function questionHTML() {
     const dangerList = (seg.danger_zones || []).slice(0, 3).map(d => esc(d)).join('<br>');
     const preserveList = (seg.must_preserve || []).slice(0, 3).map(p => esc(p)).join('<br>');
     const mayChangeList = (seg.may_change || []).slice(0, 3).map(c => esc(c)).join('<br>');
+
+    // Source text — show actual Bab 00 prose for this segment
+    let sourceHTML = '';
+    if (seg.segment_id === '00:03') {
+      const texts = loadSegmentTexts();
+      const srcText = texts[seg.segment_id] || '';
+      if (srcText) {
+        sourceHTML = `
+          <div style="margin-top:10px;padding:10px 12px;background:#0a0a12;border:1px solid var(--border);border-radius:2px;max-height:280px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:#2a2a38 transparent">
+            <div class="small" style="color:var(--pass);margin-bottom:6px">Bab 00 — ${esc(seg.segment_id)}</div>
+            <div style="font-size:11px;color:var(--text-dim);line-height:1.6;white-space:pre-wrap">${esc(srcText)}</div>
+          </div>`;
+      }
+    }
+
     segInfoHTML = `
       <div style="background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);padding:10px 12px;margin-bottom:16px;border-radius:2px">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
           <span style="font-size:11px;color:var(--accent-glow);font-weight:bold">${esc(seg.segment_id)} — ${esc(seg.label)}</span>
           <span style="font-size:8px;color:var(--pass);text-transform:uppercase;letter-spacing:1px">${esc(seg.forkability || '')}</span>
         </div>
-        <div class="small" style="line-height:1.5;margin-bottom:8px">Canon: ${esc(seg.canon_anchor)}</div>
-        ${preserveList ? `<div style="margin-bottom:6px;font-size:9px;color:var(--text-dim)"><span style="color:var(--pass)">Must preserve:</span><br>${preserveList}</div>` : ''}
-        ${mayChangeList ? `<div style="margin-bottom:6px;font-size:9px;color:var(--text-dim)"><span style="color:var(--accent-glow)">May change:</span><br>${mayChangeList}</div>` : ''}
-        ${dangerList ? `<div style="font-size:9px;color:var(--warn)"><span>Danger zones:</span><br>${dangerList}</div>` : ''}
+        ${sourceHTML}
+        ${preserveList ? `<div style="margin-top:8px;font-size:9px;color:var(--text-dim)"><span style="color:var(--pass)">Must preserve:</span><br>${preserveList}</div>` : ''}
+        ${mayChangeList ? `<div style="margin-top:4px;font-size:9px;color:var(--text-dim)"><span style="color:var(--accent-glow)">May change:</span><br>${mayChangeList}</div>` : ''}
+        ${dangerList ? `<div style="margin-top:4px;font-size:9px;color:var(--warn)"><span>Danger zones:</span><br>${dangerList}</div>` : ''}
       </div>`;
   }
 
@@ -1839,6 +1864,9 @@ render();
 
 <!-- Segment fork map — injected by server for TOC picker -->
 <script id="segment-map-source" type="application/json"><!--SEGMENT_MAP_SOURCE--></script>
+
+<!-- Per-segment source texts — injected by server for Q1 context -->
+<script id="segment-texts-source" type="application/json"><!--SEGMENT_TEXTS_SOURCE--></script>
 
 </body>
 </html>

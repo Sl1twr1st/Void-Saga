@@ -129,6 +129,9 @@ class ForkHandler(http.server.BaseHTTPRequestHandler):
             if seg_map_path.exists():
                 seg_json = seg_map_path.read_text()
                 html = html.replace("<!--SEGMENT_MAP_SOURCE-->", seg_json)
+            # Inject per-segment source texts for Q1 context
+            seg_texts = self._extract_segment_texts(bab00)
+            html = html.replace("<!--SEGMENT_TEXTS_SOURCE-->", json.dumps(seg_texts, ensure_ascii=False))
             data = html.encode("utf-8")
             self.send_response(200)
             self.send_header("Content-Type", "text/html; charset=utf-8")
@@ -138,6 +141,29 @@ class ForkHandler(http.server.BaseHTTPRequestHandler):
             self.wfile.write(data)
         except Exception:
             self.send_error(500)
+
+    def _extract_segment_texts(self, bab00_text):
+        """Split Bab 00 into per-segment texts keyed by segment_id."""
+        import re
+        segments = {}
+        # Split on segment headers: 00:XX — Label (at start of line)
+        pattern = r'^(?=\d{2}:\d{2} — )'
+        parts = re.split(pattern, bab00_text, flags=re.MULTILINE)
+        for part in parts:
+            part = part.strip()
+            if not part:
+                continue
+            # Extract segment_id from first line
+            m = re.match(r'(\d{2}:\d{2}) — ', part)
+            if m:
+                seg_id = m.group(1)
+                # Remove the header line from content
+                lines = part.split('\n', 1)
+                content = lines[1].strip() if len(lines) > 1 else ''
+                # Trim trailing sigil if present
+                content = re.sub(r'\n?🜃\s*$', '', content)
+                segments[seg_id] = content
+        return segments
 
     def _process_bab00(self, text):
         """Convert >-prefixed lines into terminal blocks. Everything else is HTML-escaped text."""

@@ -67,7 +67,7 @@ def generate_candidate(manifest: dict[str, Any], validator_result: dict[str, Any
     documents = [_build_document_record(root, record) for record in included]
     candidate = {
         "canon_id": manifest.get("canon_id"),
-        "version": "v1.0",
+        "version": "1.0.0",
         "status": "candidate",
         "schema_version": manifest.get("schema_version"),
         "created_at": datetime.now(timezone.utc).isoformat(),

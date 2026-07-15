@@ -5,6 +5,7 @@ from pathlib import Path
 
 from tools.void_corpus.validate import validate_manifest_file
 from tools.void_corpus.generate_candidate import generate_candidate_file
+from tools.void_corpus.seal_candidate import seal_candidate_file
 
 
 BAB_IDS = [
@@ -310,6 +311,70 @@ class VoidCorpusValidateTests(unittest.TestCase):
         self.assertFalse(any(e["code"] == "out_of_scope_file_detected" for e in result["errors"]))
 
 
+class SealCandidateTests(unittest.TestCase):
+    def seal(self, mutate_manifest=None, mutate_files=None, validator_result="VALID_WITH_WARNINGS", mutate_candidate=None):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            manifest = make_valid_manifest()
+            if mutate_manifest:
+                mutate_manifest(manifest, root)
+            manifest_path = write_fixture(root, manifest)
+            report_path = write_validation_report(root, validator_result)
+            commit = init_git_repo(root)
+            candidate_path = root / "canon-v1.0.candidate.json"
+            generate_candidate_file(manifest_path, root, report_path=report_path, output_path=candidate_path)
+            if mutate_files:
+                mutate_files(manifest, root)
+            if mutate_candidate:
+                data = json.loads(candidate_path.read_text(encoding="utf-8"))
+                mutate_candidate(data)
+                candidate_path.write_text(json.dumps(data, indent=2), encoding="utf-8")
+            sealed_path = root / "canon-v1.0.json"
+            sealed = seal_candidate_file(candidate_path, root, sealed_by="Rizali Alma", output_path=sealed_path)
+            sealed_written = sealed_path.read_text(encoding="utf-8")
+            candidate_written = candidate_path.read_text(encoding="utf-8")
+            return sealed, sealed_written, candidate_written, commit
+
+    def test_valid_candidate_can_be_sealed(self):
+        sealed, sealed_written, _, _ = self.seal()
+        self.assertIn('"status": "sealed"', sealed_written)
+        self.assertEqual(sealed["status"], "sealed")
+
+    def test_sealed_output_preserves_corpus_hash(self):
+        sealed, _, candidate_written, _ = self.seal()
+        candidate = json.loads(candidate_written)
+        self.assertEqual(sealed["corpus_hash"], candidate["corpus_hash"])
+        self.assertEqual(sealed["candidate_corpus_hash"], candidate["corpus_hash"])
+
+    def test_modified_source_blocks_seal(self):
+        with self.assertRaisesRegex(ValueError, "(included source changed since candidate creation|git working tree has corpus/manifest changes)"):
+            self.seal(mutate_files=lambda manifest, root: (root / manifest["included_documents"][0]["source_path"]).write_text("mutated", encoding="utf-8"))
+
+    def test_invalid_validator_result_blocks_seal(self):
+        with self.assertRaisesRegex(ValueError, "validator result must be VALID or VALID_WITH_WARNINGS"):
+            self.seal(validator_result="INVALID")
+
+    def test_candidate_status_required(self):
+        with self.assertRaisesRegex(ValueError, "candidate status must be 'candidate'"):
+            self.seal(mutate_candidate=lambda data: data.update({"status": "sealed"}))
+
+    def test_sealed_output_never_overwrites_candidate(self):
+        _, sealed_written, candidate_written, _ = self.seal()
+        candidate = json.loads(candidate_written)
+        self.assertEqual(candidate["status"], "candidate")
+        self.assertIn('"status": "sealed"', sealed_written)
+
+    def test_document_count_change_blocks_seal(self):
+        with self.assertRaisesRegex(ValueError, "candidate document count mismatch"):
+            self.seal(mutate_candidate=lambda data: data.update({"document_count": 64}))
+
+    def test_seal_metadata_is_recorded(self):
+        sealed, _, _, commit = self.seal()
+        self.assertEqual(sealed["sealed_by"], "Rizali Alma")
+        self.assertEqual(sealed["source_git_commit"], commit)
+        self.assertEqual(sealed["validator_result"], "VALID_WITH_WARNINGS")
+
+
 class CandidateSnapshotGeneratorTests(unittest.TestCase):
     def generate(self, mutate_manifest=None, mutate_files=None, validator_result="VALID_WITH_WARNINGS"):
         with tempfile.TemporaryDirectory() as tmp:
@@ -331,6 +396,7 @@ class CandidateSnapshotGeneratorTests(unittest.TestCase):
         candidate, written, commit = self.generate()
         self.assertIn('"status": "candidate"', written)
         self.assertEqual(candidate["status"], "candidate")
+        self.assertEqual(candidate["version"], "1.0.0")
         self.assertEqual(candidate["document_count"], 65)
         self.assertEqual(candidate["excluded_artifact_count"], 3)
         self.assertEqual(candidate["source_git_commit"], commit)

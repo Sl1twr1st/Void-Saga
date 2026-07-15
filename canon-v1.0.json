@@ -1,0 +1,1690 @@
+{
+  "canon_id": "void-saga-canon-v1.0",
+  "version": "1.0.0",
+  "status": "sealed",
+  "schema_version": "CORPUS_SCHEMA_V1 (FROZEN, 1.0.0)",
+  "created_at": "2026-07-15T14:48:56.963077+00:00",
+  "document_count": 65,
+  "excluded_artifact_count": 3,
+  "layers": {
+    "bab": 29,
+    "timer": 29,
+    "codex": 5,
+    "system": 2
+  },
+  "documents": [
+    {
+      "document_id": "system-opening",
+      "layer": "system",
+      "source_authority": "canonical",
+      "source_path": "opening.md",
+      "diegetic_frame": "bab-world",
+      "temporal_status": "sequential",
+      "sequence_narrative": 10,
+      "relations": [],
+      "source_hash": "bc541dd54ce48e3a1a9e490b26740f148fc662dd64279cb0cb8af1cb3021c5f9",
+      "document_hash": "bc541dd54ce48e3a1a9e490b26740f148fc662dd64279cb0cb8af1cb3021c5f9"
+    },
+    {
+      "document_id": "bab-00",
+      "layer": "bab",
+      "source_authority": "canonical",
+      "source_path": "Bab 00 — Menatap Akhir Era dari Balik.md",
+      "diegetic_frame": "bab-world",
+      "temporal_status": "sequential",
+      "diegetic_certainty": "exact",
+      "evidence_mode": "witnessed",
+      "sequence_narrative": 20,
+      "sequence_within_frame": null,
+      "confirmation_status": "confirmed",
+      "pair_document_id": "timer-00-00",
+      "relations": [],
+      "source_hash": "a57736aac8d8579329d56017abe49cf25df08e783a03a531378d021c53fc6c9e",
+      "document_hash": "a57736aac8d8579329d56017abe49cf25df08e783a03a531378d021c53fc6c9e"
+    },
+    {
+      "document_id": "timer-00-00",
+      "layer": "timer",
+      "source_authority": "canonical",
+      "source_path": "Timer 0000 — Menatap Akhir Semesta dari Balik.md",
+      "diegetic_frame": "timer-world",
+      "temporal_status": "retroactive",
+      "diegetic_certainty": "exact",
+      "evidence_mode": "archival",
+      "editorial_confidence": "high",
+      "relative_order_review": "sebelum",
+      "composed_during": "bab-00",
+      "sequence_narrative": 30,
+      "sequence_within_frame": null,
+      "pair_document_id": "bab-00",
+      "relations": [
+        {
+          "namespace": "composition",
+          "relation_type": "composed_during",
+          "target_document_id": "bab-00"
+        }
+      ],
+      "source_hash": "86da27ebb65c673a4e422fb5db7c2ae5590a21cc1ebc2ae7a8d890d9e667d82d",
+      "document_hash": "86da27ebb65c673a4e422fb5db7c2ae5590a21cc1ebc2ae7a8d890d9e667d82d"
+    },
+    {
+      "document_id": "bab-01",
+      "layer": "bab",
+      "source_authority": "canonical",
+      "source_path": "Bab 01 — Menatap Akhir Era dari Balik.md",
+      "diegetic_frame": "bab-world",
+      "temporal_status": "sequential",
+      "diegetic_certainty": "exact",
+      "evidence_mode": "witnessed",
+      "sequence_narrative": 40,
+      "sequence_within_frame": null,
+      "confirmation_status": "confirmed",
+      "pair_document_id": "timer-01-00",
+      "relations": [],
+      "source_hash": "9933d8a9c78a2424175aa8c4fa474eec43e549c2378414d4a6db91976658ddb2",
+      "document_hash": "9933d8a9c78a2424175aa8c4fa474eec43e549c2378414d4a6db91976658ddb2"
+    },
+    {
+      "document_id": "timer-01-00",
+      "layer": "timer",
+      "source_authority": "canonical",
+      "source_path": "Timer 0100 — Menatap Akhir Semesta dari Balik.md",
+      "diegetic_frame": "timer-world",
+      "temporal_status": "sequential",
+      "diegetic_certainty": "exact",
+      "evidence_mode": "witnessed",
+      "editorial_confidence": "high",
+      "relative_order_review": "sesudah",
+      "composed_during": "unknown",
+      "sequence_narrative": 50,
+      "sequence_within_frame": null,
+      "pair_document_id": "bab-01",
+      "relations": [],
+      "source_hash": "1377780185dc1e57f40c852cd628f38050aadaa294228a28623bbee19e2cae85",
+      "document_hash": "1377780185dc1e57f40c852cd628f38050aadaa294228a28623bbee19e2cae85"
+    },
+    {
+      "document_id": "bab-02",
+      "layer": "bab",
+      "source_authority": "canonical",
+      "source_path": "Bab 02 — Menatap Akhir Era dari Balik.md",
+      "diegetic_frame": "bab-world",
+      "temporal_status": "sequential",
+      "diegetic_certainty": "exact",
+      "evidence_mode": "witnessed",
+      "sequence_narrative": 60,
+      "sequence_within_frame": null,
+      "confirmation_status": "confirmed",
+      "pair_document_id": "timer-02-00",
+      "relations": [],
+      "source_hash": "043cd7472b37a14700202602dba03ec51f649de2f92374069a408b45f91efa73",
+      "document_hash": "043cd7472b37a14700202602dba03ec51f649de2f92374069a408b45f91efa73"
+    },
+    {
+      "document_id": "timer-02-00",
+      "layer": "timer",
+      "source_authority": "canonical",
+      "source_path": "Timer 0200 — Menatap Akhir Semesta dari Balik.md",
+      "diegetic_frame": "timer-world",
+      "temporal_status": "sequential",
+      "diegetic_certainty": "exact",
+      "evidence_mode": "witnessed",
+      "editorial_confidence": "high",
+      "relative_order_review": "sesudah",
+      "composed_during": "unknown",
+      "sequence_narrative": 70,
+      "sequence_within_frame": null,
+      "pair_document_id": "bab-02",
+      "relations": [],
+      "source_hash": "5a30eec46e0194a817fcd878cf352406fcacab69050898eeab7a6744df6f6958",
+      "document_hash": "5a30eec46e0194a817fcd878cf352406fcacab69050898eeab7a6744df6f6958"
+    },
+    {
+      "document_id": "bab-02-5",
+      "layer": "bab",
+      "source_authority": "canonical",
+      "source_path": "Bab 02-5 — Menatap Akhir Era dari Balik.md",
+      "diegetic_frame": "bab-world",
+      "temporal_status": "sequential",
+      "diegetic_certainty": "relative",
+      "evidence_mode": "mixed",
+      "sequence_narrative": 80,
+      "sequence_within_frame": null,
+      "confirmation_status": "confirmed",
+      "pair_document_id": "timer-02-50",
+      "relations": [],
+      "source_hash": "5b095ea08954587cfc179d7c04765a810cc07407087a35176004d0e7fcde5789",
+      "document_hash": "5b095ea08954587cfc179d7c04765a810cc07407087a35176004d0e7fcde5789"
+    },
+    {
+      "document_id": "timer-02-50",
+      "layer": "timer",
+      "source_authority": "canonical",
+      "source_path": "Timer 0250 — Menatap Akhir Semesta dari Balik.md",
+      "diegetic_frame": "timer-world",
+      "temporal_status": "retroactive",
+      "diegetic_certainty": "relative",
+      "evidence_mode": "archival",
+      "editorial_confidence": "medium",
+      "relative_order_review": "bersamaan",
+      "composed_during": "bab-03",
+      "sequence_narrative": 90,
+      "sequence_within_frame": null,
+      "pair_document_id": "bab-02-5",
+      "relations": [
+        {
+          "namespace": "composition",
+          "relation_type": "composed_during",
+          "target_document_id": "bab-03"
+        }
+      ],
+      "source_hash": "749a06ad5f4cbb142455073c0420ea3db939da275592ca9cb36a3d85032b9945",
+      "document_hash": "749a06ad5f4cbb142455073c0420ea3db939da275592ca9cb36a3d85032b9945"
+    },
+    {
+      "document_id": "bab-03",
+      "layer": "bab",
+      "source_authority": "canonical",
+      "source_path": "Bab 03 — Menatap Akhir Era dari Balik.md",
+      "diegetic_frame": "bab-world",
+      "temporal_status": "sequential",
+      "diegetic_certainty": "exact",
+      "evidence_mode": "witnessed",
+      "sequence_narrative": 100,
+      "sequence_within_frame": null,
+      "confirmation_status": "confirmed",
+      "pair_document_id": "timer-03-00",
+      "relations": [],
+      "source_hash": "b58fa764aab27e9c604b1a19d20a874d423a9ea4b2828e84a6d30eb10a3a510c",
+      "document_hash": "b58fa764aab27e9c604b1a19d20a874d423a9ea4b2828e84a6d30eb10a3a510c"
+    },
+    {
+      "document_id": "timer-03-00",
+      "layer": "timer",
+      "source_authority": "canonical",
+      "source_path": "Timer 0300 — Menatap Akhir Semesta dari Balik.md",
+      "diegetic_frame": "timer-world",
+      "temporal_status": "sequential",
+      "diegetic_certainty": "exact",
+      "evidence_mode": "witnessed",
+      "editorial_confidence": "high",
+      "relative_order_review": "sesudah",
+      "composed_during": "bab-03",
+      "sequence_narrative": 110,
+      "sequence_within_frame": null,
+      "pair_document_id": "bab-03",
+      "relations": [
+        {
+          "namespace": "composition",
+          "relation_type": "composed_during",
+          "target_document_id": "bab-03"
+        }
+      ],
+      "source_hash": "c0d1b6b8ec57f4866857a941afb592f0bce39e95bc8aeb86c80d8a6314e379ec",
+      "document_hash": "c0d1b6b8ec57f4866857a941afb592f0bce39e95bc8aeb86c80d8a6314e379ec"
+    },
+    {
+      "document_id": "bab-04",
+      "layer": "bab",
+      "source_authority": "canonical",
+      "source_path": "Bab 04 — Menatap Akhir Era dari Balik.md",
+      "diegetic_frame": "bab-world",
+      "temporal_status": "sequential",
+      "diegetic_certainty": "exact",
+      "evidence_mode": "witnessed",
+      "sequence_narrative": 120,
+      "sequence_within_frame": null,
+      "confirmation_status": "confirmed",
+      "pair_document_id": "timer-04-00",
+      "relations": [],
+      "source_hash": "d7f1f052831b4a00aeedf47a44aa3c94f0f579413d73483834aff6a1f26b1730",
+      "document_hash": "d7f1f052831b4a00aeedf47a44aa3c94f0f579413d73483834aff6a1f26b1730"
+    },
+    {
+      "document_id": "codex-udara",
+      "layer": "codex",
+      "source_authority": "canonical",
+      "source_path": "Codex Udara — Menatap Akhir Semesta dari Balik.md",
+      "diegetic_frame": null,
+      "temporal_status": "atemporal",
+      "diegetic_certainty": "not_applicable",
+      "sequence_narrative": 130,
+      "narrative_placement": "after bab-04",
+      "relations": [],
+      "source_hash": "b2d8c3d9a16207b05e94b686e9c8541b7c845b83c30799680b881d0362d4710a",
+      "document_hash": "b2d8c3d9a16207b05e94b686e9c8541b7c845b83c30799680b881d0362d4710a"
+    },
+    {
+      "document_id": "timer-04-00",
+      "layer": "timer",
+      "source_authority": "canonical",
+      "source_path": "Timer 0400 — Menatap Akhir Semesta dari Balik.md",
+      "diegetic_frame": "timer-world",
+      "temporal_status": "sequential",
+      "diegetic_certainty": "exact",
+      "evidence_mode": "witnessed",
+      "editorial_confidence": "high",
+      "relative_order_review": "sesudah",
+      "composed_during": "unknown",
+      "sequence_narrative": 140,
+      "sequence_within_frame": null,
+      "pair_document_id": "bab-04",
+      "relations": [],
+      "source_hash": "e0f69f51d6e8dd2311c17ff4e031b9cb64aec5c0d249a2d38f8b05e7559f91e0",
+      "document_hash": "e0f69f51d6e8dd2311c17ff4e031b9cb64aec5c0d249a2d38f8b05e7559f91e0"
+    },
+    {
+      "document_id": "bab-05",
+      "layer": "bab",
+      "source_authority": "canonical",
+      "source_path": "Bab 05 — Menatap Akhir Era dari Balik.md",
+      "diegetic_frame": "bab-world",
+      "temporal_status": "sequential",
+      "diegetic_certainty": "exact",
+      "evidence_mode": "witnessed",
+      "sequence_narrative": 150,
+      "sequence_within_frame": null,
+      "confirmation_status": "confirmed",
+      "pair_document_id": "timer-05-00",
+      "relations": [],
+      "source_hash": "ed8920c48d0649a18b1108e2d9d571f2cfbd30b4fd21be9d47cd72407d6b9ebe",
+      "document_hash": "ed8920c48d0649a18b1108e2d9d571f2cfbd30b4fd21be9d47cd72407d6b9ebe"
+    },
+    {
+      "document_id": "timer-05-00",
+      "layer": "timer",
+      "source_authority": "canonical",
+      "source_path": "Timer 0500 — Menatap Akhir Semesta dari Balik.md",
+      "diegetic_frame": "timer-world",
+      "temporal_status": "sequential",
+      "diegetic_certainty": "exact",
+      "evidence_mode": "witnessed",
+      "editorial_confidence": "high",
+      "relative_order_review": "sesudah",
+      "composed_during": "bab-05",
+      "sequence_narrative": 160,
+      "sequence_within_frame": null,
+      "pair_document_id": "bab-05",
+      "relations": [
+        {
+          "namespace": "composition",
+          "relation_type": "composed_during",
+          "target_document_id": "bab-05"
+        }
+      ],
+      "source_hash": "28c19ef2a0ede26450f40ce77606317fda1d39234631d1ff63cba594f1eba383",
+      "document_hash": "28c19ef2a0ede26450f40ce77606317fda1d39234631d1ff63cba594f1eba383"
+    },
+    {
+      "document_id": "bab-06",
+      "layer": "bab",
+      "source_authority": "canonical",
+      "source_path": "Bab 06 — Menatap Akhir Era dari Balik.md",
+      "diegetic_frame": "bab-world",
+      "temporal_status": "sequential",
+      "diegetic_certainty": "exact",
+      "evidence_mode": "witnessed",
+      "sequence_narrative": 170,
+      "sequence_within_frame": null,
+      "confirmation_status": "confirmed",
+      "pair_document_id": "timer-06-00",
+      "relations": [],
+      "source_hash": "aa4cda6d71d621adeace790a2c922411f59a7a1a884717a7c339b89e3d158bf5",
+      "document_hash": "aa4cda6d71d621adeace790a2c922411f59a7a1a884717a7c339b89e3d158bf5"
+    },
+    {
+      "document_id": "timer-06-00",
+      "layer": "timer",
+      "source_authority": "canonical",
+      "source_path": "Timer 0600 — Menatap Akhir Semesta dari Balik.md",
+      "diegetic_frame": "timer-world",
+      "temporal_status": "sequential",
+      "diegetic_certainty": "exact",
+      "evidence_mode": "witnessed",
+      "editorial_confidence": "high",
+      "relative_order_review": "sesudah",
+      "composed_during": "unknown",
+      "sequence_narrative": 180,
+      "sequence_within_frame": null,
+      "pair_document_id": "bab-06",
+      "relations": [],
+      "source_hash": "eeab97c6c650820aeb6b7450a593c99825be1f4ee981ab3a8f392c627ce76ef7",
+      "document_hash": "eeab97c6c650820aeb6b7450a593c99825be1f4ee981ab3a8f392c627ce76ef7"
+    },
+    {
+      "document_id": "bab-07",
+      "layer": "bab",
+      "source_authority": "canonical",
+      "source_path": "Bab 07 — Menatap Akhir Era dari Balik.md",
+      "diegetic_frame": "bab-world",
+      "temporal_status": "sequential",
+      "diegetic_certainty": "exact",
+      "evidence_mode": "witnessed",
+      "sequence_narrative": 190,
+      "sequence_within_frame": null,
+      "confirmation_status": "confirmed",
+      "pair_document_id": "timer-07-00",
+      "relations": [],
+      "source_hash": "8170e2faaa6d913f2cf538fe92ed84e72c3141371401c0700ccc22aeb8e15838",
+      "document_hash": "8170e2faaa6d913f2cf538fe92ed84e72c3141371401c0700ccc22aeb8e15838"
+    },
+    {
+      "document_id": "timer-07-00",
+      "layer": "timer",
+      "source_authority": "canonical",
+      "source_path": "Timer 0700 — Menatap Akhir Semesta dari Balik.md",
+      "diegetic_frame": "timer-world",
+      "temporal_status": "uncertain",
+      "diegetic_certainty": "relative",
+      "evidence_mode": "mixed",
+      "editorial_confidence": "medium",
+      "relative_order_review": "sesudah",
+      "composed_during": "bab-07",
+      "sequence_narrative": 200,
+      "sequence_within_frame": null,
+      "pair_document_id": "bab-07",
+      "relations": [
+        {
+          "namespace": "composition",
+          "relation_type": "composed_during",
+          "target_document_id": "bab-07"
+        }
+      ],
+      "source_hash": "b76e7d711714e58f605f14165962a0d273522ebf3b43780cd2963ab95f96774e",
+      "document_hash": "b76e7d711714e58f605f14165962a0d273522ebf3b43780cd2963ab95f96774e"
+    },
+    {
+      "document_id": "bab-08",
+      "layer": "bab",
+      "source_authority": "canonical",
+      "source_path": "Bab 08 — Menatap Akhir Era dari Balik.md",
+      "diegetic_frame": "bab-world",
+      "temporal_status": "sequential",
+      "diegetic_certainty": "exact",
+      "evidence_mode": "witnessed",
+      "sequence_narrative": 210,
+      "sequence_within_frame": null,
+      "confirmation_status": "confirmed",
+      "pair_document_id": "timer-08-00",
+      "relations": [],
+      "source_hash": "ac183482812a5e36d9773821df86b057600221f2ea26e575b7deeaeed8dbf630",
+      "document_hash": "ac183482812a5e36d9773821df86b057600221f2ea26e575b7deeaeed8dbf630"
+    },
+    {
+      "document_id": "timer-08-00",
+      "layer": "timer",
+      "source_authority": "canonical",
+      "source_path": "Timer 0800 — Menatap Akhir Semesta dari Balik.md",
+      "diegetic_frame": "timer-world",
+      "temporal_status": "sequential",
+      "diegetic_certainty": "relative",
+      "evidence_mode": "witnessed",
+      "editorial_confidence": "medium",
+      "relative_order_review": "sesudah",
+      "composed_during": "unknown",
+      "sequence_narrative": 220,
+      "sequence_within_frame": null,
+      "pair_document_id": "bab-08",
+      "relations": [],
+      "source_hash": "6767bf2c3768022741e911ccf89255e8433fcfb77180cd8ce7a3d78f681ea551",
+      "document_hash": "6767bf2c3768022741e911ccf89255e8433fcfb77180cd8ce7a3d78f681ea551"
+    },
+    {
+      "document_id": "bab-09",
+      "layer": "bab",
+      "source_authority": "canonical",
+      "source_path": "Bab 09 — Menatap Akhir Era dari Balik.md",
+      "diegetic_frame": "bab-world",
+      "temporal_status": "sequential",
+      "diegetic_certainty": "exact",
+      "evidence_mode": "witnessed",
+      "sequence_narrative": 230,
+      "sequence_within_frame": null,
+      "confirmation_status": "confirmed",
+      "pair_document_id": "timer-09-00",
+      "relations": [],
+      "source_hash": "40284641373ddebb9871bbb56f5939bd8112204dd8730a3acf9724bb2547728e",
+      "document_hash": "40284641373ddebb9871bbb56f5939bd8112204dd8730a3acf9724bb2547728e"
+    },
+    {
+      "document_id": "timer-09-00",
+      "layer": "timer",
+      "source_authority": "canonical",
+      "source_path": "Timer 0900 — Menatap Akhir Semesta dari Balik.md",
+      "diegetic_frame": "timer-world",
+      "temporal_status": "sequential",
+      "diegetic_certainty": "exact",
+      "evidence_mode": "witnessed",
+      "editorial_confidence": "high",
+      "relative_order_review": "sesudah",
+      "composed_during": "unknown",
+      "sequence_narrative": 240,
+      "sequence_within_frame": null,
+      "pair_document_id": "bab-09",
+      "relations": [],
+      "source_hash": "21ec4576bf90d43d03fea62937011ab2787107689877ce77d2aa141b2c8dc692",
+      "document_hash": "21ec4576bf90d43d03fea62937011ab2787107689877ce77d2aa141b2c8dc692"
+    },
+    {
+      "document_id": "bab-10",
+      "layer": "bab",
+      "source_authority": "canonical",
+      "source_path": "Bab 10 — Menatap Akhir Era dari Balik.md",
+      "diegetic_frame": "bab-world",
+      "temporal_status": "sequential",
+      "diegetic_certainty": "exact",
+      "evidence_mode": "witnessed",
+      "sequence_narrative": 250,
+      "sequence_within_frame": null,
+      "confirmation_status": "confirmed",
+      "pair_document_id": "timer-10-00",
+      "relations": [],
+      "source_hash": "c295e594a8f5bea8438bf390f5f7c3e73504b46f52dd90bbc31bbc6b073de7f6",
+      "document_hash": "c295e594a8f5bea8438bf390f5f7c3e73504b46f52dd90bbc31bbc6b073de7f6"
+    },
+    {
+      "document_id": "timer-10-00",
+      "layer": "timer",
+      "source_authority": "canonical",
+      "source_path": "Timer 1000 — Menatap Akhir Semesta dari Balik.md",
+      "diegetic_frame": "timer-world",
+      "temporal_status": "sequential",
+      "diegetic_certainty": "exact",
+      "evidence_mode": "witnessed",
+      "editorial_confidence": "high",
+      "relative_order_review": "sesudah",
+      "composed_during": "bab-10",
+      "sequence_narrative": 260,
+      "sequence_within_frame": null,
+      "pair_document_id": "bab-10",
+      "relations": [
+        {
+          "namespace": "composition",
+          "relation_type": "composed_during",
+          "target_document_id": "bab-10"
+        },
+        {
+          "namespace": "composition",
+          "relation_type": "deleted_during",
+          "target_document_id": "bab-10"
+        }
+      ],
+      "source_hash": "e3ceabbddbf9b8da456562b122ca7cb4460e2ed85e0c4a4150388739398a25e5",
+      "document_hash": "e3ceabbddbf9b8da456562b122ca7cb4460e2ed85e0c4a4150388739398a25e5"
+    },
+    {
+      "document_id": "bab-11",
+      "layer": "bab",
+      "source_authority": "canonical",
+      "source_path": "Bab 11 — Menatap Akhir Era dari Balik.md",
+      "diegetic_frame": "bab-world",
+      "temporal_status": "sequential",
+      "diegetic_certainty": "exact",
+      "evidence_mode": "witnessed",
+      "sequence_narrative": 270,
+      "sequence_within_frame": null,
+      "confirmation_status": "confirmed",
+      "pair_document_id": "timer-11-00",
+      "relations": [],
+      "source_hash": "8e30691c5cf694b10504edee2a67dbebcf43526f9959f6d330a9ef96b699a7c2",
+      "document_hash": "8e30691c5cf694b10504edee2a67dbebcf43526f9959f6d330a9ef96b699a7c2"
+    },
+    {
+      "document_id": "timer-11-00",
+      "layer": "timer",
+      "source_authority": "canonical",
+      "source_path": "Timer 1100 — Menatap Akhir Semesta dari Balik.md",
+      "diegetic_frame": "timer-world",
+      "temporal_status": "retroactive",
+      "diegetic_certainty": "unknown",
+      "evidence_mode": "archival",
+      "editorial_confidence": "medium",
+      "relative_order_review": "sebelum",
+      "composed_during": "bab-11",
+      "sequence_narrative": 280,
+      "sequence_within_frame": null,
+      "pair_document_id": "bab-11",
+      "relations": [
+        {
+          "namespace": "composition",
+          "relation_type": "composed_during",
+          "target_document_id": "bab-11"
+        }
+      ],
+      "source_hash": "3f446e5d273746f5419f6662d8f0f29c6ccb25c2fadb8d3f9617590725998e97",
+      "document_hash": "3f446e5d273746f5419f6662d8f0f29c6ccb25c2fadb8d3f9617590725998e97"
+    },
+    {
+      "document_id": "codex-air",
+      "layer": "codex",
+      "source_authority": "canonical",
+      "source_path": "Codex Air — Menatap Akhir Semesta dari Balik.md",
+      "diegetic_frame": null,
+      "temporal_status": "atemporal",
+      "diegetic_certainty": "not_applicable",
+      "sequence_narrative": 290,
+      "narrative_placement": "after timer-11-00",
+      "relations": [],
+      "source_hash": "08efd4a08b2cc9cc88aaf1bbfa1bddf3b2cbf17548e6b607e713c96100a33f68",
+      "document_hash": "08efd4a08b2cc9cc88aaf1bbfa1bddf3b2cbf17548e6b607e713c96100a33f68"
+    },
+    {
+      "document_id": "codex-api",
+      "layer": "codex",
+      "source_authority": "canonical",
+      "source_path": "Codex Api — Menatap Akhir Semesta dari Balik.md",
+      "diegetic_frame": null,
+      "temporal_status": "atemporal",
+      "diegetic_certainty": "not_applicable",
+      "sequence_narrative": 300,
+      "narrative_placement": "after codex-air",
+      "relations": [],
+      "source_hash": "a0d671fbfb5c416970efd54277d8233c84c70b667ca60fa933f7d1a2ffabc07c",
+      "document_hash": "a0d671fbfb5c416970efd54277d8233c84c70b667ca60fa933f7d1a2ffabc07c"
+    },
+    {
+      "document_id": "bab-12",
+      "layer": "bab",
+      "source_authority": "canonical",
+      "source_path": "Bab 12 — Menatap Akhir Era dari Balik.md",
+      "diegetic_frame": "bab-world",
+      "temporal_status": "sequential",
+      "diegetic_certainty": "exact",
+      "evidence_mode": "witnessed",
+      "sequence_narrative": 310,
+      "sequence_within_frame": null,
+      "confirmation_status": "confirmed",
+      "pair_document_id": "timer-12-00",
+      "relations": [],
+      "source_hash": "8b156064f8cdd45fb249045bfd3ac33844ca8acb5814697cc7a84463860b69a2",
+      "document_hash": "8b156064f8cdd45fb249045bfd3ac33844ca8acb5814697cc7a84463860b69a2"
+    },
+    {
+      "document_id": "timer-12-00",
+      "layer": "timer",
+      "source_authority": "canonical",
+      "source_path": "Timer 1200 — Menatap Akhir Semesta dari Balik.md",
+      "diegetic_frame": "timer-world",
+      "temporal_status": "retroactive",
+      "diegetic_certainty": "relative",
+      "evidence_mode": "archival",
+      "editorial_confidence": "medium",
+      "relative_order_review": "sebelum",
+      "composed_during": "unknown",
+      "sequence_narrative": 320,
+      "sequence_within_frame": null,
+      "pair_document_id": "bab-12",
+      "relations": [],
+      "source_hash": "fd7d521bad7f6f2520ee3918befc8237dabbba90abb8fedd8f6b40c7c1971e82",
+      "document_hash": "fd7d521bad7f6f2520ee3918befc8237dabbba90abb8fedd8f6b40c7c1971e82"
+    },
+    {
+      "document_id": "bab-13",
+      "layer": "bab",
+      "source_authority": "canonical",
+      "source_path": "Bab 13 — Menatap Akhir Era dari Balik.md",
+      "diegetic_frame": "bab-world",
+      "temporal_status": "sequential",
+      "diegetic_certainty": "exact",
+      "evidence_mode": "witnessed",
+      "sequence_narrative": 330,
+      "sequence_within_frame": null,
+      "confirmation_status": "confirmed",
+      "pair_document_id": "timer-13-00",
+      "relations": [],
+      "source_hash": "456dba0304d1e06a047aac8b41ea9d15bb4e4011bc69151bb683d98e86320b6a",
+      "document_hash": "456dba0304d1e06a047aac8b41ea9d15bb4e4011bc69151bb683d98e86320b6a"
+    },
+    {
+      "document_id": "timer-13-00",
+      "layer": "timer",
+      "source_authority": "canonical",
+      "source_path": "Timer 1300 — Menatap Akhir Semesta dari Balik.md",
+      "diegetic_frame": "timer-world",
+      "temporal_status": "recursive",
+      "diegetic_certainty": "relative",
+      "evidence_mode": "witnessed",
+      "editorial_confidence": "medium",
+      "relative_order_review": "sesudah",
+      "composed_during": "bab-13",
+      "sequence_narrative": 340,
+      "sequence_within_frame": null,
+      "pair_document_id": "bab-13",
+      "relations": [
+        {
+          "namespace": "composition",
+          "relation_type": "composed_during",
+          "target_document_id": "bab-13"
+        }
+      ],
+      "source_hash": "a7d5bd674dc7ff9407ff2aed61854bdb16f879c1f959b9390665a9e66a5b711f",
+      "document_hash": "a7d5bd674dc7ff9407ff2aed61854bdb16f879c1f959b9390665a9e66a5b711f"
+    },
+    {
+      "document_id": "bab-14",
+      "layer": "bab",
+      "source_authority": "canonical",
+      "source_path": "Bab 14 — Menatap Akhir Era dari Balik.md",
+      "diegetic_frame": "bab-world",
+      "temporal_status": "sequential",
+      "diegetic_certainty": "exact",
+      "evidence_mode": "witnessed",
+      "sequence_narrative": 350,
+      "sequence_within_frame": null,
+      "confirmation_status": "confirmed",
+      "pair_document_id": "timer-14-00",
+      "relations": [],
+      "source_hash": "b34700f3cdbb96a996f136937c8b03a0bb384e08432b0f711c55fa232b7a7deb",
+      "document_hash": "b34700f3cdbb96a996f136937c8b03a0bb384e08432b0f711c55fa232b7a7deb"
+    },
+    {
+      "document_id": "timer-14-00",
+      "layer": "timer",
+      "source_authority": "canonical",
+      "source_path": "Timer 1400 — Menatap Akhir Semesta dari Balik.md",
+      "diegetic_frame": "timer-world",
+      "temporal_status": "retroactive",
+      "diegetic_certainty": "relative",
+      "evidence_mode": "archival",
+      "editorial_confidence": "high",
+      "relative_order_review": "sebelum",
+      "composed_during": "bab-14",
+      "sequence_narrative": 360,
+      "sequence_within_frame": null,
+      "pair_document_id": "bab-14",
+      "relations": [
+        {
+          "namespace": "composition",
+          "relation_type": "composed_during",
+          "target_document_id": "bab-14"
+        }
+      ],
+      "source_hash": "d09c174f50f26f3047c3f99ac779341266445c26a47771d93b3df6e82cef9a46",
+      "document_hash": "d09c174f50f26f3047c3f99ac779341266445c26a47771d93b3df6e82cef9a46"
+    },
+    {
+      "document_id": "bab-15",
+      "layer": "bab",
+      "source_authority": "canonical",
+      "source_path": "Bab 15 — Menatap Akhir Era dari Balik.md",
+      "diegetic_frame": "bab-world",
+      "temporal_status": "sequential",
+      "diegetic_certainty": "exact",
+      "evidence_mode": "witnessed",
+      "sequence_narrative": 370,
+      "sequence_within_frame": null,
+      "confirmation_status": "confirmed",
+      "pair_document_id": "timer-15-00",
+      "relations": [],
+      "source_hash": "edad3f815c28e16795ea8ef2c6b661b17cf5385057132eead58006da565da06a",
+      "document_hash": "edad3f815c28e16795ea8ef2c6b661b17cf5385057132eead58006da565da06a"
+    },
+    {
+      "document_id": "timer-15-00",
+      "layer": "timer",
+      "source_authority": "canonical",
+      "source_path": "Timer 1500 — Menatap Akhir Semesta dari Balik.md",
+      "diegetic_frame": "timer-world",
+      "temporal_status": "retroactive",
+      "diegetic_certainty": "relative",
+      "evidence_mode": "archival",
+      "editorial_confidence": "high",
+      "relative_order_review": "sebelum",
+      "composed_during": "unknown",
+      "sequence_narrative": 380,
+      "sequence_within_frame": null,
+      "pair_document_id": "bab-15",
+      "relations": [],
+      "source_hash": "783ce2014b711a7189d910d91478c46682b371e8fbdcaa95a357f20787268fec",
+      "document_hash": "783ce2014b711a7189d910d91478c46682b371e8fbdcaa95a357f20787268fec"
+    },
+    {
+      "document_id": "bab-16",
+      "layer": "bab",
+      "source_authority": "canonical",
+      "source_path": "Bab 16 — Menatap Akhir Era dari Balik.md",
+      "diegetic_frame": "bab-world",
+      "temporal_status": "sequential",
+      "diegetic_certainty": "exact",
+      "evidence_mode": "witnessed",
+      "sequence_narrative": 390,
+      "sequence_within_frame": null,
+      "confirmation_status": "confirmed",
+      "pair_document_id": "timer-16-00",
+      "relations": [],
+      "source_hash": "aec428ac5efafda31fafe2fc801bd48e972e83b36fa9539ef7ba6b16a0bfcabd",
+      "document_hash": "aec428ac5efafda31fafe2fc801bd48e972e83b36fa9539ef7ba6b16a0bfcabd"
+    },
+    {
+      "document_id": "timer-16-00",
+      "layer": "timer",
+      "source_authority": "canonical",
+      "source_path": "Timer 1600 — Menatap Akhir Semesta dari Balik.md",
+      "diegetic_frame": "timer-world",
+      "temporal_status": "sequential",
+      "diegetic_certainty": "exact",
+      "evidence_mode": "mixed",
+      "editorial_confidence": "high",
+      "relative_order_review": "sesudah",
+      "composed_during": "bab-16",
+      "sequence_narrative": 400,
+      "sequence_within_frame": null,
+      "pair_document_id": "bab-16",
+      "relations": [
+        {
+          "namespace": "composition",
+          "relation_type": "composed_during",
+          "target_document_id": "bab-16"
+        }
+      ],
+      "source_hash": "5cbcb3e32769005e37175a310c36f80ad1c896a6f5bb0048cad37a2c359eb221",
+      "document_hash": "5cbcb3e32769005e37175a310c36f80ad1c896a6f5bb0048cad37a2c359eb221"
+    },
+    {
+      "document_id": "bab-16-5",
+      "layer": "bab",
+      "source_authority": "canonical",
+      "source_path": "Bab 16.5 — Menatap Akhir Era dari Balik.md",
+      "diegetic_frame": "bab-world",
+      "temporal_status": "sequential",
+      "diegetic_certainty": "exact",
+      "evidence_mode": "witnessed",
+      "sequence_narrative": 410,
+      "sequence_within_frame": null,
+      "confirmation_status": "confirmed",
+      "pair_document_id": "timer-16-50",
+      "relations": [],
+      "source_hash": "21731d6714ae78c4eb4211efbc555e68ae19dcb1117e3f36a807f6eaaade16d6",
+      "document_hash": "21731d6714ae78c4eb4211efbc555e68ae19dcb1117e3f36a807f6eaaade16d6"
+    },
+    {
+      "document_id": "timer-16-50",
+      "layer": "timer",
+      "source_authority": "canonical",
+      "source_path": "Timer 1650 — Menatap Akhir Semesta dari Balik.md",
+      "diegetic_frame": "timer-world",
+      "temporal_status": "sequential",
+      "diegetic_certainty": "exact",
+      "evidence_mode": "witnessed",
+      "editorial_confidence": "high",
+      "relative_order_review": "sesudah",
+      "composed_during": "bab-16-5",
+      "sequence_narrative": 420,
+      "sequence_within_frame": null,
+      "pair_document_id": "bab-16-5",
+      "relations": [
+        {
+          "namespace": "composition",
+          "relation_type": "composed_during",
+          "target_document_id": "bab-16-5"
+        }
+      ],
+      "source_hash": "1d53453fbe5f8d3d40761a844162e1a7982b2dbf6d5778f90372602fbcfededa",
+      "document_hash": "1d53453fbe5f8d3d40761a844162e1a7982b2dbf6d5778f90372602fbcfededa"
+    },
+    {
+      "document_id": "bab-16-6",
+      "layer": "bab",
+      "source_authority": "canonical",
+      "source_path": "Bab 16.6 — Menatap Akhir Era dari Balik.md",
+      "diegetic_frame": "bab-world",
+      "temporal_status": "sequential",
+      "diegetic_certainty": "exact",
+      "evidence_mode": "witnessed",
+      "sequence_narrative": 430,
+      "sequence_within_frame": null,
+      "confirmation_status": "confirmed",
+      "pair_document_id": "timer-16-66",
+      "relations": [],
+      "source_hash": "29d553e67255c946ee8d7700034b55a640270911f970a6ea2a89e9240f37e5db",
+      "document_hash": "29d553e67255c946ee8d7700034b55a640270911f970a6ea2a89e9240f37e5db"
+    },
+    {
+      "document_id": "timer-16-66",
+      "layer": "timer",
+      "source_authority": "canonical",
+      "source_path": "Timer 1666 — Menatap Akhir Semesta dari Balik.md",
+      "diegetic_frame": "timer-world",
+      "temporal_status": "uncertain",
+      "diegetic_certainty": "relative",
+      "evidence_mode": "archival",
+      "editorial_confidence": "low",
+      "relative_order_review": "bersamaan",
+      "composed_during": "unknown",
+      "sequence_narrative": 440,
+      "sequence_within_frame": null,
+      "pair_document_id": "bab-16-6",
+      "relations": [],
+      "source_hash": "6caaada6036aec97111de507e0baf20489b3a9b6ae917c5eece8d2201ca0b7ea",
+      "document_hash": "6caaada6036aec97111de507e0baf20489b3a9b6ae917c5eece8d2201ca0b7ea"
+    },
+    {
+      "document_id": "system-void-os-v6-6-6",
+      "layer": "system",
+      "source_authority": "canonical",
+      "source_path": "Void.OS v6.6.6 Update.md",
+      "diegetic_frame": null,
+      "temporal_status": "recursive",
+      "sequence_narrative": 450,
+      "relations": [
+        {
+          "namespace": "structural",
+          "relation_type": "recontextualizes",
+          "target_document_id": "system-opening"
+        }
+      ],
+      "source_hash": "bd2d642a4394b895c0ae479e498f44df5f1728470340f3e355b51c94ac5eacb3",
+      "document_hash": "bd2d642a4394b895c0ae479e498f44df5f1728470340f3e355b51c94ac5eacb3"
+    },
+    {
+      "document_id": "bab-17",
+      "layer": "bab",
+      "source_authority": "canonical",
+      "source_path": "Bab 17 — Menatap Akhir Era dari Balik.md",
+      "diegetic_frame": "bab-world",
+      "temporal_status": "sequential",
+      "diegetic_certainty": "exact",
+      "evidence_mode": "witnessed",
+      "sequence_narrative": 460,
+      "sequence_within_frame": null,
+      "confirmation_status": "confirmed",
+      "pair_document_id": "timer-17-00",
+      "relations": [],
+      "source_hash": "ecb836829c1e7be87cd8040c913985184d25768786ca204811324a1d4d4f0a56",
+      "document_hash": "ecb836829c1e7be87cd8040c913985184d25768786ca204811324a1d4d4f0a56"
+    },
+    {
+      "document_id": "timer-17-00",
+      "layer": "timer",
+      "source_authority": "canonical",
+      "source_path": "Timer 1700 — Menatap Akhir Semesta dari Balik.md",
+      "diegetic_frame": "timer-world",
+      "temporal_status": "uncertain",
+      "diegetic_certainty": "relative",
+      "evidence_mode": "archival",
+      "editorial_confidence": "medium",
+      "relative_order_review": "sesudah",
+      "composed_during": "bab-17",
+      "sequence_narrative": 470,
+      "sequence_within_frame": null,
+      "pair_document_id": "bab-17",
+      "relations": [
+        {
+          "namespace": "composition",
+          "relation_type": "composed_during",
+          "target_document_id": "bab-17"
+        }
+      ],
+      "source_hash": "f3db31c0d589f6ce7f42c9e28306404ee6c8f8dfa5da0be838e55c6ec1ae2f7b",
+      "document_hash": "f3db31c0d589f6ce7f42c9e28306404ee6c8f8dfa5da0be838e55c6ec1ae2f7b"
+    },
+    {
+      "document_id": "bab-18",
+      "layer": "bab",
+      "source_authority": "canonical",
+      "source_path": "Bab 18 — Menatap Akhir Era dari Balik.md",
+      "diegetic_frame": "bab-world",
+      "temporal_status": "sequential",
+      "diegetic_certainty": "exact",
+      "evidence_mode": "witnessed",
+      "sequence_narrative": 480,
+      "sequence_within_frame": null,
+      "confirmation_status": "confirmed",
+      "pair_document_id": "timer-18-00",
+      "relations": [],
+      "source_hash": "6fb4ac0a75e4c3b45065269009131c7414439e1f653f8413e5c82cb117271b30",
+      "document_hash": "6fb4ac0a75e4c3b45065269009131c7414439e1f653f8413e5c82cb117271b30"
+    },
+    {
+      "document_id": "timer-18-00",
+      "layer": "timer",
+      "source_authority": "canonical",
+      "source_path": "Timer 1800 — Menatap Akhir Semesta dari Balik.md",
+      "diegetic_frame": "timer-world",
+      "temporal_status": "sequential",
+      "diegetic_certainty": "exact",
+      "evidence_mode": "witnessed",
+      "editorial_confidence": "high",
+      "relative_order_review": "sesudah",
+      "composed_during": "bab-18",
+      "sequence_narrative": 490,
+      "sequence_within_frame": null,
+      "pair_document_id": "bab-18",
+      "relations": [
+        {
+          "namespace": "composition",
+          "relation_type": "composed_during",
+          "target_document_id": "bab-18"
+        }
+      ],
+      "source_hash": "7ccd41783c49f4c099b44e5f32ad59b46450bb2a4fc5d5191a88e18b4ff1fc2d",
+      "document_hash": "7ccd41783c49f4c099b44e5f32ad59b46450bb2a4fc5d5191a88e18b4ff1fc2d"
+    },
+    {
+      "document_id": "bab-19",
+      "layer": "bab",
+      "source_authority": "canonical",
+      "source_path": "Bab 19 — Menatap Akhir Era dari Balik.md",
+      "diegetic_frame": "bab-world",
+      "temporal_status": "sequential",
+      "diegetic_certainty": "exact",
+      "evidence_mode": "witnessed",
+      "sequence_narrative": 500,
+      "sequence_within_frame": null,
+      "confirmation_status": "confirmed",
+      "pair_document_id": "timer-19-00",
+      "relations": [],
+      "source_hash": "358f2fd2a2ae8b988d238bb91e96ba741336713c7d74c82588f0b06ca248c1d0",
+      "document_hash": "358f2fd2a2ae8b988d238bb91e96ba741336713c7d74c82588f0b06ca248c1d0"
+    },
+    {
+      "document_id": "timer-19-00",
+      "layer": "timer",
+      "source_authority": "canonical",
+      "source_path": "Timer 1900 — Menatap Akhir Semesta dari Balik.md",
+      "diegetic_frame": "timer-world",
+      "temporal_status": "sequential",
+      "diegetic_certainty": "exact",
+      "evidence_mode": "witnessed",
+      "editorial_confidence": "high",
+      "relative_order_review": "sesudah",
+      "composed_during": "unknown",
+      "sequence_narrative": 510,
+      "sequence_within_frame": null,
+      "pair_document_id": "bab-19",
+      "relations": [],
+      "source_hash": "c6ac2928e467af2ecd44270256a08320c6aaec227fe0c10fb8c8f21ca7e7199a",
+      "document_hash": "c6ac2928e467af2ecd44270256a08320c6aaec227fe0c10fb8c8f21ca7e7199a"
+    },
+    {
+      "document_id": "bab-20",
+      "layer": "bab",
+      "source_authority": "canonical",
+      "source_path": "Bab 20 — Menatap Akhir Era dari Balik.md",
+      "diegetic_frame": "bab-world",
+      "temporal_status": "sequential",
+      "diegetic_certainty": "exact",
+      "evidence_mode": "witnessed",
+      "sequence_narrative": 520,
+      "sequence_within_frame": null,
+      "confirmation_status": "confirmed",
+      "pair_document_id": "timer-20-00",
+      "relations": [],
+      "source_hash": "21b13585c5fc2bf82e9eccc3c3fcac1679e45a001a9b19d5db5fc03d6a672e57",
+      "document_hash": "21b13585c5fc2bf82e9eccc3c3fcac1679e45a001a9b19d5db5fc03d6a672e57"
+    },
+    {
+      "document_id": "timer-20-00",
+      "layer": "timer",
+      "source_authority": "canonical",
+      "source_path": "Timer 2000 — Menatap Akhir Semesta dari Balik.md",
+      "diegetic_frame": "timer-world",
+      "temporal_status": "sequential",
+      "diegetic_certainty": "exact",
+      "evidence_mode": "witnessed",
+      "editorial_confidence": "high",
+      "relative_order_review": "sesudah",
+      "composed_during": "unknown",
+      "sequence_narrative": 530,
+      "sequence_within_frame": null,
+      "pair_document_id": "bab-20",
+      "relations": [
+        {
+          "namespace": "composition",
+          "relation_type": "deleted_during",
+          "target_document_id": "bab-20"
+        }
+      ],
+      "source_hash": "684bfeef2eee65ba0643ba25fb454c2a31271c66e516b34434b9e1d3eb403023",
+      "document_hash": "684bfeef2eee65ba0643ba25fb454c2a31271c66e516b34434b9e1d3eb403023"
+    },
+    {
+      "document_id": "bab-21",
+      "layer": "bab",
+      "source_authority": "canonical",
+      "source_path": "Bab 21 — Menatap Akhir Era dari Balik.md",
+      "diegetic_frame": "bab-world",
+      "temporal_status": "sequential",
+      "diegetic_certainty": "exact",
+      "evidence_mode": "witnessed",
+      "sequence_narrative": 540,
+      "sequence_within_frame": null,
+      "confirmation_status": "confirmed",
+      "pair_document_id": "timer-21-00",
+      "relations": [],
+      "source_hash": "f5dae6390c2af6176500f46149b2b5199812a9fb607d26eb0d68344aa09e0a4f",
+      "document_hash": "f5dae6390c2af6176500f46149b2b5199812a9fb607d26eb0d68344aa09e0a4f"
+    },
+    {
+      "document_id": "timer-21-00",
+      "layer": "timer",
+      "source_authority": "canonical",
+      "source_path": "Timer 2100 — Menatap Akhir Semesta dari Balik.md",
+      "diegetic_frame": "timer-world",
+      "temporal_status": "sequential",
+      "diegetic_certainty": "relative",
+      "evidence_mode": "witnessed",
+      "editorial_confidence": "medium",
+      "relative_order_review": "sesudah",
+      "composed_during": "unknown",
+      "sequence_narrative": 550,
+      "sequence_within_frame": null,
+      "pair_document_id": "bab-21",
+      "relations": [],
+      "source_hash": "16b532a093dc9603aebdf07f04c384e1f79e3edbaced70c5366136d09cbbc2f9",
+      "document_hash": "16b532a093dc9603aebdf07f04c384e1f79e3edbaced70c5366136d09cbbc2f9"
+    },
+    {
+      "document_id": "bab-22",
+      "layer": "bab",
+      "source_authority": "canonical",
+      "source_path": "Bab 22 — Menatap Akhir Era dari Balik.md",
+      "diegetic_frame": "bab-world",
+      "temporal_status": "sequential",
+      "diegetic_certainty": "exact",
+      "evidence_mode": "witnessed",
+      "sequence_narrative": 560,
+      "sequence_within_frame": null,
+      "confirmation_status": "confirmed",
+      "pair_document_id": "timer-22-00",
+      "relations": [],
+      "source_hash": "e7a012843b6e896f1638cb4e6bc44ef9f83486d0cf0fc7a71242cd0d6f0e53b6",
+      "document_hash": "e7a012843b6e896f1638cb4e6bc44ef9f83486d0cf0fc7a71242cd0d6f0e53b6"
+    },
+    {
+      "document_id": "timer-22-00",
+      "layer": "timer",
+      "source_authority": "canonical",
+      "source_path": "Timer 2200 — Menatap Akhir Semesta dari Balik.md",
+      "diegetic_frame": "timer-world",
+      "temporal_status": "recursive",
+      "diegetic_certainty": "unknown",
+      "evidence_mode": "archival",
+      "editorial_confidence": "low",
+      "relative_order_review": "sesudah",
+      "composed_during": "unknown",
+      "sequence_narrative": 570,
+      "sequence_within_frame": null,
+      "pair_document_id": "bab-22",
+      "relations": [],
+      "source_hash": "22a3b783ceff3298e572f39a50d35c2b958e157f91497bb5f9cc0926d5d554b2",
+      "document_hash": "22a3b783ceff3298e572f39a50d35c2b958e157f91497bb5f9cc0926d5d554b2"
+    },
+    {
+      "document_id": "bab-23",
+      "layer": "bab",
+      "source_authority": "canonical",
+      "source_path": "Bab 23 — Menatap Akhir Era dari Balik.md",
+      "diegetic_frame": "bab-world",
+      "temporal_status": "sequential",
+      "diegetic_certainty": "exact",
+      "evidence_mode": "witnessed",
+      "sequence_narrative": 580,
+      "sequence_within_frame": null,
+      "confirmation_status": "confirmed",
+      "pair_document_id": "timer-23-00",
+      "relations": [],
+      "source_hash": "1d09c2bdc56a2184c7b242e69cb61777f1c9db2e65cfc9b761a54a91874463cb",
+      "document_hash": "1d09c2bdc56a2184c7b242e69cb61777f1c9db2e65cfc9b761a54a91874463cb"
+    },
+    {
+      "document_id": "timer-23-00",
+      "layer": "timer",
+      "source_authority": "canonical",
+      "source_path": "Timer 2300 — Menatap Akhir Semesta dari Balik.md",
+      "diegetic_frame": "timer-world",
+      "temporal_status": "recursive",
+      "diegetic_certainty": "relative",
+      "evidence_mode": "mixed",
+      "editorial_confidence": "medium",
+      "relative_order_review": "sesudah",
+      "composed_during": "unknown",
+      "sequence_narrative": 590,
+      "sequence_within_frame": null,
+      "pair_document_id": "bab-23",
+      "relations": [],
+      "source_hash": "ac0a9caa9ce6a2c29f640c6626cbe911d8421094a917cbccd203ddd544d7593d",
+      "document_hash": "ac0a9caa9ce6a2c29f640c6626cbe911d8421094a917cbccd203ddd544d7593d"
+    },
+    {
+      "document_id": "bab-24",
+      "layer": "bab",
+      "source_authority": "canonical",
+      "source_path": "Bab 24 — Menatap Akhir Era dari Balik.md",
+      "diegetic_frame": "bab-world",
+      "temporal_status": "sequential",
+      "diegetic_certainty": "exact",
+      "evidence_mode": "witnessed",
+      "sequence_narrative": 600,
+      "sequence_within_frame": null,
+      "confirmation_status": "confirmed",
+      "pair_document_id": "timer-24-00",
+      "relations": [],
+      "source_hash": "a8a9a3035f24c59ad43783c172309a711150112e5919d36bba2be83eaa9399fc",
+      "document_hash": "a8a9a3035f24c59ad43783c172309a711150112e5919d36bba2be83eaa9399fc"
+    },
+    {
+      "document_id": "timer-24-00",
+      "layer": "timer",
+      "source_authority": "canonical",
+      "source_path": "Timer 2400 — Menatap Akhir Semesta dari Balik.md",
+      "diegetic_frame": "timer-world",
+      "temporal_status": "recursive",
+      "diegetic_certainty": "relative",
+      "evidence_mode": "witnessed",
+      "editorial_confidence": "medium",
+      "relative_order_review": "sesudah",
+      "composed_during": "unknown",
+      "sequence_narrative": 610,
+      "sequence_within_frame": null,
+      "pair_document_id": "bab-24",
+      "relations": [],
+      "source_hash": "5f0d0e25b8a0b5eeb3d2559bde8f0e4371af15d1b896d22e3b85cf5e3f2b4d78",
+      "document_hash": "5f0d0e25b8a0b5eeb3d2559bde8f0e4371af15d1b896d22e3b85cf5e3f2b4d78"
+    },
+    {
+      "document_id": "bab-25",
+      "layer": "bab",
+      "source_authority": "canonical",
+      "source_path": "Bab 25 — Menatap Akhir Era dari Balik.md",
+      "diegetic_frame": "bab-world",
+      "temporal_status": "sequential",
+      "diegetic_certainty": "exact",
+      "evidence_mode": "witnessed",
+      "sequence_narrative": 620,
+      "sequence_within_frame": null,
+      "confirmation_status": "confirmed",
+      "pair_document_id": "timer-25-00",
+      "relations": [],
+      "source_hash": "42cd0aea6c44e676b195baeaba9d0df081664af045f7069b9bfa9e7ca64d3527",
+      "document_hash": "42cd0aea6c44e676b195baeaba9d0df081664af045f7069b9bfa9e7ca64d3527"
+    },
+    {
+      "document_id": "timer-25-00",
+      "layer": "timer",
+      "source_authority": "canonical",
+      "source_path": "Timer 2500 — Menatap Akhir Semesta dari Balik.md",
+      "diegetic_frame": "timer-world",
+      "temporal_status": "retroactive",
+      "diegetic_certainty": "relative",
+      "evidence_mode": "archival",
+      "editorial_confidence": "high",
+      "relative_order_review": "sebelum",
+      "composed_during": "unknown",
+      "sequence_narrative": 630,
+      "sequence_within_frame": null,
+      "pair_document_id": "bab-25",
+      "relations": [],
+      "source_hash": "de34a3e3c9391986094d6c93ea88d2f4a01dd9454fabc221c266a12863053628",
+      "document_hash": "de34a3e3c9391986094d6c93ea88d2f4a01dd9454fabc221c266a12863053628"
+    },
+    {
+      "document_id": "codex-tanah",
+      "layer": "codex",
+      "source_authority": "canonical",
+      "source_path": "Codex Tanah — Menatap Akhir Semesta dari Balik.md",
+      "diegetic_frame": null,
+      "temporal_status": "atemporal",
+      "diegetic_certainty": "not_applicable",
+      "sequence_narrative": 640,
+      "narrative_placement": "after timer-25-00",
+      "relations": [],
+      "source_hash": "61acffaa81fbc1971a3fc60b75152277811d744db968150fb419a3c9922a1e35",
+      "document_hash": "61acffaa81fbc1971a3fc60b75152277811d744db968150fb419a3c9922a1e35"
+    },
+    {
+      "document_id": "codex-the-void",
+      "layer": "codex",
+      "source_authority": "canonical",
+      "source_path": "Codex The Void — Menatap Akhir Semesta dari Balik.md",
+      "diegetic_frame": null,
+      "temporal_status": "atemporal",
+      "diegetic_certainty": "not_applicable",
+      "sequence_narrative": 650,
+      "narrative_placement": "end of corpus",
+      "relations": [],
+      "source_hash": "5c3a675a84efb30499302b26ca7b9b392618a8da098e4a6548e5252b3db93191",
+      "document_hash": "5c3a675a84efb30499302b26ca7b9b392618a8da098e4a6548e5252b3db93191"
+    }
+  ],
+  "corpus_hash": "f3e63638c7f9e5de144fc8586fc85c0e42ba9c443866a5f5902b0286e1a09dd8",
+  "previous_canon_id": null,
+  "validator": {
+    "result": "VALID_WITH_WARNINGS",
+    "reference": "/Users/rizalialmakhrisnayadi/2nd_brain/Void Saga/outputs/corpus-validation-report.json",
+    "warnings": [
+      {
+        "code": "sequence_within_frame_missing",
+        "message": "Timer sequence ordinals are not yet materialized.",
+        "document_id": "timer-00-00"
+      },
+      {
+        "code": "relative_order_not_materialized",
+        "message": "relative_order_review is preserved without exact ordinals.",
+        "document_id": "timer-00-00"
+      },
+      {
+        "code": "sequence_within_frame_missing",
+        "message": "Timer sequence ordinals are not yet materialized.",
+        "document_id": "timer-01-00"
+      },
+      {
+        "code": "relative_order_not_materialized",
+        "message": "relative_order_review is preserved without exact ordinals.",
+        "document_id": "timer-01-00"
+      },
+      {
+        "code": "composed_during_unknown",
+        "message": "composed_during remains unknown where no explicit evidence exists.",
+        "document_id": "timer-01-00"
+      },
+      {
+        "code": "sequence_within_frame_missing",
+        "message": "Timer sequence ordinals are not yet materialized.",
+        "document_id": "timer-02-00"
+      },
+      {
+        "code": "relative_order_not_materialized",
+        "message": "relative_order_review is preserved without exact ordinals.",
+        "document_id": "timer-02-00"
+      },
+      {
+        "code": "composed_during_unknown",
+        "message": "composed_during remains unknown where no explicit evidence exists.",
+        "document_id": "timer-02-00"
+      },
+      {
+        "code": "sequence_within_frame_missing",
+        "message": "Timer sequence ordinals are not yet materialized.",
+        "document_id": "timer-02-50"
+      },
+      {
+        "code": "relative_order_not_materialized",
+        "message": "relative_order_review is preserved without exact ordinals.",
+        "document_id": "timer-02-50"
+      },
+      {
+        "code": "sequence_within_frame_missing",
+        "message": "Timer sequence ordinals are not yet materialized.",
+        "document_id": "timer-03-00"
+      },
+      {
+        "code": "relative_order_not_materialized",
+        "message": "relative_order_review is preserved without exact ordinals.",
+        "document_id": "timer-03-00"
+      },
+      {
+        "code": "sequence_within_frame_missing",
+        "message": "Timer sequence ordinals are not yet materialized.",
+        "document_id": "timer-04-00"
+      },
+      {
+        "code": "relative_order_not_materialized",
+        "message": "relative_order_review is preserved without exact ordinals.",
+        "document_id": "timer-04-00"
+      },
+      {
+        "code": "composed_during_unknown",
+        "message": "composed_during remains unknown where no explicit evidence exists.",
+        "document_id": "timer-04-00"
+      },
+      {
+        "code": "sequence_within_frame_missing",
+        "message": "Timer sequence ordinals are not yet materialized.",
+        "document_id": "timer-05-00"
+      },
+      {
+        "code": "relative_order_not_materialized",
+        "message": "relative_order_review is preserved without exact ordinals.",
+        "document_id": "timer-05-00"
+      },
+      {
+        "code": "sequence_within_frame_missing",
+        "message": "Timer sequence ordinals are not yet materialized.",
+        "document_id": "timer-06-00"
+      },
+      {
+        "code": "relative_order_not_materialized",
+        "message": "relative_order_review is preserved without exact ordinals.",
+        "document_id": "timer-06-00"
+      },
+      {
+        "code": "composed_during_unknown",
+        "message": "composed_during remains unknown where no explicit evidence exists.",
+        "document_id": "timer-06-00"
+      },
+      {
+        "code": "sequence_within_frame_missing",
+        "message": "Timer sequence ordinals are not yet materialized.",
+        "document_id": "timer-07-00"
+      },
+      {
+        "code": "relative_order_not_materialized",
+        "message": "relative_order_review is preserved without exact ordinals.",
+        "document_id": "timer-07-00"
+      },
+      {
+        "code": "sequence_within_frame_missing",
+        "message": "Timer sequence ordinals are not yet materialized.",
+        "document_id": "timer-08-00"
+      },
+      {
+        "code": "relative_order_not_materialized",
+        "message": "relative_order_review is preserved without exact ordinals.",
+        "document_id": "timer-08-00"
+      },
+      {
+        "code": "composed_during_unknown",
+        "message": "composed_during remains unknown where no explicit evidence exists.",
+        "document_id": "timer-08-00"
+      },
+      {
+        "code": "sequence_within_frame_missing",
+        "message": "Timer sequence ordinals are not yet materialized.",
+        "document_id": "timer-09-00"
+      },
+      {
+        "code": "relative_order_not_materialized",
+        "message": "relative_order_review is preserved without exact ordinals.",
+        "document_id": "timer-09-00"
+      },
+      {
+        "code": "composed_during_unknown",
+        "message": "composed_during remains unknown where no explicit evidence exists.",
+        "document_id": "timer-09-00"
+      },
+      {
+        "code": "sequence_within_frame_missing",
+        "message": "Timer sequence ordinals are not yet materialized.",
+        "document_id": "timer-10-00"
+      },
+      {
+        "code": "relative_order_not_materialized",
+        "message": "relative_order_review is preserved without exact ordinals.",
+        "document_id": "timer-10-00"
+      },
+      {
+        "code": "sequence_within_frame_missing",
+        "message": "Timer sequence ordinals are not yet materialized.",
+        "document_id": "timer-11-00"
+      },
+      {
+        "code": "relative_order_not_materialized",
+        "message": "relative_order_review is preserved without exact ordinals.",
+        "document_id": "timer-11-00"
+      },
+      {
+        "code": "sequence_within_frame_missing",
+        "message": "Timer sequence ordinals are not yet materialized.",
+        "document_id": "timer-12-00"
+      },
+      {
+        "code": "relative_order_not_materialized",
+        "message": "relative_order_review is preserved without exact ordinals.",
+        "document_id": "timer-12-00"
+      },
+      {
+        "code": "composed_during_unknown",
+        "message": "composed_during remains unknown where no explicit evidence exists.",
+        "document_id": "timer-12-00"
+      },
+      {
+        "code": "sequence_within_frame_missing",
+        "message": "Timer sequence ordinals are not yet materialized.",
+        "document_id": "timer-13-00"
+      },
+      {
+        "code": "relative_order_not_materialized",
+        "message": "relative_order_review is preserved without exact ordinals.",
+        "document_id": "timer-13-00"
+      },
+      {
+        "code": "sequence_within_frame_missing",
+        "message": "Timer sequence ordinals are not yet materialized.",
+        "document_id": "timer-14-00"
+      },
+      {
+        "code": "relative_order_not_materialized",
+        "message": "relative_order_review is preserved without exact ordinals.",
+        "document_id": "timer-14-00"
+      },
+      {
+        "code": "sequence_within_frame_missing",
+        "message": "Timer sequence ordinals are not yet materialized.",
+        "document_id": "timer-15-00"
+      },
+      {
+        "code": "relative_order_not_materialized",
+        "message": "relative_order_review is preserved without exact ordinals.",
+        "document_id": "timer-15-00"
+      },
+      {
+        "code": "composed_during_unknown",
+        "message": "composed_during remains unknown where no explicit evidence exists.",
+        "document_id": "timer-15-00"
+      },
+      {
+        "code": "sequence_within_frame_missing",
+        "message": "Timer sequence ordinals are not yet materialized.",
+        "document_id": "timer-16-00"
+      },
+      {
+        "code": "relative_order_not_materialized",
+        "message": "relative_order_review is preserved without exact ordinals.",
+        "document_id": "timer-16-00"
+      },
+      {
+        "code": "sequence_within_frame_missing",
+        "message": "Timer sequence ordinals are not yet materialized.",
+        "document_id": "timer-16-50"
+      },
+      {
+        "code": "relative_order_not_materialized",
+        "message": "relative_order_review is preserved without exact ordinals.",
+        "document_id": "timer-16-50"
+      },
+      {
+        "code": "sequence_within_frame_missing",
+        "message": "Timer sequence ordinals are not yet materialized.",
+        "document_id": "timer-16-66"
+      },
+      {
+        "code": "relative_order_not_materialized",
+        "message": "relative_order_review is preserved without exact ordinals.",
+        "document_id": "timer-16-66"
+      },
+      {
+        "code": "composed_during_unknown",
+        "message": "composed_during remains unknown where no explicit evidence exists.",
+        "document_id": "timer-16-66"
+      },
+      {
+        "code": "editorial_confidence_low",
+        "message": "editorial confidence remains low.",
+        "document_id": "timer-16-66"
+      },
+      {
+        "code": "sequence_within_frame_missing",
+        "message": "Timer sequence ordinals are not yet materialized.",
+        "document_id": "timer-17-00"
+      },
+      {
+        "code": "relative_order_not_materialized",
+        "message": "relative_order_review is preserved without exact ordinals.",
+        "document_id": "timer-17-00"
+      },
+      {
+        "code": "sequence_within_frame_missing",
+        "message": "Timer sequence ordinals are not yet materialized.",
+        "document_id": "timer-18-00"
+      },
+      {
+        "code": "relative_order_not_materialized",
+        "message": "relative_order_review is preserved without exact ordinals.",
+        "document_id": "timer-18-00"
+      },
+      {
+        "code": "sequence_within_frame_missing",
+        "message": "Timer sequence ordinals are not yet materialized.",
+        "document_id": "timer-19-00"
+      },
+      {
+        "code": "relative_order_not_materialized",
+        "message": "relative_order_review is preserved without exact ordinals.",
+        "document_id": "timer-19-00"
+      },
+      {
+        "code": "composed_during_unknown",
+        "message": "composed_during remains unknown where no explicit evidence exists.",
+        "document_id": "timer-19-00"
+      },
+      {
+        "code": "sequence_within_frame_missing",
+        "message": "Timer sequence ordinals are not yet materialized.",
+        "document_id": "timer-20-00"
+      },
+      {
+        "code": "relative_order_not_materialized",
+        "message": "relative_order_review is preserved without exact ordinals.",
+        "document_id": "timer-20-00"
+      },
+      {
+        "code": "composed_during_unknown",
+        "message": "composed_during remains unknown where no explicit evidence exists.",
+        "document_id": "timer-20-00"
+      },
+      {
+        "code": "sequence_within_frame_missing",
+        "message": "Timer sequence ordinals are not yet materialized.",
+        "document_id": "timer-21-00"
+      },
+      {
+        "code": "relative_order_not_materialized",
+        "message": "relative_order_review is preserved without exact ordinals.",
+        "document_id": "timer-21-00"
+      },
+      {
+        "code": "composed_during_unknown",
+        "message": "composed_during remains unknown where no explicit evidence exists.",
+        "document_id": "timer-21-00"
+      },
+      {
+        "code": "sequence_within_frame_missing",
+        "message": "Timer sequence ordinals are not yet materialized.",
+        "document_id": "timer-22-00"
+      },
+      {
+        "code": "relative_order_not_materialized",
+        "message": "relative_order_review is preserved without exact ordinals.",
+        "document_id": "timer-22-00"
+      },
+      {
+        "code": "composed_during_unknown",
+        "message": "composed_during remains unknown where no explicit evidence exists.",
+        "document_id": "timer-22-00"
+      },
+      {
+        "code": "editorial_confidence_low",
+        "message": "editorial confidence remains low.",
+        "document_id": "timer-22-00"
+      },
+      {
+        "code": "sequence_within_frame_missing",
+        "message": "Timer sequence ordinals are not yet materialized.",
+        "document_id": "timer-23-00"
+      },
+      {
+        "code": "relative_order_not_materialized",
+        "message": "relative_order_review is preserved without exact ordinals.",
+        "document_id": "timer-23-00"
+      },
+      {
+        "code": "composed_during_unknown",
+        "message": "composed_during remains unknown where no explicit evidence exists.",
+        "document_id": "timer-23-00"
+      },
+      {
+        "code": "sequence_within_frame_missing",
+        "message": "Timer sequence ordinals are not yet materialized.",
+        "document_id": "timer-24-00"
+      },
+      {
+        "code": "relative_order_not_materialized",
+        "message": "relative_order_review is preserved without exact ordinals.",
+        "document_id": "timer-24-00"
+      },
+      {
+        "code": "composed_during_unknown",
+        "message": "composed_during remains unknown where no explicit evidence exists.",
+        "document_id": "timer-24-00"
+      },
+      {
+        "code": "sequence_within_frame_missing",
+        "message": "Timer sequence ordinals are not yet materialized.",
+        "document_id": "timer-25-00"
+      },
+      {
+        "code": "relative_order_not_materialized",
+        "message": "relative_order_review is preserved without exact ordinals.",
+        "document_id": "timer-25-00"
+      },
+      {
+        "code": "composed_during_unknown",
+        "message": "composed_during remains unknown where no explicit evidence exists.",
+        "document_id": "timer-25-00"
+      },
+      {
+        "code": "system_frame_uncertain",
+        "message": "system frame assignment remains recorded as debatable without requiring schema change.",
+        "document_id": "system-opening"
+      },
+      {
+        "code": "in_universe_author_deferred",
+        "message": "OPEN-SCHEMA-002 remains deferred.",
+        "document_id": "timer-02-50"
+      }
+    ],
+    "errors": []
+  },
+  "source_git_commit": "e38387fa3852d21c33dc19e0139d9ef3fce9a9ae",
+  "sealed_at": "2026-07-15T14:48:57.046861+00:00",
+  "sealed_by": "Rizali Alma",
+  "seal_git_commit": "e38387fa3852d21c33dc19e0139d9ef3fce9a9ae",
+  "candidate_corpus_hash": "f3e63638c7f9e5de144fc8586fc85c0e42ba9c443866a5f5902b0286e1a09dd8",
+  "validator_result": "VALID_WITH_WARNINGS",
+  "accepted_warnings": [
+    {
+      "code": "sequence_within_frame_missing",
+      "status": "accepted_for_v1",
+      "disposition": "accepted_for_v1"
+    },
+    {
+      "code": "relative_order_not_materialized",
+      "status": "accepted_for_v1",
+      "disposition": "accepted_for_v1"
+    },
+    {
+      "code": "composed_during_unknown",
+      "status": "accepted_for_v1",
+      "disposition": "accepted_for_v1"
+    },
+    {
+      "code": "editorial_confidence_low",
+      "status": "accepted_for_v1",
+      "disposition": "accepted_for_v1"
+    },
+    {
+      "code": "system_frame_uncertain",
+      "status": "deferred_with_disposition",
+      "disposition": "OPEN-SCHEMA-001"
+    },
+    {
+      "code": "in_universe_author_deferred",
+      "status": "deferred_with_disposition",
+      "disposition": "OPEN-SCHEMA-002"
+    }
+  ],
+  "seal_warnings": [
+    "proofing/"
+  ]
+}

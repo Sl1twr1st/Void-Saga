@@ -114,13 +114,13 @@ Result: 12 clean passes, 2 strains resolved via the OPEN-SCHEMA registry
 | 3 | `naskah-lengkap` | — | — | — | — | EXCLUDED/derived; `compiled_from` all; divergence witness (§2.1) |
 | 4 | `codex-udara` | codex | 130 | null | atemporal | Sits **between** bab-04 and timer-04-00 — codex interrupts a resonance pair. Proves sequence and resonance are independent structures |
 | 5 | `bab-00` | bab | 20 | bab-world | sequential | Composition context for #6 |
-| 6 | `timer-00-00` | timer | 30 | timer-world (event pos: 0, cosmogony) | sequential | `composed_during → bab-00`. Dual identity: corpus document AND in-world artifact (genesis.txt). Held by composition relation + archival/mixed evidence_mode |
+| 6 | `timer-00-00` | timer | 30 | timer-world (event pos: 0, cosmogony) | **retroactive** | `composed_during → bab-00`. Harvested certainty: `exact`; evidence_mode: `archival`. Dual identity remains recorded via composition relation and artifact status |
 | 7 | `bab-02-5` | bab | 80 | bab-world | sequential | Decimal label absorbed by integer spacing. Filename uses dash (`Bab 02-5`) — identity from manifest, not filename |
 | 8 | `timer-02-50` | timer | 90 | timer-world | **retroactive** | THE VOID RECORD Δ3. `recounts` → origin era; `composed_during → bab-03` (Phoenix night — NOT its pair bab-02-5). **OPEN-SCHEMA-002**: in-universe author (Agnia) deferred to v1.1 |
 | 9 | `bab-16-6` | bab | 430 | bab-world | sequential | `resonates_with → timer-16-66`. Interval, one page |
 | 10 | `timer-16-66` | timer | 440 | timer-world | **uncertain** | Exemplar of `uncertain`: timestamp 16:66 impossible by design. `diegetic_certainty: relative` |
 | 11 | `timer-10-00` | timer | 260 | timer-world | sequential | `composed_during → bab-10`, `deleted_during → bab-10` (LO). Document deleted in-story yet present in corpus — schema records the events, manifest records existence, and is not forced to adjudicate the paradox |
-| 12 | `timer-07-00` | timer | 200 | timer-world | sequential | `composed_during → bab-07`. Exemplar for future cross_frame_authorship audit: "kita capek pelan-pelan" vs 20 years passing outside The Void |
+| 12 | `timer-07-00` | timer | 200 | timer-world | **uncertain** | `composed_during → bab-07`. Harvested evidence_mode: `mixed`; diegetic_certainty: `relative`. Cross-frame authorship audit remains future work |
 | 13 | `codex-the-void` | codex | 650 | null | atemporal | End of reading order. Same pattern as #4 |
 | 14 | `timer-25-00` | timer | 630 | timer-world (event pos: earliest — pre timer-01-00) | **retroactive** | Fragment Mundur: diegetically first, narratively last. The document that would make a one-axis schema lie hardest |
 
@@ -130,8 +130,13 @@ Result: 12 clean passes, 2 strains resolved via the OPEN-SCHEMA registry
 
 Defaults unless a row notes otherwise: `source_authority: canonical`,
 `work_id: menatap-akhir`, `language: [id, en]`, bab → frame `bab-world` /
-sequential, timer → frame `timer-world` / sequential, codex → frame null /
-atemporal, `sequence_within_frame: TBD (human_editor)`.
+sequential, codex → frame null / atemporal. Timer rows keep frame `timer-world`,
+but harvested `temporal_status`, `diegetic_certainty`, and `evidence_mode` now
+live in §5.2A instead of inheriting a blanket sequential default. Bab rows stay
+on the witnessed default except for explicitly harvested exceptions noted inline
+(e.g. `bab-02-5`).
+`sequence_within_frame: TBD (human_editor)` remains honest until exact ordinals
+are assigned.
 
 Resonance is bijective: every bab pairs with exactly one timer (29 ↔ 29).
 
@@ -156,7 +161,7 @@ absence is recorded honestly, not inferred.
 | 50 | `timer-01-00` | `bab-01` | |
 | 60 | `bab-02` | `timer-02-00` | |
 | 70 | `timer-02-00` | `bab-02` | |
-| 80 | `bab-02-5` | `timer-02-50` | filename: `Bab 02-5` (dash) |
+| 80 | `bab-02-5` | `timer-02-50` | filename: `Bab 02-5` (dash); harvested bab delta: `evidence_mode = mixed` |
 | 90 | `timer-02-50` | `bab-02-5` | retroactive; `composed_during → bab-03`; OPEN-SCHEMA-002 |
 | 100 | `bab-03` | `timer-03-00` | |
 | 110 | `timer-03-00` | `bab-03` | `composed_during → bab-03` (Phoenix night, with timer-02-50) |
@@ -213,6 +218,52 @@ absence is recorded honestly, not inferred.
 | 620 | `bab-25` | `timer-25-00` | 10 years later |
 | 630 | `timer-25-00` | `bab-25` | **retroactive** — Fragment Mundur; event position earliest in timer-world |
 
+### 5.2A harvested timer metadata (accepted editorial state)
+
+This table is the direct harvest of accepted Timer review state.
+
+Schema-aligned mappings used here:
+- review `mode` → manifest `evidence_mode`
+  - `present_event` → `witnessed`
+  - `archival_record` → `archival`
+  - `reflective` → `reflective`
+  - `mixed` → `mixed`
+- review `certainty` → manifest `diegetic_certainty`
+- review `relative_order` is preserved here as an editorial harvest column until exact `sequence_within_frame` values are assigned by validator-supported follow-up work.
+- `composed_during` remains `unknown` unless already supported by explicit evidence recorded in this manifest.
+
+| seq_narr | document_id | evidence_mode | temporal_status | diegetic_certainty | editorial_confidence | relative_order_review | composed_during |
+|---|---|---|---|---|---|---|---|
+| 30 | `timer-00-00` | `archival` | `retroactive` | `exact` | `high` | `sebelum` | `bab-00` |
+| 50 | `timer-01-00` | `witnessed` | `sequential` | `exact` | `high` | `sesudah` | `unknown` |
+| 70 | `timer-02-00` | `witnessed` | `sequential` | `exact` | `high` | `sesudah` | `unknown` |
+| 90 | `timer-02-50` | `archival` | `retroactive` | `relative` | `medium` | `bersamaan` | `bab-03` |
+| 110 | `timer-03-00` | `witnessed` | `sequential` | `exact` | `high` | `sesudah` | `bab-03` |
+| 140 | `timer-04-00` | `witnessed` | `sequential` | `exact` | `high` | `sesudah` | `unknown` |
+| 160 | `timer-05-00` | `witnessed` | `sequential` | `exact` | `high` | `sesudah` | `bab-05` |
+| 180 | `timer-06-00` | `witnessed` | `sequential` | `exact` | `high` | `sesudah` | `unknown` |
+| 200 | `timer-07-00` | `mixed` | `uncertain` | `relative` | `medium` | `sesudah` | `bab-07` |
+| 220 | `timer-08-00` | `witnessed` | `sequential` | `relative` | `medium` | `sesudah` | `unknown` |
+| 240 | `timer-09-00` | `witnessed` | `sequential` | `exact` | `high` | `sesudah` | `unknown` |
+| 260 | `timer-10-00` | `witnessed` | `sequential` | `exact` | `high` | `sesudah` | `bab-10` |
+| 280 | `timer-11-00` | `archival` | `retroactive` | `unknown` | `medium` | `sebelum` | `bab-11` |
+| 320 | `timer-12-00` | `archival` | `retroactive` | `relative` | `medium` | `sebelum` | `unknown` |
+| 340 | `timer-13-00` | `witnessed` | `recursive` | `relative` | `medium` | `sesudah` | `bab-13` |
+| 360 | `timer-14-00` | `archival` | `retroactive` | `relative` | `high` | `sebelum` | `bab-14` |
+| 380 | `timer-15-00` | `archival` | `retroactive` | `relative` | `high` | `sebelum` | `unknown` |
+| 400 | `timer-16-00` | `mixed` | `sequential` | `exact` | `high` | `sesudah` | `bab-16` |
+| 420 | `timer-16-50` | `witnessed` | `sequential` | `exact` | `high` | `sesudah` | `bab-16-5` |
+| 440 | `timer-16-66` | `archival` | `uncertain` | `relative` | `low` | `bersamaan` | `unknown` |
+| 470 | `timer-17-00` | `archival` | `uncertain` | `relative` | `medium` | `sesudah` | `bab-17` |
+| 490 | `timer-18-00` | `witnessed` | `sequential` | `exact` | `high` | `sesudah` | `bab-18` |
+| 510 | `timer-19-00` | `witnessed` | `sequential` | `exact` | `high` | `sesudah` | `unknown` |
+| 530 | `timer-20-00` | `witnessed` | `sequential` | `exact` | `high` | `sesudah` | `unknown` |
+| 550 | `timer-21-00` | `witnessed` | `sequential` | `relative` | `medium` | `sesudah` | `unknown` |
+| 570 | `timer-22-00` | `archival` | `recursive` | `unknown` | `low` | `sesudah` | `unknown` |
+| 590 | `timer-23-00` | `mixed` | `recursive` | `relative` | `medium` | `sesudah` | `unknown` |
+| 610 | `timer-24-00` | `witnessed` | `recursive` | `relative` | `medium` | `sesudah` | `unknown` |
+| 630 | `timer-25-00` | `archival` | `retroactive` | `relative` | `high` | `sebelum` | `unknown` |
+
 ### 5.3 codex (5)
 
 | seq | document_id | Placement note |
@@ -243,12 +294,8 @@ special jurisdictions, and outside the evidence index.
 
 ## 7. What remains before seal
 
-1. **Human editor pass** — `sequence_within_frame` + `diegetic_certainty`
-   for timer-world (anchors exist: timer-00-00 cosmogony first,
-   timer-25-00 events pre-timer-01-00, timer-02-50 recounts origin era).
-   Provenance: `human_editor`.
-2. **Evidence-mode review** — timer sections at minimum (default `mixed`,
-   confidence 0.4 is the weakest default in the corpus).
+1. **Sequence completion pass** — exact `sequence_within_frame` ordinals for timer-world remain to be finalized where the accepted harvest provides only coarse relative placement (`sebelum` / `sesudah` / `bersamaan` / `tidak diketahui`). Harvested `temporal_status` and `diegetic_certainty` now live in §5.2A. Provenance for exact ordinals remains `human_editor`.
+2. **Evidence-mode deepening** — passage/section-level review remains optional future work. Document-level timer `evidence_mode` harvest is now recorded in §5.2A; unresolved granularity is no longer a blocker.
 3. **Build `void-corpus validate`** — including the Naskah Lengkap
    divergence witness check (must run before any seal).
 4. **Snapshot** → `canon/candidates/canon-v1.0.json`.

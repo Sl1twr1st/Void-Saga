@@ -1,0 +1,414 @@
+{
+  "result": "VALID_WITH_WARNINGS",
+  "errors": [],
+  "warnings": [
+    {
+      "code": "sequence_within_frame_missing",
+      "message": "Timer sequence ordinals are not yet materialized.",
+      "document_id": "timer-00-00"
+    },
+    {
+      "code": "relative_order_not_materialized",
+      "message": "relative_order_review is preserved without exact ordinals.",
+      "document_id": "timer-00-00"
+    },
+    {
+      "code": "sequence_within_frame_missing",
+      "message": "Timer sequence ordinals are not yet materialized.",
+      "document_id": "timer-01-00"
+    },
+    {
+      "code": "relative_order_not_materialized",
+      "message": "relative_order_review is preserved without exact ordinals.",
+      "document_id": "timer-01-00"
+    },
+    {
+      "code": "composed_during_unknown",
+      "message": "composed_during remains unknown where no explicit evidence exists.",
+      "document_id": "timer-01-00"
+    },
+    {
+      "code": "sequence_within_frame_missing",
+      "message": "Timer sequence ordinals are not yet materialized.",
+      "document_id": "timer-02-00"
+    },
+    {
+      "code": "relative_order_not_materialized",
+      "message": "relative_order_review is preserved without exact ordinals.",
+      "document_id": "timer-02-00"
+    },
+    {
+      "code": "composed_during_unknown",
+      "message": "composed_during remains unknown where no explicit evidence exists.",
+      "document_id": "timer-02-00"
+    },
+    {
+      "code": "sequence_within_frame_missing",
+      "message": "Timer sequence ordinals are not yet materialized.",
+      "document_id": "timer-02-50"
+    },
+    {
+      "code": "relative_order_not_materialized",
+      "message": "relative_order_review is preserved without exact ordinals.",
+      "document_id": "timer-02-50"
+    },
+    {
+      "code": "sequence_within_frame_missing",
+      "message": "Timer sequence ordinals are not yet materialized.",
+      "document_id": "timer-03-00"
+    },
+    {
+      "code": "relative_order_not_materialized",
+      "message": "relative_order_review is preserved without exact ordinals.",
+      "document_id": "timer-03-00"
+    },
+    {
+      "code": "sequence_within_frame_missing",
+      "message": "Timer sequence ordinals are not yet materialized.",
+      "document_id": "timer-04-00"
+    },
+    {
+      "code": "relative_order_not_materialized",
+      "message": "relative_order_review is preserved without exact ordinals.",
+      "document_id": "timer-04-00"
+    },
+    {
+      "code": "composed_during_unknown",
+      "message": "composed_during remains unknown where no explicit evidence exists.",
+      "document_id": "timer-04-00"
+    },
+    {
+      "code": "sequence_within_frame_missing",
+      "message": "Timer sequence ordinals are not yet materialized.",
+      "document_id": "timer-05-00"
+    },
+    {
+      "code": "relative_order_not_materialized",
+      "message": "relative_order_review is preserved without exact ordinals.",
+      "document_id": "timer-05-00"
+    },
+    {
+      "code": "sequence_within_frame_missing",
+      "message": "Timer sequence ordinals are not yet materialized.",
+      "document_id": "timer-06-00"
+    },
+    {
+      "code": "relative_order_not_materialized",
+      "message": "relative_order_review is preserved without exact ordinals.",
+      "document_id": "timer-06-00"
+    },
+    {
+      "code": "composed_during_unknown",
+      "message": "composed_during remains unknown where no explicit evidence exists.",
+      "document_id": "timer-06-00"
+    },
+    {
+      "code": "sequence_within_frame_missing",
+      "message": "Timer sequence ordinals are not yet materialized.",
+      "document_id": "timer-07-00"
+    },
+    {
+      "code": "relative_order_not_materialized",
+      "message": "relative_order_review is preserved without exact ordinals.",
+      "document_id": "timer-07-00"
+    },
+    {
+      "code": "sequence_within_frame_missing",
+      "message": "Timer sequence ordinals are not yet materialized.",
+      "document_id": "timer-08-00"
+    },
+    {
+      "code": "relative_order_not_materialized",
+      "message": "relative_order_review is preserved without exact ordinals.",
+      "document_id": "timer-08-00"
+    },
+    {
+      "code": "composed_during_unknown",
+      "message": "composed_during remains unknown where no explicit evidence exists.",
+      "document_id": "timer-08-00"
+    },
+    {
+      "code": "sequence_within_frame_missing",
+      "message": "Timer sequence ordinals are not yet materialized.",
+      "document_id": "timer-09-00"
+    },
+    {
+      "code": "relative_order_not_materialized",
+      "message": "relative_order_review is preserved without exact ordinals.",
+      "document_id": "timer-09-00"
+    },
+    {
+      "code": "composed_during_unknown",
+      "message": "composed_during remains unknown where no explicit evidence exists.",
+      "document_id": "timer-09-00"
+    },
+    {
+      "code": "sequence_within_frame_missing",
+      "message": "Timer sequence ordinals are not yet materialized.",
+      "document_id": "timer-10-00"
+    },
+    {
+      "code": "relative_order_not_materialized",
+      "message": "relative_order_review is preserved without exact ordinals.",
+      "document_id": "timer-10-00"
+    },
+    {
+      "code": "sequence_within_frame_missing",
+      "message": "Timer sequence ordinals are not yet materialized.",
+      "document_id": "timer-11-00"
+    },
+    {
+      "code": "relative_order_not_materialized",
+      "message": "relative_order_review is preserved without exact ordinals.",
+      "document_id": "timer-11-00"
+    },
+    {
+      "code": "sequence_within_frame_missing",
+      "message": "Timer sequence ordinals are not yet materialized.",
+      "document_id": "timer-12-00"
+    },
+    {
+      "code": "relative_order_not_materialized",
+      "message": "relative_order_review is preserved without exact ordinals.",
+      "document_id": "timer-12-00"
+    },
+    {
+      "code": "composed_during_unknown",
+      "message": "composed_during remains unknown where no explicit evidence exists.",
+      "document_id": "timer-12-00"
+    },
+    {
+      "code": "sequence_within_frame_missing",
+      "message": "Timer sequence ordinals are not yet materialized.",
+      "document_id": "timer-13-00"
+    },
+    {
+      "code": "relative_order_not_materialized",
+      "message": "relative_order_review is preserved without exact ordinals.",
+      "document_id": "timer-13-00"
+    },
+    {
+      "code": "sequence_within_frame_missing",
+      "message": "Timer sequence ordinals are not yet materialized.",
+      "document_id": "timer-14-00"
+    },
+    {
+      "code": "relative_order_not_materialized",
+      "message": "relative_order_review is preserved without exact ordinals.",
+      "document_id": "timer-14-00"
+    },
+    {
+      "code": "sequence_within_frame_missing",
+      "message": "Timer sequence ordinals are not yet materialized.",
+      "document_id": "timer-15-00"
+    },
+    {
+      "code": "relative_order_not_materialized",
+      "message": "relative_order_review is preserved without exact ordinals.",
+      "document_id": "timer-15-00"
+    },
+    {
+      "code": "composed_during_unknown",
+      "message": "composed_during remains unknown where no explicit evidence exists.",
+      "document_id": "timer-15-00"
+    },
+    {
+      "code": "sequence_within_frame_missing",
+      "message": "Timer sequence ordinals are not yet materialized.",
+      "document_id": "timer-16-00"
+    },
+    {
+      "code": "relative_order_not_materialized",
+      "message": "relative_order_review is preserved without exact ordinals.",
+      "document_id": "timer-16-00"
+    },
+    {
+      "code": "sequence_within_frame_missing",
+      "message": "Timer sequence ordinals are not yet materialized.",
+      "document_id": "timer-16-50"
+    },
+    {
+      "code": "relative_order_not_materialized",
+      "message": "relative_order_review is preserved without exact ordinals.",
+      "document_id": "timer-16-50"
+    },
+    {
+      "code": "sequence_within_frame_missing",
+      "message": "Timer sequence ordinals are not yet materialized.",
+      "document_id": "timer-16-66"
+    },
+    {
+      "code": "relative_order_not_materialized",
+      "message": "relative_order_review is preserved without exact ordinals.",
+      "document_id": "timer-16-66"
+    },
+    {
+      "code": "composed_during_unknown",
+      "message": "composed_during remains unknown where no explicit evidence exists.",
+      "document_id": "timer-16-66"
+    },
+    {
+      "code": "editorial_confidence_low",
+      "message": "editorial confidence remains low.",
+      "document_id": "timer-16-66"
+    },
+    {
+      "code": "sequence_within_frame_missing",
+      "message": "Timer sequence ordinals are not yet materialized.",
+      "document_id": "timer-17-00"
+    },
+    {
+      "code": "relative_order_not_materialized",
+      "message": "relative_order_review is preserved without exact ordinals.",
+      "document_id": "timer-17-00"
+    },
+    {
+      "code": "sequence_within_frame_missing",
+      "message": "Timer sequence ordinals are not yet materialized.",
+      "document_id": "timer-18-00"
+    },
+    {
+      "code": "relative_order_not_materialized",
+      "message": "relative_order_review is preserved without exact ordinals.",
+      "document_id": "timer-18-00"
+    },
+    {
+      "code": "sequence_within_frame_missing",
+      "message": "Timer sequence ordinals are not yet materialized.",
+      "document_id": "timer-19-00"
+    },
+    {
+      "code": "relative_order_not_materialized",
+      "message": "relative_order_review is preserved without exact ordinals.",
+      "document_id": "timer-19-00"
+    },
+    {
+      "code": "composed_during_unknown",
+      "message": "composed_during remains unknown where no explicit evidence exists.",
+      "document_id": "timer-19-00"
+    },
+    {
+      "code": "sequence_within_frame_missing",
+      "message": "Timer sequence ordinals are not yet materialized.",
+      "document_id": "timer-20-00"
+    },
+    {
+      "code": "relative_order_not_materialized",
+      "message": "relative_order_review is preserved without exact ordinals.",
+      "document_id": "timer-20-00"
+    },
+    {
+      "code": "composed_during_unknown",
+      "message": "composed_during remains unknown where no explicit evidence exists.",
+      "document_id": "timer-20-00"
+    },
+    {
+      "code": "sequence_within_frame_missing",
+      "message": "Timer sequence ordinals are not yet materialized.",
+      "document_id": "timer-21-00"
+    },
+    {
+      "code": "relative_order_not_materialized",
+      "message": "relative_order_review is preserved without exact ordinals.",
+      "document_id": "timer-21-00"
+    },
+    {
+      "code": "composed_during_unknown",
+      "message": "composed_during remains unknown where no explicit evidence exists.",
+      "document_id": "timer-21-00"
+    },
+    {
+      "code": "sequence_within_frame_missing",
+      "message": "Timer sequence ordinals are not yet materialized.",
+      "document_id": "timer-22-00"
+    },
+    {
+      "code": "relative_order_not_materialized",
+      "message": "relative_order_review is preserved without exact ordinals.",
+      "document_id": "timer-22-00"
+    },
+    {
+      "code": "composed_during_unknown",
+      "message": "composed_during remains unknown where no explicit evidence exists.",
+      "document_id": "timer-22-00"
+    },
+    {
+      "code": "editorial_confidence_low",
+      "message": "editorial confidence remains low.",
+      "document_id": "timer-22-00"
+    },
+    {
+      "code": "sequence_within_frame_missing",
+      "message": "Timer sequence ordinals are not yet materialized.",
+      "document_id": "timer-23-00"
+    },
+    {
+      "code": "relative_order_not_materialized",
+      "message": "relative_order_review is preserved without exact ordinals.",
+      "document_id": "timer-23-00"
+    },
+    {
+      "code": "composed_during_unknown",
+      "message": "composed_during remains unknown where no explicit evidence exists.",
+      "document_id": "timer-23-00"
+    },
+    {
+      "code": "sequence_within_frame_missing",
+      "message": "Timer sequence ordinals are not yet materialized.",
+      "document_id": "timer-24-00"
+    },
+    {
+      "code": "relative_order_not_materialized",
+      "message": "relative_order_review is preserved without exact ordinals.",
+      "document_id": "timer-24-00"
+    },
+    {
+      "code": "composed_during_unknown",
+      "message": "composed_during remains unknown where no explicit evidence exists.",
+      "document_id": "timer-24-00"
+    },
+    {
+      "code": "sequence_within_frame_missing",
+      "message": "Timer sequence ordinals are not yet materialized.",
+      "document_id": "timer-25-00"
+    },
+    {
+      "code": "relative_order_not_materialized",
+      "message": "relative_order_review is preserved without exact ordinals.",
+      "document_id": "timer-25-00"
+    },
+    {
+      "code": "composed_during_unknown",
+      "message": "composed_during remains unknown where no explicit evidence exists.",
+      "document_id": "timer-25-00"
+    },
+    {
+      "code": "system_frame_uncertain",
+      "message": "system frame assignment remains recorded as debatable without requiring schema change.",
+      "document_id": "system-opening"
+    },
+    {
+      "code": "in_universe_author_deferred",
+      "message": "OPEN-SCHEMA-002 remains deferred.",
+      "document_id": "timer-02-50"
+    }
+  ],
+  "statistics": {
+    "included_documents": 65,
+    "excluded_artifacts": 3,
+    "layers": {
+      "bab": 29,
+      "timer": 29,
+      "codex": 5,
+      "system": 2
+    },
+    "duplicate_document_ids": 0,
+    "missing_files": 0,
+    "broken_relations": 0,
+    "invalid_enums": 0,
+    "timer_metadata_harvested": 29,
+    "bab_structurally_confirmed": 29,
+    "codex_structurally_confirmed": 5
+  },
+  "manifest_path": "/Users/rizalialmakhrisnayadi/2nd_brain/Void Saga/canon-manifest-v1.draft.json"
+}

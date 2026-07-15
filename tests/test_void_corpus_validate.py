@@ -4,6 +4,7 @@ import unittest
 from pathlib import Path
 
 from tools.void_corpus.validate import validate_manifest_file
+from tools.void_corpus.generate_candidate import generate_candidate_file
 
 
 BAB_IDS = [
@@ -161,6 +162,35 @@ def write_fixture(root: Path, manifest: dict) -> Path:
     return manifest_path
 
 
+def write_validation_report(root: Path, result: str = "VALID_WITH_WARNINGS") -> Path:
+    report = {
+        "result": result,
+        "errors": [] if result != "INVALID" else [{"code": "included_count_mismatch", "message": "fixture invalid"}],
+        "warnings": [{"code": "sequence_within_frame_missing", "message": "fixture warning"}] if result == "VALID_WITH_WARNINGS" else [],
+        "statistics": {
+            "included_documents": 65,
+            "excluded_artifacts": 3,
+            "layers": {"bab": 29, "timer": 29, "codex": 5, "system": 2},
+        },
+    }
+    output_dir = root / "outputs"
+    output_dir.mkdir(parents=True, exist_ok=True)
+    report_path = output_dir / "corpus-validation-report.json"
+    report_path.write_text(json.dumps(report, indent=2), encoding="utf-8")
+    return report_path
+
+
+def init_git_repo(root: Path) -> str:
+    import subprocess
+    subprocess.run(["git", "init"], cwd=root, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    subprocess.run(["git", "config", "user.name", "Hermes Test"], cwd=root, check=True)
+    subprocess.run(["git", "config", "user.email", "hermes@example.com"], cwd=root, check=True)
+    subprocess.run(["git", "add", "."], cwd=root, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    subprocess.run(["git", "commit", "-m", "fixture"], cwd=root, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    commit = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=root, text=True).strip()
+    return commit
+
+
 class VoidCorpusValidateTests(unittest.TestCase):
     def validate(self, mutate=None):
         with tempfile.TemporaryDirectory() as tmp:
@@ -278,6 +308,86 @@ class VoidCorpusValidateTests(unittest.TestCase):
     def test_out_of_scope_files_are_ignored(self):
         result = self.validate()
         self.assertFalse(any(e["code"] == "out_of_scope_file_detected" for e in result["errors"]))
+
+
+class CandidateSnapshotGeneratorTests(unittest.TestCase):
+    def generate(self, mutate_manifest=None, mutate_files=None, validator_result="VALID_WITH_WARNINGS"):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            manifest = make_valid_manifest()
+            if mutate_manifest:
+                mutate_manifest(manifest, root)
+            manifest_path = write_fixture(root, manifest)
+            report_path = write_validation_report(root, validator_result)
+            if mutate_files:
+                mutate_files(manifest, root)
+            commit = init_git_repo(root)
+            candidate_path = root / "canon-v1.0.candidate.json"
+            candidate = generate_candidate_file(manifest_path, root, report_path=report_path, output_path=candidate_path)
+            written = candidate_path.read_text(encoding="utf-8")
+            return candidate, written, commit
+
+    def test_candidate_generation_succeeds_from_current_valid_manifest(self):
+        candidate, written, commit = self.generate()
+        self.assertIn('"status": "candidate"', written)
+        self.assertEqual(candidate["status"], "candidate")
+        self.assertEqual(candidate["document_count"], 65)
+        self.assertEqual(candidate["excluded_artifact_count"], 3)
+        self.assertEqual(candidate["source_git_commit"], commit)
+
+    def test_deterministic_rerun_produces_same_corpus_hash(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            manifest = make_valid_manifest()
+            manifest_path = write_fixture(root, manifest)
+            report_path = write_validation_report(root)
+            init_git_repo(root)
+            first = generate_candidate_file(manifest_path, root, report_path=report_path, output_path=root / "first.json")
+            second = generate_candidate_file(manifest_path, root, report_path=report_path, output_path=root / "second.json")
+            self.assertEqual(first["corpus_hash"], second["corpus_hash"])
+
+    def test_changing_one_source_byte_changes_document_hash_and_corpus_hash(self):
+        baseline, _, _ = self.generate()
+        changed, _, _ = self.generate(mutate_files=lambda manifest, root: (root / manifest["included_documents"][0]["source_path"]).write_text("mutated", encoding="utf-8"))
+        doc_id = baseline["documents"][0]["document_id"]
+        before = {d["document_id"]: d for d in baseline["documents"]}[doc_id]
+        after = {d["document_id"]: d for d in changed["documents"]}[doc_id]
+        self.assertNotEqual(before["document_hash"], after["document_hash"])
+        self.assertNotEqual(baseline["corpus_hash"], changed["corpus_hash"])
+
+    def test_missing_document_blocks_generation(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            manifest = make_valid_manifest()
+            manifest_path = write_fixture(root, manifest)
+            report_path = write_validation_report(root)
+            init_git_repo(root)
+            (root / manifest["included_documents"][0]["source_path"]).unlink()
+            with self.assertRaisesRegex(ValueError, "missing included source file"):
+                generate_candidate_file(manifest_path, root, report_path=report_path, output_path=root / "candidate.json")
+
+    def test_invalid_validator_result_blocks_generation(self):
+        with self.assertRaisesRegex(ValueError, "validator result must be VALID or VALID_WITH_WARNINGS"):
+            self.generate(validator_result="INVALID")
+
+    def test_excluded_artifact_changes_do_not_affect_corpus_hash(self):
+        baseline, _, _ = self.generate()
+        changed, _, _ = self.generate(mutate_files=lambda manifest, root: (root / manifest["excluded_artifacts"][0]["source_path"]).write_text("changed excluded", encoding="utf-8"))
+        self.assertEqual(baseline["corpus_hash"], changed["corpus_hash"])
+
+    def test_document_ordering_does_not_affect_final_corpus_hash(self):
+        baseline, _, _ = self.generate()
+        reversed_candidate, _, _ = self.generate(mutate_manifest=lambda manifest, root: manifest.update({"included_documents": list(reversed(manifest["included_documents"]))}))
+        self.assertEqual(baseline["corpus_hash"], reversed_candidate["corpus_hash"])
+
+    def test_candidate_status_is_never_sealed(self):
+        candidate, _, _ = self.generate()
+        self.assertEqual(candidate["status"], "candidate")
+        self.assertNotEqual(candidate["status"], "sealed")
+
+    def test_git_commit_metadata_is_recorded(self):
+        candidate, _, commit = self.generate()
+        self.assertEqual(candidate["source_git_commit"], commit)
 
 
 if __name__ == "__main__":

@@ -26,10 +26,241 @@ TEMPLATE = ROOT / "mvp" / "templates" / "fork-record.template.json"
 LAWS_PATH = ROOT / "mvp" / "laws" / "bab00-laws.json"
 FORK_POINTS_PATH = ROOT / "mvp" / "genesis" / "fork-points.json"
 
-BAB00 = ROOT / "Bab 00 — Menatap Akhir Era dari Balik.md"
+CANON_PATH = ROOT / "canon-v1.0.json"
+NODE_REGISTRY_PATH = ROOT / "mvp" / "node-registry.json"
 INDEX_HTML = UI_DIR / "index.html"
 
 PORT = 3720
+
+
+# ── Node store — canon is the source of truth for identity ──────────
+#
+# Canonical identity (document_id, layer, pair_document_id, sequence_narrative,
+# source_authority, source_path) comes from canon-v1.0.json at runtime.
+# Experience metadata (display_title, button_text, render_mode, fork_enabled)
+# is hand-authored in mvp/node-registry.json, keyed by canon document_id.
+# The two are merged here; identity is never hand-copied.
+
+def load_nodes():
+    """Return {document_id: node} — canon identity merged with UI registry."""
+    canon = json.loads(CANON_PATH.read_text())
+    canon_docs = {d["document_id"]: d for d in canon["documents"]}
+    registry = json.loads(NODE_REGISTRY_PATH.read_text())
+
+    nodes = {}
+    for doc_id, experience in registry["nodes"].items():
+        doc = canon_docs.get(doc_id)
+        if doc is None:
+            raise ValueError(
+                f"node-registry.json references '{doc_id}' which does not exist "
+                f"in {CANON_PATH.name}. Registry keys must be canon document_id values."
+            )
+        nodes[doc_id] = {
+            # canonical identity — read from canon, never duplicated
+            "document_id": doc["document_id"],
+            "layer": doc["layer"],
+            "pair_document_id": doc.get("pair_document_id"),
+            "sequence_narrative": doc.get("sequence_narrative"),
+            "status": doc.get("source_authority"),
+            "source_path": doc["source_path"],
+            # experience metadata — UI-only, hand-authored
+            "experience": experience,
+        }
+
+    # Navigation is derived from canon, not hand-authored: a node continues
+    # into its pair_document_id when the pair is itself a registered node and
+    # comes later in canon narrative sequence (bab-00 → timer-00-00). The
+    # reverse direction becomes return_target.
+    for node in nodes.values():
+        node["continue_target"] = None
+        node["return_target"] = None
+        pair = node["pair_document_id"]
+        target = nodes.get(pair) if pair else None
+        if target:
+            if (target["sequence_narrative"] or 0) > (node["sequence_narrative"] or 0):
+                node["continue_target"] = pair
+            else:
+                node["return_target"] = pair
+
+    default_node = registry.get("default_node")
+    if default_node not in nodes:
+        raise ValueError(f"default_node '{default_node}' is not a registered node")
+    return nodes, default_node
+
+
+NODES, DEFAULT_NODE = {}, None  # populated in main()
+
+
+# ── Renderers — one per document grammar ─────────────────────────────
+#
+# A node's render_mode (experience metadata) selects its renderer.
+# Bab grammar and Timer grammar are different documents; neither parser
+# is forced onto the other.
+
+class Renderer:
+    """Base renderer: markdown source text → reader HTML."""
+
+    def render(self, text):
+        raise NotImplementedError
+
+    def extract_segment_texts(self, text):
+        """Per-segment texts for the fork interview. Only Bab supports segments."""
+        return {}
+
+
+class BabRenderer(Renderer):
+    """Bab grammar: >-prefixed office-terminal lines + prose, 00:XX segment headers."""
+
+    def render(self, text):
+        import html as html_mod
+        lines = text.split('\n')
+        out = []
+        term_buf = []
+        text_buf = []
+
+        def flush_text():
+            nonlocal text_buf
+            if text_buf:
+                escaped = html_mod.escape('\n'.join(text_buf))
+                out.append('<div class="genesis-text">' + escaped.replace('\n', '<br>') + '</div>')
+                text_buf = []
+
+        def flush_term():
+            nonlocal term_buf
+            if term_buf:
+                out.append('<div class="term-block">')
+                for tline in term_buf:
+                    # Strip the leading ">"
+                    content = tline[1:] if tline.startswith('>') else tline
+                    # Remove one leading space if present
+                    if content.startswith(' '):
+                        content = content[1:]
+                    if content.strip() == '':
+                        # Blank line inside term block
+                        out.append('<span class="term-line term-blank">&nbsp;</span>')
+                    else:
+                        content_esc = html_mod.escape(content)
+                        out.append(f'<span class="term-line"><span class="prompt">▸</span>{content_esc}</span>')
+                out.append('</div>')
+                term_buf = []
+
+        for line in lines:
+            stripped = line.lstrip(' ')
+            if stripped.startswith('>'):
+                # Any line starting with > is a term line (including blank >)
+                flush_text()
+                term_buf.append(line)
+            else:
+                flush_term()
+                text_buf.append(line)
+
+        flush_term()
+        flush_text()
+
+        return '\n'.join(out)
+
+    def extract_segment_texts(self, text):
+        """Split Bab source into per-segment texts keyed by segment_id (00:XX)."""
+        segments = {}
+        # Split on segment headers: 00:XX — Label (at start of line)
+        pattern = r'^(?=\d{2}:\d{2} — )'
+        parts = re.split(pattern, text, flags=re.MULTILINE)
+        for part in parts:
+            part = part.strip()
+            if not part:
+                continue
+            # Extract segment_id from first line
+            m = re.match(r'(\d{2}:\d{2}) — ', part)
+            if m:
+                seg_id = m.group(1)
+                # Remove the header line from content
+                lines = part.split('\n', 1)
+                content = lines[1].strip() if len(lines) > 1 else ''
+                # Trim trailing sigil if present
+                content = re.sub(r'\n?🜃\s*$', '', content)
+                segments[seg_id] = content
+        return segments
+
+
+class TimerRenderer(Renderer):
+    """Timer grammar (minimal): ═-delimited system blocks + [BRACKET] tags + prose.
+
+    Timer documents are system logs interleaved with cosmogonic prose.
+    No ▸ prompt — that is Bab office-terminal grammar, not Timer grammar.
+    """
+
+    DIVIDER = re.compile(r'^═{3,}\s*$')
+    BRACKET = re.compile(r'^\[.+\]\s*$')
+
+    def render(self, text):
+        import html as html_mod
+        out = []
+        sys_buf = []
+        text_buf = []
+        in_system = False
+
+        def flush_text():
+            nonlocal text_buf
+            # Trim leading/trailing blank lines from prose blocks
+            while text_buf and not text_buf[0].strip():
+                text_buf.pop(0)
+            while text_buf and not text_buf[-1].strip():
+                text_buf.pop()
+            if text_buf:
+                escaped = html_mod.escape('\n'.join(text_buf))
+                out.append('<div class="genesis-text">' + escaped.replace('\n', '<br>') + '</div>')
+                text_buf = []
+
+        def flush_system():
+            nonlocal sys_buf
+            if sys_buf:
+                out.append('<div class="term-block">')
+                for sline in sys_buf:
+                    if sline.strip() == '':
+                        out.append('<span class="term-line term-blank">&nbsp;</span>')
+                    else:
+                        out.append(f'<span class="term-line">{html_mod.escape(sline)}</span>')
+                out.append('</div>')
+                sys_buf = []
+
+        for line in text.split('\n'):
+            if self.DIVIDER.match(line):
+                if in_system:
+                    # closing divider — include it, end the block
+                    sys_buf.append(line)
+                    in_system = False
+                    flush_system()
+                else:
+                    flush_text()
+                    in_system = True
+                    sys_buf.append(line)
+            elif in_system:
+                sys_buf.append(line)
+            elif self.BRACKET.match(line.strip()):
+                # standalone [TAG] line outside a divider pair — system voice
+                flush_text()
+                sys_buf.append(line)
+                flush_system()
+            else:
+                text_buf.append(line)
+
+        flush_system()
+        flush_text()
+        return '\n'.join(out)
+
+
+RENDERERS = {
+    "bab": BabRenderer,
+    "timer": TimerRenderer,
+}
+
+
+def get_renderer(node):
+    mode = node["experience"].get("render_mode")
+    cls = RENDERERS.get(mode)
+    if cls is None:
+        raise ValueError(f"Unknown render_mode '{mode}' for node {node['document_id']}")
+    return cls()
 
 # Add mvp to path so we can import check_fork
 sys.path.insert(0, str(ROOT / "mvp" / "checker"))
@@ -56,17 +287,21 @@ class ForkHandler(http.server.BaseHTTPRequestHandler):
             self.send_error(500, str(e))
 
     def _do_GET(self):
-        if self.path in ("/", "/index.html"):
-            self._serve_index()
-        elif self.path == "/api/bab00":
-            self._serve_bab00()
-        elif self.path == "/api/gallery":
+        from urllib.parse import urlparse, parse_qs
+        parsed = urlparse(self.path)
+        if parsed.path in ("/", "/index.html"):
+            query = parse_qs(parsed.query)
+            node_id = (query.get("node") or [DEFAULT_NODE])[0]
+            self._serve_index(node_id)
+        elif parsed.path.startswith("/api/node/"):
+            self._serve_node_raw(parsed.path[len("/api/node/"):])
+        elif parsed.path == "/api/gallery":
             self._handle_gallery()
-        elif self.path == "/favicon.ico":
+        elif parsed.path == "/favicon.ico":
             self.send_error(204)  # No content — stop browser nagging
         else:
             # Try static files from UI dir
-            filepath = UI_DIR / self.path.lstrip("/")
+            filepath = UI_DIR / parsed.path.lstrip("/")
             if filepath.exists() and filepath.is_file():
                 self._serve_file(filepath)
             else:
@@ -115,23 +350,34 @@ class ForkHandler(http.server.BaseHTTPRequestHandler):
         except Exception:
             self.send_error(500)
 
-    def _serve_index(self):
-        """Serve index.html with Bab 00 content injected inline (no fetch needed)."""
+    def _serve_index(self, node_id):
+        """Serve index.html with the requested node's content injected inline.
+
+        Node identity comes from canon-v1.0.json; the renderer is selected by
+        the node's render_mode. No Bab-00-specific logic lives here.
+        """
         try:
-            import html as html_mod
+            node = NODES.get(node_id)
+            if node is None:
+                self.send_error(404, f"Unknown node: {node_id}. Registered: {', '.join(NODES)}")
+                return
+
             html = INDEX_HTML.read_text()
-            bab00 = BAB00.read_text()
-            # Process: terminal-line blocks (starting with >) become styled HTML
-            processed = self._process_bab00(bab00)
-            html = html.replace("<!--BAB00_SOURCE-->", processed)
-            # Inject segment-fork-map for TOC picker
+            source_text = (ROOT / node["source_path"]).read_text()
+            renderer = get_renderer(node)
+
+            # Node content + metadata (identity from canon, experience from registry)
+            html = html.replace("<!--NODE_SOURCE-->", renderer.render(source_text))
+            html = html.replace("<!--NODE_META_SOURCE-->", json.dumps(node, ensure_ascii=False))
+
+            # Fork-interview context — only meaningful for segment-bearing (Bab) nodes.
+            # Segment map stays Bab-00-only for now: fork flow is out of spike scope.
             seg_map_path = ROOT / "mvp" / "genesis" / "segment-fork-map.json"
-            if seg_map_path.exists():
-                seg_json = seg_map_path.read_text()
-                html = html.replace("<!--SEGMENT_MAP_SOURCE-->", seg_json)
-            # Inject per-segment source texts for Q1 context
-            seg_texts = self._extract_segment_texts(bab00)
+            if node["experience"].get("fork_enabled") and seg_map_path.exists():
+                html = html.replace("<!--SEGMENT_MAP_SOURCE-->", seg_map_path.read_text())
+            seg_texts = renderer.extract_segment_texts(source_text)
             html = html.replace("<!--SEGMENT_TEXTS_SOURCE-->", json.dumps(seg_texts, ensure_ascii=False))
+
             data = html.encode("utf-8")
             self.send_response(200)
             self.send_header("Content-Type", "text/html; charset=utf-8")
@@ -142,88 +388,21 @@ class ForkHandler(http.server.BaseHTTPRequestHandler):
         except Exception:
             self.send_error(500)
 
-    def _extract_segment_texts(self, bab00_text):
-        """Split Bab 00 into per-segment texts keyed by segment_id."""
-        import re
-        segments = {}
-        # Split on segment headers: 00:XX — Label (at start of line)
-        pattern = r'^(?=\d{2}:\d{2} — )'
-        parts = re.split(pattern, bab00_text, flags=re.MULTILINE)
-        for part in parts:
-            part = part.strip()
-            if not part:
-                continue
-            # Extract segment_id from first line
-            m = re.match(r'(\d{2}:\d{2}) — ', part)
-            if m:
-                seg_id = m.group(1)
-                # Remove the header line from content
-                lines = part.split('\n', 1)
-                content = lines[1].strip() if len(lines) > 1 else ''
-                # Trim trailing sigil if present
-                content = re.sub(r'\n?🜃\s*$', '', content)
-                segments[seg_id] = content
-        return segments
-
-    def _process_bab00(self, text):
-        """Convert >-prefixed lines into terminal blocks. Everything else is HTML-escaped text."""
-        import html as html_mod
-        lines = text.split('\n')
-        out = []
-        term_buf = []
-        text_buf = []
-
-        def flush_text():
-            nonlocal text_buf
-            if text_buf:
-                escaped = html_mod.escape('\n'.join(text_buf))
-                out.append('<div class="genesis-text">' + escaped.replace('\n', '<br>') + '</div>')
-                text_buf = []
-
-        def flush_term():
-            nonlocal term_buf
-            if term_buf:
-                out.append('<div class="term-block">')
-                for tline in term_buf:
-                    # Strip the leading ">"
-                    content = tline[1:] if tline.startswith('>') else tline
-                    # Remove one leading space if present
-                    if content.startswith(' '):
-                        content = content[1:]
-                    if content.strip() == '':
-                        # Blank line inside term block
-                        out.append('<span class="term-line term-blank">&nbsp;</span>')
-                    else:
-                        content_esc = html_mod.escape(content)
-                        out.append(f'<span class="term-line"><span class="prompt">▸</span>{content_esc}</span>')
-                out.append('</div>')
-                term_buf = []
-
-        for line in lines:
-            stripped = line.lstrip(' ')
-            if stripped.startswith('>'):
-                # Any line starting with > is a term line (including blank >)
-                flush_text()
-                term_buf.append(line)
-            else:
-                flush_term()
-                text_buf.append(line)
-
-        flush_term()
-        flush_text()
-
-        return '\n'.join(out)
-
-    def _serve_bab00(self):
+    def _serve_node_raw(self, node_id):
+        """GET /api/node/<document_id> — raw source text, path resolved via canon."""
+        node = NODES.get(node_id)
+        if node is None:
+            self.send_error(404, f"Unknown node: {node_id}")
+            return
         try:
-            text = BAB00.read_text()
+            text = (ROOT / node["source_path"]).read_text()
             self.send_response(200)
             self.send_header("Content-Type", "text/plain; charset=utf-8")
             self.send_header("Content-Length", len(text.encode("utf-8")))
             self.end_headers()
             self.wfile.write(text.encode("utf-8"))
         except Exception:
-            self.send_error(500, "Cannot read bab-00.md")
+            self.send_error(500, f"Cannot read source for {node_id}")
 
     def _handle_save(self):
         try:
@@ -1082,9 +1261,14 @@ Write the first scene now."""
 
 
 def main():
+    global NODES, DEFAULT_NODE
+
     # Verify required files
-    if not BAB00.exists():
-        print(f"ERROR: {BAB00} not found")
+    if not CANON_PATH.exists():
+        print(f"ERROR: {CANON_PATH} not found — canon is the node source of truth")
+        sys.exit(1)
+    if not NODE_REGISTRY_PATH.exists():
+        print(f"ERROR: {NODE_REGISTRY_PATH} not found")
         sys.exit(1)
     if not INDEX_HTML.exists():
         print(f"ERROR: {INDEX_HTML} not found")
@@ -1092,6 +1276,18 @@ def main():
     if not TEMPLATE.exists():
         print(f"ERROR: {TEMPLATE} not found")
         sys.exit(1)
+
+    # Load nodes: canon identity + UI registry. Fail loudly on mismatch.
+    try:
+        NODES, DEFAULT_NODE = load_nodes()
+    except ValueError as e:
+        print(f"ERROR: {e}")
+        sys.exit(1)
+    for node in NODES.values():
+        src = ROOT / node["source_path"]
+        if not src.exists():
+            print(f"ERROR: source for node {node['document_id']} not found: {src}")
+            sys.exit(1)
 
     # Allow immediate rebind after crash
     socketserver.TCPServer.allow_reuse_address = True
@@ -1106,10 +1302,11 @@ def main():
         raise
 
     url = f"http://localhost:{PORT}"
+    node_list = ", ".join(NODES)
     print()
     print("╔══════════════════════════════════════════════════════════╗")
-    print("║  VOID SAGA — Fork Interview                             ║")
-    print("║  Genesis Node: Bab 00                                   ║")
+    print("║  VOID SAGA — Node Reader + Fork Interview               ║")
+    print(f"║  Nodes: {node_list:<44} ║")
     print("║                                                        ║")
     print(f"║  Open: {url:<44} ║")
     print("║  Press Ctrl+C to stop                                   ║")

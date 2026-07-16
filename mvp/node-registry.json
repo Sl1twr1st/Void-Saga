@@ -1,0 +1,21 @@
+{
+  "_comment": "Experience metadata ONLY (UI layer, hand-authored). Canonical identity — layer, pair_document_id, sequence_narrative, source_authority, source_path — is read at runtime from canon-v1.0.json and must NEVER be copied into this file. Keys MUST be canon document_id values.",
+  "canon_ref": "canon-v1.0.json",
+  "default_node": "bab-00",
+  "nodes": {
+    "bab-00": {
+      "display_title": "Bab 00 — Menatap Akhir Era dari Balik Laptop Kantor",
+      "short_label": "BAB 00",
+      "button_text": "CONTINUE TO TIMER 00:00",
+      "render_mode": "bab",
+      "fork_enabled": true
+    },
+    "timer-00-00": {
+      "display_title": "Timer 00:00 — You Cannot Escape The Beginning",
+      "short_label": "TIMER 00:00",
+      "button_text": null,
+      "render_mode": "timer",
+      "fork_enabled": false
+    }
+  }
+}

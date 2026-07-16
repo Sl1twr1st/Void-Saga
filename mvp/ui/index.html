@@ -771,6 +771,19 @@ let lastVerdict = null;
 let lastTranslateData = null;
 let sceneData = null;
 
+// Current node — identity from canon-v1.0.json, experience from node-registry.json.
+// Injected by the server per request; the UI never hardcodes node facts.
+let nodeMeta = null;
+function loadNodeMeta() {
+  if (nodeMeta) return nodeMeta;
+  const src = document.getElementById('node-meta-source');
+  if (src && src.textContent.trim() && !src.textContent.includes('NODE_META')) {
+    try { nodeMeta = JSON.parse(src.textContent); } catch(e) { nodeMeta = null; }
+  }
+  return nodeMeta;
+}
+let currentNode = null;      // canon document_id of the node being read
+
 function loadSegmentMap() {
   if (segmentMap) return segmentMap;
   const src = document.getElementById('segment-map-source');
@@ -798,7 +811,7 @@ function render() {
   // Update context bar per screen
   const ctxMap = {
     'landing':   `<span>Genesis: <span class="val">Bab 00</span></span><span class="val" style="color:var(--text-dim);font-style:italic">Anyone may write inside this universe.</span><span>Laws: <span class="val">7 active</span></span><span>Fork Points: <span class="val">3 available</span></span><a href="#" onclick="alert('Tentang Void Saga — akan datang.')" style="margin-left:auto;font-size:8px;color:var(--text-dim);text-decoration:none;text-transform:uppercase;letter-spacing:1px">ABOUT ▸</a>`,
-    'read':      `<span>📖 <span class="val">Bab 00 — Menatap Akhir Era dari Balik Laptop Kantor</span></span>`,
+    'read':      `<span>📖 <span class="val">${esc(loadNodeMeta()?.experience?.display_title || 'Void Saga')}</span></span>`,
     'name':      `<span>✧ <span class="val">Fork Interview — Who is writing?</span></span>`,
     'question':  `<span>✧ <span class="val">Fork Interview — Question ${currentQ+1} of ${QUESTIONS.length}</span></span><span style="margin-left:auto">Writer: <span class="val">${esc(writerName) || '…'}</span></span>`,
   };
@@ -950,7 +963,7 @@ function landingHTML() {
       </div>
 
       <button class="btn enter" onclick="screen='read';render()">
-        READ BAB 00
+        READ ${esc(loadNodeMeta()?.experience?.short_label || 'BAB 00')}
       </button>
     </div>`;
 }
@@ -1069,26 +1082,47 @@ function segmentHTML() {
 }
 
 function readHTML() {
+  const meta = loadNodeMeta();
+  const exp = meta ? meta.experience : {};
+  const forkBtn = exp.fork_enabled ? `
+          <button class="btn enter" id="btnForkNode" style="flex:1">
+            FORK THIS NODE
+          </button>` : '';
+  // Continue target comes from canon (pair_document_id, forward in sequence);
+  // the button label is experience metadata.
+  let navBtn = '';
+  if (meta && meta.continue_target && exp.button_text) {
+    navBtn = `
+          <button class="btn enter" id="btnContinueNode" data-target="${esc(meta.continue_target)}" style="flex:1">
+            ${esc(exp.button_text)}
+          </button>`;
+  } else if (meta && meta.return_target) {
+    navBtn = `
+          <button class="btn" id="btnContinueNode" data-target="${esc(meta.return_target)}" style="flex:1">
+            ← RETURN TO ${esc((meta.return_target || '').toUpperCase())}
+          </button>`;
+  }
+  const checkpoint = (!exp.fork_enabled) ? `
+        <div class="small" style="text-align:center;margin-top:8px;color:var(--text-dim)">
+          Node checkpoint — ${esc(exp.short_label || meta?.document_id || '')} is a read-only canonical node. Forking is not enabled here.
+        </div>` : '';
   return `
     <div class="screen fade-in read-screen">
       <div style="flex-shrink:0;margin-bottom:12px;font-size:14px;color:var(--accent-glow);text-align:center;line-height:1.5;letter-spacing:2px">
         VOID SAGA
       </div>
       <div class="read-scroll" id="readScroll">
-        <div class="genesis-box" id="bab00Content">
-          Loading genesis.txt…
+        <div class="genesis-box" id="nodeContent">
+          Loading node…
         </div>
       </div>
       <div class="read-bottom">
         <div class="read-progress" id="readProgress">Opening…</div>
         <div class="btn-row" id="readBtnRow" style="display:none">
-          <button class="btn enter" id="btnForkNode" style="flex:1">
-            FORK THIS NODE
-          </button>
-          <button class="btn" id="btnContinueTimer" disabled style="flex:1;opacity:0.4;cursor:not-allowed">
-            CONTINUE TO TIMER 00:00
-          </button>
+          ${forkBtn}
+          ${navBtn}
         </div>
+        ${checkpoint}
       </div>
     </div>`;
 }
@@ -1745,16 +1779,22 @@ function esc(s) {
 }
 
 function bindEvents() {
-  // Read screen — load Bab 00 from embedded source (no fetch)
-  const bab00El = document.getElementById('bab00Content');
-  if (bab00El) {
-    const src = document.getElementById('bab00-source');
-    if (src && src.innerHTML.trim() && !src.innerHTML.includes('BAB00_SOURCE')) {
-      bab00El.innerHTML = src.innerHTML.trim();
+  // Read screen — load current node from embedded source (no fetch)
+  const nodeEl = document.getElementById('nodeContent');
+  if (nodeEl) {
+    const src = document.getElementById('node-source');
+    if (src && src.innerHTML.trim() && !src.innerHTML.includes('NODE_SOURCE')) {
+      nodeEl.innerHTML = src.innerHTML.trim();
     } else {
-      bab00El.textContent = 'Bab 00 tidak tersedia. Baca manual: mvp/input/bab-00.md';
+      nodeEl.textContent = 'Node source tidak tersedia.';
     }
   }
+
+  // Continue / return navigation between nodes (?node= deep link, server re-renders)
+  document.getElementById('btnContinueNode')?.addEventListener('click', (e) => {
+    const target = e.currentTarget.dataset.target;
+    if (target) location.href = '/?node=' + encodeURIComponent(target);
+  });
 
   // Translate button (completion screen)
   document.getElementById('btnTranslate')?.addEventListener('click', () => {
@@ -1790,6 +1830,8 @@ function bindEvents() {
   const readBtnRow = document.getElementById('readBtnRow');
   const readProgress = document.getElementById('readProgress');
   if (readScroll && readBtnRow && readProgress) {
+    const meta = loadNodeMeta();
+    const ackLabel = ((meta && meta.experience.short_label) || 'NODE') + ' ACKNOWLEDGED';
     const onScroll = () => {
       const scrollTop = readScroll.scrollTop;
       const scrollHeight = readScroll.scrollHeight;
@@ -1798,7 +1840,7 @@ function bindEvents() {
 
       if (maxScroll <= 0) {
         readBtnRow.style.display = 'flex';
-        readProgress.textContent = 'BAB 00 ACKNOWLEDGED';
+        readProgress.textContent = ackLabel;
         readProgress.className = 'read-progress ready';
         return;
       }
@@ -1808,7 +1850,7 @@ function bindEvents() {
 
       if (nearBottom) {
         readBtnRow.style.display = 'flex';
-        readProgress.textContent = 'BAB 00 ACKNOWLEDGED';
+        readProgress.textContent = ackLabel;
         readProgress.className = 'read-progress ready';
       } else {
         readBtnRow.style.display = 'none';
@@ -1985,11 +2027,23 @@ function bindEvents() {
 }
 
 // ── Init ───────────────────────────────────────
-render();
+// Node metadata is injected per request. A ?node= deep link goes straight to
+// the reader (boot sequence is the default-entry experience only).
+(function init() {
+  const meta = loadNodeMeta();
+  currentNode = meta ? meta.document_id : null;
+  if (new URLSearchParams(location.search).has('node')) {
+    screen = 'read';
+  }
+  render();
+})();
 </script>
 
-<!-- Bab 00 source — injected by server, read by JS. No fetch needed. -->
-<pre id="bab00-source" style="display:none"><!--BAB00_SOURCE--></pre>
+<!-- Current node source — injected by server, read by JS. No fetch needed. -->
+<pre id="node-source" style="display:none"><!--NODE_SOURCE--></pre>
+
+<!-- Current node metadata — canonical identity (from canon-v1.0.json) + experience metadata (from node-registry.json), merged server-side -->
+<script id="node-meta-source" type="application/json"><!--NODE_META_SOURCE--></script>
 
 <!-- Segment fork map — injected by server for TOC picker -->
 <script id="segment-map-source" type="application/json"><!--SEGMENT_MAP_SOURCE--></script>

@@ -870,8 +870,24 @@ function render() {
 
 // ── Boot Sequence ─────────────────────────────
 function bootHTML() {
+  // Static header — verbatim from opening.md (novel opening). Not animated:
+  // it sits still above the boot log, exactly like the printed page.
   return `
     <div class="screen" style="padding:32px 20px 20px">
+      <div style="width:100%;max-width:420px;margin:0 auto 20px;font-family:inherit;text-align:center">
+        <div style="font-size:12px;line-height:1.8;color:var(--text-bright)">
+          This is not a story.<br>
+          It is a system of shared experience.
+        </div>
+        <div style="font-size:14px;margin:14px 0 8px">⚠️</div>
+        <div style="font-size:10px;line-height:1.8;color:var(--text-dim);letter-spacing:0.5px">
+          SYSTEM REQUIREMENT:<br>
+          🜃 Void.OS v4.13.8 or higher<br>
+          Narrative Installation: MANDATORY<br>
+          Temporal Loop Protection: DISABLED<br>
+          Escape Sequence: NOT FOUND
+        </div>
+      </div>
       <div id="boot-terminal" style="width:100%;max-width:420px;margin:0 auto;font-family:inherit;font-size:11px;line-height:1.7;color:var(--text-dim)">
       </div>
     </div>`;

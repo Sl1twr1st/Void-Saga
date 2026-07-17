@@ -33,6 +33,8 @@ The novel is a real deliverable. The engine is a real tool. The methodology is a
 
 **NEXT: M2 — Second Canon Consumer.** Exit criterion: Evidence Engine membaca canon — invariant/runtime citations resolve ke `document_id` + `source_hash`, bukan path markdown mentah. Satu consumer baru, tanpa perubahan canon. Nama "Canon Consumer Platform" (usulan Jali 2026-07-17) masih pending — kata "platform" baru dipakai setelah ≥2 consumer independen jalan. Search/Timeline/Glossary BUKAN deliverable M2.
 
+**M2 contract decision (2026-07-17, sealed):** **canonical provenance = bagian dari engine contract** — Evidence tanpa provenance tidak lagi sah. Sidecar resolver DITOLAK karena topologi: resolver yang jadi consumer, engine tetap hidup tanpa canon → melanggar exit criterion. Ini BUKAN "schema change accepted" — implementation strategy masih OPEN (runtime/Evidence/Citation object, adapter, migration layer); standing rule "Do NOT change schema" tetap berlaku sampai strategy dipilih. Basis evidence: `research/2026-07-17-provenance-loss-trace.md` (identitas canon tidak pernah masuk pipeline; 122 sitasi free-text di 4 kelas; `forbidden_behaviors` tanpa sitasi sama sekali; `constraints.py:402-412` membuang sitasi dari violation) → `research/2026-07-17-citation-residence-decision.md` (matrix + verdict).
+
 **Formal debt:** fork layer (fork records, interview, checker) masih pakai id lama `bab00`; canon pakai `bab-00`. Migrasi wajib sebelum Fork Engine jadi consumer canon. Jangan disentuh sambil lalu — ripple besar.
 
 Roadmap fase lama (derived from `contra/2026-06-27-contra-week-one.md`):

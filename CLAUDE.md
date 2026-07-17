@@ -23,20 +23,30 @@ The novel is a real deliverable. The engine is a real tool. The methodology is a
 
 ## Current Milestone
 
-**invariant-engine — Bab 00 Fork MVP shipped (2026-06-27).** A working rule-based prototype demonstrates Bab 00 forkability. `mvp/` contains genesis node metadata, 7 explicit narrative laws, 4 example forks (PASS, PRICE_REQUIRED, BLOCKED, VALID_FORK), and a CLI checker. Currently supports Bab 00 only; verdicts are declared by the fork author, not auto-extracted from prose.
+**M1 — Canon sealing COMPLETE (2026-07-15).** `canon-v1.0.json` sealed: 65 dokumen (layers: bab/timer/codex/system, 3 artifacts excluded) dengan document_id, layer, pairing, sequence, source_hash. Toolchain di `tools/void_corpus/` (generate_candidate, seal_candidate, validate). Proofing pipeline di `proofing/` (registry + passA–E + divergence reports) — **masih untracked**, keputusan commit pending.
 
-Roadmap (derived from `contra/2026-06-27-contra-week-one.md` — each phase kills a named blind spot):
-- **Fase 0 — Identity (done):** project = invariant-engine; Void Saga = dataset; "research program" / "emergence engine" language downgraded to honest status. (kills contra #5)
-- **Fase 0.5 — Bab 00 Fork MVP (done):** Genesis node metadata, 7 Bab 00 laws, 3 fork points, 4 demo forks, CLI checker. Working demonstration of Bab 00 forkability with legal/illegal branches. (kills contra #5 — ships a concrete artifact)
-- **Fase 1 — Finish & seal the novel.** Strongest asset, closest to shipping. KPG is a real channel. (kills contra #5)
-- **Fase 2 — Replace the manual extractor** with LLM-based invariant extraction + citations from raw prose. Until it works, the "emergence detection engine" claim stays retracted. (kills contra #1)
-- **Fase 3 — One second writer in 90 days,** or downgrade "methodology" to "instrument built for one novel." (kills contra #3)
-- **Fase 4 — Real confidence (held-out validation) or drop the number.** While violations ≈ 0, the confidence figure is theater. (kills contra #2)
+**Node reader spike PASSED (2026-07-17, `abe65b1`).** Canon terbukti jadi source of truth untuk consumer di luar dirinya: fork-ui sekarang node-aware (`?node=bab-00`, `?node=timer-00-00`), identity dari canon, experience metadata di `mvp/node-registry.json`, renderer per jenis dokumen (BabRenderer/TimerRenderer). Navigasi bab→timer di-derive dari `pair_document_id` + `sequence_narrative`. Ini spike, BUKAN full Phase 1 — full node reader (65 nodes) belum dimulai, sengaja. Log: `research/2026-07-17-canon-as-shared-dependency.md`.
+
+**Boot screen = canonical threshold (2026-07-17, `1684928`).** Epigraph + SYSTEM REQUIREMENT dari `opening.md:27-35` tampil statis di atas boot log. Status jujur: **matched (verbatim copy), bukan consumed at runtime** — kalau opening.md berubah, boot screen diverge diam-diam. Kandidat consumer beneran di M2.
+
+**Void.OS reading surface (2026-07-01).** fork-ui = canonical reading surface Void Saga, bukan blog/website. Doctrine: "Reader first, fork optional, engine always present." Boot → landing → read → fork/continue. `./scripts/fork-ui` → localhost:3720.
+
+**NEXT: M2 — Second Canon Consumer.** Exit criterion: Evidence Engine membaca canon — invariant/runtime citations resolve ke `document_id` + `source_hash`, bukan path markdown mentah. Satu consumer baru, tanpa perubahan canon. Nama "Canon Consumer Platform" (usulan Jali 2026-07-17) masih pending — kata "platform" baru dipakai setelah ≥2 consumer independen jalan. Search/Timeline/Glossary BUKAN deliverable M2.
+
+**Formal debt:** fork layer (fork records, interview, checker) masih pakai id lama `bab00`; canon pakai `bab-00`. Migrasi wajib sebelum Fork Engine jadi consumer canon. Jangan disentuh sambil lalu — ripple besar.
+
+Roadmap fase lama (derived from `contra/2026-06-27-contra-week-one.md`):
+- **Fase 0 — Identity (done):** project = invariant-engine; Void Saga = dataset. (kills contra #5)
+- **Fase 0.5 — Bab 00 Fork MVP (done):** genesis node, 7 laws, fork points, demo forks, CLI checker.
+- **Fase 1 — Finish & seal the novel.** Canon v1.0 sealed = prosa beku tersegel. Novel itu sendiri: in progress.
+- **Fase 2 — Replace the manual extractor** with LLM-based invariant extraction + citations. (kills contra #1)
+- **Fase 3 — One second writer in 90 days,** or downgrade "methodology". (kills contra #3)
+- **Fase 4 — Real confidence (held-out validation) or drop the number.** (kills contra #2)
 
 **KEEP:** novel, PRICE REQUIRED, Batman/Mr. Bean framing, evidence discipline.
 **STOP (noise):** schema v3, serializing remaining Void Saga characters, OPEN_QUESTIONS architecture — premature until Fase 2–3 land. (kills contra #4)
 
-Prior framing ("Theory Stabilization," KPI-shifted-three-times, "no schema changes until OPEN_QUESTIONS answered") is retired. The theory docs remain as reference; they are no longer the milestone. GUA/LO runtimes remain Draft.
+GUA/LO runtimes remain Draft.
 
 ---
 
@@ -440,6 +450,11 @@ Bab = pengarang. Timer = karya mereka. Keduanya nyata dalam universe ini.
 
 | File | Why |
 |------|-----|
+| `canon-v1.0.json` | **The canon.** Sealed 2026-07-15. Identity source of truth: document_id, layer, pairing, sequence, source_hash untuk semua dokumen prosa. |
+| `tools/void_corpus/` | Canon toolchain: generate_candidate, seal_candidate, validate, models. |
+| `mvp/node-registry.json` | Experience metadata (UI-only) per node, keyed by canon document_id. Identity JANGAN di-copy ke sini. |
+| `scripts/fork-ui` | **Void.OS reading surface + fork interview.** Node-aware (`?node=`), canon-backed. localhost:3720. |
+| `research/2026-07-17-canon-as-shared-dependency.md` | Spike log: canon as shared dependency, M2 guardrails, formal debt bab00→bab-00. |
 | `docs/BEHAVIORAL_INVARIANTS.md` | **The theory.** Primitive = repeated observation. Compiler serializes invariants, not entities. |
 | `docs/OBSERVE_PIPELINE.md` | **The method.** Observe → Propose → Review → Serialize → Evolve. |
 | `docs/OPEN_QUESTIONS.md` | **The research agenda.** Five open questions. None answered. |
@@ -468,4 +483,4 @@ Bab = pengarang. Timer = karya mereka. Keduanya nyata dalam universe ini.
 
 ---
 
-*Last updated: 2026-06-27 — invariant-engine. Bab 00 Fork MVP shipped. Fase 0.5 complete. mvp/ contains genesis node, 7 laws, 3 fork points, 3 demo forks, CLI checker. North Star: "Fork Bab 00. Break canon. Pay the price. Continue the universe."*
+*Last updated: 2026-07-17 — M1 canon sealing complete (canon-v1.0.json). Node reader spike passed: canon proven as source of truth for node-aware reader (`?node=`, node-registry, renderer abstraction). Boot screen matches novel opening verbatim. NEXT: M2 — second canon consumer (Evidence Engine reads canon).*

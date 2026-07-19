@@ -31,6 +31,21 @@ The novel is a real deliverable. The engine is a real tool. The methodology is a
 
 **Void.OS reading surface (2026-07-01).** fork-ui = canonical reading surface Void Saga, bukan blog/website. Doctrine: "Reader first, fork optional, engine always present." Boot → landing → read → fork/continue. `./scripts/fork-ui` → localhost:3720.
 
+**fork-ui diegetic experience doctrine (ACTIVE, must-read before UX changes).** Untuk semua perubahan pada experience yang dimulai dari `./scripts/fork-ui`, baca **`docs/VOID_OS_DIEGETIC_EXPERIENCE.md`** dulu. Doktrin tertinggi:
+- every screen must be spoken by the world, never by the software
+- don't expose the engine; expose the world
+- user = witness / investigator / testifier, bukan prompt writer atau operator AI
+- retrieval harus tampil sebagai memory event, contradiction, judgment, consequence, atau residue — bukan telemetry aplikasi
+- interview harus terasa sebagai cross-examination yang bereaksi pada testimony, bukan fixed wizard form
+
+**Temporary MVP scope exception:** API Gate **bukan** target experience pass ini. Perlakukan API Gate sebagai **operator console** untuk rapid provider switching, prompt iteration, provider comparison, dan generation debugging. Jangan redesign/hide/replace API Gate pada pass ini; tandai semua issue di dalamnya sebagai **DEFERRED (Operator Layer)**. Fokus diegetic pass sekarang hanya pada: Boot, Landing, Reader, Segment Selection, Witness Registration, Interview, Translation, dan Verdict.
+
+**Capability honesty guard:** Before changing fork-ui interaction or copy, verify that every world-facing claim is supported by an actual runtime capability. Diegetic framing may dramatize; it may not fabricate engine behavior.
+
+**Capability promotion guard:** Before promoting any new world event into fork-ui, verify its capability status in **`docs/VOID_OS_DIEGETIC_EXPERIENCE.md`**. Reserved Theatre may not appear as live world behavior until the corresponding engine state exists, is exposed, and is verified.
+
+Gunakan checklist sebelum mengubah copy/UI/flow fork-ui: siapa yang berbicara (dunia atau developer), apakah user menjalani ritual atau mengoperasikan tool, apakah engine terlihat, apakah retrieval dipentaskan sebagai memory, apakah pertanyaan lahir dari testimony + canon, apakah output terasa sebagai consequence/residue, dan apakah layar ini membuat user semakin lupa sedang memakai software.
+
 **NEXT: M2 — Second Canon Consumer.** Exit criterion: Evidence Engine membaca canon — invariant/runtime citations resolve ke `document_id` + `source_hash`, bukan path markdown mentah. Satu consumer baru, tanpa perubahan canon. Nama "Canon Consumer Platform" (usulan Jali 2026-07-17) masih pending — kata "platform" baru dipakai setelah ≥2 consumer independen jalan. Search/Timeline/Glossary BUKAN deliverable M2.
 
 **M2 contract decision (2026-07-17, sealed):** **canonical provenance = bagian dari engine contract** — Evidence tanpa provenance tidak lagi sah. Sidecar resolver DITOLAK karena topologi: resolver yang jadi consumer, engine tetap hidup tanpa canon → melanggar exit criterion. Ini BUKAN "schema change accepted" — implementation strategy masih OPEN (runtime/Evidence/Citation object, adapter, migration layer); standing rule "Do NOT change schema" tetap berlaku sampai strategy dipilih. Basis evidence: `research/2026-07-17-provenance-loss-trace.md` (identitas canon tidak pernah masuk pipeline; 122 sitasi free-text di 4 kelas; `forbidden_behaviors` tanpa sitasi sama sekali; `constraints.py:402-412` membuang sitasi dari violation) → `research/2026-07-17-citation-residence-decision.md` (matrix + verdict).

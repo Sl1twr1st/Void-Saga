@@ -25,11 +25,15 @@ The novel is a real deliverable. The engine is a real tool. The methodology is a
 
 **M1 — Canon sealing COMPLETE (2026-07-15).** `canon-v1.0.json` sealed: 65 dokumen (layers: bab/timer/codex/system, 3 artifacts excluded) dengan document_id, layer, pairing, sequence, source_hash. Toolchain di `tools/void_corpus/` (generate_candidate, seal_candidate, validate). Proofing pipeline di `proofing/` (registry + passA–E + divergence reports) — **masih untracked**, keputusan commit pending.
 
-**Node reader spike PASSED (2026-07-17, `abe65b1`).** Canon terbukti jadi source of truth untuk consumer di luar dirinya: fork-ui sekarang node-aware (`?node=bab-00`, `?node=timer-00-00`), identity dari canon, experience metadata di `mvp/node-registry.json`, renderer per jenis dokumen (BabRenderer/TimerRenderer). Navigasi bab→timer di-derive dari `pair_document_id` + `sequence_narrative`. Ini spike, BUKAN full Phase 1 — full node reader (65 nodes) belum dimulai, sengaja. Log: `research/2026-07-17-canon-as-shared-dependency.md`.
+**Node reader spike PASSED (2026-07-17, `abe65b1`).** Canon terbukti jadi source of truth untuk consumer di luar dirinya: fork-ui sekarang node-aware (`?node=bab-00`, `?node=timer-00-00`), identity dari canon, experience metadata di `mvp/node-registry.json`, renderer per jenis dokumen (BabRenderer/TimerRenderer). Log: `research/2026-07-17-canon-as-shared-dependency.md`.
 
-**Boot screen = canonical threshold (2026-07-17, `1684928`).** Epigraph + SYSTEM REQUIREMENT dari `opening.md:27-35` tampil statis di atas boot log. Status jujur: **matched (verbatim copy), bukan consumed at runtime** — kalau opening.md berubah, boot screen diverge diam-diam. Kandidat consumer beneran di M2.
+**Node reader expanded in current working tree.** Setelah spike, `mvp/node-registry.json` sekarang memetakan 65 `document_id` canon dengan `default_node: system-opening`, dan `scripts/fork-ui` menurunkan `previous_target` / `continue_target` dari urutan canon tersegel sambil memilih renderer per grammar dokumen (`bab`, `timer`, `codex`, `system`). Current fork-ui derives navigation from the sealed canon ordering without changing canon itself.
+
+**Canonical threshold now starts at `system-opening`.** `opening.md` sekarang berfungsi sebagai threshold prose singkat untuk masuk ke path canon; blok SYSTEM REQUIREMENT / boot-copy lama sudah dihapus dari source. Dalam working tree saat ini, root entry mengarah ke Archive Entry / `system-opening`, lalu pembacaan berlanjut ke `bab-00`.
 
 **Void.OS reading surface (2026-07-01).** fork-ui = canonical reading surface Void Saga, bukan blog/website. Doctrine: "Reader first, fork optional, engine always present." Boot → landing → read → fork/continue. `./scripts/fork-ui` → localhost:3720.
+
+**Current active pass: Complete Canon Reading Experience (`./scripts/fork-ui`).** Scope: markdown-first presentation polish, reading continuity, navigation, readability. Out of scope: canon rewrite, doctrine changes, engine architecture, capability promotion without runtime support. This pass refines presentation, not canon.
 
 **fork-ui diegetic experience doctrine (ACTIVE, must-read before UX changes).** Untuk semua perubahan pada experience yang dimulai dari `./scripts/fork-ui`, baca **`docs/VOID_OS_DIEGETIC_EXPERIENCE.md`** dulu. Doktrin tertinggi:
 - every screen must be spoken by the world, never by the software
